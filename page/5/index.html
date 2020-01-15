@@ -1,1052 +1,918 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
 <head>
-  <meta charset="utf-8">
-  
+    <meta charset="utf-8">
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="Hexo">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Hexo</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
 
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://fightingtree.github.io/page/5/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="fightingtree">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
 
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
 <meta name="generator" content="Hexo 4.2.0"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Hexo</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Hexo</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
         
-          <a class="main-nav-link" href="/">Home</a>
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
         
-      </nav>
-      <nav id="sub-nav">
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
-      </div>
-    </div>
-  </div>
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
 </header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-Python-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/08/Python-1/" class="article-date">
-  <time datetime="2019-09-08T06:17:53.000Z" itemprop="datePublished">2019-09-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/08/Python-1/">Python(一)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="IDLE"><a href="#IDLE" class="headerlink" title="IDLE"></a>IDLE</h2><p>IDLE是一个PythonShell,（安装结束后在开始菜单键入idle打开）shell的意思就是“外壳”，基本上来说，就是一个通过键入文本与程序交互的途径</p>
-<h2 id="关于python"><a href="#关于python" class="headerlink" title="关于python"></a>关于python</h2><ul>
-<li>在python中，缩进具有语法意义</li>
-<li>程序块：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> line:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure></li>
-<li>程序块中的每一行用4个空格进行缩进，在程序中，每一个程序块头是循环结构或判断结构的开始</li>
-<li>python被称为块结构语言(block-structured language)，一个程序块可以嵌套在另一个程序块里。</li>
-<li>程序文档是注释的集合</li>
-</ul>
-<h3 id="函数和方法"><a href="#函数和方法" class="headerlink" title="函数和方法"></a>函数和方法</h3><p>函数和方法的不同之处</p>
-<ol>
-<li>作用域：</li>
-</ol>
-<ul>
-<li>函数：从函数调用开始至函数执行完成，返回给调用者后，在执行过程中开辟的空间会自动释放，也就是说函数执行完成后，函数体内部通过赋值等方式修改变量的值不会保留，会随着返回给调用者后，开辟的空间会自动释放。</li>
-<li>方法：通过实例化的对象进行方法的调用，调用后开辟的空间不会释放，也就是说调用方法中对变量的修改值会一直保留。</li>
-</ul>
-<ol start="2">
-<li>调用方法：</li>
-</ol>
-<ul>
-<li>函数：通过“函数名（）”的方式进行调用</li>
-<li>方法：通过“对象.方法名”的方式进行调用。</li>
-</ul>
-<ol start="3">
-<li>参数传递方式</li>
-</ol>
-<ul>
-<li>函数：显式传递</li>
-<li>方法：隐式传递</li>
-</ul>
-<blockquote>
-<p>注：方法是一种特殊的函数</p>
-</blockquote>
-<h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><h3 id="处理数值类型的函数"><a href="#处理数值类型的函数" class="headerlink" title="处理数值类型的函数"></a>处理数值类型的函数</h3><ul>
-<li><font color="#fb8c00">abs()</font>绝对值函数</li>
-<li><font color="#fb8c00">int()</font>保持整数不变，并将浮点数通过丢弃小数部分转换为整数</li>
-<li><font color="#fb8c00">round(n,r)</font>四舍五入保留n的小数点后r位<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = 2</span><br><span class="line">b = 3</span><br><span class="line"><span class="built_in">print</span>(abs(1-(4*b))  <span class="comment">#11</span></span><br><span class="line"><span class="built_in">print</span>(int(a**b)+.8) <span class="comment">#表示2^3+0.8，结果为8</span></span><br><span class="line"><span class="built_in">print</span>(round(a/b,3))  <span class="comment">#0.667</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="增量赋值"><a href="#增量赋值" class="headerlink" title="增量赋值"></a>增量赋值</h3><p><font color="#fb8c00">var += n</font> +=可看成执行了一个增量赋值，即 var = var + n，其他增量赋值运算符有-=、<em>=、/=、</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">num1 = 6</span><br><span class="line">num1 += 1 <span class="comment"># 7</span></span><br><span class="line"></span><br><span class="line">num2 =7</span><br><span class="line">num 2 -= 5 <span class="comment">#2</span></span><br><span class="line"></span><br><span class="line">num3 = 8</span><br><span class="line">num3 /= 2 <span class="comment">#4</span></span><br><span class="line"></span><br><span class="line">num4 = 1</span><br><span class="line">num4 *= 3 <span class="comment">#3</span></span><br><span class="line"></span><br><span class="line">num5 = 2</span><br><span class="line">num5 **= 3 <span class="comment">#8 表示2^3</span></span><br></pre></td></tr></table></figure>
 
 
-<h2 id="python输入输出"><a href="#python输入输出" class="headerlink" title="python输入输出"></a>python输入输出</h2><h3 id="print-函数"><a href="#print-函数" class="headerlink" title="print 函数"></a>print 函数</h3><ol>
-<li><p>自动计算</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(5+3)    <span class="comment">#输出为8</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>连接字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello"</span>+<span class="string">"world"</span>)  <span class="comment">#输出hellowrold</span></span><br></pre></td></tr></table></figure></li>
-<li><p>重复输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello world"</span>*8)   <span class="comment">#将hello world 重复输出8遍</span></span><br></pre></td></tr></table></figure></li>
-<li><p>eval/int/float/str函数   </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> (int(<span class="string">"23.7"</span>))   <span class="comment">#23</span></span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">float</span>(<span class="string">"23"</span>))   <span class="comment">#23.0</span></span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">eval</span>(<span class="string">"2+3*3"</span>))  <span class="comment">#11  eval函数将计算相应表达式，赋值为合适的整型或浮点型</span></span><br></pre></td></tr></table></figure></li>
-<li><p>end参数<br><font color="#fb8c00">print(value0,value1,…..,end=endString)</font>  末尾显示endString</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello"</span>,end=<span class="string">","</span>)  <span class="comment">#末尾显示","，代替换行参数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"world"</span>)     <span class="comment">#hello,world</span></span><br></pre></td></tr></table></figure>
+    <div class="bg-cover pd-header about-cover">
+    <div class="container">
+    <div class="row">
+    <div class="col s10 offset-s1 m8 offset-m2 l8 offset-l2">
+        <div class="brand">
+            <div class="title center-align">
+                
+                    subtitle
+                
+            </div>
 
-</li>
-</ol>
-<blockquote>
-<p>注：print函数会触发一个换行操作，意味着下一个Print函数的输出将从新的一行开始</p>
-</blockquote>
-<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>python的变量与其他语言不同，python并不把值存储在变量中，而更像把名字贴在值上面（有些python程序员会说Python没有变量，只有名字）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">first = 3</span><br><span class="line">second = 2</span><br><span class="line"><span class="built_in">print</span>(first + second)  <span class="comment">#5</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注： 1.在使用变量之前要先对其赋值<br>       2.变量不能以数字开头<br>       3.python区分大小写</p>
-</blockquote>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串字面量是字符构成的一个序列，并视其为一个整体。</p>
-<h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><p>字符串也可以叫文本，文本与数字不同<br>数字</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first = 3+5</span><br><span class="line"><span class="built_in">print</span>(first)  <span class="comment">#8</span></span><br></pre></td></tr></table></figure>
-<p>文本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first = <span class="string">'3'</span>+<span class="string">'5'</span></span><br><span class="line"><span class="built_in">print</span>(first) <span class="comment">#35</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="转义符号"><a href="#转义符号" class="headerlink" title="转义符号"></a>转义符号</h3><h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠\"></a>反斜杠\</h4><p><font color="#fb8c00">&lt;/font&gt;续行符<br><font color="#fb8c00">\r</font>回车<br><font color="#fb8c00">\b</font>退格<br><font color="#fb8c00">\f</font>换页<br><font color="#fb8c00">\n</font>换行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"let\'s go"</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：计算字符串长度时，每个转义序列当作一个字符。反斜杠不被认为是一个字符，而是指示器告诉python对跟随其后的字符进行特殊处理</p>
-</blockquote>
-<h4 id="原始字符串"><a href="#原始字符串" class="headerlink" title="原始字符串"></a>原始字符串</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = r<span class="string">'C:\now'</span>   <span class="comment"># \n将不会被识别为转义字符</span></span><br></pre></td></tr></table></figure>
-<h3 id="索引和切片"><a href="#索引和切片" class="headerlink" title="索引和切片"></a>索引和切片</h3><p>子字符串或切片是字符串中连续字符的一个序列。如果str1是一个字符串，str1[m:n]是以位置m开始，到位置n-1结束的子字符串。</p>
-<blockquote>
-<p>注：若m&gt;=n，即位置m对应的字符串不在位置n对应的字符串左边，则str1[m:n]表示空字符串(“”)。</p>
-</blockquote>
-<h4 id="find-rfind函数"><a href="#find-rfind函数" class="headerlink" title="find/rfind函数"></a>find/rfind函数</h4><ul>
-<li>subStr是一个字符串，str1.find(subStr)表示从左向右搜索字符串str1，并返回subStr首次出现的正向索引位置。</li>
-<li>str1.rfind(subStr)将从右向左搜索字符串，并返回subStr首次出现的正向索引位置。</li>
-<li>如果subStr不在str1中，则find()/rfind()函数返回值为-1。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>); <span class="comment">#python</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>[1],<span class="string">"python"</span>[5]),<span class="string">"python"</span>[2:4] <span class="comment">#y n th</span></span><br><span class="line">str1 = <span class="string">"hello world"</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">'w'</span>))   <span class="comment">#6</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">'x'</span>))     <span class="comment">#-1</span></span><br><span class="line"><span class="built_in">print</span>(str1.rfind(<span class="string">'l'</span>))    <span class="comment">#9</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="反向索引"><a href="#反向索引" class="headerlink" title="反向索引"></a>反向索引</h4><p>反向索引最右端的字符索引值为-1，它左边的一个字符索引值为-2，以此类推</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>[-1],<span class="string">"python"</span>[-5,-2])  <span class="comment">#o yth</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：除Python外其他语言不允许反向索引 </p>
-</blockquote>
-<h4 id="切片默认边界"><a href="#切片默认边界" class="headerlink" title="切片默认边界"></a>切片默认边界</h4><p>str[:n]包括了从字符串首到str[n-1]字符之间的所有字符，str[m:]包含了从str[m]到到字符串末尾的所有字符，str[:]表示整个str字符串</p>
-<blockquote>
-<p>注：python不允许字符串中单个字符的索引越界，但是在切片中可以索引越界</p>
-</blockquote>
-<h3 id="字符串连接与重复"><a href="#字符串连接与重复" class="headerlink" title="字符串连接与重复"></a>字符串连接与重复</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"good"</span>+<span class="string">"bye"</span>)  <span class="comment">#goodbye</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"ha"</span>*4) <span class="comment">#hahahaha</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：字符串不能与一个数字进行连接操作</p>
-</blockquote>
-<h3 id="字符串函数和方法"><a href="#字符串函数和方法" class="headerlink" title="字符串函数和方法"></a>字符串函数和方法</h3><ul>
-<li><font color="#fb8c00">len(str)</font> 返回str中的字符个数</li>
-<li><font color="#fb8c00">str.upper()</font> 将str转换为大写字母</li>
-<li><font color="#fb8c00">str.lower()</font>  将str转换为小写字母</li>
-<li><font color="#fb8c00">str.rstrip()</font> 移除字符串末尾的换行符</li>
-</ul>
-<blockquote>
-<p>注：字符串中的字符无法直接修改</p>
-</blockquote>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="字符串转整形"><a href="#字符串转整形" class="headerlink" title="字符串转整形"></a>字符串转整形</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">'123'</span></span><br><span class="line">b = int(a)  <span class="comment">#强制转换</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="浮点数转整数"><a href="#浮点数转整数" class="headerlink" title="浮点数转整数"></a>浮点数转整数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 5.11</span><br><span class="line">b = int(a)  <span class="comment">#最终b为5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="整形转字符串"><a href="#整形转字符串" class="headerlink" title="整形转字符串"></a>整形转字符串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 11</span><br><span class="line">b = str(a)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：其他转换以此类推</p>
-</blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
-<li>列表(list)是python对象的一个有序序列，其中对象可以是任何类型，并不要求类型一致。</li>
-<li>列表用中括号括起来，每个元素之间用逗号分隔。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">team =[<span class="string">"hello"</span>,2019,<span class="string">"world"</span>,2019]</span><br><span class="line">nums = [1,2,3,4]</span><br><span class="line">words = [<span class="string">"hello"</span>,<span class="string">"python"</span>]</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h3 id="列表操作"><a href="#列表操作" class="headerlink" title="列表操作"></a>列表操作</h3><p>以上述列表为例进行操作</p>
-<ul>
-<li><font color="#fb8c00">len()</font> 列表中元素个数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(words)  <span class="comment">#2</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">max()</font> 最大值(元素必须是相同类型)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(nums)   <span class="comment">#4</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">min()</font> 最小值(元素必须是相同类型)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(nums)   <span class="comment">#1</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>注：当max与min作用于包含字符串的列表时，字符串按字典排序进行比较</p>
-</blockquote>
-<ul>
-<li><font color="#fb8c00">sum()</font> 求和(元素必须是数字)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(nums)  <span class="comment">#10</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">count()</font> 一个对象出现的次数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.count(2019)   <span class="comment">#2</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">index()</font>  一个对象首次出现的索引位置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.index(2019)   <span class="comment">#1</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">reverse()</font> 所有元素的逆序<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.reverse()   <span class="comment">#["python","hello"]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">append()</font> 在列表末端插入对象<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.append(2019)   <span class="comment">#["hello","python",2019]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">extend()</font> 在列表末端插入新列表的所有元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nums.extend([7,8])  <span class="comment">#[1,2,3,4,7,8]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">del()</font>  移除给定索引位置上的元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del team[-1]   <span class="comment">#["hello",2019,"world"]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">remove()</font> 移除一个对象的首次出现<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.remove(2019)   <span class="comment">#["hello","world",2019]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">insert(索引位置，元素)</font> 在给定索引位置上插入新元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">words.insert(1,2019) <span class="comment">#["hello",2019,"python"]</span></span><br><span class="line">```  </span><br><span class="line">+ &lt;font color=<span class="string">"#fb8c00"</span>&gt;+&lt;/font&gt; 连接</span><br><span class="line">```bash</span><br><span class="line">[<span class="string">"hello"</span>,2019]+[<span class="string">"world"</span>,2020]   <span class="comment">#等同于["hello",2019].extend("world",2020)</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">*</font> 列表重复<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0]*3   <span class="comment">#[0,0,0]</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>注：在执行del/remove()方法后，列表中被删除元素后的其他元素会依次向左移动一个位置</p>
-</blockquote>
-<h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>切片是由冒号语法表示的子列表<br><font color="#fb8c00">del list1[m:n]</font> 移除list1中从索引m到n-1的所有元素  </p>
-<h3 id="split和join方法"><a href="#split和join方法" class="headerlink" title="split和join方法"></a>split和join方法</h3><h4 id="split"><a href="#split" class="headerlink" title="split"></a>split</h4><p>split将字符串变成其子串组成的列表<br><font color="#fb8c00">L = strVar.split(分隔符)</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"a,b,c"</span>.split(<span class="string">','</span>))  <span class="comment">#['a','b','c']</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：三种常用的单字符分隔符为’,’ / 换行符’\n’ / 空格，若没有指定分隔符，将使用空白分隔符(换行符、制表符和空格组成的任意字符串)作为分隔符</p>
-</blockquote>
-<h4 id="join"><a href="#join" class="headerlink" title="join"></a>join</h4><p>join是split方法的逆操作，将一个字符串列表变成一个由列表中所有元素用指定分隔符分割连接成的字符串<br><font color="#fb8c00">strVar = “,”.join(L)</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">" "</span>.join(line)) <span class="comment">#["a b c"]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.join(line))  <span class="comment">#["a,b,c"]</span></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="元组对象"><a href="#元组对象" class="headerlink" title="元组对象"></a>元组对象</h2><ul>
-<li>元组(tuple)与列表类似，是元素的有序列表。</li>
-<li>元组与列表的主要区别在于元组不可以直接修改，即元组没有append,extend和insert方法</li>
-<li>元组中的元素也不可以直接被修改或删除</li>
-<li>列表中其他的函数和方法对元组同样适用</li>
-<li>元组中的元素可以索引</li>
-<li>元组可以切片、连接和重复</li>
-<li>元组比列表更高效，因此应该在元素不会发生改变的情况下使用，它们执行得更快、内存占用更少，而且可以写“写保护”数据</li>
-</ul>
-<blockquote>
-<p>注：单个元素组成的元组有一个末尾的逗号，如(0,)</p>
-</blockquote>
-<h3 id="元组定义"><a href="#元组定义" class="headerlink" title="元组定义"></a>元组定义</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line">或</span><br><span class="line">t=<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：print函数总会显示由括号包围的元组</p>
-</blockquote>
-<h3 id="tuple函数"><a href="#tuple函数" class="headerlink" title="tuple函数"></a>tuple函数</h3><p>tuple函数可以将列表或字符串转化为元组。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tuple([<span class="string">'a'</span>,<span class="string">'b'</span>])  的值为 (<span class="string">'a'</span>,<span class="string">'b'</span>)</span><br><span class="line">tuple(<span class="string">"python"</span>) 的值为(<span class="string">'p'</span>,<span class="string">'y'</span>,<span class="string">'t'</span>,<span class="string">'h'</span>,<span class="string">'o'</span>,<span class="string">'n'</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="嵌套列表"><a href="#嵌套列表" class="headerlink" title="嵌套列表"></a>嵌套列表</h2><p>列表和元组中的元素也可以是列表或元组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">regions = [(<span class="string">"hello"</span>,2019),(<span class="string">"world"</span>,<span class="string">"python"</span>),(2020,1999)]</span><br><span class="line"><span class="built_in">print</span>(regions[0][1]) <span class="comment">#hello</span></span><br><span class="line"><span class="built_in">print</span>(regiions[2][0])  <span class="comment">#2020</span></span><br><span class="line"><span class="built_in">print</span>(regions[0][1]+regions[2][1])  <span class="comment">#2019+1999=4018</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 不可变对象和可变对象</span></span><br><span class="line">+ 对象是一个可以存储数据并有可以操纵数据的操作或方法实体。数值、字符串、列表和元组都是对象。</span><br><span class="line">+ 当一个变量使用赋值语句创建出来后，等号右边的值变成了内存中的一个对象</span><br><span class="line">+ 列表能够原地修改，但是数值、字符串和元组不可以。</span><br><span class="line">+ 能够原地修改的对象称为可变的，而不能原地修改的对象称为不可变的。</span><br><span class="line">```bash</span><br><span class="line">L =[5,6]</span><br><span class="line">n = 2</span><br><span class="line">s = <span class="string">"python"</span></span><br><span class="line">t = (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line">L.append(7)</span><br><span class="line">n += 1</span><br><span class="line">s = s.upper()</span><br><span class="line">t = t[1:]</span><br></pre></td></tr></table></figure>
-<p>在前四行代码执行后的内存分配情况<br><img src="https://i.postimg.cc/25zCdvNw/1.png" alt=""></p>
-<p>在全部代码执行后的内存分配情况<br><img src="https://i.postimg.cc/MGdq9TW8/2.jpg" alt=""></p>
-<h2 id="列表复制"><a href="#列表复制" class="headerlink" title="列表复制"></a>列表复制</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line">list2 = list1</span><br><span class="line">list2[1] = <span class="string">'c'</span></span><br><span class="line"><span class="built_in">print</span>(list1)   <span class="comment"># ['a','c']</span></span><br></pre></td></tr></table></figure>
-<p>在第二行代码中，变量list2引用的是和list1一样的内存位置，对list2中一个元素的改变将对list1产生相同的变化<br>如果将第二行代码改成 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list2 = list(list1)</span><br><span class="line">或</span><br><span class="line">list2 = list1[:]</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注：list函数可以将元组或字符串转化为列表。例如：list((‘a’,’b’))的值为[‘a’,’b’] list(“python”)的值为[‘p’,’y’,’t’,’h’,’o’,’n’]</p>
-</blockquote>
-<p>就不会出现上述情况，在这种情况下，list2指向了包含与list1一样的值，但list2是一个在不同内存位置上的对象，之后list1仍为[‘a’,’b’]</p>
-
-      
+            <div class="description center-align">
+                
+                    This is your root _config.yml 'description' value.
+                
+            </div>
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/09/08/Python-1/" data-id="ck5ewyozk000ui8tw79l899dw" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+</div>
+<script>
+// 每天切换 banner 图.  Switch banner image every day.
+$('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay() + '.jpg)');
+</script>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Qt5" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/09/01/Qt5/" class="article-date">
-  <time datetime="2019-09-01T04:23:31.000Z" itemprop="datePublished">2019-09-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/01/Qt5/">Qt(进阶3)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Qt下的TCP通信过程"><a href="#Qt下的TCP通信过程" class="headerlink" title="Qt下的TCP通信过程"></a>Qt下的TCP通信过程</h2><p><img src="https://i.postimg.cc/85x5b5Hz/1.jpg" alt=""></p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="界面展示"><a href="#界面展示" class="headerlink" title="界面展示"></a>界面展示</h3><p><img src="https://i.postimg.cc/9XqzQdmR/2.jpg" alt=""></p>
-<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
-<li><p>在.pro文件中加入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QT += network</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>server.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef SERVER_H</span></span><br><span class="line"><span class="comment">#define SERVER_H</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QTcpServer&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QTcpSocket&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Server;</span><br><span class="line">&#125;</span><br><span class="line">class Server : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Server(QWidget *parent = nullptr);</span><br><span class="line">    ~Server();</span><br><span class="line">private slots:</span><br><span class="line">    void on_pushButton_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_2_clicked();</span><br><span class="line">private:</span><br><span class="line">    Ui::Server *ui;</span><br><span class="line">    QTcpServer *tcpServer;</span><br><span class="line">    QTcpSocket *tcpSocket;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // SERVER_H</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>server.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "server.h"</span></span><br><span class="line"><span class="comment">#include "ui_server.h"</span></span><br><span class="line">Server::Server(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Server)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    tcpServer = NULL;</span><br><span class="line">    tcpSocket = NULL;</span><br><span class="line">    tcpServer = new QTcpServer(this);//监听套接字</span><br><span class="line">    tcpServer -&gt;listen(QHostAddress::Any,8888);//监听，指定端口</span><br><span class="line">    setWindowTitle(<span class="string">"服务器:8888"</span>);</span><br><span class="line">    connect(tcpServer,&amp;QTcpServer::newConnection,[=]()&#123;</span><br><span class="line">        //取出创建好连接的套接字</span><br><span class="line">        tcpSocket = tcpServer-&gt;nextPendingConnection();</span><br><span class="line">        //获取对方的IP、端口</span><br><span class="line">        QString ip= tcpSocket-&gt;peerAddress().toString();</span><br><span class="line">        qint16 port=tcpSocket-&gt;peerPort();</span><br><span class="line">        QString temp = QString(<span class="string">"[%1:%2]:成功连接."</span>).arg(ip).arg(port);</span><br><span class="line">        ui-&gt;read_edit-&gt;setText(temp);</span><br><span class="line"></span><br><span class="line">        connect(tcpSocket,&amp;QTcpSocket::readyRead,[=]()&#123;</span><br><span class="line">            QByteArray array = tcpSocket-&gt;readAll();</span><br><span class="line">            ui-&gt;write_edit-&gt;setText(array); //服务器发送来的信息写在write_edit里</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">Server::~Server()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Server::on_pushButton_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(NULL == tcpSocket)&#123;</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    QString str = ui-&gt;write_edit-&gt;toPlainText();</span><br><span class="line">    //给客户端发送数据</span><br><span class="line">    tcpSocket-&gt;write(str.toUtf8().data());</span><br><span class="line">&#125;</span><br><span class="line">void Server::on_pushButton_2_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(tcpSocket == NULL)&#123;</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    //主动与客户端断开连接、</span><br><span class="line">    tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">    tcpSocket-&gt;close();</span><br><span class="line">    tcpSocket=NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ol>
-<li><p>client.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CLIENT_H</span></span><br><span class="line"><span class="comment">#define CLIENT_H</span></span><br><span class="line"><span class="comment">#include &lt;QTcpSocket&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Client;</span><br><span class="line">&#125;</span><br><span class="line">class Client : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Client(QWidget *parent = nullptr);</span><br><span class="line">    ~Client();</span><br><span class="line">private slots:</span><br><span class="line">    void on_pushButton_3_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_2_clicked();</span><br><span class="line">private:</span><br><span class="line">    Ui::Client *ui;</span><br><span class="line">    QTcpSocket *tcpSocket;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CLIENT_H</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>client.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "client.h"</span></span><br><span class="line"><span class="comment">#include "ui_client.h"</span></span><br><span class="line"><span class="comment">#include &lt;QHostAddress&gt;</span></span><br><span class="line">Client::Client(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Client)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">&#125;</span><br><span class="line">Client::~Client()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_3_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    tcpSocket= NULL;</span><br><span class="line">    tcpSocket = new QTcpSocket(this);</span><br><span class="line">    connect(tcpSocket,&amp;QTcpSocket::connected,[=]()&#123;</span><br><span class="line">        ui-&gt;textEdit-&gt;setText(<span class="string">"成功与服务器建立连接"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    connect(tcpSocket,&amp;QTcpSocket::readyRead,[=]()&#123;</span><br><span class="line">        QByteArray array = tcpSocket-&gt;readAll();</span><br><span class="line">        ui-&gt;textEdit_2-&gt;setText(array);//将服务器发送的内容写在textEdit_2中</span><br><span class="line">    &#125;);</span><br><span class="line">   //获取服务器IP和端口</span><br><span class="line">    QString ip = ui-&gt;ip_line-&gt;text();</span><br><span class="line">    qint16 port = ui-&gt;port_line-&gt;text().toInt();</span><br><span class="line">    //主动与服务器建立连接</span><br><span class="line">    tcpSocket-&gt;connectToHost(QHostAddress(ip),port);</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString str = ui-&gt;textEdit_2-&gt;toPlainText();</span><br><span class="line">    tcpSocket-&gt;write(str.toUtf8().data());//给服务器端发送信息</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_2_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">    tcpSocket-&gt;close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/09/01/Qt5/" data-id="ck5ewyozt001qi8twcv01gn12" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-Qt4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/31/Qt4/" class="article-date">
-  <time datetime="2019-08-31T02:31:00.000Z" itemprop="datePublished">2019-08-31</time>
-</a>
+<main class="content">
+
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/31/Qt4/">Qt(基础2)</a>
-    </h1>
-  
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="QFile"><a href="#QFile" class="headerlink" title="QFile"></a>QFile</h2><h3 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h3><p>点击按钮弹出界面将选择读取的文件内容读取到textEdit中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QFileDialog&gt;</span></span><br><span class="line">void MainWindow::on_buttonRead_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString path = QFileDialog::getOpenFileName(this,<span class="string">"open"</span>,<span class="string">"../"</span>,<span class="string">"TXT(*.txt)"</span>);//最后一个参数可写可不写，指定打开文件的类型</span><br><span class="line">    <span class="keyword">if</span>(path.isEmpty()==<span class="literal">false</span>)&#123;</span><br><span class="line">        QFile file(path);//文件对象</span><br><span class="line">        bool isOK=file.open(QIODevice::ReadOnly);//以只读的方式打开</span><br><span class="line">        <span class="keyword">if</span>(isOK == <span class="literal">true</span>)&#123;</span><br><span class="line"><span class="comment">#if 0  //全部读</span></span><br><span class="line">            QByteArray array = file.readAll();//读取文件全部内容</span><br><span class="line">            ui-&gt;textEdit-&gt;setText(array);//将文件内容显示到textEdit中</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">        //按行读</span><br><span class="line">            QByteArray array;</span><br><span class="line">            <span class="keyword">while</span>(file.atEnd()==<span class="literal">false</span>)&#123;</span><br><span class="line">                array += file.readLine();</span><br><span class="line">            &#125;</span><br><span class="line">            ui-&gt;textEdit-&gt;setText(array);</span><br><span class="line">        &#125;</span><br><span class="line">        file.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <!-- 所有文章卡片 -->
+    <article id="articles" class="container articles">
+        <div class="row article-row">
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/08/Python-1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="Python(一)">
+                            
+                            <span class="card-title">Python(一)</span>
+                        </div>
+                    </a>
 
-<h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>点击按钮将textEdit的内容写到指定文件中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void MainWindow::on_buttonWrite_clicked()</span><br><span class="line">&#123;</span><br><span class="line">     QString path = QFileDialog::getSaveFileName(this,<span class="string">"save"</span>,<span class="string">"../"</span>,<span class="string">"TXT(*.txt)"</span>);</span><br><span class="line">     <span class="keyword">if</span>(path.isEmpty()==<span class="literal">false</span>)&#123;</span><br><span class="line">         QFile file;</span><br><span class="line">         file.setFileName(path);</span><br><span class="line">         bool isOK= file.open(QIODevice::WriteOnly);//以写的方式打开</span><br><span class="line">         <span class="keyword">if</span>(isOK== <span class="literal">true</span>)&#123;</span><br><span class="line">             QString str = ui-&gt;textEdit-&gt;toPlainText();//获取编辑框内容</span><br><span class="line">             file.write(str.toUtf8());</span><br><span class="line">         &#125;</span><br><span class="line">         file.close();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                python核心对象、变量、输入和输出
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-<h2 id="QFileInfo"><a href="#QFileInfo" class="headerlink" title="QFileInfo"></a>QFileInfo</h2><p>获取文件信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QFileInfo info(path);</span><br><span class="line">info.fileName().toUtf8().data();//文件名字</span><br><span class="line">info.suffix();//文件后缀</span><br><span class="line">info.size();//文件大小</span><br><span class="line">info.created().toString(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>)//创建文件的时间2019-08-31 10:31:00(<span class="comment">#include &lt;QDateTime&gt;)</span></span><br></pre></td></tr></table></figure>
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Python/" target="_blank">
+                            <span class="chip bg-color">Python</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/09/01/Qt5/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e5570.jpg" class="responsive-img" alt="Qt(进阶3)">
+                            
+                            <span class="card-title">Qt(进阶3)</span>
+                        </div>
+                    </a>
 
-<blockquote>
-<p>注： QByteArray转为QString的方式为强制转换</p>
-</blockquote>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Qt下的TCP通信
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-01
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
 
-      
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Qt/" target="_blank">
+                            <span class="chip bg-color">Qt</span>
+                        </a>
+                        
+                        <a href="/tags/socket/" target="_blank">
+                            <span class="chip bg-color">socket</span>
+                        </a>
+                        
+                        <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                            <span class="chip bg-color">计算机网络</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/31/Qt4/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e525b.jpg" class="responsive-img" alt="Qt(基础2)">
+                            
+                            <span class="card-title">Qt(基础2)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Qt的文件操作
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-31
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Qt/" target="_blank">
+                            <span class="chip bg-color">Qt</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/28/Qt3/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f5c.jpg" class="responsive-img" alt="Qt(进阶2)">
+                            
+                            <span class="card-title">Qt(进阶2)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                QProcess的使用--调用外部可执行程序
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-28
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Qt/" target="_blank">
+                            <span class="chip bg-color">Qt</span>
+                        </a>
+                        
+                        <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" target="_blank">
+                            <span class="chip bg-color">嵌入式开发</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/27/QT2/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f75.jpg" class="responsive-img" alt="Qt(基础1)">
+                            
+                            <span class="card-title">Qt(基础1)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Qt基础操作(菜单、widget、combobox)
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Qt/" target="_blank">
+                            <span class="chip bg-color">Qt</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/27/Qt1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg" class="responsive-img" alt="Qt(进阶1)">
+                            
+                            <span class="card-title">Qt(进阶1)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                在Qt开发中使用CSS文件
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Qt/" target="_blank">
+                            <span class="chip bg-color">Qt</span>
+                        </a>
+                        
+                        <a href="/tags/CSS/" target="_blank">
+                            <span class="chip bg-color">CSS</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/25/C_7/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e556c.jpg" class="responsive-img" alt="C语言笔记（一）">
+                            
+                            <span class="card-title">C语言笔记（一）</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                C语言各种数据类型转换(更新ing)
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-25
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/14/github-1/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="github">
+                            
+                            <span class="card-title">github</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                github和git介绍及使用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-14
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    工具使用
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/github/" target="_blank">
+                            <span class="chip bg-color">github</span>
+                        </a>
+                        
+                        <a href="/tags/git/" target="_blank">
+                            <span class="chip bg-color">git</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/13/C-6/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4762.jpg" class="responsive-img" alt="C语言(六)">
+                            
+                            <span class="card-title">C语言(六)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                C语言文件操作
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-13
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2019/08/09/C-5/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5266.jpg" class="responsive-img" alt="C语言(五)">
+                            
+                            <span class="card-title">C语言(五)</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                C语言(数组、指针、动态内存分配)
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-09
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/C/" target="_blank">
+                            <span class="chip bg-color">C</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </article>
+
+</main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/4/"
+               class="left btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">5 / 6</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/6/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/31/Qt4/" data-id="ck5ewyozr001ki8tw2ytr0f0e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
+</div>
 
 
-  
-    <article id="post-Qt3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/28/Qt3/" class="article-date">
-  <time datetime="2019-08-28T11:17:35.000Z" itemprop="datePublished">2019-08-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-  </div>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/28/Qt3/">Qt(进阶2)</a>
-    </h1>
-  
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本篇博客参考<a href="https://blog.csdn.net/newbee520/article/details/8279101" target="_blank" rel="noopener">链接</a></p>
-<h2 id="QProcess类的使用"><a href="#QProcess类的使用" class="headerlink" title="QProcess类的使用"></a>QProcess类的使用</h2><ol>
-<li>新建一个类对应一个界面，该界面将调用外部程序</li>
-<li>代码</li>
-</ol>
-<p>Caesar.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CAESAR_H</span></span><br><span class="line"><span class="comment">#define CAESAR_H</span></span><br><span class="line"><span class="comment">#include &lt;QProcess&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Caesar;</span><br><span class="line">&#125;</span><br><span class="line">class Caesar : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Caesar(QWidget *parent = nullptr);</span><br><span class="line">    ~Caesar();</span><br><span class="line">private:</span><br><span class="line">    Ui::Caesar *ui;</span><br><span class="line">    QProcess *process;</span><br><span class="line">    QString out;</span><br><span class="line">private slots:</span><br><span class="line">    void readOutput();//从进程中读取数据</span><br><span class="line">    void on_encrption_button_clicked();//点击按钮触发外部程序</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CAESAR_H</span></span><br></pre></td></tr></table></figure>
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">169.5k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
 
-<p>Caesar.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "caesar.h"</span></span><br><span class="line"><span class="comment">#include "ui_caesar.h"</span></span><br><span class="line"><span class="comment">#include &lt;QDebug&gt;</span></span><br><span class="line">Caesar::Caesar(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Caesar)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    this-&gt;process = new QProcess;</span><br><span class="line">    QObject::connect(process,SIGNAL(readyRead()),this,SLOT(readOutput()));</span><br><span class="line">    //准备从进程里读数据的槽</span><br><span class="line">&#125;</span><br><span class="line">Caesar::~Caesar()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Caesar::on_encrption_button_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString cmd = this-&gt;ui-&gt;keyword_line-&gt;text();//获取keyword_line的内容</span><br><span class="line">    QString plaintext=this-&gt;ui-&gt;plaintext_edit-&gt;toPlainText();</span><br><span class="line">    cmd = <span class="string">"./caesar.py e "</span>+plaintext+<span class="string">" "</span>+cmd;</span><br><span class="line">    qDebug()&lt;&lt;cmd; //相当于在终端执行命令 ./caesar e hello 5 </span><br><span class="line">    //即在终端执行cmd字符串的内容</span><br><span class="line">    process-&gt;start(cmd);</span><br><span class="line">    out=tr(<span class="string">""</span>);</span><br><span class="line">    ui-&gt;ciphertext_edit-&gt;setText(out);</span><br><span class="line">&#125;</span><br><span class="line">void Caesar::<span class="function"><span class="title">readOutput</span></span>()&#123;</span><br><span class="line">    out += process-&gt;readAll();</span><br><span class="line">    qDebug()&lt;&lt;out;</span><br><span class="line">    ui-&gt;ciphertext_edit-&gt;setText(out);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>注：可执行文件一定要放在Qt项目对应的built文件中！！！</p>
-</blockquote>
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
 
-      
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/28/Qt3/" data-id="ck5ewyozq001gi8tw7xmr138g" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-QT2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/27/QT2/" class="article-date">
-  <time datetime="2019-08-27T12:33:41.000Z" itemprop="datePublished">2019-08-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/QT2/">Qt(基础1)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h2><h3 id="编辑菜单信息"><a href="#编辑菜单信息" class="headerlink" title="编辑菜单信息"></a>编辑菜单信息</h3><p><img src="https://i.postimg.cc/zBQ51cbt/1.png" alt=""></p>
-<h3 id="转到槽函数"><a href="#转到槽函数" class="headerlink" title="转到槽函数"></a>转到槽函数</h3><p>点击第一步按钮后右键点击图中所示的菜单属性<br><img src="https://i.postimg.cc/prnvVJK2/2.png" alt=""></p>
-<h3 id="创建触发函数"><a href="#创建触发函数" class="headerlink" title="创建触发函数"></a>创建触发函数</h3><p><img src="https://i.postimg.cc/rzXkDR95/3.png" alt=""></p>
-<h3 id="添加槽函数内容"><a href="#添加槽函数内容" class="headerlink" title="添加槽函数内容"></a>添加槽函数内容</h3><p>在mainwindow.cpp文件中对槽函数实现的功能进行细化</p>
-<h2 id="QWidget"><a href="#QWidget" class="headerlink" title="QWidget"></a>QWidget</h2><h3 id="Qt实现选项卡式界面"><a href="#Qt实现选项卡式界面" class="headerlink" title="Qt实现选项卡式界面"></a>Qt实现选项卡式界面</h3><p>此部分参考<a href="https://blog.csdn.net/sdzd929637/article/details/80641276" target="_blank" rel="noopener">链接</a></p>
-<h4 id="创建新的界面"><a href="#创建新的界面" class="headerlink" title="创建新的界面"></a>创建新的界面</h4><ol>
-<li><img src="https://i.postimg.cc/kgC2Z2dV/4.png" alt=""><br><img src="https://i.postimg.cc/50Xyvv8r/5.jpg" alt=""></li>
-<li>实现各个界面对应功能(界面需继承自QWidget类)</li>
-<li>新建一个Content类，继承自QFrame。在Content类中，创建一个QStackedWidget对象，然后将页面插入到此对象中。<br>content.h<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CONTENT_H</span></span><br><span class="line"><span class="comment">#define CONTENT_H</span></span><br><span class="line"><span class="comment">#include &lt;QFrame&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QStackedWidget&gt;</span></span><br><span class="line"><span class="comment">#include "affine.h"  //界面1头文件</span></span><br><span class="line"><span class="comment">#include "vigenere.h"  //界面2头文件</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class content;</span><br><span class="line">&#125;</span><br><span class="line">class content : public QFrame</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit content(QWidget *parent = nullptr);</span><br><span class="line">    QStackedWidget *stack;  </span><br><span class="line">    affine *aff;   //界面1</span><br><span class="line">    vigenere *vig;  //界面2</span><br><span class="line">    ~content();</span><br><span class="line">signals:</span><br><span class="line">public slots:</span><br><span class="line">private:</span><br><span class="line">    Ui::content *ui;</span><br><span class="line">    QGridLayout *mainLayout;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CONTENT_H</span></span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ol>
-<p>content.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "content.h"</span></span><br><span class="line"><span class="comment">#include "ui_content.h"</span></span><br><span class="line"></span><br><span class="line">content::content(QWidget *parent) :</span><br><span class="line">    QFrame(parent),</span><br><span class="line">    ui(new Ui::content)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    stack = new QStackedWidget(this);</span><br><span class="line">    stack-&gt;setFrameStyle(QFrame::Panel | QFrame::Raised);</span><br><span class="line">    //插入页面</span><br><span class="line">    aff = new affine();//指针名</span><br><span class="line">    vig = new vigenere();</span><br><span class="line">    stack -&gt; addWidget(aff);</span><br><span class="line">    stack -&gt; addWidget(vig);</span><br><span class="line">    mainLayout = new QGridLayout(this);</span><br><span class="line">    mainLayout-&gt;setMargin(2); //参数固定为2</span><br><span class="line">    mainLayout-&gt;addWidget(stack,0,0);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content::~content()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>mainwidow.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#define MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#include "content.h"</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QMainWindow&gt;</span></span><br><span class="line"></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class MainWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MainWindow : public QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    explicit MainWindow(QWidget *parent = nullptr);</span><br><span class="line">    ~MainWindow();</span><br><span class="line">    content *con;</span><br><span class="line">    QGridLayout *mainLayout;</span><br><span class="line">    void createAction();</span><br><span class="line">    void createToolBar();</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    QToolBar *stackTool;</span><br><span class="line">    QAction *openStack[2];//界面数</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line"></span><br><span class="line">private slots:</span><br><span class="line">    void openAffine();</span><br><span class="line">    void openVigenere();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">#endif // MAINWINDOW_H</span></span><br></pre></td></tr></table></figure>
-
-<p>mainwindow.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include "ui_mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QToolBar&gt;</span></span><br><span class="line"><span class="comment">#define SHADOW_WIDT 5</span></span><br><span class="line">MainWindow::MainWindow(QWidget *parent) :</span><br><span class="line">    QMainWindow(parent),</span><br><span class="line">    ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    QWidget w;</span><br><span class="line">    createAction();</span><br><span class="line">    createToolBar();</span><br><span class="line">    con = new content(this);</span><br><span class="line">    setCentralWidget(con);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow :: <span class="function"><span class="title">createAction</span></span>()&#123;</span><br><span class="line">    openStack[0]=new QAction(tr(<span class="string">"affine"</span>),this);</span><br><span class="line">    openStack[0]-&gt;setStatusTip(tr(<span class="string">"界面一"</span>));</span><br><span class="line">    connect(openStack[0],SIGNAL(triggered(bool)),this,SLOT(openAffine()));</span><br><span class="line"></span><br><span class="line">    openStack[1]=new QAction(tr(<span class="string">"vigenere"</span>),this);</span><br><span class="line">    openStack[1]-&gt;setStatusTip(tr(<span class="string">"界面二"</span>));</span><br><span class="line">    connect(openStack[1],SIGNAL(triggered(bool)),this,SLOT(openVigenere()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">createToolBar</span></span>()&#123;</span><br><span class="line">    stackTool = addToolBar(<span class="string">"tools"</span>);</span><br><span class="line">    stackTool-&gt;addAction(openStack[0]); //加入QToolBar头文件</span><br><span class="line">    stackTool-&gt;addAction(openStack[1]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">openAffine</span></span>()&#123;</span><br><span class="line">    this-&gt;con-&gt;stack-&gt;setCurrentIndex(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">openVigenere</span></span>()&#123;</span><br><span class="line">    this-&gt;con-&gt;stack-&gt;setCurrentIndex(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>main.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QApplication&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QApplication&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    QApplication a(argc, argv);</span><br><span class="line">    MainWindow w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="comboBox"><a href="#comboBox" class="headerlink" title="comboBox"></a>comboBox</h2><p>当comboBox所选值不一样时，textEdit显示不同的值<br>本部分参考博客<a href="https://blog.csdn.net/u012640973/article/details/78688225" target="_blank" rel="noopener">链接</a></p>
-<ol>
-<li><p>mainWinodw.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#define MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#include &lt;QComboBox&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QMainWindow&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class MainWindow;</span><br><span class="line">&#125;</span><br><span class="line">class MainWindow : public QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit MainWindow(QWidget *parent = nullptr);</span><br><span class="line">    ~MainWindow();</span><br><span class="line">private slots:</span><br><span class="line">    void choose();//声明槽函数</span><br><span class="line">private:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // MAINWINDOW_H</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>mainWindow.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include "ui_mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line">MainWindow::MainWindow(QWidget *parent) :</span><br><span class="line">    QMainWindow(parent),</span><br><span class="line">    ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    connect(ui-&gt;comboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(choose()));//信号</span><br><span class="line">&#125;</span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void MainWindow::<span class="function"><span class="title">choose</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(ui-&gt;comboBox-&gt;currentIndex()==0)&#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">" "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ui-&gt;comboBox-&gt;currentIndex()==1)&#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">"2222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">"1111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<blockquote>
-<p>注：currentIndex()对应comboBox里的值的顺序</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/27/QT2/" data-id="ck5ewyozo001di8tw8nwhh6il" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Qt1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/27/Qt1/" class="article-date">
-  <time datetime="2019-08-27T12:16:40.000Z" itemprop="datePublished">2019-08-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/Qt1/">Qt(进阶1)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="QSS"><a href="#QSS" class="headerlink" title="QSS"></a>QSS</h2><p>Qt自己的CSS简称QSS</p>
-<h2 id="在QT中的应用"><a href="#在QT中的应用" class="headerlink" title="在QT中的应用"></a>在QT中的应用</h2><ol>
-<li>在QT所在的build文件中放入.css文件</li>
-<li>在main.cpp文件中加入以下内容<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    QApplication a(argc, argv);</span><br><span class="line">    MainWindow w;</span><br><span class="line">    QFile qssFile(<span class="string">"qt.css"</span>);</span><br><span class="line">    qssFile.open(QFile::ReadOnly);</span><br><span class="line">    <span class="keyword">if</span>(qssFile.isOpen())&#123;</span><br><span class="line">        QString qss = QLatin1String(qssFile.readAll());</span><br><span class="line">        qApp-&gt;setStyleSheet(qss);</span><br><span class="line">        qssFile.close();</span><br><span class="line">    &#125;</span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/27/Qt1/" data-id="ck5ewyozo0019i8tw5t1r6fvr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-C_7" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/25/C_7/" class="article-date">
-  <time datetime="2019-08-25T08:45:16.000Z" itemprop="datePublished">2019-08-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/25/C_7/">C语言笔记（一）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><h4 id="char-转int"><a href="#char-转int" class="headerlink" title="char * 转int"></a>char * 转int</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char * argv[])&#123;</span><br><span class="line">int a = atoi(argv[1]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="char-转char"><a href="#char-转char" class="headerlink" title="char * 转char[]"></a>char * 转char[]</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[100];</span><br><span class="line">strcpy(a,argv[1]);</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/25/C_7/" data-id="ck5ewyozc0009i8twdb3wer9d" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-github-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/14/github-1/" class="article-date">
-  <time datetime="2019-08-14T07:27:43.000Z" itemprop="datePublished">2019-08-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/14/github-1/">github</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用github的目的"><a href="#使用github的目的" class="headerlink" title="使用github的目的"></a>使用github的目的</h2><p>使用github托管项目</p>
-<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="仓库Repository"><a href="#仓库Repository" class="headerlink" title="仓库Repository"></a>仓库Repository</h3><p>即项目，若要在github中开源一个项目，就必须新建一个repository，一个repository就是一个项目</p>
-<h3 id="收藏Star"><a href="#收藏Star" class="headerlink" title="收藏Star"></a>收藏Star</h3><p>其他用户收藏你的项目的人数</p>
-<h3 id="复制克隆项目Fork"><a href="#复制克隆项目Fork" class="headerlink" title="复制克隆项目Fork"></a>复制克隆项目Fork</h3><p>其他用户可以以你开源的项目为基础，随心所欲进行改进并且加以运用，但不会影响原有项目的代码和结构</p>
-<h3 id="发起请求Pull-Request"><a href="#发起请求Pull-Request" class="headerlink" title="发起请求Pull Request"></a>发起请求Pull Request</h3><p>基于fork的操作，其他用户对开源项目进行改进后，可以原有项目的创建人发起pull request(简称PR)将他所做的的改进加入原有项目中</p>
-<h3 id="关注Watch"><a href="#关注Watch" class="headerlink" title="关注Watch"></a>关注Watch</h3><h3 id="事务卡片Issue"><a href="#事务卡片Issue" class="headerlink" title="事务卡片Issue"></a>事务卡片Issue</h3><p>其他用户可以通过issue向项目创建人提出问题和建议</p>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>创建github账号后进行下列操作</p>
-<h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p><img src="https://ae01.alicdn.com/kf/Hf14a7f5422eb4a5eb562161de97907ffJ.jpg" alt=""></p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><p><img src="https://ae01.alicdn.com/kf/Hdee80294a41d4c2db6498f2eb1d77637d.jpg" alt=""></p>
-<h3 id="3"><a href="#3" class="headerlink" title="3"></a>3</h3><p><img src="https://ae01.alicdn.com/kf/H161165f125044121bd68b2989e2ff3bdM.jpg" alt=""></p>
-<h3 id="仓库主页"><a href="#仓库主页" class="headerlink" title="仓库主页"></a>仓库主页</h3><p><img src="https://ae01.alicdn.com/kf/Hd1a094cd869240afabf8c2c8c116efb9y.jpg" alt=""></p>
-<h2 id="git工作区域"><a href="#git工作区域" class="headerlink" title="git工作区域"></a>git工作区域</h2><h3 id="Git-Repository-git仓库"><a href="#Git-Repository-git仓库" class="headerlink" title="Git Repository(git仓库)"></a>Git Repository(git仓库)</h3><p>最终确定的文件保存到仓库，成为一个新的版本</p>
-<h3 id="暂存区"><a href="#暂存区" class="headerlink" title="暂存区"></a>暂存区</h3><p>暂存已经修改的文件最后统一提交到git仓库中</p>
-<h3 id="工作区-wroking-directory"><a href="#工作区-wroking-directory" class="headerlink" title="工作区(wroking directory)"></a>工作区(wroking directory)</h3><p>添加、编辑、修改文件等操作</p>
-<h3 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h3><p>工作区—&gt;暂存区—&gt;git仓库</p>
-<h2 id="git初始化-将文件上传到github"><a href="#git初始化-将文件上传到github" class="headerlink" title="git初始化(将文件上传到github)"></a>git初始化(将文件上传到github)</h2><p>git安装完成后点击右键后再点Git Bash Here在终端窗口中输入下列命令</p>
-<h3 id="基本信息设置"><a href="#基本信息设置" class="headerlink" title="基本信息设置"></a>基本信息设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、设置用户名</span><br><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line"></span><br><span class="line">2、设置用户名邮箱</span><br><span class="line">git config --global user.email <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：该设置在github仓库主页显示谁提交了该文件</p>
-</blockquote>
-<h3 id="初始化git-创建git仓库"><a href="#初始化git-创建git仓库" class="headerlink" title="初始化git(创建git仓库)"></a>初始化git(创建git仓库)</h3><ol>
-<li>在要上传的文件夹的根目录下打开git bash后输入命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件夹名</span><br><span class="line">git init</span><br></pre></td></tr></table></figure></li>
-<li>将文件提交到暂存区<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件名</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<blockquote>
-<p>注：若想提交文件夹中所有文件则使用命令git add .</p>
-</blockquote>
-<ol start="3">
-<li><p>将文件从暂存区提交到仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"描述"</span></span><br></pre></td></tr></table></figure>
-<p>描述内容根据个人需要进行输入，描述内容在github的显示如下<br><img src="https://ae01.alicdn.com/kf/Hc62dfe7f8b1f4855a4086a4fecb3cf32p.jpg" alt=""></p>
-</li>
-<li><p>查看暂存区文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status   //若出现nothing to commit证明提交成功</span><br></pre></td></tr></table></figure></li>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin github项目地址</span><br></pre></td></tr></table></figure>
-<p>github项目地址<br><img src="https://ae01.alicdn.com/kf/H931645851e3a4e189265eb074f211259r.jpg" alt=""></p>
-</li>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/14/github-1/" data-id="ck5ewyozs001ni8twcesz4017" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/" rel="tag">github</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-C-6" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/13/C-6/" class="article-date">
-  <time datetime="2019-08-13T08:27:56.000Z" itemprop="datePublished">2019-08-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/13/C-6/">C语言(六)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><ul>
-<li>文件的定义：文件是一组有关数据的有序集合</li>
-<li>操作系统是以文件为单位对数据进行管理的</li>
-</ul>
-<h2 id="文件的分类"><a href="#文件的分类" class="headerlink" title="文件的分类"></a>文件的分类</h2><h3 id="从用户观点"><a href="#从用户观点" class="headerlink" title="从用户观点"></a>从用户观点</h3><h4 id="特殊文件-标准输入输出文件或标准设备文件"><a href="#特殊文件-标准输入输出文件或标准设备文件" class="headerlink" title="特殊文件(标准输入输出文件或标准设备文件)"></a>特殊文件(标准输入输出文件或标准设备文件)</h4><h4 id="普通文件-磁盘文件"><a href="#普通文件-磁盘文件" class="headerlink" title="普通文件(磁盘文件)"></a>普通文件(磁盘文件)</h4><h3 id="从操作系统的角度看"><a href="#从操作系统的角度看" class="headerlink" title="从操作系统的角度看"></a>从操作系统的角度看</h3><p>从操作系统的角度看，每一个与主机相连的输入、输出设备都看作是一个文件</p>
-<h3 id="按数据的组织形式"><a href="#按数据的组织形式" class="headerlink" title="按数据的组织形式"></a>按数据的组织形式</h3><h4 id="ASCII文件-文本文件"><a href="#ASCII文件-文本文件" class="headerlink" title="ASCII文件(文本文件)"></a>ASCII文件(文本文件)</h4><p>每一个字节放一个ASCII代码</p>
-<h4 id="二进制文件"><a href="#二进制文件" class="headerlink" title="二进制文件"></a>二进制文件</h4><p>把内存的数据按其在内存中的存储形式原样输出到磁盘上存放</p>
-<h2 id="C语言对文件的处理"><a href="#C语言对文件的处理" class="headerlink" title="C语言对文件的处理"></a>C语言对文件的处理</h2><h3 id="缓冲文件系统"><a href="#缓冲文件系统" class="headerlink" title="缓冲文件系统"></a>缓冲文件系统</h3><p>系统自动地在内存区为每一个正在使用的文件开辟一个缓冲区。用缓冲文件系统进行的输出输入又称为高级磁盘输出输入。</p>
-<h3 id="非缓冲文件系统"><a href="#非缓冲文件系统" class="headerlink" title="非缓冲文件系统"></a>非缓冲文件系统</h3><p>系统不自动开辟确定大小的缓冲区，而由程序为每个文件设定缓冲区。用非缓冲文件系统进行的输出输入又称为低级输入输出系统。</p>
-<blockquote>
-<p>注： 在ANSI C标准中只采用缓冲文件系统来处理文本文件和二进制文件，C语言对文件的读写都是用库函数实现的</p>
-</blockquote>
-<h2 id="文件的基本操作"><a href="#文件的基本操作" class="headerlink" title="文件的基本操作"></a>文件的基本操作</h2><h3 id="文件型指针型变量"><a href="#文件型指针型变量" class="headerlink" title="文件型指针型变量"></a>文件型指针型变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE * fp;//fp是一个指向FILE类型结构体的指针变量</span><br></pre></td></tr></table></figure>
-<h3 id="FILE类型的数组"><a href="#FILE类型的数组" class="headerlink" title="FILE类型的数组"></a>FILE类型的数组</h3><p>FILE f[5];定义了一个结构体数组f，可以用来存放5个文件的信息</p>
-<h3 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE * fp;</span><br><span class="line">fp = fopen(文件名，使用文件方式);//文件名加上路径</span><br></pre></td></tr></table></figure>
-<h4 id="文件使用方式"><a href="#文件使用方式" class="headerlink" title="文件使用方式"></a>文件使用方式</h4><ul>
-<li><font color="#fb8c00">r</font>  (只读)为输入打开一个文本文件</li>
-<li><font color="#fb8c00">w</font>  (只写)为输出打开一个文本文件</li>
-<li><font color="#fb8c00">a</font>  (追加)向文本文件尾增加数据</li>
-<li><font color="#fb8c00">rb</font>  (只读)为输入打开一个二进制文件</li>
-<li><font color="#fb8c00">wb</font>  (只写)为输出打开一个二进制文件</li>
-<li><font color="#fb8c00">ab</font>  (追加)向二进制文件尾增加数据</li>
-<li><font color="#fb8c00">r+</font>  (读写)为读/写打开一个文本文件</li>
-<li><font color="#fb8c00">w+</font>  (读写)为读/写建立一个新的文本文件</li>
-<li><font color="#fb8c00">a+</font>  (读写)为读/写打开一个文本文件</li>
-<li><font color="#fb8c00">rb+</font>  (读写)为读/写打开一个二进制文件</li>
-<li><font color="#fb8c00">wb+</font>  (读写)为读/写建立一个新的二进制文件</li>
-<li><font color="#fb8c00">ab+</font>  (读写)为读/写打开一个二进制文件</li>
-</ul>
-<blockquote>
-<p>注： 1. 凡是”r”打开一个文件时，该文件必须已经存在，且只能从该文件中读出<br>       2. 用”w”打开的文件只能向该文件中写入，若打开的文件不存在，则以指定的文件名建立该文件，若文件已存在，则将该文件删除，重建一个新文件<br>       3. 若要向一个已存在的文件追加新的信息，只能用”a”的方式打开文件。但此时该文件必须是存在的，否则会出错。<br>       4. 用只写或读写方式打开一个已存在文件时将清除原文件的内容，写入字符从文件首开始。如需保留原有文件内容，希望写入的字符以文件末开始存放，必须以追加的方式打开文件，被写入的文件若不存在，则创建该文件。</p>
-</blockquote>
-<h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose(文件指针);//使文件指针变量不再指向该文件，若成功返回0，否则返回-1</span><br></pre></td></tr></table></figure>
-<h3 id="文件的读写操作"><a href="#文件的读写操作" class="headerlink" title="文件的读写操作"></a>文件的读写操作</h3><h4 id="字符输入输出函数"><a href="#字符输入输出函数" class="headerlink" title="字符输入输出函数"></a>字符输入输出函数</h4><h5 id="fputc"><a href="#fputc" class="headerlink" title="fputc()"></a>fputc()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fputc(ch,fp);//将字符(ch的值)输出到fp所指的文件中去</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：</p>
-</blockquote>
-<h5 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc()"></a>fgetc()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = fgetc(fp);//从打开的文件fp中读取一个字符并送入ch中</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：1. 在fgetc()函数调用中，读取的文件必须是以读或写的方式打开的<br>      2.使用fgetc()函数后，该位置指针(文件内部指针,与文件指针不同)向后移动一个字节，因此可连续多次使用fgetc()函数读取多个字符 </p>
-</blockquote>
-<h4 id="字符串读写函数"><a href="#字符串读写函数" class="headerlink" title="字符串读写函数"></a>字符串读写函数</h4><h5 id="fgets"><a href="#fgets" class="headerlink" title="fgets()"></a>fgets()</h5><h5 id="fputs"><a href="#fputs" class="headerlink" title="fputs()"></a>fputs()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># include &lt;stdio.h&gt;</span></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[20];  /*定义一个最大长度为19, 末尾是<span class="string">'\0'</span>的字符数组来存储字符串*/</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入一个字符串:"</span>);</span><br><span class="line">    fgets(str, 19, stdin);  /*从输入流stdin中读取19个字符到字符数组str中*/</span><br><span class="line">    fputs(str, stdout);  //将字符数组的内容输出到输出流stdout中</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：stdin/stdout是标准输入/输出流，即屏幕输入/输出</p>
-</blockquote>
-<h4 id="数据块读写函数"><a href="#数据块读写函数" class="headerlink" title="数据块读写函数"></a>数据块读写函数</h4><h5 id="fread"><a href="#fread" class="headerlink" title="fread()"></a>fread()</h5><h5 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a>fwrite()</h5><h4 id="格式化读写函数"><a href="#格式化读写函数" class="headerlink" title="格式化读写函数"></a>格式化读写函数</h4><h5 id="fscanf"><a href="#fscanf" class="headerlink" title="fscanf()"></a>fscanf()</h5><h5 id="fprintf"><a href="#fprintf" class="headerlink" title="fprintf()"></a>fprintf()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int fscanf ( FILE *fp, char * format, ... );</span><br><span class="line">int fprintf ( FILE *fp, char * format, ... );</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//举例</span><br><span class="line">FILE *fp;</span><br><span class="line">int i, j;</span><br><span class="line">char *str, ch;</span><br><span class="line">fscanf(fp, <span class="string">"%d %s"</span>, &amp;i, str);</span><br><span class="line">fprintf(fp,<span class="string">"%d %c"</span>, j, ch);</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/13/C-6/" data-id="ck5ewyoza0005i8tw8n1r3r25" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-C-5" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/09/C-5/" class="article-date">
-  <time datetime="2019-08-09T08:01:25.000Z" itemprop="datePublished">2019-08-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/09/C-5/">C语言(五)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h2><p>指针就是内存中的地址，地址是内存单元的编号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;//p保存的是i的地址，因此p指向i，p的值与i的值互不影响</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;</span><br><span class="line">j = *p;//*p相当于i,所以j=i</span><br><span class="line">//结果为 j =3</span><br><span class="line">//*p就是以p的内容为地址的变量</span><br></pre></td></tr></table></figure>
-<h2 id="指针和指针变量"><a href="#指针和指针变量" class="headerlink" title="指针和指针变量"></a>指针和指针变量</h2><p>指针是地址，指针变量是存放地址的变量，指针和指针变量是两个不同的概念，但是叙述时会把指针变量简称为指针，实际它们含义不一样。</p>
-<h3 id="一个指针变量占几个字节"><a href="#一个指针变量占几个字节" class="headerlink" title="一个指针变量占几个字节"></a>一个指针变量占几个字节</h3><p><font color="#fb8c00">sizeof(数据类型)</font>：返回值是该数据类型所占的字节数<br><font color="#fb8c00">sizeof(变量名)</font>：返回值是该变量所占的字节数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sizeof(int)=4   sizeof(char)=1 sizeof(double)=8</span><br></pre></td></tr></table></figure>
-<ul>
-<li>假设p指向char类型的变量(1个字节)</li>
-<li>假设q指向int类型的变量(4个字节)</li>
-<li>假设r指向double类型的变量(8个字节)</li>
-<li>pqr大小均为4个字节(pqr只存地址的第一个字节，但CPU与内存间有32根地址线，地址表示位有32位)</li>
-</ul>
-<blockquote>
-<p>注：一个指针变量，无论它指向的变量占几个字节，该指针变量本身只占四个字节</p>
-</blockquote>
-<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =10;</span><br><span class="line">int * p = &amp;i;</span><br><span class="line">int ** q = &amp;p;//q是存放int*类型变量的地址的指针</span><br><span class="line">int *** r = &amp;q;//r是存放int**类型变量的地址的指针</span><br><span class="line"></span><br><span class="line">r = &amp;p;//error,r只能存放int**类型的变量的地址</span><br></pre></td></tr></table></figure>
-
-<h2 id="指针的分类"><a href="#指针的分类" class="headerlink" title="指针的分类"></a>指针的分类</h2><h3 id="基本类型指针"><a href="#基本类型指针" class="headerlink" title="基本类型指针"></a>基本类型指针</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i=5;</span><br><span class="line">p = &amp;i;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：在C语言中NULL指针定义为0</p>
-</blockquote>
-<h4 id="基本类型指针的常见错误分析"><a href="#基本类型指针的常见错误分析" class="headerlink" title="基本类型指针的常见错误分析"></a>基本类型指针的常见错误分析</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =5;</span><br><span class="line">* p =i;//error,相当于将p指针指向的int变量赋值成i，但p指针指向的int变量的控制权限并没有分配给本程序</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p =&amp;i;</span><br><span class="line">//* q =p;//error,*q为int类型，而p为int*类型</span><br><span class="line">//* q = *p;//error</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：q的空间是属于本程序的，所以本程序可以读写q的内容，但如果q的内部是垃圾值，则本程序不能读写* q的内容，因为* q所代表的内存单元的控制权限并没有分配给本程序</p>
-</blockquote>
-<h3 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h3><h4 id="指针和一维数组"><a href="#指针和一维数组" class="headerlink" title="指针和一维数组"></a>指针和一维数组</h4><h5 id="数组名"><a href="#数组名" class="headerlink" title="数组名"></a>数组名</h5><p>一维数组名是一个指针常量，存放的是第一个元素的地址</p>
-<h5 id="下标和指针的关系"><a href="#下标和指针的关系" class="headerlink" title="下标和指针的关系"></a>下标和指针的关系</h5><p>如果p是个指针变量，则p[i]永远等价于* （p+i）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//通过函数输出数组的内容</span><br><span class="line">void pArr(int * p,int len)&#123;</span><br><span class="line">    //p为数组名，len为数组大小</span><br><span class="line">    //a[0]=*(a+0),a[2]=*(a+2)</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">"%d"</span>,*(p+i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">	a[4]=&#123;1,2,3,4&#125;;</span><br><span class="line">	b[6]=&#123;1,2,3,4,5,6&#125;;</span><br><span class="line">	c[100]=&#123;1,2,34&#125;;</span><br><span class="line">    pArr(a,4);</span><br><span class="line">    pArr(b,6);</span><br><span class="line">    pArr(c,100);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h5><ul>
-<li>指针变量不能相加，不能相乘，不能相除</li>
-<li>如果两个指针变量指向的是同一块连续空间中的不同存储单元，则这两个指针变量可以相减<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int j =10;</span><br><span class="line">int * p =&amp;i;</span><br><span class="line">int * q =&amp;j;</span><br><span class="line">p-q;//没有实际意义</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int a[5];</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p = &amp;a[2];</span><br><span class="line">q = &amp;a[4];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"p和q所指向单元相隔%d个单元\n"</span>,p-q);</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="指针和二维数组"><a href="#指针和二维数组" class="headerlink" title="指针和二维数组"></a>指针和二维数组</h4><h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><h4 id="通过被调函数修改主调函数普通变量的值"><a href="#通过被调函数修改主调函数普通变量的值" class="headerlink" title="通过被调函数修改主调函数普通变量的值"></a>通过被调函数修改主调函数普通变量的值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * i) &#123;</span><br><span class="line">	*i = 1;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	int a = 2;</span><br><span class="line">	g(&amp;a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);//最终输出为1</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="指针使函数返回一个以上值"><a href="#指针使函数返回一个以上值" class="headerlink" title="指针使函数返回一个以上值"></a>指针使函数返回一个以上值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * p,int * q)&#123;</span><br><span class="line">	*p = 1;</span><br><span class="line">	*q = 2;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int a=3,b=4;</span><br><span class="line">   g(&amp;a,&amp;b);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d/n"</span>,a,b);//a=1,b=2</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="指针和结构体"><a href="#指针和结构体" class="headerlink" title="指针和结构体"></a>指针和结构体</h3><h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><h3 id="传统数组的缺点-静态数组"><a href="#传统数组的缺点-静态数组" class="headerlink" title="传统数组的缺点(静态数组)"></a>传统数组的缺点(静态数组)</h3><ul>
-<li>数组长度必须事先指定，且只能是常熟，不能是变量</li>
-<li>传统形式定义的数组内存无法手动释放，只能在函数运行完毕时由系统自动释放</li>
-<li>数组的长度不能在函数运行的过程中动态的扩充或缩小</li>
-<li>A函数定义的数组，在A函数运行期间可以被其他函数使用，但A函数运行完毕后，A函数中的数组将无法再被其他函数使用(不能跨函数使用)</li>
-</ul>
-<h3 id="为什么需要动态分配内存"><a href="#为什么需要动态分配内存" class="headerlink" title="为什么需要动态分配内存"></a>为什么需要动态分配内存</h3><p>动态数组很好的解决了传统数组的4个缺陷</p>
-<p>###　动态内存分配举例(动态数组的构造)</p>
-<h4 id="malloc函数的使用"><a href="#malloc函数的使用" class="headerlink" title="malloc函数的使用"></a>malloc函数的使用</h4><p>malloc 是memory allocate(内存分配)的缩写</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i = 5;//静态分配4个字节</span><br><span class="line">int * p = (int *)malloc(4);//4表示请求系统为本程序分配4个字节</span><br><span class="line">//一个分配了8个字节，p占用4个字节，p所指向的内存也占4个字节</span><br><span class="line">//p本身所占的内存是静态分配的，p所指向的内存是动态分配的</span><br><span class="line"></span><br><span class="line">* p =5;</span><br><span class="line">free(p);//表示把p所指向的内存释放掉，p本身的内存是静态的，只能在p变量所在函数运行终止时由系统自动释放</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：1.使用malloc函数必须加上malloc.h头文件<br>      2.malloc函数只能返回第一个字节的地址<br>      3.malloc函数只有一个形参，并且形参是整形</p>
-</blockquote>
-<h4 id="动态构建一维数组"><a href="#动态构建一维数组" class="headerlink" title="动态构建一维数组"></a>动态构建一维数组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int * pArr;</span><br><span class="line">int len;</span><br><span class="line">int i;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"请输入数组元素个数："</span>);</span><br><span class="line">scanf(<span class="string">"%d"</span>,&amp;len);</span><br><span class="line">pArr = (int *)malloc(4*len);//每4个字节代表一个元素(int为4个字节)</span><br><span class="line"></span><br><span class="line">//对动态一维数组进行赋值</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  scanf(<span class="string">"%d"</span>,pArr+i);</span><br><span class="line">&#125;</span><br><span class="line">//对动态一维数组进行输出</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*(pArr+i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">realloc(pArr,100);//把pArr指针所指向的内存扩大到100个字节</span><br><span class="line"></span><br><span class="line">free(pArr);//释放pArr所指向的内存</span><br></pre></td></tr></table></figure>
-
-<h3 id="静态内存和动态内存的比较"><a href="#静态内存和动态内存的比较" class="headerlink" title="静态内存和动态内存的比较"></a>静态内存和动态内存的比较</h3><h4 id="静态内存"><a href="#静态内存" class="headerlink" title="静态内存"></a>静态内存</h4><ul>
-<li>静态内存是由系统自动分配的，由系统自动释放</li>
-<li>静态内存是在栈中分配的</li>
-</ul>
-<h4 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h4><ul>
-<li>动态内存手动分配，手动释放</li>
-<li>动态内存是在堆中分配的</li>
-</ul>
-<h3 id="跨函数使用内存的问题"><a href="#跨函数使用内存的问题" class="headerlink" title="跨函数使用内存的问题"></a>跨函数使用内存的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">    int i = 5;</span><br><span class="line">    *q = &amp;i;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">  int * p;</span><br><span class="line">  f(&amp;p);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//error,语法无错误，但是i变量的内存在f()函数执行完毕后已经被释放(i已经不存在)，此时*p指向的并不是i</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">  * q = (int *)malloc(sizeof(int));</span><br><span class="line">  ** q = 5;//等价于*p=5</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int * p;</span><br><span class="line">   f(&amp;p);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//OK,动态分配的内存是手动释放，f()中的** q在函数执行完毕后依然存在</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://fightingtree.github.io/2019/08/09/C-5/" data-id="ck5ewyoz80004i8twhvgv18yi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2019/12/08/python7/">Python(7)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/05/Python6/">Python(6)</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/network3/">无线网络</a>
-          </li>
-        
-          <li>
-            <a href="/2019/12/01/network2/">网络安全</a>
-          </li>
-        
-          <li>
-            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 fightingtree<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
 </footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+</div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
 
 
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
 
 
-<script src="/js/script.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
 
 
 
 
-  </div>
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
 </body>
 </html>
