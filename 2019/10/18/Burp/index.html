@@ -31,7 +31,7 @@ Proxy 拦截代理服务器
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -474,7 +474,13 @@ Proxy 拦截代理服务器
 <p>本次爆破有两个目标,给出的两个字典分别是[1,2]和[a,b]<br>则破解方式为：<br>username  |password<br>1         |a<br>2         |b</p>
 <h4 id="Cluster-bomp急速炸弹模式"><a href="#Cluster-bomp急速炸弹模式" class="headerlink" title="Cluster bomp急速炸弹模式"></a>Cluster bomp急速炸弹模式</h4><p>本次爆破有两个目标，给定两个字典之后，产生的攻击效果是进行笛卡尔积<br>给定的两个字典分别为[1,2]和[a,b,c,d]<br>则破解方式为：<br>username|password<br>1        |a<br>1        |b<br>1        |c<br>1        |d<br>2        |a<br>2        |b<br>2        |c<br>2        |d</p>
 <h3 id="实例讲解"><a href="#实例讲解" class="headerlink" title="实例讲解"></a>实例讲解</h3><p>利用phpStudy(详情请参考本博客phpStudy)搭建网站后，在网站文件夹中加入test.php文件，文件内容如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line"><span class="variable">$a</span> =<span class="string">'nice'</span>;</span><br><span class="line"><span class="variable">$get</span> = <span class="variable">$_GET</span>[<span class="string">'a'</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span> == <span class="variable">$get</span>)&#123;</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"yes"</span>;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?
+<span class="token variable">$a</span> <span class="token operator">=</span><span class="token string">'nice'</span><span class="token punctuation">;</span>
+<span class="token variable">$get</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+if<span class="token punctuation">(</span><span class="token variable">$a</span> <span class="token operator">==</span> <span class="token variable">$get</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">echo</span> <span class="token string">"yes"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+?<span class="token operator">></span></code></pre>
 <p>设置target选项<br><img src="https://ae01.alicdn.com/kf/Haf24034a39a44048826c20c5bac3f657u.jpg" alt=""><br>开启Burp Suite的Proxy功能，在开启代理的浏览器搜索栏中输入 <font color="#fb8c00"><a href="http://www.test.com/test.php?a=1" target="_blank" rel="noopener">www.test.com/test.php?a=1</a></font><br>捕获得如下数据包<br><img src="https://ae01.alicdn.com/kf/H3b7ff248abe14326b512ce5b3c9f9b91Q.jpg" alt=""><br>点击Action选择Send to intruder将数据包送至intruder模块，鼠标选中需要暴力破解的地方，点击Add$,如图<br><img src="https://ae01.alicdn.com/kf/Ha6ec2d1d936c46269baf25c27efbcb74X.jpg" alt=""></p>
 <p>simple list模式：手动添加字典值<br><img src="https://ae01.alicdn.com/kf/H35c74ae70eaa471b9e3c4585de49819c8.jpg" alt=""><br>运行结果如下：<br><img src="https://ae01.alicdn.com/kf/Hf2ad34cb98034bb8b829dd42f796e51fe.jpg" alt=""></p>
 <p>Runtime file模式：导入外部文件作为字典<br>新建txt文件(该文件路径不允许有中文字)<br><img src="https://ae01.alicdn.com/kf/H55098e16197d4974ba9e0d8fdde262c0B.jpg" alt=""><br><img src="https://ae01.alicdn.com/kf/H04c4c0a763194618a60069bc152697bfU.jpg" alt=""><br>运行结果<br><img src="https://ae01.alicdn.com/kf/H3578a4e5f47b40d096d19c80ecb7afc7F.jpg" alt=""></p>
@@ -521,7 +527,7 @@ Proxy 拦截代理服务器
                   property="dct:title" rel="dct:type">
                     《Burp Suite使用教程》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/18/Burp/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/18/burp/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -636,7 +642,7 @@ Proxy 拦截代理服务器
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/18/webSecurity3/">
+                <a href="/2019/10/18/websecurity3/">
                     <div class="card-image">
                         
                         
@@ -832,7 +838,7 @@ Proxy 拦截代理服务器
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

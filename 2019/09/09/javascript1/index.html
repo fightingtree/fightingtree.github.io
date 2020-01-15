@@ -28,7 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -416,13 +416,16 @@
                 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>javascript是一种“松散类型的程序设计语言”(Loosely Typed Programming Language),程序变量不需要事先声明就可以直接使用,我们可以将Javascript变量视为一个在程序代码中暂存数据的容器，变量值可以在程序代码中随时使用变量名称读取或者更改变量值</p>
 <h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><p>Javascript的变量需要使用var或者使用赋值语句来隐藏声明。</p>
 <p>####　使用var声明</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var strName;  //声明变量</span><br><span class="line">strName = <span class="string">"hello"</span>   //给变量赋值</span><br><span class="line">//也可以直接写成以下形式</span><br><span class="line">var strName = <span class="string">"hello"</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var strName = <span class="string">"hello"</span></span><br><span class="line">strName = 1000 //对strName重新赋值</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var strName<span class="token punctuation">;</span>  //声明变量
+strName <span class="token operator">=</span> <span class="token string">"hello"</span>   //给变量赋值
+//也可以直接写成以下形式
+var strName <span class="token operator">=</span> <span class="token string">"hello"</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">var strName <span class="token operator">=</span> <span class="token string">"hello"</span>
+strName <span class="token operator">=</span> 1000 //对strName重新赋值</code></pre>
 <blockquote>
 <p>注：可以使用赋值语句随时更改其数据类型</p>
 </blockquote>
-<h4 id="隐藏声明"><a href="#隐藏声明" class="headerlink" title="隐藏声明"></a>隐藏声明</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">strNo = 1234  //没有使用var但在赋值的同时创建了这个变量</span><br></pre></td></tr></table></figure>
-
+<h4 id="隐藏声明"><a href="#隐藏声明" class="headerlink" title="隐藏声明"></a>隐藏声明</h4><pre class=" language-bash"><code class="language-bash">strNo <span class="token operator">=</span> 1234  //没有使用var但在赋值的同时创建了这个变量</code></pre>
 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>javascript有6种数据类型：<font color="#fb8c00">字符串：String 数值：Number 布尔：Boolean 特殊值：Undefined 特殊值：null 对象</font></p>
 <h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><h4 id="数值-Number"><a href="#数值-Number" class="headerlink" title="数值(Number)"></a>数值(Number)</h4><p>数值数据类型的变量可以是整数或浮点数<br>特殊字符串：</p>
 <ul>
@@ -431,23 +434,39 @@
 <li><font color="#fb8c00">Negative Infinity</font> 数值太大超过Javascript负数值范围</li>
 <li><font color="#fb8c00">Positive and Negative 0</font>　javascript用来区分+0和-0</li>
 </ul>
-<h5 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">0/0;  //NaN</span><br><span class="line">Infinity * Infinity; //Infinity</span><br><span class="line">Infinity - Infinity; //NaN</span><br><span class="line">NaN + 16; //NaN</span><br><span class="line">NaN === NaN; //===是严格相等操作符，详情参考下文，<span class="literal">false</span></span><br><span class="line">0/0 === NaN; //<span class="literal">false</span></span><br><span class="line">isNaN(0/0);  //<span class="literal">true</span> isNaN可以解读为“不能转换成数值”</span><br></pre></td></tr></table></figure>
+<h5 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h5><pre class=" language-bash"><code class="language-bash">0/0<span class="token punctuation">;</span>  //NaN
+Infinity * Infinity<span class="token punctuation">;</span> //Infinity
+Infinity - Infinity<span class="token punctuation">;</span> //NaN
+NaN + 16<span class="token punctuation">;</span> //NaN
+NaN <span class="token operator">==</span><span class="token operator">=</span> NaN<span class="token punctuation">;</span> //<span class="token operator">==</span><span class="token operator">=</span>是严格相等操作符，详情参考下文，false
+0/0 <span class="token operator">==</span><span class="token operator">=</span> NaN<span class="token punctuation">;</span> //false
+isNaN<span class="token punctuation">(</span>0/0<span class="token punctuation">)</span><span class="token punctuation">;</span>  //true isNaN可以解读为“不能转换成数值”</code></pre>
 <blockquote>
 <p>注：NaN不等于任何值，甚至不等于NaN  </p>
 </blockquote>
 <h5 id="精度的限制"><a href="#精度的限制" class="headerlink" title="精度的限制"></a>精度的限制</h5><p>javascript的数值与大多数编程语言一样，受到计算设备固定大小的物理元件的限制，存在精度限制。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.1 + 0.2 //结果是0.30000000000000004</span><br><span class="line">4.18e-1000 //结果是0</span><br></pre></td></tr></table></figure>
-
-<h4 id="字符串-String"><a href="#字符串-String" class="headerlink" title="字符串(String)"></a>字符串(String)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"javascript"</span></span><br><span class="line"><span class="string">"'hello' world"</span> //显示为<span class="string">"hello"</span> world</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">0.1 + 0.2 //结果是0.30000000000000004
+4.18e-1000 //结果是0</code></pre>
+<h4 id="字符串-String"><a href="#字符串-String" class="headerlink" title="字符串(String)"></a>字符串(String)</h4><pre class=" language-bash"><code class="language-bash"><span class="token string">"javascript"</span>
+<span class="token string">"'hello' world"</span> //显示为<span class="token string">"hello"</span> world</code></pre>
 <p>javascript字符串一个很重要的一个特性是不可变，不能对字符串中的字符进行修改，也不能改变字符串的长度。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var s = <span class="string">"hello"</span>;</span><br><span class="line">s.toUpperCase(); </span><br><span class="line">alert(s); //结果仍为hello</span><br><span class="line">//因为第二行只是对原字符串执行了一次转换操作，对结果没有任何影响。</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+s.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+alert<span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span> //结果仍为hello
+//因为第二行只是对原字符串执行了一次转换操作，对结果没有任何影响。</code></pre>
 <blockquote>
 <p>注：toUpperCase()函数作用是将字符串所有字母变成大写的形式<br>正确写法：</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//方法一：直接打印</span><br><span class="line">var s = <span class="string">"hello"</span>;</span><br><span class="line">alert(s.toUpperCase());</span><br><span class="line">//方法二：赋值给一个新变量</span><br><span class="line">var s = <span class="string">"hello"</span>;</span><br><span class="line">a = s.toUpperCase();</span><br><span class="line">alert(a);</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">//方法一：直接打印
+var s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>s.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+//方法二：赋值给一个新变量
+var s <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+a <span class="token operator">=</span> s.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h4 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h4><p>Null数据类型只有一个值null,null是一个关键词不是0，如果变量值为null,表示变量没有值或不再指向任何对象地址。</p>
-<h4 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">undefined == null, null == undefined  //<span class="literal">true</span>,==比较值</span><br><span class="line">undefined === null //<span class="literal">false</span>,===比较类型</span><br></pre></td></tr></table></figure>
+<h4 id="Undefined"><a href="#Undefined" class="headerlink" title="Undefined"></a>Undefined</h4><pre class=" language-bash"><code class="language-bash">undefined <span class="token operator">==</span> null, null <span class="token operator">==</span> undefined  //true,<span class="token operator">==</span>比较值
+undefined <span class="token operator">==</span><span class="token operator">=</span> null //false,<span class="token operator">==</span><span class="token operator">=</span>比较类型</code></pre>
 <p>没有进行赋值的变量。</p>
 <h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="弱类型"><a href="#弱类型" class="headerlink" title="弱类型"></a>弱类型</h3><p>类型转换结果：</p>
 <h4 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h4><ul>
@@ -459,78 +478,142 @@
 <li>空字符串或完全空白字符构成的字符串被转换成0</li>
 </ul>
 <h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>0、空字符串(“”)、null、undefined、NaN都会被转换成false，其他的都为true</p>
-<h4 id="“-”的双重含义"><a href="#“-”的双重含义" class="headerlink" title="“+”的双重含义"></a>“+”的双重含义</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//prompt()方法用于显示一个带有提示信息,并且用户可以输入的对话框。</span><br><span class="line">var x = prompt(<span class="string">"Enter a number:"</span>);  //输入2</span><br><span class="line">var y = prompt(<span class="string">"Enter a number:"</span>);  //输入2</span><br><span class="line">alert(x+y);   //结果为22</span><br></pre></td></tr></table></figure>
+<h4 id="“-”的双重含义"><a href="#“-”的双重含义" class="headerlink" title="“+”的双重含义"></a>“+”的双重含义</h4><pre class=" language-bash"><code class="language-bash">//prompt<span class="token punctuation">(</span><span class="token punctuation">)</span>方法用于显示一个带有提示信息,并且用户可以输入的对话框。
+var x <span class="token operator">=</span> prompt<span class="token punctuation">(</span><span class="token string">"Enter a number:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //输入2
+var y <span class="token operator">=</span> prompt<span class="token punctuation">(</span><span class="token string">"Enter a number:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //输入2
+alert<span class="token punctuation">(</span>x+y<span class="token punctuation">)</span><span class="token punctuation">;</span>   //结果为22</code></pre>
 <p>prompt求值的结果总是字符串，而操作符“+”正好适用于字符串和数值，在上述的代码中“+”体现了字符串连接的功能,(正确计算结果在显示转换中给出)。</p>
 <blockquote>
 <p>注：在javascript中，除了“+”，其他算术运算符均只能用于数值。</p>
 </blockquote>
-<h3 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h3><h4 id="显示转化的方式"><a href="#显示转化的方式" class="headerlink" title="显示转化的方式"></a>显示转化的方式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"3.14"</span>-0;  //3.14</span><br><span class="line"><span class="string">"3.14"</span>*1; //3.14</span><br><span class="line"><span class="string">"3.14"</span>/1; //3.14</span><br><span class="line">+<span class="string">"3.14"</span>;  //3.14 一元加(速度最快)</span><br><span class="line">Number(<span class="string">"3.14"</span>);  //3.14</span><br><span class="line">parseFloat(<span class="string">"3.14"</span>); //3.14</span><br></pre></td></tr></table></figure>
+<h3 id="显式转换"><a href="#显式转换" class="headerlink" title="显式转换"></a>显式转换</h3><h4 id="显示转化的方式"><a href="#显示转化的方式" class="headerlink" title="显示转化的方式"></a>显示转化的方式</h4><pre class=" language-bash"><code class="language-bash"><span class="token string">"3.14"</span>-0<span class="token punctuation">;</span>  //3.14
+<span class="token string">"3.14"</span>*1<span class="token punctuation">;</span> //3.14
+<span class="token string">"3.14"</span>/1<span class="token punctuation">;</span> //3.14
++<span class="token string">"3.14"</span><span class="token punctuation">;</span>  //3.14 一元加<span class="token punctuation">(</span>速度最快<span class="token punctuation">)</span>
+Number<span class="token punctuation">(</span><span class="token string">"3.14"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //3.14
+parseFloat<span class="token punctuation">(</span><span class="token string">"3.14"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //3.14</code></pre>
 <blockquote>
 <p>注：单独的”+”放在数值之前不会产生任何操作，一元减操作符则不同，+4=&gt;4, -4=&gt;-4</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var x = +prompt(<span class="string">"Enter a number:"</span>);  //输入2</span><br><span class="line">var y = +prompt(<span class="string">"Enter a number:"</span>);  //输入2</span><br><span class="line">alert(x+y); //4</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var x <span class="token operator">=</span> +prompt<span class="token punctuation">(</span><span class="token string">"Enter a number:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //输入2
+var y <span class="token operator">=</span> +prompt<span class="token punctuation">(</span><span class="token string">"Enter a number:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //输入2
+alert<span class="token punctuation">(</span>x+y<span class="token punctuation">)</span><span class="token punctuation">;</span> //4</code></pre>
 <blockquote>
 <p>注：解决方法不唯一</p>
 </blockquote>
-<h4 id="数据类型相加"><a href="#数据类型相加" class="headerlink" title="数据类型相加"></a>数据类型相加</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"hello"</span></span><br><span class="line">num = 2019</span><br><span class="line">bln = <span class="literal">true</span></span><br><span class="line">output = str + num  //数值和字符串相加，数值会强制转换成字符串<span class="string">"hello2019"</span></span><br><span class="line">output = str + bln  //布尔和字符串相加，布尔会强制转换成字符串<span class="string">"hellotrue"</span></span><br><span class="line">output = num + bln  //布尔和数值相加，布尔会强制转换成数值 2019+1=2020</span><br></pre></td></tr></table></figure>
+<h4 id="数据类型相加"><a href="#数据类型相加" class="headerlink" title="数据类型相加"></a>数据类型相加</h4><pre class=" language-bash"><code class="language-bash">str <span class="token operator">=</span> <span class="token string">"hello"</span>
+num <span class="token operator">=</span> 2019
+bln <span class="token operator">=</span> <span class="token boolean">true</span>
+output <span class="token operator">=</span> str + num  //数值和字符串相加，数值会强制转换成字符串<span class="token string">"hello2019"</span>
+output <span class="token operator">=</span> str + bln  //布尔和字符串相加，布尔会强制转换成字符串<span class="token string">"hellotrue"</span>
+output <span class="token operator">=</span> num + bln  //布尔和数值相加，布尔会强制转换成数值 2019+1<span class="token operator">=</span>2020 </code></pre>
 <blockquote>
 <p>注：布尔转换为数值时，true的数值为1，false为0</p>
 </blockquote>
 <h4 id="用函数进行转换"><a href="#用函数进行转换" class="headerlink" title="用函数进行转换"></a>用函数进行转换</h4><h5 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt()"></a>parseInt()</h5><p>将字符串变量值开头的数值转换成整数，如果字符串没有数值，就返回NaN,在转换时可以指定十六、十和八进制。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parseInt(<span class="string">"3 page"</span>)   //3</span><br><span class="line">parseInt(<span class="string">"3.2"</span>)  //3</span><br><span class="line">parseInt(<span class="string">"page 3"</span>)  //NaN 开头不是数字</span><br><span class="line">parseInt(<span class="string">"18ff值"</span>,16)   //6399 将字符串转换成16进制</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">parseInt<span class="token punctuation">(</span><span class="token string">"3 page"</span><span class="token punctuation">)</span>   //3
+parseInt<span class="token punctuation">(</span><span class="token string">"3.2"</span><span class="token punctuation">)</span>  //3
+parseInt<span class="token punctuation">(</span><span class="token string">"page 3"</span><span class="token punctuation">)</span>  //NaN 开头不是数字
+parseInt<span class="token punctuation">(</span><span class="token string">"18ff值"</span>,16<span class="token punctuation">)</span>   //6399 将字符串转换成16进制</code></pre>
 <h5 id="parseFloat"><a href="#parseFloat" class="headerlink" title="parseFloat()"></a>parseFloat()</h5><p>将字符串变量值开头的浮点数转换成浮点数，如果字符串没有数值，就返回NaN</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parseFloat(<span class="string">"3.2"</span>)   //3.2</span><br><span class="line">parseFloat(<span class="string">"page 3"</span>)  //NaN</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">parseFloat<span class="token punctuation">(</span><span class="token string">"3.2"</span><span class="token punctuation">)</span>   //3.2
+parseFloat<span class="token punctuation">(</span><span class="token string">"page 3"</span><span class="token punctuation">)</span>  //NaN</code></pre>
 <h5 id="eval"><a href="#eval" class="headerlink" title="eval()"></a>eval()</h5><p>将表达式的字符串参数当作表达式，函数可以返回表达式的计算结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">"20+4*5"</span>)  //40</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">"num = 1000"</span>)  //1000</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">"5&gt;4"</span>)   //<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">eval<span class="token punctuation">(</span><span class="token string">"20+4*5"</span><span class="token punctuation">)</span>  //40
+eval<span class="token punctuation">(</span><span class="token string">"num = 1000"</span><span class="token punctuation">)</span>  //1000
+eval<span class="token punctuation">(</span><span class="token string">"5>4"</span><span class="token punctuation">)</span>   //true</code></pre>
 <h5 id="typeof"><a href="#typeof" class="headerlink" title="typeof()"></a>typeof()</h5><p>获取变量的数据类型。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var num = 100;</span><br><span class="line">typeof(num)   //number</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var num <span class="token operator">=</span> 100<span class="token punctuation">;</span>
+typeof<span class="token punctuation">(</span>num<span class="token punctuation">)</span>   //number</code></pre>
 <h3 id="松散相等操作符"><a href="#松散相等操作符" class="headerlink" title="松散相等操作符"></a>松散相等操作符</h3><ul>
 <li>严格相等操作符===、!==：当且仅当两个表达式的值相同且类型相同时才返回true。</li>
 <li>松散相等操作符==、!=：在测试之前会不顾一切地转换数据类型</li>
 </ul>
-<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="定义对象"><a href="#定义对象" class="headerlink" title="定义对象"></a>定义对象</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var dress = &#123;</span><br><span class="line">    size:4,  //属性</span><br><span class="line">    color:<span class="string">"red"</span>,</span><br><span class="line">    price:200</span><br><span class="line">&#125;;</span><br><span class="line">var p =&#123;</span><br><span class="line">    name:&#123;first:<span class="string">"Bob"</span>,last:<span class="string">"Li"</span>&#125;</span><br><span class="line">    birth:&#123;year:1999,month:2,day:2&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="定义对象"><a href="#定义对象" class="headerlink" title="定义对象"></a>定义对象</h3><pre class=" language-bash"><code class="language-bash">var dress <span class="token operator">=</span> <span class="token punctuation">{</span>
+    size:4,  //属性
+    color:<span class="token string">"red"</span>,
+    price:200
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+var p <span class="token operator">=</span><span class="token punctuation">{</span>
+    name:<span class="token punctuation">{</span>first:<span class="token string">"Bob"</span>,last:<span class="token string">"Li"</span><span class="token punctuation">}</span>
+    birth:<span class="token punctuation">{</span>year:1999,month:2,day:2<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <h4 id="读取属性"><a href="#读取属性" class="headerlink" title="读取属性"></a>读取属性</h4><p>定义对象之后，可以使用点或方括号读取属性的值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dress.size  //4</span><br><span class="line">p.name[<span class="string">"first"</span>]  //Bob</span><br><span class="line">p[<span class="string">"birth"</span>][<span class="string">"year"</span>]  //1999</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">dress.size  //4
+p.name<span class="token punctuation">[</span><span class="token string">"first"</span><span class="token punctuation">]</span>  //Bob
+p<span class="token punctuation">[</span><span class="token string">"birth"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"year"</span><span class="token punctuation">]</span>  //1999</code></pre>
 <blockquote>
 <p>注：点号访问属性的方式不能读取以整数命名的属性</p>
 </blockquote>
-<h4 id="属性的添加与删除"><a href="#属性的添加与删除" class="headerlink" title="属性的添加与删除"></a>属性的添加与删除</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var dog = &#123;&#125;;  //空对象</span><br><span class="line">dog.name = <span class="string">"hei"</span>;  //添加属性</span><br><span class="line">dog.breed = <span class="string">"hot"</span>;  //dog = &#123;name:<span class="string">"hei"</span>,breed:<span class="string">"hot"</span>&#125;;</span><br><span class="line">delete dog.breed;  //删除属性 dog = &#123;name:<span class="string">"hei"</span>&#125;;</span><br></pre></td></tr></table></figure>
-
+<h4 id="属性的添加与删除"><a href="#属性的添加与删除" class="headerlink" title="属性的添加与删除"></a>属性的添加与删除</h4><pre class=" language-bash"><code class="language-bash">var dog <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  //空对象
+dog.name <span class="token operator">=</span> <span class="token string">"hei"</span><span class="token punctuation">;</span>  //添加属性
+dog.breed <span class="token operator">=</span> <span class="token string">"hot"</span><span class="token punctuation">;</span>  //dog <span class="token operator">=</span> <span class="token punctuation">{</span>name:<span class="token string">"hei"</span>,breed:<span class="token string">"hot"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+delete dog.breed<span class="token punctuation">;</span>  //删除属性 dog <span class="token operator">=</span> <span class="token punctuation">{</span>name:<span class="token string">"hei"</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <h4 id="对象引用"><a href="#对象引用" class="headerlink" title="对象引用"></a>对象引用</h4><p>对象表达式的值并非对象本身，而是一个指向对象的引用，对象的赋值不会产生新对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 8;</span><br><span class="line">var b = &#123;x:1,y:2&#125;;</span><br><span class="line">var c = a;</span><br><span class="line">var d = b;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> 8<span class="token punctuation">;</span>
+var b <span class="token operator">=</span> <span class="token punctuation">{</span>x:1,y:2<span class="token punctuation">}</span><span class="token punctuation">;</span>
+var c <span class="token operator">=</span> a<span class="token punctuation">;</span>
+var d <span class="token operator">=</span> b<span class="token punctuation">;</span></code></pre>
 <p>上述代码执行过程演示：<br><img src="https://i.postimg.cc/0yvvxmjs/1.jpg" alt=""></p>
 <p>一个对象可以同时被多个变量引用，因此可以通过其中任何一个变量都可以修改对象的属性</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var a =&#123;x:1,y:2&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">var c = &#123;x:1,y:2&#125;;</span><br><span class="line">b.y = 3;</span><br><span class="line">alert(a.y);  //3</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span><span class="token punctuation">{</span>x:1,y:2<span class="token punctuation">}</span><span class="token punctuation">;</span>
+var b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+var c <span class="token operator">=</span> <span class="token punctuation">{</span>x:1,y:2<span class="token punctuation">}</span><span class="token punctuation">;</span>
+b.y <span class="token operator">=</span> 3<span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>a.y<span class="token punctuation">)</span><span class="token punctuation">;</span>  //3</code></pre>
 <p>上述代码执行过程演示：<br><img src="https://i.postimg.cc/0yCsNQKJ/2.jpg" alt=""></p>
 <h4 id="对象原型"><a href="#对象原型" class="headerlink" title="对象原型"></a>对象原型</h4><ul>
 <li>创建一个对象的原型，然后再基于这个原型创建其他对象(相当于面向对象程序设计中的继承)。</li>
 <li>每个Javascript对象都有一个暗藏的链接指向自己的原型对象。</li>
 <li>如果你读取的属性不在对象身上，那么Javascript就会进一步查询这个对象的原型对象。。如果在这个原型对象上也没有找到，还会进一步查询原型对象的原型对象，以此类推。</li>
-<li>如果整个原型链都没有你想读取的属性，就会产生ReferenceError的错误。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var protoCircle = &#123;x:0,y:0,color:<span class="string">"black"</span>&#125;;  //圆的原型对象</span><br><span class="line">var c1 = Object.create(protoCircle);   //基于protoCircle创建一个c1对象</span><br><span class="line">c1.x = 4;</span><br><span class="line">c1.color = <span class="string">"red"</span>;   //c1 = &#123;x:4,y:0,color:<span class="string">"red"</span>&#125;;</span><br><span class="line">var c2 = Object.create(protoCircle);  //基于protoCircle创建一个c2对象</span><br><span class="line">c2.x = 2;</span><br><span class="line">c2.color = <span class="string">"yellow"</span>;   //c2 = &#123;x:2,y:0,color:<span class="string">"yellow"</span>&#125;;</span><br></pre></td></tr></table></figure>
-
+<li>如果整个原型链都没有你想读取的属性，就会产生ReferenceError的错误。<pre class=" language-bash"><code class="language-bash">var protoCircle <span class="token operator">=</span> <span class="token punctuation">{</span>x:0,y:0,color:<span class="token string">"black"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  //圆的原型对象
+var c1 <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>protoCircle<span class="token punctuation">)</span><span class="token punctuation">;</span>   //基于protoCircle创建一个c1对象
+c1.x <span class="token operator">=</span> 4<span class="token punctuation">;</span>
+c1.color <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>   //c1 <span class="token operator">=</span> <span class="token punctuation">{</span>x:4,y:0,color:<span class="token string">"red"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+var c2 <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>protoCircle<span class="token punctuation">)</span><span class="token punctuation">;</span>  //基于protoCircle创建一个c2对象
+c2.x <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+c2.color <span class="token operator">=</span> <span class="token string">"yellow"</span><span class="token punctuation">;</span>   //c2 <span class="token operator">=</span> <span class="token punctuation">{</span>x:2,y:0,color:<span class="token string">"yellow"</span><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ul>
 <blockquote>
 <p>注：上例c1\c2属于多个对象共享一个原型</p>
 </blockquote>
 <h4 id="自引用对象"><a href="#自引用对象" class="headerlink" title="自引用对象"></a>自引用对象</h4><p>对象的属性可以引用自身，两个对象也可以通过属性互相引用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var mom =&#123;name:<span class="string">"Alice"</span>&#125;;</span><br><span class="line">var dad = &#123;name:<span class="string">"Bob"</span>,spouse:mom&#125;</span><br><span class="line">mom.spouse = dad;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### 数组</span></span><br><span class="line">数组是一种特殊的对象，它的属性是从0开始的非负整数，还有一个名为length的对应属性。</span><br><span class="line">```bash</span><br><span class="line">var a = [1,2,3,4,5];  //a[0]的值为1，a.length()等于5</span><br><span class="line">a[20] = 6; //将a[20]赋值为6,a[5]到a[19]都是Undefined</span><br><span class="line">alert(a.length());  //21</span><br><span class="line">a.length = 50;  //a[21]到a[49]都是Undefined</span><br><span class="line">a.length = 3;  //a = [1,2,3]</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">var mom <span class="token operator">=</span><span class="token punctuation">{</span>name:<span class="token string">"Alice"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+var dad <span class="token operator">=</span> <span class="token punctuation">{</span>name:<span class="token string">"Bob"</span>,spouse:mom<span class="token punctuation">}</span>
+mom.spouse <span class="token operator">=</span> dad<span class="token punctuation">;</span></code></pre>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组是一种特殊的对象，它的属性是从0开始的非负整数，还有一个名为length的对应属性。</p>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4,5<span class="token punctuation">]</span><span class="token punctuation">;</span>  //a<span class="token punctuation">[</span>0<span class="token punctuation">]</span>的值为1，a.length<span class="token punctuation">(</span><span class="token punctuation">)</span>等于5
+a<span class="token punctuation">[</span>20<span class="token punctuation">]</span> <span class="token operator">=</span> 6<span class="token punctuation">;</span> //将a<span class="token punctuation">[</span>20<span class="token punctuation">]</span>赋值为6,a<span class="token punctuation">[</span>5<span class="token punctuation">]</span>到a<span class="token punctuation">[</span>19<span class="token punctuation">]</span>都是Undefined
+alert<span class="token punctuation">(</span>a.length<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>  //21
+a.length <span class="token operator">=</span> 50<span class="token punctuation">;</span>  //a<span class="token punctuation">[</span>21<span class="token punctuation">]</span>到a<span class="token punctuation">[</span>49<span class="token punctuation">]</span>都是Undefined
+a.length <span class="token operator">=</span> 3<span class="token punctuation">;</span>  //a <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3<span class="token punctuation">]</span></code></pre>
 <h3 id="数组的方法"><a href="#数组的方法" class="headerlink" title="数组的方法"></a>数组的方法</h3><p>####　split()<br>s.split(分隔符)表示将s以分隔符隔开形成新的数组，分隔符可以为”,”、” “等</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var s = [<span class="string">"hello world"</span>];</span><br><span class="line">var a = s.split(<span class="string">" "</span>);  //</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello world"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+var a <span class="token operator">=</span> s.split<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //</code></pre>
 <h4 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h4><p>b.slice(n,m)表示将数组b从b[n]切割到b<a href="类似于Python中的切片">m-1</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var b = [1,2,3,4,5,6];</span><br><span class="line">var a = b.slice(2,5);  // a = [3,4,5]</span><br><span class="line">var c = b.slice()  //所有索引，得到b的副本</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var b <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4,5,6<span class="token punctuation">]</span><span class="token punctuation">;</span>
+var a <span class="token operator">=</span> b.slice<span class="token punctuation">(</span>2,5<span class="token punctuation">)</span><span class="token punctuation">;</span>  // a <span class="token operator">=</span> <span class="token punctuation">[</span>3,4,5<span class="token punctuation">]</span>
+var c <span class="token operator">=</span> b.slice<span class="token punctuation">(</span><span class="token punctuation">)</span>  //所有索引，得到b的副本</code></pre>
 <h4 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h4><p>将两个数组拼接起来</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = [<span class="string">"A"</span>,<span class="string">"hello"</span>];</span><br><span class="line">var b = [1,2,3,4];</span><br><span class="line">var c = a.concat(b);  //c = [1,2,3,4,<span class="string">"A"</span>,<span class="string">"hello"</span>];</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"A"</span>,<span class="token string">"hello"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+var b <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4<span class="token punctuation">]</span><span class="token punctuation">;</span>
+var c <span class="token operator">=</span> a.concat<span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>  //c <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4,<span class="token string">"A"</span>,<span class="token string">"hello"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></code></pre>
 <h4 id="join"><a href="#join" class="headerlink" title="join()"></a>join()</h4><p>把数组元素连接起来可以创建一个由同一个分隔符分隔的字符串。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = [1,2,4,<span class="string">"hello"</span>];</span><br><span class="line">alert(a.join(<span class="string">"**"</span>));  //[1**2**4**hello]</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,4,<span class="token string">"hello"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>a.join<span class="token punctuation">(</span><span class="token string">"**"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>  //<span class="token punctuation">[</span>1**2**4**hello<span class="token punctuation">]</span></code></pre>
 <h4 id="可变操作"><a href="#可变操作" class="headerlink" title="可变操作"></a>可变操作</h4><p>可以修改数组本身的操作称为可变操作</p>
 <h5 id="push-unshift"><a href="#push-unshift" class="headerlink" title="push()\unshift()"></a>push()\unshift()</h5><p>push()在数组末尾添加元素,unshift()在数组开头添加元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var b = [1,2];</span><br><span class="line">b.push(3) ;  //b = [1,2,3]</span><br><span class="line">b.unshift(0);  // b = [0,1,2,3]</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var b <span class="token operator">=</span> <span class="token punctuation">[</span>1,2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+b.push<span class="token punctuation">(</span>3<span class="token punctuation">)</span> <span class="token punctuation">;</span>  //b <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3<span class="token punctuation">]</span>
+b.unshift<span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>  // b <span class="token operator">=</span> <span class="token punctuation">[</span>0,1,2,3<span class="token punctuation">]</span></code></pre>
 <h5 id="pop-shift"><a href="#pop-shift" class="headerlink" title="pop()\shift()"></a>pop()\shift()</h5><p>pop()在数组末尾删除元素，shift()在数组开头删除元素</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a = [1,2,3,4];</span><br><span class="line">a.pop();  // a=[1,2,3]</span><br><span class="line">a.shift();  //a=[2,3]</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4<span class="token punctuation">]</span><span class="token punctuation">;</span>
+a.pop<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  // a<span class="token operator">=</span><span class="token punctuation">[</span>1,2,3<span class="token punctuation">]</span>
+a.shift<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //a<span class="token operator">=</span><span class="token punctuation">[</span>2,3<span class="token punctuation">]</span></code></pre>
 <h5 id="sort"><a href="#sort" class="headerlink" title="sort()"></a>sort()</h5><p>对数组元素进行排序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a = [7,3,5,2,10,1];</span><br><span class="line">a.sort();  //a = [1,10,2,3,5,7],字符串10小于2</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var a <span class="token operator">=</span> <span class="token punctuation">[</span>7,3,5,2,10,1<span class="token punctuation">]</span><span class="token punctuation">;</span>
+a.sort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //a <span class="token operator">=</span> <span class="token punctuation">[</span>1,10,2,3,5,7<span class="token punctuation">]</span>,字符串10小于2</code></pre>
 <blockquote>
 <p>注：javascript默认是将所有数组元素都当成字符串来排序。</p>
 </blockquote>
@@ -700,7 +783,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/08/Python-1/">
+                <a href="/2019/09/08/python-1/">
                     <div class="card-image">
                         
                         
@@ -896,7 +979,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

@@ -35,7 +35,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -397,7 +397,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        735
+                        648
                     </div>
                     
 
@@ -428,31 +428,217 @@ QWidgetQt实现选项卡式界面此部分参考链接
 <h4 id="创建新的界面"><a href="#创建新的界面" class="headerlink" title="创建新的界面"></a>创建新的界面</h4><ol>
 <li><img src="https://i.postimg.cc/kgC2Z2dV/4.png" alt=""><br><img src="https://i.postimg.cc/50Xyvv8r/5.jpg" alt=""></li>
 <li>实现各个界面对应功能(界面需继承自QWidget类)</li>
-<li>新建一个Content类，继承自QFrame。在Content类中，创建一个QStackedWidget对象，然后将页面插入到此对象中。<br>content.h<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CONTENT_H</span></span><br><span class="line"><span class="comment">#define CONTENT_H</span></span><br><span class="line"><span class="comment">#include &lt;QFrame&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QStackedWidget&gt;</span></span><br><span class="line"><span class="comment">#include "affine.h"  //界面1头文件</span></span><br><span class="line"><span class="comment">#include "vigenere.h"  //界面2头文件</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class content;</span><br><span class="line">&#125;</span><br><span class="line">class content : public QFrame</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit content(QWidget *parent = nullptr);</span><br><span class="line">    QStackedWidget *stack;  </span><br><span class="line">    affine *aff;   //界面1</span><br><span class="line">    vigenere *vig;  //界面2</span><br><span class="line">    ~content();</span><br><span class="line">signals:</span><br><span class="line">public slots:</span><br><span class="line">private:</span><br><span class="line">    Ui::content *ui;</span><br><span class="line">    QGridLayout *mainLayout;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CONTENT_H</span></span><br></pre></td></tr></table></figure>
-
-
+<li>新建一个Content类，继承自QFrame。在Content类中，创建一个QStackedWidget对象，然后将页面插入到此对象中。<br>content.h<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef CONTENT_H</span>
+<span class="token comment" spellcheck="true">#define CONTENT_H</span>
+<span class="token comment" spellcheck="true">#include &lt;QFrame></span>
+<span class="token comment" spellcheck="true">#include &lt;QStackedWidget></span>
+<span class="token comment" spellcheck="true">#include "affine.h"  //界面1头文件</span>
+<span class="token comment" spellcheck="true">#include "vigenere.h"  //界面2头文件</span>
+<span class="token comment" spellcheck="true">#include &lt;QGridLayout></span>
+namespace Ui <span class="token punctuation">{</span>
+class content<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+class content <span class="token keyword">:</span> public QFrame
+<span class="token punctuation">{</span>
+ Q_OBJECT
+public:
+ explicit content<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ QStackedWidget *stack<span class="token punctuation">;</span>  
+ affine *aff<span class="token punctuation">;</span>   //界面1
+ vigenere *vig<span class="token punctuation">;</span>  //界面2
+ ~content<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+signals:
+public slots:
+private:
+ Ui::content *ui<span class="token punctuation">;</span>
+ QGridLayout *mainLayout<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#endif // CONTENT_H</span></code></pre>
 </li>
 </ol>
 <p>content.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "content.h"</span></span><br><span class="line"><span class="comment">#include "ui_content.h"</span></span><br><span class="line"></span><br><span class="line">content::content(QWidget *parent) :</span><br><span class="line">    QFrame(parent),</span><br><span class="line">    ui(new Ui::content)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    stack = new QStackedWidget(this);</span><br><span class="line">    stack-&gt;setFrameStyle(QFrame::Panel | QFrame::Raised);</span><br><span class="line">    //插入页面</span><br><span class="line">    aff = new affine();//指针名</span><br><span class="line">    vig = new vigenere();</span><br><span class="line">    stack -&gt; addWidget(aff);</span><br><span class="line">    stack -&gt; addWidget(vig);</span><br><span class="line">    mainLayout = new QGridLayout(this);</span><br><span class="line">    mainLayout-&gt;setMargin(2); //参数固定为2</span><br><span class="line">    mainLayout-&gt;addWidget(stack,0,0);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content::~content()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "content.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_content.h"</span>
 
+content::content<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+    QFrame<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+    ui<span class="token punctuation">(</span>new Ui::content<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stack <span class="token operator">=</span> new QStackedWidget<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stack-<span class="token operator">></span>setFrameStyle<span class="token punctuation">(</span>QFrame::Panel <span class="token operator">|</span> QFrame::Raised<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //插入页面
+    aff <span class="token operator">=</span> new affine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//指针名
+    vig <span class="token operator">=</span> new vigenere<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stack -<span class="token operator">></span> addWidget<span class="token punctuation">(</span>aff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stack -<span class="token operator">></span> addWidget<span class="token punctuation">(</span>vig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mainLayout <span class="token operator">=</span> new QGridLayout<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mainLayout-<span class="token operator">></span>setMargin<span class="token punctuation">(</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span> //参数固定为2
+    mainLayout-<span class="token operator">></span>addWidget<span class="token punctuation">(</span>stack,0,0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+content::~content<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
 <p>mainwidow.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#define MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#include "content.h"</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QMainWindow&gt;</span></span><br><span class="line"></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class MainWindow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MainWindow : public QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    explicit MainWindow(QWidget *parent = nullptr);</span><br><span class="line">    ~MainWindow();</span><br><span class="line">    content *con;</span><br><span class="line">    QGridLayout *mainLayout;</span><br><span class="line">    void createAction();</span><br><span class="line">    void createToolBar();</span><br><span class="line"></span><br><span class="line">private:</span><br><span class="line">    QToolBar *stackTool;</span><br><span class="line">    QAction *openStack[2];//界面数</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line"></span><br><span class="line">private slots:</span><br><span class="line">    void openAffine();</span><br><span class="line">    void openVigenere();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">#endif // MAINWINDOW_H</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef MAINWINDOW_H</span>
+<span class="token comment" spellcheck="true">#define MAINWINDOW_H</span>
+<span class="token comment" spellcheck="true">#include "content.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QGridLayout></span>
+<span class="token comment" spellcheck="true">#include &lt;QMainWindow></span>
 
+namespace Ui <span class="token punctuation">{</span>
+class MainWindow<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+class MainWindow <span class="token keyword">:</span> public QMainWindow
+<span class="token punctuation">{</span>
+    Q_OBJECT
+
+public:
+    explicit MainWindow<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ~MainWindow<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    content *con<span class="token punctuation">;</span>
+    QGridLayout *mainLayout<span class="token punctuation">;</span>
+    void createAction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    void createToolBar<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+private:
+    QToolBar *stackTool<span class="token punctuation">;</span>
+    QAction *openStack<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">;</span>//界面数
+    Ui::MainWindow *ui<span class="token punctuation">;</span>
+
+private slots:
+    void openAffine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    void openVigenere<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">#endif // MAINWINDOW_H</span>
+</code></pre>
 <p>mainwindow.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include "ui_mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QGridLayout&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QToolBar&gt;</span></span><br><span class="line"><span class="comment">#define SHADOW_WIDT 5</span></span><br><span class="line">MainWindow::MainWindow(QWidget *parent) :</span><br><span class="line">    QMainWindow(parent),</span><br><span class="line">    ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    QWidget w;</span><br><span class="line">    createAction();</span><br><span class="line">    createToolBar();</span><br><span class="line">    con = new content(this);</span><br><span class="line">    setCentralWidget(con);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow :: <span class="function"><span class="title">createAction</span></span>()&#123;</span><br><span class="line">    openStack[0]=new QAction(tr(<span class="string">"affine"</span>),this);</span><br><span class="line">    openStack[0]-&gt;setStatusTip(tr(<span class="string">"界面一"</span>));</span><br><span class="line">    connect(openStack[0],SIGNAL(triggered(bool)),this,SLOT(openAffine()));</span><br><span class="line"></span><br><span class="line">    openStack[1]=new QAction(tr(<span class="string">"vigenere"</span>),this);</span><br><span class="line">    openStack[1]-&gt;setStatusTip(tr(<span class="string">"界面二"</span>));</span><br><span class="line">    connect(openStack[1],SIGNAL(triggered(bool)),this,SLOT(openVigenere()));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">createToolBar</span></span>()&#123;</span><br><span class="line">    stackTool = addToolBar(<span class="string">"tools"</span>);</span><br><span class="line">    stackTool-&gt;addAction(openStack[0]); //加入QToolBar头文件</span><br><span class="line">    stackTool-&gt;addAction(openStack[1]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">openAffine</span></span>()&#123;</span><br><span class="line">    this-&gt;con-&gt;stack-&gt;setCurrentIndex(0);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void MainWindow::<span class="function"><span class="title">openVigenere</span></span>()&#123;</span><br><span class="line">    this-&gt;con-&gt;stack-&gt;setCurrentIndex(1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "mainwindow.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_mainwindow.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QGridLayout></span>
+<span class="token comment" spellcheck="true">#include &lt;QToolBar></span>
+<span class="token comment" spellcheck="true">#define SHADOW_WIDT 5</span>
+MainWindow::MainWindow<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+    QMainWindow<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+    ui<span class="token punctuation">(</span>new Ui::MainWindow<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    QWidget w<span class="token punctuation">;</span>
+    createAction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    createToolBar<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    con <span class="token operator">=</span> new content<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    setCentralWidget<span class="token punctuation">(</span>con<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+
+    w.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+MainWindow::~MainWindow<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+void MainWindow :: createAction<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    openStack<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token operator">=</span>new QAction<span class="token punctuation">(</span>tr<span class="token punctuation">(</span><span class="token string">"affine"</span><span class="token punctuation">)</span>,this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    openStack<span class="token punctuation">[</span>0<span class="token punctuation">]</span>-<span class="token operator">></span>setStatusTip<span class="token punctuation">(</span>tr<span class="token punctuation">(</span><span class="token string">"界面一"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+    connect<span class="token punctuation">(</span>openStack<span class="token punctuation">[</span>0<span class="token punctuation">]</span>,SIGNAL<span class="token punctuation">(</span>triggered<span class="token punctuation">(</span>bool<span class="token punctuation">))</span>,this,SLOT<span class="token punctuation">(</span>openAffine<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    openStack<span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token operator">=</span>new QAction<span class="token punctuation">(</span>tr<span class="token punctuation">(</span><span class="token string">"vigenere"</span><span class="token punctuation">)</span>,this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    openStack<span class="token punctuation">[</span>1<span class="token punctuation">]</span>-<span class="token operator">></span>setStatusTip<span class="token punctuation">(</span>tr<span class="token punctuation">(</span><span class="token string">"界面二"</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+    connect<span class="token punctuation">(</span>openStack<span class="token punctuation">[</span>1<span class="token punctuation">]</span>,SIGNAL<span class="token punctuation">(</span>triggered<span class="token punctuation">(</span>bool<span class="token punctuation">))</span>,this,SLOT<span class="token punctuation">(</span>openVigenere<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+void MainWindow::createToolBar<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    stackTool <span class="token operator">=</span> addToolBar<span class="token punctuation">(</span><span class="token string">"tools"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    stackTool-<span class="token operator">></span>addAction<span class="token punctuation">(</span>openStack<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //加入QToolBar头文件
+    stackTool-<span class="token operator">></span>addAction<span class="token punctuation">(</span>openStack<span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+void MainWindow::openAffine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    this-<span class="token operator">></span>con-<span class="token operator">></span>stack-<span class="token operator">></span>setCurrentIndex<span class="token punctuation">(</span>0<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+void MainWindow::openVigenere<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    this-<span class="token operator">></span>con-<span class="token operator">></span>stack-<span class="token operator">></span>setCurrentIndex<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>main.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QApplication&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QApplication&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    QApplication a(argc, argv);</span><br><span class="line">    MainWindow w;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "mainwindow.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QApplication></span>
+<span class="token comment" spellcheck="true">#include &lt;QFile></span>
+<span class="token comment" spellcheck="true">#include &lt;QApplication></span>
 
+int main<span class="token punctuation">(</span>int argc, char *argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QApplication a<span class="token punctuation">(</span>argc, argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MainWindow w<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    w.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> a.exec<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h2 id="comboBox"><a href="#comboBox" class="headerlink" title="comboBox"></a>comboBox</h2><p>当comboBox所选值不一样时，textEdit显示不同的值<br>本部分参考博客<a href="https://blog.csdn.net/u012640973/article/details/78688225" target="_blank" rel="noopener">链接</a></p>
 <ol>
 <li><p>mainWinodw.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#define MAINWINDOW_H</span></span><br><span class="line"><span class="comment">#include &lt;QComboBox&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QMainWindow&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class MainWindow;</span><br><span class="line">&#125;</span><br><span class="line">class MainWindow : public QMainWindow</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit MainWindow(QWidget *parent = nullptr);</span><br><span class="line">    ~MainWindow();</span><br><span class="line">private slots:</span><br><span class="line">    void choose();//声明槽函数</span><br><span class="line">private:</span><br><span class="line">    Ui::MainWindow *ui;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // MAINWINDOW_H</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef MAINWINDOW_H</span>
+<span class="token comment" spellcheck="true">#define MAINWINDOW_H</span>
+<span class="token comment" spellcheck="true">#include &lt;QComboBox></span>
+<span class="token comment" spellcheck="true">#include &lt;QMainWindow></span>
+namespace Ui <span class="token punctuation">{</span>
+class MainWindow<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+class MainWindow <span class="token keyword">:</span> public QMainWindow
+<span class="token punctuation">{</span>
+ Q_OBJECT
+public:
+ explicit MainWindow<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ~MainWindow<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private slots:
+ void choose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//声明槽函数
+private:
+ Ui::MainWindow *ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#endif // MAINWINDOW_H</span></code></pre>
 </li>
 <li><p>mainWindow.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "mainwindow.h"</span></span><br><span class="line"><span class="comment">#include "ui_mainwindow.h"</span></span><br><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line">MainWindow::MainWindow(QWidget *parent) :</span><br><span class="line">    QMainWindow(parent),</span><br><span class="line">    ui(new Ui::MainWindow)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    connect(ui-&gt;comboBox,SIGNAL(currentIndexChanged(QString)),this,SLOT(choose()));//信号</span><br><span class="line">&#125;</span><br><span class="line">MainWindow::~MainWindow()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void MainWindow::<span class="function"><span class="title">choose</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(ui-&gt;comboBox-&gt;currentIndex()==0)&#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">" "</span>); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ui-&gt;comboBox-&gt;currentIndex()==1)&#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">"2222"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        ui-&gt;port_line-&gt;setText(<span class="string">"1111"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "mainwindow.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_mainwindow.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QFile></span>
+MainWindow::MainWindow<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+ QMainWindow<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+ ui<span class="token punctuation">(</span>new Ui::MainWindow<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ connect<span class="token punctuation">(</span>ui-<span class="token operator">></span>comboBox,SIGNAL<span class="token punctuation">(</span>currentIndexChanged<span class="token punctuation">(</span>QString<span class="token punctuation">))</span>,this,SLOT<span class="token punctuation">(</span>choose<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//信号
+<span class="token punctuation">}</span>
+MainWindow::~MainWindow<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void MainWindow::choose<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+ if<span class="token punctuation">(</span>ui-<span class="token operator">></span>comboBox-<span class="token operator">></span>currentIndex<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>0<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     ui-<span class="token operator">></span>port_line-<span class="token operator">></span>setText<span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+ <span class="token punctuation">}</span>
+ <span class="token keyword">else</span> if<span class="token punctuation">(</span>ui-<span class="token operator">></span>comboBox-<span class="token operator">></span>currentIndex<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     ui-<span class="token operator">></span>port_line-<span class="token operator">></span>setText<span class="token punctuation">(</span><span class="token string">"2222"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">else</span> <span class="token punctuation">{</span>
+     ui-<span class="token operator">></span>port_line-<span class="token operator">></span>setText<span class="token punctuation">(</span><span class="token string">"1111"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
 <blockquote>
@@ -494,7 +680,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
                   property="dct:title" rel="dct:type">
                     《Qt(基础1)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/QT2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/qt2/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -560,7 +746,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/28/Qt3/">
+                <a href="/2019/08/28/qt3/">
                     <div class="card-image">
                         
                         
@@ -613,7 +799,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/Qt1/">
+                <a href="/2019/08/27/qt1/">
                     <div class="card-image">
                         
                         
@@ -813,7 +999,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

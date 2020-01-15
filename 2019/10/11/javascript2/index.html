@@ -5,7 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="javascript(2), Hexo">
-    <meta name="description" content="定义和调用函数函数定义1234567891011//方法一：函数表达式//函数也是值，可以把函数类型值赋给变量，cube相当于函数名var cube = function(x)&amp;#123;	return x*x*x);&amp;#125;;//方法">
+    <meta name="description" content="定义和调用函数函数定义//方法一：函数表达式
+//函数也是值，可以把函数类型值赋给变量，cube相当于函数名
+var cube = function(x){
+    return x*x*x);
+};
+//方法二：函数声明
+function">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +34,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -390,14 +396,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2k
+                        1.9k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        9 分
+                        8 分
                     </div>
                     
                 
@@ -413,102 +419,283 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="定义和调用函数"><a href="#定义和调用函数" class="headerlink" title="定义和调用函数"></a>定义和调用函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//方法一：函数表达式</span><br><span class="line">//函数也是值，可以把函数类型值赋给变量，cube相当于函数名</span><br><span class="line">var cube = <span class="keyword">function</span>(x)&#123;</span><br><span class="line">	<span class="built_in">return</span> x*x*x);</span><br><span class="line">&#125;;</span><br><span class="line">//方法二：函数声明</span><br><span class="line"><span class="keyword">function</span> cube(x)&#123;</span><br><span class="line">	<span class="built_in">return</span> x*x*x;</span><br><span class="line">&#125;;</span><br><span class="line">//调用</span><br><span class="line">alert(cube(2));  //方法一方法二的函数均可用此方式调用</span><br></pre></td></tr></table></figure>
+                <h2 id="定义和调用函数"><a href="#定义和调用函数" class="headerlink" title="定义和调用函数"></a>定义和调用函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><pre class=" language-bash"><code class="language-bash">//方法一：函数表达式
+//函数也是值，可以把函数类型值赋给变量，cube相当于函数名
+var cube <span class="token operator">=</span> function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x*x*x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//方法二：函数声明
+<span class="token keyword">function</span> cube<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x*x*x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//调用
+alert<span class="token punctuation">(</span>cube<span class="token punctuation">(</span>2<span class="token punctuation">))</span><span class="token punctuation">;</span>  //方法一方法二的函数均可用此方式调用</code></pre>
 <p>函数声明方式可以在定义之前被调用，函数表达式则不行</p>
 <blockquote>
 <p>注：如果一个函数完成了其主体的执行，却没有执行任何return语句，它会返回undefined。</p>
 </blockquote>
-<h3 id="将对象引用作为参数传递"><a href="#将对象引用作为参数传递" class="headerlink" title="将对象引用作为参数传递"></a>将对象引用作为参数传递</h3><h4 id="无返回值-方法"><a href="#无返回值-方法" class="headerlink" title="无返回值(方法)"></a>无返回值(方法)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var upperCase = <span class="keyword">function</span> (a)&#123;</span><br><span class="line">	<span class="keyword">for</span>(var i=0;i&lt;a.length;i += 1)&#123;</span><br><span class="line">	    a[i] = a[i].toUpperCase();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">//测试结果</span><br><span class="line">upperCase([])  //undefined</span><br><span class="line">upperCase([<span class="string">"hello"</span>,<span class="string">""</span>,<span class="string">"world"</span>])   //undefined</span><br><span class="line"></span><br><span class="line">var dog = [<span class="string">"hello"</span>,<span class="string">"world"</span>]</span><br><span class="line">upperCase(dog)   //undefined</span><br><span class="line">dog              //[<span class="string">"HELLO"</span>,<span class="string">"WORLD"</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="将对象引用作为参数传递"><a href="#将对象引用作为参数传递" class="headerlink" title="将对象引用作为参数传递"></a>将对象引用作为参数传递</h3><h4 id="无返回值-方法"><a href="#无返回值-方法" class="headerlink" title="无返回值(方法)"></a>无返回值(方法)</h4><pre class=" language-bash"><code class="language-bash">var upperCase <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    for<span class="token punctuation">(</span>var i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a.length<span class="token punctuation">;</span>i +<span class="token operator">=</span> 1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//测试结果
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  //undefined
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">""</span>,<span class="token string">"world"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   //undefined
+
+var dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span>dog<span class="token punctuation">)</span>   //undefined
+dog              //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span></code></pre>
 <p>根据上述代码可知，upperCase没有返回值，但是，它修改了传递给它的对象的属性</p>
-<h4 id="有返回值-函数"><a href="#有返回值-函数" class="headerlink" title="有返回值(函数)"></a>有返回值(函数)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var upperCase = <span class="keyword">function</span>(a)&#123;</span><br><span class="line">	var result = [];</span><br><span class="line">	<span class="keyword">for</span>(var i=0;i&lt;a.length;i+=1)&#123;</span><br><span class="line">		result.push(a[i].toUpperCase());   </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> result;</span><br><span class="line">&#125;;</span><br><span class="line">//测试结果</span><br><span class="line">upperCase([])  //[]</span><br><span class="line">upperCase([<span class="string">"hello"</span>,<span class="string">""</span>,<span class="string">"world"</span>])   //[<span class="string">"HELLO"</span>,<span class="string">""</span>,<span class="string">"WORLD"</span>]</span><br><span class="line"></span><br><span class="line">var dog = [<span class="string">"hello"</span>,<span class="string">"world"</span>]</span><br><span class="line">upperCase(dog)   //[<span class="string">"HELLO"</span>,<span class="string">"WORLD"</span>]</span><br><span class="line">dog   //[<span class="string">"hello"</span>,<span class="string">"world"</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="有返回值-函数"><a href="#有返回值-函数" class="headerlink" title="有返回值(函数)"></a>有返回值(函数)</h4><pre class=" language-bash"><code class="language-bash">var upperCase <span class="token operator">=</span> function<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    var result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    for<span class="token punctuation">(</span>var i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a.length<span class="token punctuation">;</span>i+<span class="token operator">=</span>1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        result.push<span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//测试结果
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  //<span class="token punctuation">[</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">""</span>,<span class="token string">"world"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">""</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span>
+
+var dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span>dog<span class="token punctuation">)</span>   //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span>
+dog   //<span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span></code></pre>
 <h3 id="自调用函数"><a href="#自调用函数" class="headerlink" title="自调用函数"></a>自调用函数</h3><p>如果表达式后紧跟()，则会自动调用。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">    var x = <span class="string">"Hello!!"</span>;      // 我将调用自己</span><br><span class="line">&#125;)(); //最外层的括号说明它是一个表达式</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span>function <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    var x <span class="token operator">=</span> <span class="token string">"Hello!!"</span><span class="token punctuation">;</span>      // 我将调用自己
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //最外层的括号说明它是一个表达式</code></pre>
 <blockquote>
 <p>注：不能调用声明的函数</p>
 </blockquote>
-<h2 id="作为对象的函数"><a href="#作为对象的函数" class="headerlink" title="作为对象的函数"></a>作为对象的函数</h2><h3 id="函数的属性"><a href="#函数的属性" class="headerlink" title="函数的属性"></a>函数的属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> plus1(value) &#123;</span><br><span class="line">	<span class="keyword">if</span> (plus1.invocations == undefined) &#123;</span><br><span class="line">		plus1.invocations = 0;</span><br><span class="line">	&#125;</span><br><span class="line">	plus1.invocations++;</span><br><span class="line">	<span class="built_in">return</span> value + 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="作为对象的函数"><a href="#作为对象的函数" class="headerlink" title="作为对象的函数"></a>作为对象的函数</h2><h3 id="函数的属性"><a href="#函数的属性" class="headerlink" title="函数的属性"></a>函数的属性</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> plus1<span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>plus1.invocations <span class="token operator">==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        plus1.invocations <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    plus1.invocations++<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> value + 1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>上例中invocation代表函数被调用的次数，相当于面向对象程序设计中的静态属性。</p>
 <h4 id="函数的prototype属性"><a href="#函数的prototype属性" class="headerlink" title="函数的prototype属性"></a>函数的prototype属性</h4><p>每个对象都有prototype属性，prototype属性用于向类的构造器中加入新的属性</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Rectangle(width, height) &#123;</span><br><span class="line">	this.width = width;</span><br><span class="line">	this.height = height;</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.area = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">	<span class="built_in">return</span> this.width*this.height;</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.description=<span class="string">"hello"</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="作为属性的函数"><a href="#作为属性的函数" class="headerlink" title="作为属性的函数"></a>作为属性的函数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> operson = &#123;</span><br><span class="line">  firstName: <span class="string">"John"</span>,</span><br><span class="line">  lastName : <span class="string">"Doe"</span>,</span><br><span class="line">  id       : 5566,</span><br><span class="line">  fullName : <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">    <span class="built_in">return</span> this.firstName + <span class="string">" "</span> + this.lastName;  ////this指的是当前对象，即o</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.area <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.width*this.height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.description<span class="token operator">=</span><span class="token string">"hello"</span><span class="token punctuation">;</span></code></pre>
+<h3 id="作为属性的函数"><a href="#作为属性的函数" class="headerlink" title="作为属性的函数"></a>作为属性的函数</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> operson <span class="token operator">=</span> <span class="token punctuation">{</span>
+  firstName: <span class="token string">"John"</span>,
+  lastName <span class="token keyword">:</span> <span class="token string">"Doe"</span>,
+  <span class="token function">id</span>       <span class="token keyword">:</span> 5566,
+  fullName <span class="token keyword">:</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.firstName + <span class="token string">" "</span> + this.lastName<span class="token punctuation">;</span>  ////this指的是当前对象，即o
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>注：使用this表达式的函数属性称为方法，上例中fullName就是operson的方法</p>
 </blockquote>
-<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> o = &#123;count: 0&#125;;</span><br><span class="line">o.increment=<span class="keyword">function</span>(amount)&#123;</span><br><span class="line">	<span class="keyword">if</span>(amount==undefined)&#123;</span><br><span class="line">		amount=1;</span><br><span class="line">	&#125;</span><br><span class="line">	this.count+=amount;</span><br><span class="line">	<span class="built_in">return</span> this.count;</span><br><span class="line">&#125;;</span><br><span class="line">//Method invocation:</span><br><span class="line">o.increment();//returns 1</span><br><span class="line">o.increment(3);//returns 4</span><br></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>count: 0<span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.increment<span class="token operator">=</span>function<span class="token punctuation">(</span>amount<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>amount<span class="token operator">==</span>undefined<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        amount<span class="token operator">=</span>1<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    this.count+<span class="token operator">=</span>amount<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> this.count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//Method invocation:
+o.increment<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//returns 1
+o.increment<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>//returns 4</code></pre>
 <h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>方法中的this指向当前对象，方法之外的this指全局变量。(不建议在方法外使用this)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> o = &#123;oldProp: <span class="string">'this is an old property'</span>&#125;;</span><br><span class="line">o.aMethod = <span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">	this.newProp = <span class="string">"this is a new property"</span>;</span><br><span class="line">	<span class="built_in">return</span> Object.keys(this); // will contain <span class="string">'newProp'</span></span><br><span class="line">&#125;;</span><br><span class="line">o.aMethod(); // will <span class="built_in">return</span> [<span class="string">'oldProp'</span>,<span class="string">'aMethod'</span>,<span class="string">'newProp'</span>]</span><br></pre></td></tr></table></figure>
-
-<h3 id="构造器-类"><a href="#构造器-类" class="headerlink" title="构造器(类)"></a>构造器(类)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Rectangle(width, height) &#123;</span><br><span class="line">	this.width = width;</span><br><span class="line">	this.height = height;</span><br><span class="line">	this.area = <span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> this.width*this.height; &#125;  //此种定义方式有严重缺陷</span><br><span class="line">&#125;</span><br><span class="line">var r = new Rectangle(26, 14);</span><br><span class="line">r.constructor.name == <span class="string">'Rectangle'</span></span><br><span class="line">console.log(r)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>oldProp: <span class="token string">'this is an old property'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.aMethod <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.newProp <span class="token operator">=</span> <span class="token string">"this is a new property"</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Object.keys<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span> // will contain <span class="token string">'newProp'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.aMethod<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // will <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">'oldProp'</span>,<span class="token string">'aMethod'</span>,<span class="token string">'newProp'</span><span class="token punctuation">]</span></code></pre>
+<h3 id="构造器-类"><a href="#构造器-类" class="headerlink" title="构造器(类)"></a>构造器(类)</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+    this.area <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> this.width*this.height<span class="token punctuation">;</span> <span class="token punctuation">}</span>  //此种定义方式有严重缺陷
+<span class="token punctuation">}</span>
+var r <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span>26, 14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+r.constructor.name <span class="token operator">==</span> <span class="token string">'Rectangle'</span>
+console.log<span class="token punctuation">(</span>r<span class="token punctuation">)</span></code></pre>
 <p>在构造器里出现的函数叫做构造函数，上例中area()是Rectangle的构造函数，但是此种定义方式有严重缺陷，在每创建一个Rectangle对象时，也创建了计算面积的方法，会浪费大量内存来保存面积的冗余副本，此问题在javascript可以用prototype解决</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Rectangle(width,height)&#123;</span><br><span class="line">	this.width = width;</span><br><span class="line">	this.height = height;</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype.area = <span class="keyword">function</span>(width,height)&#123;</span><br><span class="line">	<span class="built_in">return</span> this.width * this.height;</span><br><span class="line">&#125;</span><br><span class="line">var r = new Rectangle(26, 14);</span><br><span class="line">r.constructor.name == <span class="string">'Rectangle'</span></span><br><span class="line">console.log(r)</span><br></pre></td></tr></table></figure>
-
-
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width,height<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.area <span class="token operator">=</span> function<span class="token punctuation">(</span>width,height<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.width * this.height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var r <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span>26, 14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+r.constructor.name <span class="token operator">==</span> <span class="token string">'Rectangle'</span>
+console.log<span class="token punctuation">(</span>r<span class="token punctuation">)</span></code></pre>
 <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>通过prototype属性继承</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Shape(str)&#123;    this.str=str;  &#125;</span><br><span class="line">Shape.prototype.sdescription=<span class="string">"Shape"</span></span><br><span class="line"><span class="keyword">function</span> Rectangle(width, height) &#123;</span><br><span class="line">    this.width = width;</span><br><span class="line">    this.height = height;</span><br><span class="line">&#125;</span><br><span class="line">Rectangle.prototype = new Shape(<span class="string">"shape"</span>);  //Rectangle继承了Shape</span><br><span class="line">var r=new Rectangle();</span><br></pre></td></tr></table></figure>
-<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var shape = <span class="function"><span class="title">function</span></span> ()&#123;&#125;;</span><br><span class="line">shape.prototype.draw = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"i am generic shape"</span>;</span><br><span class="line">&#125;</span><br><span class="line">//circle</span><br><span class="line">var circle = <span class="function"><span class="title">function</span></span>()&#123;&#125;</span><br><span class="line">circle.prototype = Object.create(shape.prototype);</span><br><span class="line">circle.prototype.draw= <span class="function"><span class="title">function</span></span>()&#123;<span class="built_in">return</span> <span class="string">"i am a circle"</span>;&#125;</span><br><span class="line">//triangle</span><br><span class="line">var triangle = <span class="function"><span class="title">function</span></span> ()&#123;&#125;</span><br><span class="line">triangle.prototype = Object.create(shape.prototype);</span><br><span class="line">triangle.prototype.draw= <span class="keyword">function</span>(size)&#123;</span><br><span class="line">    <span class="built_in">return</span> <span class="string">"this is triangle"</span>;</span><br><span class="line">&#125;</span><br><span class="line">var shapes = [new shape(), new circle(), new triangle(23)];</span><br><span class="line">shapes.forEach (<span class="keyword">function</span> (shapeList)&#123;</span><br><span class="line">    console.log(shapeList.draw());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Shape<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>    this.str<span class="token operator">=</span>str<span class="token punctuation">;</span>  <span class="token punctuation">}</span>
+Shape.prototype.sdescription<span class="token operator">=</span><span class="token string">"Shape"</span>
+<span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype <span class="token operator">=</span> new Shape<span class="token punctuation">(</span><span class="token string">"shape"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //Rectangle继承了Shape
+var r<span class="token operator">=</span>new Rectangle<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><pre class=" language-bash"><code class="language-bash">var shape <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+shape.prototype.draw <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"i am generic shape"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+//circle
+var circle <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+circle.prototype <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>shape.prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+circle.prototype.draw<span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>return <span class="token string">"i am a circle"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+//triangle
+var triangle <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+triangle.prototype <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>shape.prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+triangle.prototype.draw<span class="token operator">=</span> function<span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"this is triangle"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var shapes <span class="token operator">=</span> <span class="token punctuation">[</span>new shape<span class="token punctuation">(</span><span class="token punctuation">)</span>, new circle<span class="token punctuation">(</span><span class="token punctuation">)</span>, new triangle<span class="token punctuation">(</span>23<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+shapes.forEach <span class="token punctuation">(</span>function <span class="token punctuation">(</span>shapeList<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console.log<span class="token punctuation">(</span>shapeList.draw<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="use-strict"><a href="#use-strict" class="headerlink" title="use strict"></a>use strict</h3><p>use strict是严格模式，在此模式下不能使用未声明的变量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="string">"use strict"</span>;</span><br><span class="line"><span class="keyword">if</span>(foo)  //error,未声明</span><br><span class="line">    alert(<span class="string">"happy"</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    y = 3.14;//error，未声明</span><br><span class="line">    alert(<span class="string">"sad"</span>);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token string">"use strict"</span><span class="token punctuation">;</span>
+if<span class="token punctuation">(</span>foo<span class="token punctuation">)</span>  //error,未声明
+    alert<span class="token punctuation">(</span><span class="token string">"happy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+    y <span class="token operator">=</span> 3.14<span class="token punctuation">;</span>//error，未声明
+    alert<span class="token punctuation">(</span><span class="token string">"sad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>let的作用域范围是一个代码块{}，{}外不能访问</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var x = 10;</span><br><span class="line">// Here x is 10</span><br><span class="line">&#123;  </span><br><span class="line">var x = 2;</span><br><span class="line">// Here x is 2</span><br><span class="line">&#125;/</span><br><span class="line">/ Here x is 2</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var x = 10;</span><br><span class="line">// Here x is 10</span><br><span class="line">&#123;</span><br><span class="line"><span class="built_in">let</span> x = 2;</span><br><span class="line">// Here x is 2</span><br><span class="line">&#125;/</span><br><span class="line">/ Here x is 10</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">var x <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+// Here x is 10
+<span class="token punctuation">{</span>  
+var x <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+// Here x is 2
+<span class="token punctuation">}</span>/
+/ Here x is 2  </code></pre>
+<pre class=" language-bash"><code class="language-bash">var x <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+// Here x is 10
+<span class="token punctuation">{</span>
+<span class="token keyword">let</span> x <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+// Here x is 2
+<span class="token punctuation">}</span>/
+/ Here x is 10</code></pre>
 <h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const 用于声明一个或多个常量，声明时必须进行初始化，且初始化后值不可再修改,const定义的变量并非常量，并非不可变，它定义了一个常量引用一个值。使用const 定义的对象或者数组，其实是可变的。下面的代码并不会报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// You can create a constant array:</span><br><span class="line">const cars = [<span class="string">"Saab"</span>, <span class="string">"Volvo"</span>, <span class="string">"BMW"</span>];</span><br><span class="line">// You can change an element:</span><br><span class="line">cars[0] = <span class="string">"Toyota"</span>;</span><br><span class="line">// You can add an element:</span><br><span class="line">cars.push(<span class="string">"Audi"</span>);</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">// You can create a constant array:
+const cars <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Saab"</span>, <span class="token string">"Volvo"</span>, <span class="token string">"BMW"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+// You can change an element:
+cars<span class="token punctuation">[</span>0<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Toyota"</span><span class="token punctuation">;</span>
+// You can add an element:
+cars.push<span class="token punctuation">(</span><span class="token string">"Audi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>但是不能对常量对象重新赋值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const car = &#123;<span class="built_in">type</span>:<span class="string">"Fiat"</span>, model:<span class="string">"500"</span>, color:<span class="string">"white"</span>&#125;;</span><br><span class="line">car = &#123;<span class="built_in">type</span>:<span class="string">"Volvo"</span>, model:<span class="string">"EX60"</span>, color:<span class="string">"red"</span>&#125;;    // 错误</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">const car <span class="token operator">=</span> <span class="token punctuation">{</span>type:<span class="token string">"Fiat"</span>, model:<span class="token string">"500"</span>, color:<span class="token string">"white"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+car <span class="token operator">=</span> <span class="token punctuation">{</span>type:<span class="token string">"Volvo"</span>, model:<span class="token string">"EX60"</span>, color:<span class="token string">"red"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    // 错误</code></pre>
 <h2 id="头等函数-first-class-function"><a href="#头等函数-first-class-function" class="headerlink" title="头等函数(first-class function)"></a>头等函数(first-class function)</h2><ul>
 <li>将函数赋值给变量或将它们存储在变量中，数据结构——函数表达式</li>
 <li>将函数作为参数传递给其他函数</li>
-<li>将函数作为其他函数的值返回<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">var aFuncVar = <span class="keyword">function</span> (x) &#123;</span><br><span class="line">console.log(<span class="string">'Called with'</span>, x);</span><br><span class="line"><span class="built_in">return</span> x+1;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> myFunc(routine) &#123; // passed as a param</span><br><span class="line">console.log(<span class="string">'Called with'</span>, routine.toString());</span><br><span class="line">var retVal = routine(10);</span><br><span class="line">//var retVal=routine;</span><br><span class="line">console.log(<span class="string">'retVal'</span>, retVal);</span><br><span class="line"><span class="built_in">return</span> retVal;</span><br><span class="line">&#125;</span><br><span class="line">myFunc(aFuncVar);</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//运行结果</span><br><span class="line">Called with <span class="keyword">function</span> (x) &#123;</span><br><span class="line">console.log(<span class="string">'Called with'</span>, x);</span><br><span class="line"><span class="built_in">return</span> x+1;</span><br><span class="line">&#125;</span><br><span class="line">Called with 10</span><br><span class="line">retVal 11</span><br><span class="line">11</span><br></pre></td></tr></table></figure>
-
+<li>将函数作为其他函数的值返回<pre class=" language-bash"><code class="language-bash">var aFuncVar <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> x+1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> myFunc<span class="token punctuation">(</span>routine<span class="token punctuation">)</span> <span class="token punctuation">{</span> // passed as a param
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, routine.toString<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+var retVal <span class="token operator">=</span> routine<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//var retVal<span class="token operator">=</span>routine<span class="token punctuation">;</span>
+console.log<span class="token punctuation">(</span><span class="token string">'retVal'</span>, retVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> retVal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+myFunc<span class="token punctuation">(</span>aFuncVar<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">//运行结果
+Called with <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> x+1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Called with 10
+retVal 11
+11</code></pre>
 </li>
 </ul>
 <h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>创建函数的一种更简单的方法<br><font color="#fb8c00">let 函数名= (参数)=&gt;表达式</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//箭头函数</span><br><span class="line"><span class="built_in">let</span> sum = (a,b)=&gt;a+b;</span><br><span class="line">//函数表达式</span><br><span class="line"><span class="built_in">let</span> sum = <span class="keyword">function</span>(a,b)&#123;</span><br><span class="line">	<span class="built_in">return</span> a+b;</span><br><span class="line">&#125;;</span><br><span class="line">alert(sum(1,2));  //3</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">//箭头函数
+<span class="token keyword">let</span> <span class="token function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a,b<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>a+b<span class="token punctuation">;</span>
+//函数表达式
+<span class="token keyword">let</span> <span class="token function">sum</span> <span class="token operator">=</span> function<span class="token punctuation">(</span>a,b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a+b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>sum<span class="token punctuation">(</span>1,2<span class="token punctuation">))</span><span class="token punctuation">;</span>  //3</code></pre>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="正则表达式简介"><a href="#正则表达式简介" class="headerlink" title="正则表达式简介"></a>正则表达式简介</h3><ul>
 <li>正则表达式是组成搜索模式的字符序列。javascript的正则表达式以斜线(/…/)界定。</li>
 <li>对于正则表达式用test方法，会返回true\false，说明一个正则表达式是否与一个字符串匹配</li>
-<li>对于字符串应用search方法，将会返回字符串中每一个匹配的位置(如果不匹配则返回-1)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^Once/   //匹配以Once开头的字符串</span><br><span class="line">/ss$/   //匹配以ss结尾的字符串</span><br><span class="line">/go*gle/  //表示o可以为0个或多个,包括ggle、gogle、google等</span><br></pre></td></tr></table></figure>
-
+<li>对于字符串应用search方法，将会返回字符串中每一个匹配的位置(如果不匹配则返回-1)<pre class=" language-bash"><code class="language-bash">/^Once/   //匹配以Once开头的字符串
+/ss$/   //匹配以ss结尾的字符串
+/go*gle/  //表示o可以为0个或多个,包括ggle、gogle、google等  </code></pre>
 </li>
 </ul>
 <h3 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h3><p>字符串match方法和正则表达式exec方法，捕获字符串中与正则表达式匹配的部分</p>
 <h3 id="数量词"><a href="#数量词" class="headerlink" title="数量词"></a>数量词</h3><ul>
 <li>a?匹配零个或一个a</li>
 <li>a*匹配零个或多个a</li>
-<li>a+匹配一个或多个a<br>这些数量词会匹配尽可能多的字符，如果要匹配较少的字符，应当使用??、* ?、+?<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaah"</span>.match(/a+/) //aaaa</span><br><span class="line"><span class="string">"aaaah"</span>.match(/a+?/) //a</span><br><span class="line"><span class="string">"aaaah"</span>.match(/a*/)  //aaaa</span><br><span class="line"><span class="string">"aaaah"</span>.match(/a*?/)  //<span class="string">""</span></span><br><span class="line"><span class="string">"aaaah"</span>.match(/a?/)   //a</span><br><span class="line"><span class="string">"aaaah"</span>.match(/a??/)  //<span class="string">""</span></span><br></pre></td></tr></table></figure>
-
+<li>a+匹配一个或多个a<br>这些数量词会匹配尽可能多的字符，如果要匹配较少的字符，应当使用??、* ?、+?<pre class=" language-bash"><code class="language-bash"><span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a+/<span class="token punctuation">)</span> //aaaa
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a+?/<span class="token punctuation">)</span> //a
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a*/<span class="token punctuation">)</span>  //aaaa
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a*?/<span class="token punctuation">)</span>  //<span class="token string">""</span>
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a?/<span class="token punctuation">)</span>   //a
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a??/<span class="token punctuation">)</span>  //<span class="token string">""</span></code></pre>
 </li>
 </ul>
 <h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><ul>
 <li>\d 寻找一个数据</li>
 <li>\s 寻找一个空白字符</li>
-<li>\b 在开始或结尾找到一个匹配项<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'XXX abbbbbbc'</span>.search(/ab+c/); // Returns 4 (position of <span class="string">'a'</span>)</span><br><span class="line"><span class="string">'XXX ac'</span>.search(/ab+c/); // Returns -1, no match</span><br><span class="line"><span class="string">'XXX ac'</span>.search(/ab*c/); // Returns 4</span><br><span class="line"><span class="string">'12e34'</span>.search(/[^\d]/); // Returns 2</span><br><span class="line"><span class="string">'foo: bar;'</span>.search(/...\s*:\s*...\s*;/); // Returns 0</span><br></pre></td></tr></table></figure>
-
+<li>\b 在开始或结尾找到一个匹配项<pre class=" language-bash"><code class="language-bash"><span class="token string">'XXX abbbbbbc'</span>.search<span class="token punctuation">(</span>/ab+c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 4 <span class="token punctuation">(</span>position of <span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token string">'XXX ac'</span>.search<span class="token punctuation">(</span>/ab+c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns -1, no match
+<span class="token string">'XXX ac'</span>.search<span class="token punctuation">(</span>/ab*c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 4
+<span class="token string">'12e34'</span>.search<span class="token punctuation">(</span>/<span class="token punctuation">[</span>^\d<span class="token punctuation">]</span>/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 2
+<span class="token string">'foo: bar;'</span>.search<span class="token punctuation">(</span>/<span class="token punctuation">..</span>.\s*:\s*<span class="token punctuation">..</span>.\s*<span class="token punctuation">;</span>/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 0</code></pre>
 </li>
 </ul>
 <h3 id="正则表达式修饰符"><a href="#正则表达式修饰符" class="headerlink" title="正则表达式修饰符"></a>正则表达式修饰符</h3><ul>
 <li>i 忽略大小写</li>
 <li>g 全局</li>
-<li>m 多行<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/HALT/.<span class="built_in">test</span>(str); // 如果str里有HALT的子字符串，则返回<span class="literal">true</span></span><br><span class="line">/halt/i.test(str); // 同上但忽略大小写</span><br><span class="line">/[Hh]alt [A-Z]/.<span class="built_in">test</span>(str); // [Hh]表示开头为H、h [A-Z]表示26个大写字母中的一个 eg.halt A \ Halt B</span><br></pre></td></tr></table></figure>
-
+<li>m 多行<pre class=" language-bash"><code class="language-bash">/HALT/.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // 如果str里有HALT的子字符串，则返回true
+/halt/i.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // 同上但忽略大小写
+/<span class="token punctuation">[</span>Hh<span class="token punctuation">]</span>alt <span class="token punctuation">[</span>A-Z<span class="token punctuation">]</span>/.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // <span class="token punctuation">[</span>Hh<span class="token punctuation">]</span>表示开头为H、h <span class="token punctuation">[</span>A-Z<span class="token punctuation">]</span>表示26个大写字母中的一个 eg.halt A \ Halt B</code></pre>
 </li>
 </ul>
 <h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>将函数作为参数传递</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var anArr = [45, 4, 9, 16, 25];</span><br><span class="line"><span class="keyword">function</span> filterFunc(value)&#123;</span><br><span class="line">	<span class="built_in">return</span> value &lt;45;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> mapFunc(value,ind)&#123;</span><br><span class="line">	<span class="built_in">return</span> value*ind;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> reduceFunc(total,value)&#123;</span><br><span class="line">	<span class="built_in">return</span> total+value;</span><br><span class="line">&#125;</span><br><span class="line">anArr.filter(filterFunc).map(mapFunc).reduce(reduceFunc);</span><br><span class="line">//执行filter后：[4,9,16,25]</span><br><span class="line">//执行map后：[0,9,32,75]</span><br><span class="line">//执行reduce后：116</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var anArr <span class="token operator">=</span> <span class="token punctuation">[</span>45, 4, 9, 16, 25<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> filterFunc<span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value <span class="token operator">&lt;</span>45<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> mapFunc<span class="token punctuation">(</span>value,ind<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value*ind<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> reduceFunc<span class="token punctuation">(</span>total,value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> total+value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+anArr.filter<span class="token punctuation">(</span>filterFunc<span class="token punctuation">)</span>.map<span class="token punctuation">(</span>mapFunc<span class="token punctuation">)</span>.reduce<span class="token punctuation">(</span>reduceFunc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//执行filter后：<span class="token punctuation">[</span>4,9,16,25<span class="token punctuation">]</span>
+//执行map后：<span class="token punctuation">[</span>0,9,32,75<span class="token punctuation">]</span>
+//执行reduce后：116</code></pre>
 <blockquote>
 <p>注：filter()\map()\reduce()方法使用方法请参考此博客的javascript1</p>
 </blockquote>
 <p>上述编程可以写为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anArr.filter(value=&gt;value&lt;45).map((value,ind)=&gt;value*ind).reduce((total,value)=&gt;total+value);</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">anArr.filter<span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span>value<span class="token operator">&lt;</span>45<span class="token punctuation">)</span>.map<span class="token punctuation">((</span>value,ind<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>value*ind<span class="token punctuation">)</span>.reduce<span class="token punctuation">((</span>total,value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>total+value<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><pre class=" language-bash"><code class="language-bash">var globalVar <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+<span class="token keyword">function</span> localFunc<span class="token punctuation">(</span>argVar<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    var localVar <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+    <span class="token keyword">function</span> embedFunc<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> ++localVar + argVar + globalVar<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> embedFunc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var myFunc <span class="token operator">=</span> localFunc<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>  //返回embedFunc函数
+myFunc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 直接调用embedFunc函数，即localVar <span class="token operator">=</span>0 不再执行，只执行embedFunc函数</code></pre>
 
-
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var globalVar = 1;</span><br><span class="line"><span class="keyword">function</span> localFunc(argVar) &#123;</span><br><span class="line">	var localVar = 0;</span><br><span class="line">	<span class="keyword">function</span> <span class="function"><span class="title">embedFunc</span></span>() &#123;</span><br><span class="line">		<span class="built_in">return</span> ++localVar + argVar + globalVar;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">return</span> embedFunc;</span><br><span class="line">&#125;</span><br><span class="line">var myFunc = localFunc(10);  //返回embedFunc函数</span><br><span class="line">myFunc();// 直接调用embedFunc函数，即localVar =0 不再执行，只执行embedFunc函数</span><br></pre></td></tr></table></figure>
             </div>
             <hr/>
 
@@ -659,7 +846,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/09/dataStructure1/">
+                <a href="/2019/10/09/datastructure1/">
                     <div class="card-image">
                         
                         
@@ -859,7 +1046,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

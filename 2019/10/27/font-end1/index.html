@@ -5,7 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="Web网页开发效果, Hexo">
-    <meta name="description" content="导航条吸顶代码实现Javascript1234567891011121314151617181920212223var tit = document.getElementById(&#34;nav&#34;); //alert(tit); //占位符的位置">
+    <meta name="description" content="导航条吸顶代码实现Javascript var tit = document.getElementById(&#34;nav&#34;);
+  //alert(tit);
+  //占位符的位置
+  var rect = tit.getBoundingCli">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -28,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -398,7 +401,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        270
+                        241
                     </div>
                     
 
@@ -421,10 +424,61 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="导航条吸顶"><a href="#导航条吸顶" class="headerlink" title="导航条吸顶"></a>导航条吸顶</h2><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">var tit = document.getElementById(<span class="string">"nav"</span>);</span><br><span class="line"> //alert(tit);</span><br><span class="line"> //占位符的位置</span><br><span class="line"> var rect = tit.getBoundingClientRect();//获得页面中导航条相对于浏览器视窗的位置</span><br><span class="line"> var inser = document.createElement(<span class="string">"div"</span>);</span><br><span class="line"> tit.parentNode.replaceChild(inser,tit);</span><br><span class="line"> inser.appendChild(tit);</span><br><span class="line"> inser.style.height = rect.height + <span class="string">"px"</span>;</span><br><span class="line"> //获取距离页面顶端的距离</span><br><span class="line"> var titleTop = tit.offsetTop;</span><br><span class="line"> //滚动事件</span><br><span class="line"> document.onscroll = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">     //获取当前滚动的距离</span><br><span class="line">     var btop = document.body.scrollTop||document.documentElement.scrollTop;</span><br><span class="line">     //如果滚动距离大于导航条据顶部的距离</span><br><span class="line">     <span class="keyword">if</span>(btop&gt;titleTop)&#123;</span><br><span class="line">         //为导航条设置fix</span><br><span class="line">         tit.className = <span class="string">"clearfix fix"</span>;</span><br><span class="line">     &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">         //移除fixed</span><br><span class="line">         tit.className = <span class="string">"clearfix"</span>;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;nav&gt;</span><br><span class="line">      &lt;ul id=<span class="string">"nav"</span>&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=<span class="string">"#start"</span> &gt;首页&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=<span class="string">"#interest"</span>&gt;兴趣爱好&lt;/a&gt;&lt;/li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href=<span class="string">"#introduction"</span>&gt;自我介绍&lt;/a&gt;&lt;/li&gt;      </span><br><span class="line">      &lt;/ul&gt; </span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/nav&gt;</span><br></pre></td></tr></table></figure>
+                <h2 id="导航条吸顶"><a href="#导航条吸顶" class="headerlink" title="导航条吸顶"></a>导航条吸顶</h2><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><h4 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h4><pre class=" language-bash"><code class="language-bash"> var tit <span class="token operator">=</span> document.getElementById<span class="token punctuation">(</span><span class="token string">"nav"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  //alert<span class="token punctuation">(</span>tit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  //占位符的位置
+  var rect <span class="token operator">=</span> tit.getBoundingClientRect<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//获得页面中导航条相对于浏览器视窗的位置
+  var inser <span class="token operator">=</span> document.createElement<span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  tit.parentNode.replaceChild<span class="token punctuation">(</span>inser,tit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  inser.appendChild<span class="token punctuation">(</span>tit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  inser.style.height <span class="token operator">=</span> rect.height + <span class="token string">"px"</span><span class="token punctuation">;</span>
+  //获取距离页面顶端的距离
+  var titleTop <span class="token operator">=</span> tit.offsetTop<span class="token punctuation">;</span>
+  //滚动事件
+  document.onscroll <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      //获取当前滚动的距离
+      var btop <span class="token operator">=</span> document.body.scrollTop<span class="token operator">||</span>document.documentElement.scrollTop<span class="token punctuation">;</span>
+      //如果滚动距离大于导航条据顶部的距离
+      if<span class="token punctuation">(</span>btop<span class="token operator">></span>titleTop<span class="token punctuation">)</span><span class="token punctuation">{</span>
+          //为导航条设置fix
+          tit.className <span class="token operator">=</span> <span class="token string">"clearfix fix"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>else<span class="token punctuation">{</span>
+          //移除fixed
+          tit.className <span class="token operator">=</span> <span class="token string">"clearfix"</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span></code></pre>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>nav<span class="token operator">></span>
+      <span class="token operator">&lt;</span>ul id<span class="token operator">=</span><span class="token string">"nav"</span><span class="token operator">></span>
+        <span class="token operator">&lt;</span>li<span class="token operator">></span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#start"</span> <span class="token operator">></span>首页<span class="token operator">&lt;</span>/a<span class="token operator">></span><span class="token operator">&lt;</span>/li<span class="token operator">></span>
+        <span class="token operator">&lt;</span>li<span class="token operator">></span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#interest"</span><span class="token operator">></span>兴趣爱好<span class="token operator">&lt;</span>/a<span class="token operator">></span><span class="token operator">&lt;</span>/li<span class="token operator">></span>
+        <span class="token operator">&lt;</span>li<span class="token operator">></span><span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"#introduction"</span><span class="token operator">></span>自我介绍<span class="token operator">&lt;</span>/a<span class="token operator">></span><span class="token operator">&lt;</span>/li<span class="token operator">></span>      
+      <span class="token operator">&lt;</span>/ul<span class="token operator">></span> 
+    <span class="token operator">&lt;</span>/div<span class="token operator">></span>
+<span class="token operator">&lt;</span>/nav<span class="token operator">></span></code></pre>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#nav {</span>
+        width:100%<span class="token punctuation">;</span>
+        height:60px<span class="token punctuation">;</span>
+        background:<span class="token comment" spellcheck="true">#26a69a;</span>
+        color:<span class="token comment" spellcheck="true">#fff;</span>
+        line-height:60px<span class="token punctuation">;</span>
+        text-align:center<span class="token punctuation">;</span>
+        padding:0<span class="token punctuation">;</span>
+        margin:0<span class="token punctuation">;</span>
+        list-style:none<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">#nav li {</span>
+        float:left<span class="token punctuation">;</span>
+        width:20%<span class="token punctuation">;</span>
+        height:60px<span class="token punctuation">;</span>
 
-<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#nav &#123;</span></span><br><span class="line">        width:100%;</span><br><span class="line">        height:60px;</span><br><span class="line">        background:<span class="comment">#26a69a;</span></span><br><span class="line">        color:<span class="comment">#fff;</span></span><br><span class="line">        line-height:60px;</span><br><span class="line">        text-align:center;</span><br><span class="line">        padding:0;</span><br><span class="line">        margin:0;</span><br><span class="line">        list-style:none;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">#nav li &#123;</span></span><br><span class="line">        <span class="built_in">float</span>:left;</span><br><span class="line">        width:20%;</span><br><span class="line">        height:60px;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">.fix &#123;</span><br><span class="line">        position:fixed;</span><br><span class="line">        top:0;</span><br><span class="line">        left:0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+    <span class="token punctuation">}</span>
+.fix <span class="token punctuation">{</span>
+        position:fixed<span class="token punctuation">;</span>
+        top:0<span class="token punctuation">;</span>
+        left:0<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
 <h2 id="文字动态呈现效果"><a href="#文字动态呈现效果" class="headerlink" title="文字动态呈现效果"></a>文字动态呈现效果</h2>
             </div>
             <hr/>
@@ -576,7 +630,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/23/webSecurity4/">
+                <a href="/2019/10/23/websecurity4/">
                     <div class="card-image">
                         
                         
@@ -776,7 +830,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

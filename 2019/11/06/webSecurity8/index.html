@@ -29,7 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -471,9 +471,9 @@
 </ul>
 <h4 id="INSERT语句"><a href="#INSERT语句" class="headerlink" title="INSERT语句"></a>INSERT语句</h4><ul>
 <li><p>INSERT语句用于在表中建立一个新的数据行。应用程序通常使用这种语句添加一条新的审计日志、创建一个新用户账户或生成一个新订单。例如，如果一个应用程序允许用户自我注册，指定他们自己的用户名和密码，就可以使用下面的语句将用户的资料插入users的表中。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO users (username,password,ID,privs) VALUES (<span class="string">'daf'</span>,<span class="string">'secret'</span>, 2248, 1);</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">INSERT INTO <span class="token function">users</span> <span class="token punctuation">(</span>username,password,ID,privs<span class="token punctuation">)</span> VALUES <span class="token punctuation">(</span><span class="token string">'daf'</span>,<span class="token string">'secret'</span>, 2248, 1<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>如果username或password字段存在SQL注入漏洞，那么攻击者就可以在表中插入任何数据，包括他自己的ID和privs值，然而，想要这样做，攻击者就必须确保VALUES子句中的其他部分正常允许。特别是其中的数据个数与数据类型必须正确，例如，在攻击username字段时，攻击者可以提交以下输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo<span class="string">', '</span>bar<span class="string">', 9999, 0)--</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">foo<span class="token string">', '</span>bar', 9999, 0<span class="token punctuation">)</span>--</code></pre>
 <p>他将创建一个ID为9999，privs为0的账户，如果privs字段用来决定账户权限，那么攻击者就可以利用它创建一个管理用户。</p>
 </li>
 <li><p>有时，攻击者完全盲目地注入一个INSERT语句也能从应用程序中提取出字符串数据。例如，攻击者可以拦截数据库的版本字符串，并把它插入一个字段中；正常情况下，浏览器将显示数据库的版本信息。</p>
@@ -483,9 +483,9 @@
 <p>注：当设法注入一个INSERT语句时，可能无法提前知道需要提交多少个参数或参数的类型。在上面的示例中，可以通过在VALUES子句中持续增加一个新的字段，直到应用程序创建了确实想要的用户账户。例如，当注入username字段时，可以提交以下输入：<br>foo’)–<br>foo’, 1)–<br>foo’, 1, 1)–<br>foo’, 1, 1, 1)–<br>由于大多数据库都会隐式地将一个整数转换成一个字符串，可以在每个位置都使用一个整数。这此示例中，不管其他字段如何，它将生成一个用户名为foo、密码为1的账户。<br>如果使用1仍然遭到拒绝，可以尝试使用值2000，许多数据库也会隐式地将它转换成基于数据的数据类型。<br>在Qracle中，则可以在insert查询内发布subselect查询。</p>
 </blockquote>
 <h4 id="UPDATES语句"><a href="#UPDATES语句" class="headerlink" title="UPDATES语句"></a>UPDATES语句</h4><p>UPDATE语句用于修改表中的一行或几行数据。它们经常用在用户修改已有数据值的功能中，例如，更新联系信息、修改密码或更改订单数量。<br>典型UPDATES语句的运行机制与INSERT语句类似，只是UPDATES语句中通常包含一个WHERE子句，告诉数据库更新表中哪些行的数据。例如，用户在修改密码时，应用程序会执行以下查询： </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE users SET password=<span class="string">'newsecret'</span> WHERE user=<span class="string">'alice'</span> AND password = <span class="string">'secret'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">UPDATE <span class="token function">users</span> SET password<span class="token operator">=</span><span class="token string">'newsecret'</span> WHERE user<span class="token operator">=</span><span class="token string">'alice'</span> AND password <span class="token operator">=</span> <span class="token string">'secret'</span></code></pre>
 <p>实际上，这个查询首先核实用户的密码是否正确，如果密码无误，就用新的值更新它。如果这项功能存在SQL注入漏洞，那么攻击者就能避开密码检查，通过以下用户名更新管理员密码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admin<span class="string">'--</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">admin'--</code></pre>
 <blockquote>
 <p>注：由于无法提前知道应用程序将根据专门设计的输入执行什么操作，因此，在一个远程应用程序中探查SQL漏洞往往非常危险。特别注意，修改UPDATES语句中的WHERE子句可能会使一个重要的数据库表发生彻底的改变。例如，如果上面的攻击者之前已经提交了以下用户名：admin’ OR 1=1– 那么应用程序可能会执行以下查询： UPDATES users SET password=’newsecret’ WHERE user=’admin’ OR 1=1 它会重置每个用户的密码！<br>即使攻击的应用程序功能并不会更新任何现有数据，有时候，在用户登录成功后，应用程序会使用用户提交的用户名执行各种UPDATES查询，这意味着任何针对WHERE子句的攻击都可能会“复制”到其他子句中，给所有应用程序用户的资料造成严重破坏。强烈建议在测试之前对数据库进行完整备份。</p>
 </blockquote>
@@ -504,27 +504,31 @@
 </ol>
 <h4 id="注入查询结构"><a href="#注入查询结构" class="headerlink" title="注入查询结构"></a>注入查询结构</h4><ul>
 <li>如果用户提交的数据被插入SQL查询结构，而不是查询中的数据项中，这时实施SQL注入攻击只需要直接应用有效的SQL语法，而不要进行任何转义。</li>
-<li>SQL查询结构最常见的注入点是ORDER BY子句。ORDER BY关键字接受某个列名称或编号，并根据该列中的值对结果集进行排序，用户经常使用这种功能对浏览器中的表进行排序。例如，使用以下查询可以检索一个可排序的图书表：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT author,title,year FROM books WHERE publisher = <span class="string">'Wiley'</span> ORDER BY title ASC</span><br></pre></td></tr></table></figure>
+<li>SQL查询结构最常见的注入点是ORDER BY子句。ORDER BY关键字接受某个列名称或编号，并根据该列中的值对结果集进行排序，用户经常使用这种功能对浏览器中的表进行排序。例如，使用以下查询可以检索一个可排序的图书表：<pre class=" language-bash"><code class="language-bash">SELECT author,title,year FROM books WHERE publisher <span class="token operator">=</span> <span class="token string">'Wiley'</span> ORDER BY title ASC</code></pre>
 如果ORDER BY中的列名称title由用户指定，就没有必要使用单引号，因为用户提交的数据已经直接修改了SQL查询的结构</li>
 </ul>
 <blockquote>
 <p>注：在ORDER BY子句中实施SQL注入时，数据库不会接受查询中的UNION/WHERE/OR/AND关键字。通常，实施注入攻击需要攻击者指定一个嵌套查询来替代参数，如用(select 1 where &lt;<condition>&gt; or 1/0=0)替代列名称。对于支持批量查询的数据库，这可能是最有效的注入攻击方法</p>
 </blockquote>
 <h3 id="“指纹”识别数据库"><a href="#“指纹”识别数据库" class="headerlink" title="“指纹”识别数据库"></a>“指纹”识别数据库</h3><p>要了解所针对的数据库的类型，一种最可靠的方法是根据数据库连接字符串的不同方式进行识别。在控制某个字符串数据项查询时，可以在一个请求中提交一个特殊的值，然后测试各种连接方法，以生成那个字符串。如果得到相同的结果，就可以确定所使用的数据库类型。下面的示例说明常用的数据库如何构建Service字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Oracle: <span class="string">'serv'</span>||<span class="string">'ices'</span></span><br><span class="line">MS-SQL: <span class="string">'serv'</span>+<span class="string">'ices'</span></span><br><span class="line">MySQL: <span class="string">'serv'</span> <span class="string">'ices'</span>(中间有间隔)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Oracle: <span class="token string">'serv'</span><span class="token operator">||</span><span class="token string">'ices'</span>
+MS-SQL: <span class="token string">'serv'</span>+<span class="token string">'ices'</span>
+MySQL: <span class="token string">'serv'</span> <span class="token string">'ices'</span><span class="token punctuation">(</span>中间有间隔<span class="token punctuation">)</span></code></pre>
 <p>如果注入数字数据，则可以使用下面的攻击字符串来识别数据库。每个数据项会在目标数据库中的求值结果为0，在其他数据库中则会导致错误。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Oracle: BITAND(1,1)-BITAND(1,1)</span><br><span class="line">MS-SQL: @@PACK_RECEVIED-@@PACK_RECEVIED</span><br><span class="line">MySQL: CONNECTION_ID()-CONNECTION_ID</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Oracle: BITAND<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span>-BITAND<span class="token punctuation">(</span>1,1<span class="token punctuation">)</span>
+MS-SQL: @@PACK_RECEVIED-@@PACK_RECEVIED
+MySQL: CONNECTION_ID<span class="token punctuation">(</span><span class="token punctuation">)</span>-CONNECTION_ID</code></pre>
 <p>在识别数据库时，MySQL如何处理某些行内注释(inline comment)也是一个值得关注的问题。如果一个注释以！开头，接着是数据库版本字符串，那么只要数据库的实际版本等于或高于那个字符串，应用程序就会将注释内容解释为SQL；否则，应用程序就会忽略注释内容，将它作为注释处理。例如，如果使用的MySQL版本高于或等于3.23.02，注入下面的字符串将会使SELECT语句的WHERE子句为假</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*!32302 and 1=0*/</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">/*<span class="token operator">!</span>32302 and 1<span class="token operator">=</span>0*/</code></pre>
 <blockquote>
 <p>注：MS-SQL和Sybase数据库起源相同，绝大多数针对MS-SQL的攻击技巧同样适用于Sybase</p>
 </blockquote>
 <h3 id="UNION操作符"><a href="#UNION操作符" class="headerlink" title="UNION操作符"></a>UNION操作符</h3><p>SQL使用UNION连接符将两个及以上的SELECT语句组合到独立的一个结果中。如果一个Web应用程序的SELECT语句存在SQL注入漏洞，通常可以使用UNION操作符执行另一次完全独立的查询，并将它的结果与第一次查询的结果组合在一起。如果应用程序向浏览器返回查询结果，那么就可以使用这种技巧从应用程序中提取任意数据。所有的主流DBMS产品者支持UNION，对于直接返回查询结果的情况，UNION是检索信息最快的方式<br>如下查询语句：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT author,title,year FROM books WHERE publisher=<span class="string">'Wiley'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT author,title,year FROM books WHERE publisher<span class="token operator">=</span><span class="token string">'Wiley'</span></code></pre>
 <p>当对此语句注入以下语句时，能够从另一个完全不同的数据库表中提取数据：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Wiley<span class="string">' UNION SELECT username,password,uid FROM users--</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Wiley' UNION SELECT username,password,uid FROM users--</code></pre>
 <p>应用程序将执行以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT author,title,year FROM books WHERE publisher=<span class="string">'Wiley'</span> UNION SELECT username,password,uid FROM users--<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT author,title,year FROM books WHERE publisher<span class="token operator">=</span><span class="token string">'Wiley'</span> UNION SELECT username,password,uid FROM users--'</code></pre>
 <h4 id="两个重要的UNION工作机制"><a href="#两个重要的UNION工作机制" class="headerlink" title="两个重要的UNION工作机制"></a>两个重要的UNION工作机制</h4><ul>
 <li>如果使用UNION操作符组合两个查询的结果，这两个结果必须结构相同，也就是说它们的列数必须相同，必须使用按相同顺序出现的相同或兼容的数据类型</li>
 <li>为注入另一个返回有用结果的查询，攻击者必须知道他所针对的数据库表的名称以及有关列的名称。</li>
@@ -539,34 +543,46 @@
 <blockquote>
 <p>注：在Oracle数据库中，每个SELECT语句必须包含一个FROM属性，因此，无论列数是否正确，注入UNION SELECT NULL将产生错误，可以选择使用全局可访问表(globally accessible table)DUAL来满足这一要求。例如：</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' UNION SELECT NULL FROM DUAL--</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">' UNION SELECT NULL FROM DUAL--</code></pre>
 <h4 id="提取数据库版本信息"><a href="#提取数据库版本信息" class="headerlink" title="提取数据库版本信息"></a>提取数据库版本信息</h4><p>如果已经确定注入的查询所需列数，并且已经找到一个使用字符串数据类型的列，就能够提取出任意数据。一个简单的概念验证测试是提取数据库的版本字符串数据，可以在MS-SQL和MySQL中注入以下查询提取数据库版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' UNION SELECT @@version,NULL,NULL--</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">' UNION SELECT @@version,NULL,NULL--</code></pre>
 <p>对Oracle注入以下查询将得到相同结果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' UNION SELECT banner,NULL,NULL FROM v$version--</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">' UNION SELECT banner,NULL,NULL FROM <span class="token function">v</span><span class="token variable">$version</span>--</code></pre>
 <h3 id="提取有用数据"><a href="#提取有用数据" class="headerlink" title="提取有用数据"></a>提取有用数据</h3><p>为了从数据库提取有用的数据，通常需要了解表以及包含欲访问的数据所属列的名称。大型企业的DBMS中包含大量的数据数据库元数据，可以查询这些数据查明数据库中每一个表和列的名称。</p>
 <h3 id="避开过滤"><a href="#避开过滤" class="headerlink" title="避开过滤"></a>避开过滤</h3><p>有时，易受SQL注入攻击的应用程序可能会执行各种输入过滤以防止攻击者无限制第利用其中缺陷。例如，应用程序会删除或净化某些字符，或阻止常用的SQL关键字。避开这种过滤有如下技巧：</p>
 <h4 id="避免使用被阻止的字符"><a href="#避免使用被阻止的字符" class="headerlink" title="避免使用被阻止的字符"></a>避免使用被阻止的字符</h4><p>如果应用程序删除或编码某些SQL注入攻击常用的字符，不使用这些字符仍然能够实施攻击。</p>
 <ul>
-<li>如果要注入数字数据字段或列名称，不一定使用单引号。可以通过各种字符串函数，使用每个字符的ASCII代码动态构建一个字符串。如下面两个查询语句：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Oracle: SELECT ename,sal FROM emp WHERE ename=CHR(109)||CHR(97)||CHR(114)||CHR(99)||CHR(117)||CHR(115)</span><br><span class="line">MS-SQL: SELECT ename,sal FROM emp WHERE ename=CHAR(109)+CHAR(97)+CHAR(114)+CHAR(99)+CHAR(117)+CHAR(115)</span><br><span class="line">以上查询均等同于</span><br><span class="line">SELECT ename,sal FROM emp WHERE ename=<span class="string">'marcus'</span></span><br></pre></td></tr></table></figure></li>
-<li>如果注释符号被阻止，通常可以设计注入的数据，失去不会破坏周围查询的语法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">可以不用注入 <span class="string">' OR 1=1--</span></span><br><span class="line"><span class="string">可以注入     '</span> OR <span class="string">'a'</span>=<span class="string">'a</span></span><br></pre></td></tr></table></figure></li>
+<li>如果要注入数字数据字段或列名称，不一定使用单引号。可以通过各种字符串函数，使用每个字符的ASCII代码动态构建一个字符串。如下面两个查询语句：<pre class=" language-bash"><code class="language-bash">Oracle: SELECT ename,sal FROM emp WHERE ename<span class="token operator">=</span>CHR<span class="token punctuation">(</span>109<span class="token punctuation">)</span><span class="token operator">||</span>CHR<span class="token punctuation">(</span>97<span class="token punctuation">)</span><span class="token operator">||</span>CHR<span class="token punctuation">(</span>114<span class="token punctuation">)</span><span class="token operator">||</span>CHR<span class="token punctuation">(</span>99<span class="token punctuation">)</span><span class="token operator">||</span>CHR<span class="token punctuation">(</span>117<span class="token punctuation">)</span><span class="token operator">||</span>CHR<span class="token punctuation">(</span>115<span class="token punctuation">)</span>
+MS-SQL: SELECT ename,sal FROM emp WHERE ename<span class="token operator">=</span>CHAR<span class="token punctuation">(</span>109<span class="token punctuation">)</span>+CHAR<span class="token punctuation">(</span>97<span class="token punctuation">)</span>+CHAR<span class="token punctuation">(</span>114<span class="token punctuation">)</span>+CHAR<span class="token punctuation">(</span>99<span class="token punctuation">)</span>+CHAR<span class="token punctuation">(</span>117<span class="token punctuation">)</span>+CHAR<span class="token punctuation">(</span>115<span class="token punctuation">)</span>
+以上查询均等同于
+SELECT ename,sal FROM emp WHERE ename<span class="token operator">=</span><span class="token string">'marcus'</span> </code></pre>
+</li>
+<li>如果注释符号被阻止，通常可以设计注入的数据，失去不会破坏周围查询的语法<pre class=" language-bash"><code class="language-bash">可以不用注入 <span class="token string">' OR 1=1--
+可以注入     '</span> OR <span class="token string">'a'</span><span class="token operator">=</span>'a</code></pre>
+</li>
 <li>在MS-SQL数据库中注入批量查询时，不必使用分号分隔符，只要纠正所有批量查询的语法，无论你是否使用分号，查询解释器都会正确解释它们。</li>
 </ul>
 <h4 id="避免使用简单确认"><a href="#避免使用简单确认" class="headerlink" title="避免使用简单确认"></a>避免使用简单确认</h4><p>一些输入确认机制使用一个简单的黑名单，阻止或删除任何出现在这个名单中的数据。例如，如果SELECT关键字被阻止或删除，可以尝试如下输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SeLeCt</span><br><span class="line">%00SELECT</span><br><span class="line">SELSELECTECT</span><br><span class="line">%53%45%4C%45%43%54</span><br><span class="line">%2553%2545%254c%2545%2543%2554</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SeLeCt
+%00SELECT
+SELSELECTECT
+%53%45%4C%45%43%54
+%2553%2545%254c%2545%2543%2554</code></pre>
 <h4 id="使用SQL注释"><a href="#使用SQL注释" class="headerlink" title="使用SQL注释"></a>使用SQL注释</h4><p>在SQL语句中插入行内注释，注释内容在“/* * /”之间。如果应用程序阻止或删除输入中的空格，可以使用注释“冒充”注入数据之间的空白符，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT/*foo*/username,password/*foo*/FROM/*foo*/users</span><br><span class="line">``` </span><br><span class="line">在MySQL中，注释甚至可以插入关键字，这种方法可以避开某些输入确认过滤，同时保留查询中的语法。例如：</span><br><span class="line">```bash</span><br><span class="line">SEL/*foo*/ECT username,password FR/*foo*/OM users</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT/*foo*/username,password/*foo*/FROM/*foo*/users</code></pre>
+<p>在MySQL中，注释甚至可以插入关键字，这种方法可以避开某些输入确认过滤，同时保留查询中的语法。例如：</p>
+<pre class=" language-bash"><code class="language-bash">SEL/*foo*/ECT username,password FR/*foo*/OM <span class="token function">users</span></code></pre>
 <h4 id="利用有缺陷的过滤"><a href="#利用有缺陷的过滤" class="headerlink" title="利用有缺陷的过滤"></a>利用有缺陷的过滤</h4><p>利用输入确认机制通常包含逻辑缺陷，可对这些缺陷加以利用，使被阻止的输入避开过滤。多数情况下，这类攻击会利用应用程序在对多个确认步骤进行排序，或未能以递归方式应用净化逻辑方面的缺陷。</p>
 <h3 id="二阶SQL注入"><a href="#二阶SQL注入" class="headerlink" title="二阶SQL注入"></a>二阶SQL注入</h3><p>一种特别有效的避开过滤的方法与二阶SQL注入有关。当数据首次插入数据库时，许多应用程序能够安全处理这些数据。但是，数据一旦存储在数据库中，随后应用程序本身或其他后端进程可能以危险的方式处理这些数据。<br>在一些应用程序中，用户输入在到达时通过转义单引号来进行确认。如，当用户输入O’Reilly时，应用程序执行以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT author,title,year FROM books WHERE publisher=<span class="string">'O'</span><span class="string">'Reilly'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT author,title,year FROM books WHERE publisher<span class="token operator">=</span><span class="token string">'O'</span><span class="token string">'Reilly'</span></code></pre>
 <p>在这个查询中，用户提交的单引号被转换为两个单引号，因而传送给数据库的搜索项与用户最初输入的表达式具有相同的字符含义。只有在字符串被传送给数据库时才会使用配对的转义序列。因此，当应用程序重复使用这个字符串并将它嵌入另一个查询时，就会造成一个SQL注入漏洞</p>
 <h3 id="高级利用"><a href="#高级利用" class="headerlink" title="高级利用"></a>高级利用</h3><p>如今，即使遇到SQL注入漏洞，攻击者仍然无法直接获取注入的查询的结果。下面将对此种情形进行讨论</p>
 <h4 id="获取数字数据"><a href="#获取数字数据" class="headerlink" title="获取数字数据"></a>获取数字数据</h4><p>如果包含单引号的输入得到正确处理，那么应用程序中的字符串字段就不易受到SQL注入攻击。但是，数字数据字段可能仍然存在漏洞。在这种字段中，用户输入并不包含在单引号内。这时攻击者只有通过应用程序的数值响应(numeric response)才能获得注入查询的结果<br>在这种情况下，攻击者需要做的就是获取数字形式的有用数据，对注入查询的结果进行处理。他们可以使用以下两个关键函数：</p>
 <ul>
 <li>ASCII，它返回输入字符的ASCII码</li>
-<li>SUBSTRING(或Oracle中的SUBSTR)，它返回输入的子字符串<br>这些函数可结合在一起使用，以数字形式从一个字符串中提取一个字符。如：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SUBSTRING(<span class="string">'Admin'</span>,1,1)返回A</span><br><span class="line">ASCII(<span class="string">'A'</span>)返回65</span><br><span class="line">ASCII(SUBSTRING(<span class="string">'Admin'</span>,1,1))返回65</span><br></pre></td></tr></table></figure>
+<li>SUBSTRING(或Oracle中的SUBSTR)，它返回输入的子字符串<br>这些函数可结合在一起使用，以数字形式从一个字符串中提取一个字符。如：<pre class=" language-bash"><code class="language-bash">SUBSTRING<span class="token punctuation">(</span><span class="token string">'Admin'</span>,1,1<span class="token punctuation">)</span>返回A
+ASCII<span class="token punctuation">(</span><span class="token string">'A'</span><span class="token punctuation">)</span>返回65
+ASCII<span class="token punctuation">(</span>SUBSTRING<span class="token punctuation">(</span><span class="token string">'Admin'</span>,1,1<span class="token punctuation">))</span>返回65</code></pre>
 使用这两个函数，可以系统地将一个有用数据的字符串分割成单个字符，并以数字的形式分别返回每一个字符。在自定义攻击中，可以利用这个技巧，以一次一个字节的速度，迅速获得并重建大量基于字符串的数据</li>
 </ul>
 <h4 id="使用带外通道"><a href="#使用带外通道" class="headerlink" title="使用带外通道"></a>使用带外通道</h4><p>在许多SQL注入攻击中，应用程序并不在用户的浏览器中显示注入查询的结果，也不返回数据库生成的任何错误信息。但是，即使出现这种情况，仍然可以使用使用各种技巧获取数据、确认其他恶意操作是否取得成功。<br>在这种情况下，一种获取数据的有效方法是使用带外通道。能够在数据库中执行任意SQL语句后，渗透测试员往往可以利用数据库的一些内置功能在数据库和自己的计算机之间建立网络连接，通过它传送从数据库中收集到的任何数据。<br>建立适当的网络连接的方法依不同的数据库而定，而且取决于应用程序访问数据库所用的用户权限。下面将描述一些使用每种数据库时最常用、最有效的技巧。</p>
@@ -581,17 +597,17 @@
 <h5 id="利用操作系统"><a href="#利用操作系统" class="headerlink" title="利用操作系统"></a>利用操作系统</h5><p>通常可以在数据库服务器的操作系统上执行任意命令，以此实施权限提升攻击。</p>
 <h4 id="使用推论：条件式响应"><a href="#使用推论：条件式响应" class="headerlink" title="使用推论：条件式响应"></a>使用推论：条件式响应</h4><p>造成带外通道不可用的原因很多，大多数情况下，是因为数据库处于一个被保护的网络中，它的边界防火墙禁止任何与因特网或其他网络的带外连接。这时，只能通过Web应用程序注入点(injection point)访问数据库。这些技巧全都基于如下概念：使用一个注入查询有条件地在数据库中触发某种可以探测的行为，然后根据这种行为是否发生推断出以下信息</p>
 <h5 id="引发条件性错误"><a href="#引发条件性错误" class="headerlink" title="引发条件性错误"></a>引发条件性错误</h5><p>核心理念:注入一个查询，依照某个特定的条件引发一个数据库错误。如果发生数据库错误，可以通过HTTP500响应码，或者通过某种错误信息或反常行为，从外部探测到这个错误<br>这种技巧利用了数据库在求条件语句的值时表现出的一个行为特点：数据库将根据其他部分的情况，仅对那些需要求值的语句部分求值。包含WHERE子句的SELECT语句就是表现出这种行为的一个典型示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT x FROM y WHERE c</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT x FROM y WHERE c</code></pre>
 <p>这条语句时数据库访问表y的每一行，评估条件c。如果c为真，返回x。如果条件c永为假，永远求不出表达式x的值，也不会发生错误。因此，可以通过是否发生错误测试任意一个条件c。下面的查询检查虚构用户AAA是否存在：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 1/0 FROM WHERE (SELECT username FROM all_users WHERE username=<span class="string">'AAA'</span>)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">SELECT 1/0 FROM WHERE <span class="token punctuation">(</span>SELECT username FROM all_users WHERE username<span class="token operator">=</span><span class="token string">'AAA'</span><span class="token punctuation">)</span></code></pre>
 <p>如果WHERE的条件username=’AAA’永为假，就不会求表达式1/0的值，因而不会发生错误。如果为真，就会对表达式1/0求值，进而产生错误。<br>这种技巧应用非常广泛，因为它可以用在可以注入子查询的各种注入点中。</p>
 <h5 id="使用时间延迟"><a href="#使用时间延迟" class="headerlink" title="使用时间延迟"></a>使用时间延迟</h5><p>攻击者可以提交他设计的查询，然后监控服务器做出响应所花的时间。如果发生延迟，攻击者可以推测条件为真。即使在两种情况下服务器的响应完全相同，攻击者仍然可以根据是否存在时间延迟从数据库中提取一比特数据。通过大量执行这类查询，攻击者就能系统地从数据库中提取任何复杂的数据，每次一比特。</p>
 <p>在MS-SQL中：</p>
 <ol>
-<li>使用内置命令：引发适当时间延迟方法的精确性取决于所使用的目标数据库。MS-SQL中包含一个内置命令WAITFOR，可用于引起一个指定的时间延迟。如，如果下面的查询引发一次时间延迟，表示被截取的字符串的第一个字母为A<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ASCII(SUBSTRING(<span class="string">'Admin'</span>,1,1)) = 65 WAITFOR dalay <span class="string">'0:0:5'</span></span><br></pre></td></tr></table></figure></li>
-<li>划分数据：将每个字节的数据划分成比特，并在每次查询中获得一比特数据。POWER命令与按位“与”运算符&amp;可在逐比特的基础上指定条件。例如，以下查询测试被截获数据的第一字节的第一比特，如果其值为1，则终止查询：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ASCII(SUBSTRING(<span class="string">'Admin'</span>,1,1)) &amp; (POWER(2,0)) &gt; 0 WAITFOR delay <span class="string">'0:0:5'</span> //POWER(2,0)=2^0,因为一比特是一个二进制位，所以使用2</span><br></pre></td></tr></table></figure>
-下面对第二比特进行相同的测试：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ASCII(SUBSTRING(<span class="string">'Admin'</span>,1,1)) &amp; (POWER(2,1)) &gt; 0 WAITFOR delay <span class="string">'0:0:5'</span></span><br></pre></td></tr></table></figure>
-
+<li>使用内置命令：引发适当时间延迟方法的精确性取决于所使用的目标数据库。MS-SQL中包含一个内置命令WAITFOR，可用于引起一个指定的时间延迟。如，如果下面的查询引发一次时间延迟，表示被截取的字符串的第一个字母为A<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> ASCII<span class="token punctuation">(</span>SUBSTRING<span class="token punctuation">(</span><span class="token string">'Admin'</span>,1,1<span class="token punctuation">))</span> <span class="token operator">=</span> 65 WAITFOR dalay <span class="token string">'0:0:5'</span></code></pre>
+</li>
+<li>划分数据：将每个字节的数据划分成比特，并在每次查询中获得一比特数据。POWER命令与按位“与”运算符&amp;可在逐比特的基础上指定条件。例如，以下查询测试被截获数据的第一字节的第一比特，如果其值为1，则终止查询：<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> ASCII<span class="token punctuation">(</span>SUBSTRING<span class="token punctuation">(</span><span class="token string">'Admin'</span>,1,1<span class="token punctuation">))</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>POWER<span class="token punctuation">(</span>2,0<span class="token punctuation">))</span> <span class="token operator">></span> 0 WAITFOR delay <span class="token string">'0:0:5'</span> //POWER<span class="token punctuation">(</span>2,0<span class="token punctuation">)</span><span class="token operator">=</span>2^0,因为一比特是一个二进制位，所以使用2</code></pre>
+下面对第二比特进行相同的测试：<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> ASCII<span class="token punctuation">(</span>SUBSTRING<span class="token punctuation">(</span><span class="token string">'Admin'</span>,1,1<span class="token punctuation">))</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span>POWER<span class="token punctuation">(</span>2,1<span class="token punctuation">))</span> <span class="token operator">></span> 0 WAITFOR delay <span class="token string">'0:0:5'</span></code></pre>
 </li>
 </ol>
 <p>MySQL:使用睡眠函数<br>Oracle:使用UTL_HTTP连接一个不存在的服务器，造成一次操作超时。这会使数据库尝试与指定的服务器建立连接，并最终造成超时。</p>
@@ -604,7 +620,7 @@
 <li>可以通过创建用户定义的功能任意扩充数据库的现有功能。有些时候，可以通过这种方式重新执行已被删除或禁用的功能，避开数据库实施的强制保护措施。只要已经获得数据库管理员(DBA)的权限，就有办法在每种数据库中执行这种操作</li>
 </ul>
 <h4 id="MS-SQL"><a href="#MS-SQL" class="headerlink" title="MS-SQL"></a>MS-SQL</h4><p>最常被攻击者滥用的数据库功能是xp_cmdshell存储过程，它是MS-SQL默认内置的一项功能。这个存储过程允许数据库管理员用户以和cmd.exe命令提示符相同的方式执行操作系统命令。例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master..xp_cmdshell <span class="string">'ipconfig &gt; foo.txt'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">master<span class="token punctuation">..</span>xp_cmdshell <span class="token string">'ipconfig > foo.txt'</span></code></pre>
 <p>攻击者可在众多情况下滥用这项功能。</p>
 <ul>
 <li>他们可以执行任意命令，将结果指向本地文件，然后读取文件内容。</li>
@@ -612,13 +628,15 @@
 <li>由于MS-SQL默认以LocalSystem运行，攻击者一般能够完全攻破基本的操作系统，执行任意操作。</li>
 </ul>
 <h5 id="处理默认锁定"><a href="#处理默认锁定" class="headerlink" title="处理默认锁定"></a>处理默认锁定</h5><p>互联网上的大多数MS-SQL为更高版本，这些版本提供各种安全功能，可以在默认情况下锁定数据库，防止各种攻击。<br>但是，如果数据库中的Web应用程序用户账户拥有足够高的权限，则通过重新设置数据库，该用户就可以突破上述功能实施的限制。例如，可以使用sp_configure存储过程重新启用被禁用的xp_cmdshell。以下四行SQL代码用于实现这一目的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EXECUTE sp_configure <span class="string">'show advanced potions'</span>, 1</span><br><span class="line">RECONFIGURE WITH OVERRIDE</span><br><span class="line">EXECUTE sp_configure <span class="string">'xp_cmdshell'</span>, <span class="string">'1'</span></span><br><span class="line">RECONFIGURE WITH OVERRIDE</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">EXECUTE sp_configure <span class="token string">'show advanced potions'</span>, 1
+RECONFIGURE WITH OVERRIDE
+EXECUTE sp_configure <span class="token string">'xp_cmdshell'</span>, <span class="token string">'1'</span>
+RECONFIGURE WITH OVERRIDE</code></pre>
 <p>这样，xp_cmdshell就被重新启用，并可以通过以下命令运行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exec</span> xp_cmdshell <span class="string">'dir'</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token function">exec</span> xp_cmdshell <span class="token string">'dir'</span></code></pre>
 <h4 id="Oracle-1"><a href="#Oracle-1" class="headerlink" title="Oracle"></a>Oracle</h4><p>Oracle包含大量默认功能，这些功能可被低权限用户访问，并用于执行各种敏感操作，如建立网络连接或访问文件系统。UTL_FILE包可用于在数据库服务器文件系统上读取和写入文件。</p>
 <h4 id="MySQL-1"><a href="#MySQL-1" class="headerlink" title="MySQL"></a>MySQL</h4><p>与前面的数据库相比，MySQL中包含的可被攻击者滥用的内置功能相对较少，其中一个示例是任何拥有FILE_PRIV许可的用户都可以读取并写入文件系统。<br>LOAD_FILE命令可以用于获取任何文件的内容。例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select LOAD_FILE(<span class="string">'/etc/passwd'</span>)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">select</span> LOAD_FILE<span class="token punctuation">(</span><span class="token string">'/etc/passwd'</span><span class="token punctuation">)</span></code></pre>
 <p>SELECT…INTO OUTFILE命令可用于将任何一个查询的输出指向一个文件<br>出读取并写入关键的操作系统文件外，这些命令还可以用于指向其他攻击。</p>
 <ul>
 <li>因为MySQL将数据保存在明文文件中，数据库必须拥有读取这些文件的权限。拥有FILE_PRIV许可的攻击者可以打开相关文件并读取数据库中的任何数据，避开数据库实施的任何访问控制</li>
@@ -659,12 +677,15 @@
 <li>编程语言(如JavaScript)</li>
 </ul>
 <h3 id="注入MongoDB"><a href="#注入MongoDB" class="headerlink" title="注入MongoDB"></a>注入MongoDB</h3><p>许多NoSQL数据库利用现有的编程语言来提供灵活、可编程的查询机制。如果使用字符串连接构建查询，攻击者就可以尝试破坏数据并更改查询的语法。以下面的查询为例，它基于MongoDB数据存储区中的用户记录进行登录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$js</span> = <span class="string">"function()&#123;</span></span><br><span class="line"><span class="string">	return this.username='<span class="variable">$username</span>' &amp; this.password='<span class="variable">$password</span>'</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token variable">$js</span> <span class="token operator">=</span> "function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.username<span class="token operator">=</span><span class="token string">'<span class="token variable">$username</span>'</span> <span class="token operator">&amp;</span> this.password<span class="token operator">=</span><span class="token string">'<span class="token variable">$password</span>'</span>
+<span class="token punctuation">}</span></code></pre>
 <p>$js是一个JavaScript函数，其代码是动态创建的，并且包含用户提交的用户名和密码。攻击者可以通过提供以下用户名和任意密码来避开验证逻辑：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alice<span class="string">'//</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Alice'//</code></pre>
 <p>生成的javaScript函数如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">function</span></span>() &#123;</span><br><span class="line">	<span class="built_in">return</span> this.username=<span class="string">'Alice'</span>//<span class="string">' &amp; this.password='</span>aaa<span class="string">';  //在javaScript中//是注释符号，因此语句//后所有代码都被注释！ </span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.username<span class="token operator">=</span><span class="token string">'Alice'</span>//<span class="token string">' &amp; this.password='</span>aaa'<span class="token punctuation">;</span>  //在javaScript中//是注释符号，因此语句//后所有代码都被注释！ 
+<span class="token punctuation">}</span></code></pre>
 <h2 id="注入XPath"><a href="#注入XPath" class="headerlink" title="注入XPath"></a>注入XPath</h2><p>XPath(XML路径语言)是一种用于导航XML文档并从中获取数据的解释型语言。许多时候，一个XPath表达式代表由一个文档节点导航到另一个文档节点所需要的一系列步骤。如果Web应用程序将应用程序保存在XML文档中，那么它们可能使用XPath访问数据，以响应用户提交的输入。如果这个输入未经过任何过滤或净化就插入到XPath查询中，攻击者就可以通过控制查询来破坏应用程序的逻辑，或者获取未授权访问的数据。</p>
 <blockquote>
 <p>注：与SQL注入一样，注入一个数字值时不需要单引号。与SQL查询不同的是，XPath查询中的关键字区分大小写，XML文档中的元素名也区分大小写</p>
@@ -682,25 +703,24 @@
 <li>应用程序很少返回有用的错误信息。因此，通常攻击者只能“盲目”利用各种漏洞</li>
 </ul>
 <h3 id="利用LDAP进行注入"><a href="#利用LDAP进行注入" class="headerlink" title="利用LDAP进行注入"></a>利用LDAP进行注入</h3><h4 id="析取查询"><a href="#析取查询" class="headerlink" title="析取查询"></a>析取查询</h4><p>应用程序执行的一项析取查询如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(|(username=London sales)(department=Reading sales))</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">|</span><span class="token punctuation">(</span>username<span class="token operator">=</span>London sales<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>Reading sales<span class="token punctuation">))</span></code></pre>
 <p>这里，应用程序构建了一个析取查询，并在用户提交输入之前牵制了一些表达式来执行所需访问的访问控制。在这种情况下，攻击者可以通过提交以下搜索项对查询进行修改：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">)(department=*</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>*</code></pre>
 <ul>
-<li>是LDAP的通配符，可匹配任何数据项。如果将这个输入嵌入到LDAP搜索过滤器中，应用程序将执行以下查询，进而返回所有信息：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(|(username=London)(department=*)(department=Reading)(department=*))</span><br></pre></td></tr></table></figure>
-
+<li>是LDAP的通配符，可匹配任何数据项。如果将这个输入嵌入到LDAP搜索过滤器中，应用程序将执行以下查询，进而返回所有信息：<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">|</span><span class="token punctuation">(</span>username<span class="token operator">=</span>London<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>*<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>Reading<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>*<span class="token punctuation">))</span></code></pre>
 </li>
 </ul>
 <h4 id="合取查询"><a href="#合取查询" class="headerlink" title="合取查询"></a>合取查询</h4><p>应用程序执行的一项合取查询如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&amp;(givenName=daf)(department=London*))</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>givenName<span class="token operator">=</span>daf<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>London*<span class="token punctuation">))</span></code></pre>
 <p>攻击者可以提交</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*))(&amp;(givenName=daf</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">*<span class="token punctuation">))</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>givenName<span class="token operator">=</span>daf</code></pre>
 <p>如果能将这个输入嵌入原始搜索过滤器中，将得到以下查询</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&amp;(givenName=*))(&amp;(givenName=daf)(department=London*))</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>givenName<span class="token operator">=</span>*<span class="token punctuation">))</span><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>givenName<span class="token operator">=</span>daf<span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>London*<span class="token punctuation">))</span></code></pre>
 <p>第一个过滤器包含一个通配符匹配条件，因此，结果也会返回所有信息</p>
 <h5 id="NULL字节处理漏洞"><a href="#NULL字节处理漏洞" class="headerlink" title="NULL字节处理漏洞"></a>NULL字节处理漏洞</h5><p>针对合取查询的攻击多利用许多LDAP服务在处理NULL字节方面的漏洞。由于这些服务常常以本地代码编写，因此，搜索过滤器中的NULL字节将立即终止字符串，NULL之后的任何字符将被忽略。虽然LDAP本身不支持注释，但是采用NULL字节可以取得与SQL注释语句相同的效果<br>在上一个示例中，攻击者可以提交：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*))%00</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">*<span class="token punctuation">))</span>%00</code></pre>
 <p>应用程序将%00序列解码成原义NULL字节，因此，查询将变为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&amp;(givenName=*))[NULL])(department=London*))</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token punctuation">(</span>givenName<span class="token operator">=</span>*<span class="token punctuation">))</span><span class="token punctuation">[</span>NULL<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">(</span>department<span class="token operator">=</span>London*<span class="token punctuation">))</span></code></pre>
 <p>由于这个过滤器在NULL字节被截断，在LDAP看来，其中只包含一个通配符条件，因此会返回所有信息</p>
 <h3 id="防止LDAP注入"><a href="#防止LDAP注入" class="headerlink" title="防止LDAP注入"></a>防止LDAP注入</h3><p>应根据一份可接受字符的“白名单”检查用户输入，其中最好只包括字母数字字符。应阻止任何可能破坏LDAP查询的字符，包括();,* | &amp; =和空字节</p>
 
@@ -739,7 +759,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(8)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/06/webSecurity8/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/06/websecurity8/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -805,7 +825,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/07/webSecurity9/">
+                <a href="/2019/11/07/websecurity9/">
                     <div class="card-image">
                         
                         
@@ -858,7 +878,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/05/webSecurity7/">
+                <a href="/2019/11/05/websecurity7/">
                     <div class="card-image">
                         
                         
@@ -1058,7 +1078,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

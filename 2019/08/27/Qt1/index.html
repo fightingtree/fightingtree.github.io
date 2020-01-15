@@ -8,7 +8,11 @@
     <meta name="description" content="QSSQt自己的CSS简称QSS
 在QT中的应用
 在QT所在的build文件中放入.css文件
-在main.cpp文件中加入以下内容123456789101112131415int main(int argc, char *argv[])&amp;">
+
+在main.cpp文件中加入以下内容
+int main(int argc, char *argv[])
+{
+ QApplication a(a">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,7 +35,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -397,7 +401,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        79
+                        75
                     </div>
                     
 
@@ -422,8 +426,25 @@
             <div id="articleContent">
                 <h2 id="QSS"><a href="#QSS" class="headerlink" title="QSS"></a>QSS</h2><p>Qt自己的CSS简称QSS</p>
 <h2 id="在QT中的应用"><a href="#在QT中的应用" class="headerlink" title="在QT中的应用"></a>在QT中的应用</h2><ol>
-<li>在QT所在的build文件中放入.css文件</li>
-<li>在main.cpp文件中加入以下内容<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    QApplication a(argc, argv);</span><br><span class="line">    MainWindow w;</span><br><span class="line">    QFile qssFile(<span class="string">"qt.css"</span>);</span><br><span class="line">    qssFile.open(QFile::ReadOnly);</span><br><span class="line">    <span class="keyword">if</span>(qssFile.isOpen())&#123;</span><br><span class="line">        QString qss = QLatin1String(qssFile.readAll());</span><br><span class="line">        qApp-&gt;setStyleSheet(qss);</span><br><span class="line">        qssFile.close();</span><br><span class="line">    &#125;</span><br><span class="line">    w.show();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> a.exec();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在QT所在的build文件中放入.css文件</p>
+</li>
+<li><p>在main.cpp文件中加入以下内容</p>
+<pre class=" language-bash"><code class="language-bash">int main<span class="token punctuation">(</span>int argc, char *argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ QApplication a<span class="token punctuation">(</span>argc, argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ MainWindow w<span class="token punctuation">;</span>
+ QFile qssFile<span class="token punctuation">(</span><span class="token string">"qt.css"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ qssFile.open<span class="token punctuation">(</span>QFile::ReadOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ if<span class="token punctuation">(</span>qssFile.isOpen<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+     QString qss <span class="token operator">=</span> QLatin1String<span class="token punctuation">(</span>qssFile.readAll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+     qApp-<span class="token operator">></span>setStyleSheet<span class="token punctuation">(</span>qss<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     qssFile.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ w.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ <span class="token keyword">return</span> a.exec<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
 </ol>
 
             </div>
@@ -461,7 +482,7 @@
                   property="dct:title" rel="dct:type">
                     《Qt(进阶1)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/Qt1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/qt1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -527,7 +548,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/27/QT2/">
+                <a href="/2019/08/27/qt2/">
                     <div class="card-image">
                         
                         
@@ -576,7 +597,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/25/C_7/">
+                <a href="/2019/08/25/c-7/">
                     <div class="card-image">
                         
                         
@@ -772,7 +793,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

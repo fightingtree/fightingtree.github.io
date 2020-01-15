@@ -28,7 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -434,7 +434,11 @@
 <p>许多时候，应用程序水平权限划分中存在的漏洞可能会立即引起垂直权限提升攻击。例如，如果一名用户能够以某种方式设置其他用户的密码，那么该用户就能攻击管理员的账户并控制整个应用程序</p>
 <h3 id="完全不受保护的功能"><a href="#完全不受保护的功能" class="headerlink" title="完全不受保护的功能"></a>完全不受保护的功能</h3><p>在许多的访问控制不完善的情况下，敏感功能和数据可被任何知道相关URL的用户访问。例如，在许多应用程序中，任何人只需访问一个特定的URL就可以完全控制它的管理功能<br><font color="#fb8c00">https:// wahh-app.com/admin</font><br>在这种情况下，应用程序通常仅实施如下访问：以管理员身份登录的用户在他们的用户界面上看到一个该URL的链接，而其他用户无法看到这个链接。这种细微的差别是应用程序用于“防止”敏感功能被未授权使用的唯一机制<br>有时候，允许用户访问强大功能的URL可能很难猜测，甚至相当隐秘，如：<br><font color="#fb8c00">https:// wahh-app.com/menus/secure/ff457/DoAdminMenu2.jsp</font><br>这种情况下，开发者假设攻击者无法知道或发现这个URL。局外人很难攻破一个应用程序，因为他们不太可能猜测出实现这种目的的URL。</p>
 <p>然而，攻击者仍然可以通过仔细检查客户端源代码仍能发现这些URL。许多应用程序使用JavaScript在客户端动态建立用户界面。它一般建立各种与用户状态有关的标记，然后根据这些标记在用户界面中增加不同的元素。如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var isAdmin = <span class="literal">false</span>;</span><br><span class="line">.......</span><br><span class="line"><span class="keyword">if</span> (isAdmin)&#123;</span><br><span class="line">	adminMenu.addItem(<span class="string">"/menus/secure/ff457/addNewPortalUser2.jsp"</span>,<span class="string">"Create a new user"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var isAdmin <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>.
+<span class="token keyword">if</span> <span class="token punctuation">(</span>isAdmin<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    adminMenu.addItem<span class="token punctuation">(</span><span class="token string">"/menus/secure/ff457/addNewPortalUser2.jsp"</span>,<span class="token string">"Create a new user"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <p>在上述示例中，攻击者只需检查JavaScript代码就可以确定具备管理功能的URL，并尝试访问它们</p>
 <h4 id="基于标识符的功能"><a href="#基于标识符的功能" class="headerlink" title="基于标识符的功能"></a>基于标识符的功能</h4><p>当应用程序使用一项功能访问某个特殊的资源时，被请求资源的标识符常常以请求参数的形式，在URL查询字符串或POST请求主体中提交给服务器。如，应用程序可能会使用下面的URL显示一份属于某个用户的特殊文档：<br><font color="#fb8c00">https:// wahh-app.com/ViewDocument.php?docid=1280149120</font><br>拥有这份文档的用户登录后，这个URL的链接将会在该用户的“我的文档”页面显示。其他用户无法看到这个链接。但是，如果访问控制不完善，那么请求URL的任何用户都能够像授权用户那样查看这份文档。<br>在上述示例中，寻求获得未授权访问的攻击者不仅需要知道应用程序的页面名称(ViewDocument.php)，而且需要知道他想要查看的文档的标识符。有时，应用程序生成的资源标识符非常难以预测，例如，它们可能是随机选择的GUID(Global Unique Indentifier，全局统一标识符)，也可能是连续生成的数字，但是，通常，希望发现其他用户资源标识符的攻击者可在应用程序的某个位置找到这些信息，例如访问日志中。</p>
 <blockquote>
@@ -514,7 +518,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(7)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/05/webSecurity7/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/05/websecurity7/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -580,7 +584,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/06/webSecurity8/">
+                <a href="/2019/11/06/websecurity8/">
                     <div class="card-image">
                         
                         
@@ -637,7 +641,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/04/webSecurity6/">
+                <a href="/2019/11/04/websecurity6/">
                     <div class="card-image">
                         
                         
@@ -837,7 +841,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

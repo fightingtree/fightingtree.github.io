@@ -4,15 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言(一), Hexo">
-    <meta name="description" content="数据存储基本数据类型
-整数： 整形 int 短整型 short int 长整型 long int
-浮点数： 单精度浮点数 float 双精度浮点数 double
-字符： 单个字符 char
-复合数据类型 结构体 枚举  
-
-[变量
-变量的本">
+    <meta name="keywords" content="C语言笔记（一）, Hexo">
+    <meta name="description" content="命令行参数char * 转intint main(int argc,char * argv[]){
+int a = atoi(argv[1]);
+}
+char * 转char[] char a[100];
+ strcpy(a,argv[1]">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言(一) | Hexo</title>
+    <title>C语言笔记（一） | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -35,7 +32,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -249,13 +246,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e556c.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C语言(一)
+                        C语言笔记（一）
                     </div>
                 </div>
             </div>
@@ -390,21 +387,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-06
+                    2019-08-25
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        28
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        1 分
                     </div>
                     
                 
@@ -420,52 +417,12 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
-<li>整数：<br> 整形 <font color="#fb8c00">int</font><br> 短整型 <font color="#fb8c00 ">short int</font><br> 长整型 <font color="#fb8c00" >long int</font></li>
-<li>浮点数：<br> 单精度浮点数 <font color="#fb8c00">float</font><br> 双精度浮点数 <font color="#fb8c00">double</font></li>
-<li>字符：<br> 单个字符 <font color="#fb8c00">char</font></li>
-<li>复合数据类型<br> 结构体<br> 枚举  </li>
-</ul>
-<h3 id="变量"><a href="#变量" class="headerlink" title="[变量"></a>[变量</h3><ul>
-<li>变量的本质就是内存中的一段存储空间</li>
-<li>变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。</li>
-</ul>
-<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 17;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i = %d\n"</span>,i);</span><br><span class="line">//%d表示以十进制输出</span><br><span class="line">//%x表示以十六进制输出</span><br><span class="line">//%o表示以八进制输出</span><br></pre></td></tr></table></figure>
-<h3 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h3><p>字节是存储数据的单位，并且是硬件所能访问的最小单位。(1字节=8bit, 1K=1024字节，1M =1024K,1G=1024M)</p>
-<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p> 不是一个值，而是一种规定，规定不同的字符是使用哪个整数值去表示。eg : ‘A’–65,’B’–66</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char ch = <span class="string">'A'</span>;//OK</span><br><span class="line">char ch = <span class="string">'B'</span>;//error,ch被重复定义</span><br><span class="line">ch = <span class="string">'B'</span>;//OK,把B赋值给ch</span><br></pre></td></tr></table></figure>
+                <h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><h4 id="char-转int"><a href="#char-转int" class="headerlink" title="char * 转int"></a>char * 转int</h4><pre class=" language-bash"><code class="language-bash">int main<span class="token punctuation">(</span>int argc,char * argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+int a <span class="token operator">=</span> atoi<span class="token punctuation">(</span>argv<span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="char-转char"><a href="#char-转char" class="headerlink" title="char * 转char[]"></a>char * 转char[]</h4><pre class=" language-bash"><code class="language-bash"> char a<span class="token punctuation">[</span>100<span class="token punctuation">]</span><span class="token punctuation">;</span>
+ strcpy<span class="token punctuation">(</span>a,argv<span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
-<li>整数：<br> 十进制：<font color="#fb8c00">17</font><br> 八进制：<font color="#fb8c00">017(数字0)</font><br> 十六进制：<font color="#fb8c00">0x17 或 0X17</font></li>
-<li>浮点数：<br> 传统写法：<font color="#fb8c00">3.2</font><br> 科学计数法：<font color="#fb8c00">3.2e3</font>(值为3200)，<font color="#fb8c00">1234.5e-2</font>(值为12.345)</li>
-<li>字符：<br> 单个字符：<font color="#fb8c00">‘a’</font><br> 字符串：<font color="#fb8c00"> “aa”</font><blockquote>
-<p>注： “a”是正确的，因为”a”表示’a’和’\0’的组合</p>
-</blockquote>
-</li>
-<li>存储方式<br> 字符：’A’先转为ASCII码，再转换为补码(本质上与整数存储方式相同)<br> 整数：以补码形式转换为二进制代码存储在计算机中<br> 实数：以IEEE754标准转换为二进制代码存储在计算机中</li>
-</ul>
-<h2 id="强制数据类型转换"><a href="#强制数据类型转换" class="headerlink" title="强制数据类型转换"></a>强制数据类型转换</h2><p>格式：(数据类型)(表达式)<br>功能：把表达式的值强制转换为前面所执行的数据类型</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(int) (4.5+2.2);//最终值为6</span><br><span class="line">(<span class="built_in">float</span>)(5);//最终值为5.000000</span><br></pre></td></tr></table></figure>
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="为什么需要结构体"><a href="#为什么需要结构体" class="headerlink" title="为什么需要结构体"></a>为什么需要结构体</h3><p>为了表示一些复杂的事物，而普通的基本类型无法满足实际要求</p>
-<h3 id="什么叫结构体"><a href="#什么叫结构体" class="headerlink" title="什么叫结构体"></a>什么叫结构体</h3><p>把一些基本数据类型组合在一起形成的一个新的复合数据类型</p>
-<h3 id="如何定义结构体"><a href="#如何定义结构体" class="headerlink" title="如何定义结构体"></a>如何定义结构体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//第一种方式(推荐使用)</span><br><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//第二种方式</span><br><span class="line">struct Student2&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student2;//定义一个名为student2的结构体</span><br><span class="line"></span><br><span class="line">//第三种方式</span><br><span class="line">struct &#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student1;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化一个名为student的结构体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="怎样使用结构体变量"><a href="#怎样使用结构体变量" class="headerlink" title="怎样使用结构体变量"></a>怎样使用结构体变量</h3><h4 id="赋值和初始化"><a href="#赋值和初始化" class="headerlink" title="赋值和初始化"></a>赋值和初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   struct Student student2;//定义完后再赋值</span><br><span class="line">   student2.age = 10;</span><br><span class="line">   student2.score = 90;</span><br><span class="line">   student2.sex = <span class="string">'F'</span>;</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="怎样访问结构体变量中的每一个成员"><a href="#怎样访问结构体变量中的每一个成员" class="headerlink" title="怎样访问结构体变量中的每一个成员"></a>怎样访问结构体变量中的每一个成员</h4><ol>
-<li>结构体变量名.成员名</li>
-<li>指针变量名-&gt;成员名<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   student.age = 10;//第一种方式</span><br><span class="line"></span><br><span class="line">   struct Student *pst = &amp;student;//第二种方式</span><br><span class="line">   pst-&gt;age = 10;//pst所指向的结构体的age成员</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：pst-&gt;age会在计算机内部转化成(* pst).age</p>
-</blockquote>
-</li>
-</ol>
-<h4 id="结构变量的运算"><a href="#结构变量的运算" class="headerlink" title="结构变量的运算"></a>结构变量的运算</h4><p>结构体变量不能相加、相减，也不能相互乘除,只能赋值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct Student student1,student2;</span><br><span class="line">student1 = student2;</span><br></pre></td></tr></table></figure>
-<p>####　结构变量和结构体变量指针作为函数参数传递问题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//error,不能直接对结构体进行修改</span><br><span class="line">void InputStudent1(st)&#123;</span><br><span class="line">   st.age = 10;</span><br><span class="line">   strcpy(st.name,<span class="string">"张三"</span>);//不能写成stu.name=“张三”，涉及C语言字符串处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//OK</span><br><span class="line">void InputStudent2(struct Student * pstu)&#123;</span><br><span class="line">   pstu-&gt;age = 10;</span><br><span class="line">   strcpy(pstu-&gt;name,<span class="string">"张三"</span>);</span><br><span class="line">   pstu-&gt;sex = <span class="string">'F'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void OutputStudent(struct Student ss)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %s %c\n"</span>.ss.age,ss.name,ss.sex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student1;</span><br><span class="line">   InputStudent(st);//error,对结构体变量输入</span><br><span class="line">   InputStudent2(&amp;st);//OK</span><br><span class="line">   OutputStudent(st);//对结构体变量输出，也可以传指针</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：对结构体进行修改必须输入结构体的指针</p>
-</blockquote>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
             </div>
             <hr/>
 
@@ -499,9 +456,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C语言(一)》
+                    《C语言笔记（一）》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/06/C_1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/25/c-7/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -542,7 +499,7 @@
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2019-08-06T12-05-10',
+        id: '2019-08-25T16-45-16',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -567,31 +524,31 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/07/C_2/">
+                <a href="/2019/08/27/qt1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg" class="responsive-img" alt="C语言(二)">
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg" class="responsive-img" alt="Qt(进阶1)">
                         
-                        <span class="card-title">C语言(二)</span>
+                        <span class="card-title">Qt(进阶1)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言的基本输入输出
+                            在Qt开发中使用CSS文件
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-07
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
-                                    编程语言
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    前端开发
                                 </a>
                             
                             
@@ -601,8 +558,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/Qt/" target="_blank">
+                        <span class="chip bg-color">Qt</span>
+                    </a>
+                    
+                    <a href="/tags/CSS/" target="_blank">
+                        <span class="chip bg-color">CSS</span>
                     </a>
                     
                 </div>
@@ -613,46 +574,49 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/06/C_1/">
+                <a href="/2019/08/14/github-1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg" class="responsive-img" alt="C语言(一)">
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="github">
                         
-                        <span class="card-title">C语言(一)</span>
+                        <span class="card-title">github</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言编程基础知识(数据存储、数据类型)
+                            github和git介绍及使用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
-                                    编程语言
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    工具使用
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/github/" target="_blank">
+                        <span class="chip bg-color">github</span>
+                    </a>
+                    
+                    <a href="/tags/git/" target="_blank">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>
@@ -813,7 +777,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

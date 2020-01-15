@@ -32,7 +32,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -429,9 +429,10 @@
 <blockquote>
 <p>注： 在ANSI C标准中只采用缓冲文件系统来处理文本文件和二进制文件，C语言对文件的读写都是用库函数实现的</p>
 </blockquote>
-<h2 id="文件的基本操作"><a href="#文件的基本操作" class="headerlink" title="文件的基本操作"></a>文件的基本操作</h2><h3 id="文件型指针型变量"><a href="#文件型指针型变量" class="headerlink" title="文件型指针型变量"></a>文件型指针型变量</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE * fp;//fp是一个指向FILE类型结构体的指针变量</span><br></pre></td></tr></table></figure>
+<h2 id="文件的基本操作"><a href="#文件的基本操作" class="headerlink" title="文件的基本操作"></a>文件的基本操作</h2><h3 id="文件型指针型变量"><a href="#文件型指针型变量" class="headerlink" title="文件型指针型变量"></a>文件型指针型变量</h3><pre class=" language-bash"><code class="language-bash">FILE * fp<span class="token punctuation">;</span>//fp是一个指向FILE类型结构体的指针变量</code></pre>
 <h3 id="FILE类型的数组"><a href="#FILE类型的数组" class="headerlink" title="FILE类型的数组"></a>FILE类型的数组</h3><p>FILE f[5];定义了一个结构体数组f，可以用来存放5个文件的信息</p>
-<h3 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FILE * fp;</span><br><span class="line">fp = fopen(文件名，使用文件方式);//文件名加上路径</span><br></pre></td></tr></table></figure>
+<h3 id="打开文件"><a href="#打开文件" class="headerlink" title="打开文件"></a>打开文件</h3><pre class=" language-bash"><code class="language-bash">FILE * fp<span class="token punctuation">;</span>
+fp <span class="token operator">=</span> fopen<span class="token punctuation">(</span>文件名，使用文件方式<span class="token punctuation">)</span><span class="token punctuation">;</span>//文件名加上路径</code></pre>
 <h4 id="文件使用方式"><a href="#文件使用方式" class="headerlink" title="文件使用方式"></a>文件使用方式</h4><ul>
 <li><font color="#fb8c00">r</font>  (只读)为输入打开一个文本文件</li>
 <li><font color="#fb8c00">w</font>  (只写)为输出打开一个文本文件</li>
@@ -449,21 +450,36 @@
 <blockquote>
 <p>注： 1. 凡是”r”打开一个文件时，该文件必须已经存在，且只能从该文件中读出<br>       2. 用”w”打开的文件只能向该文件中写入，若打开的文件不存在，则以指定的文件名建立该文件，若文件已存在，则将该文件删除，重建一个新文件<br>       3. 若要向一个已存在的文件追加新的信息，只能用”a”的方式打开文件。但此时该文件必须是存在的，否则会出错。<br>       4. 用只写或读写方式打开一个已存在文件时将清除原文件的内容，写入字符从文件首开始。如需保留原有文件内容，希望写入的字符以文件末开始存放，必须以追加的方式打开文件，被写入的文件若不存在，则创建该文件。</p>
 </blockquote>
-<h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose(文件指针);//使文件指针变量不再指向该文件，若成功返回0，否则返回-1</span><br></pre></td></tr></table></figure>
-<h3 id="文件的读写操作"><a href="#文件的读写操作" class="headerlink" title="文件的读写操作"></a>文件的读写操作</h3><h4 id="字符输入输出函数"><a href="#字符输入输出函数" class="headerlink" title="字符输入输出函数"></a>字符输入输出函数</h4><h5 id="fputc"><a href="#fputc" class="headerlink" title="fputc()"></a>fputc()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fputc(ch,fp);//将字符(ch的值)输出到fp所指的文件中去</span><br></pre></td></tr></table></figure>
+<h3 id="关闭文件"><a href="#关闭文件" class="headerlink" title="关闭文件"></a>关闭文件</h3><pre class=" language-bash"><code class="language-bash">fclose<span class="token punctuation">(</span>文件指针<span class="token punctuation">)</span><span class="token punctuation">;</span>//使文件指针变量不再指向该文件，若成功返回0，否则返回-1</code></pre>
+<h3 id="文件的读写操作"><a href="#文件的读写操作" class="headerlink" title="文件的读写操作"></a>文件的读写操作</h3><h4 id="字符输入输出函数"><a href="#字符输入输出函数" class="headerlink" title="字符输入输出函数"></a>字符输入输出函数</h4><h5 id="fputc"><a href="#fputc" class="headerlink" title="fputc()"></a>fputc()</h5><pre class=" language-bash"><code class="language-bash">fputc<span class="token punctuation">(</span>ch,fp<span class="token punctuation">)</span><span class="token punctuation">;</span>//将字符<span class="token punctuation">(</span>ch的值<span class="token punctuation">)</span>输出到fp所指的文件中去</code></pre>
 <blockquote>
 <p>注：</p>
 </blockquote>
-<h5 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc()"></a>fgetc()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ch = fgetc(fp);//从打开的文件fp中读取一个字符并送入ch中</span><br></pre></td></tr></table></figure>
+<h5 id="fgetc"><a href="#fgetc" class="headerlink" title="fgetc()"></a>fgetc()</h5><pre class=" language-bash"><code class="language-bash">ch <span class="token operator">=</span> fgetc<span class="token punctuation">(</span>fp<span class="token punctuation">)</span><span class="token punctuation">;</span>//从打开的文件fp中读取一个字符并送入ch中</code></pre>
 <blockquote>
 <p>注：1. 在fgetc()函数调用中，读取的文件必须是以读或写的方式打开的<br>      2.使用fgetc()函数后，该位置指针(文件内部指针,与文件指针不同)向后移动一个字节，因此可连续多次使用fgetc()函数读取多个字符 </p>
 </blockquote>
-<h4 id="字符串读写函数"><a href="#字符串读写函数" class="headerlink" title="字符串读写函数"></a>字符串读写函数</h4><h5 id="fgets"><a href="#fgets" class="headerlink" title="fgets()"></a>fgets()</h5><h5 id="fputs"><a href="#fputs" class="headerlink" title="fputs()"></a>fputs()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># include &lt;stdio.h&gt;</span></span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    char str[20];  /*定义一个最大长度为19, 末尾是<span class="string">'\0'</span>的字符数组来存储字符串*/</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入一个字符串:"</span>);</span><br><span class="line">    fgets(str, 19, stdin);  /*从输入流stdin中读取19个字符到字符数组str中*/</span><br><span class="line">    fputs(str, stdout);  //将字符数组的内容输出到输出流stdout中</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字符串读写函数"><a href="#字符串读写函数" class="headerlink" title="字符串读写函数"></a>字符串读写函数</h4><h5 id="fgets"><a href="#fgets" class="headerlink" title="fgets()"></a>fgets()</h5><h5 id="fputs"><a href="#fputs" class="headerlink" title="fputs()"></a>fputs()</h5><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># include &lt;stdio.h></span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    char str<span class="token punctuation">[</span>20<span class="token punctuation">]</span><span class="token punctuation">;</span>  /*定义一个最大长度为19, 末尾是<span class="token string">'\0'</span>的字符数组来存储字符串*/
+    printf<span class="token punctuation">(</span><span class="token string">"请输入一个字符串:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    fgets<span class="token punctuation">(</span>str, 19, stdin<span class="token punctuation">)</span><span class="token punctuation">;</span>  /*从输入流stdin中读取19个字符到字符数组str中*/
+    fputs<span class="token punctuation">(</span>str, stdout<span class="token punctuation">)</span><span class="token punctuation">;</span>  //将字符数组的内容输出到输出流stdout中
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>注：stdin/stdout是标准输入/输出流，即屏幕输入/输出</p>
 </blockquote>
-<h4 id="数据块读写函数"><a href="#数据块读写函数" class="headerlink" title="数据块读写函数"></a>数据块读写函数</h4><h5 id="fread"><a href="#fread" class="headerlink" title="fread()"></a>fread()</h5><h5 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a>fwrite()</h5><h4 id="格式化读写函数"><a href="#格式化读写函数" class="headerlink" title="格式化读写函数"></a>格式化读写函数</h4><h5 id="fscanf"><a href="#fscanf" class="headerlink" title="fscanf()"></a>fscanf()</h5><h5 id="fprintf"><a href="#fprintf" class="headerlink" title="fprintf()"></a>fprintf()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int fscanf ( FILE *fp, char * format, ... );</span><br><span class="line">int fprintf ( FILE *fp, char * format, ... );</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//举例</span><br><span class="line">FILE *fp;</span><br><span class="line">int i, j;</span><br><span class="line">char *str, ch;</span><br><span class="line">fscanf(fp, <span class="string">"%d %s"</span>, &amp;i, str);</span><br><span class="line">fprintf(fp,<span class="string">"%d %c"</span>, j, ch);</span><br></pre></td></tr></table></figure>
+<h4 id="数据块读写函数"><a href="#数据块读写函数" class="headerlink" title="数据块读写函数"></a>数据块读写函数</h4><h5 id="fread"><a href="#fread" class="headerlink" title="fread()"></a>fread()</h5><h5 id="fwrite"><a href="#fwrite" class="headerlink" title="fwrite()"></a>fwrite()</h5><h4 id="格式化读写函数"><a href="#格式化读写函数" class="headerlink" title="格式化读写函数"></a>格式化读写函数</h4><h5 id="fscanf"><a href="#fscanf" class="headerlink" title="fscanf()"></a>fscanf()</h5><h5 id="fprintf"><a href="#fprintf" class="headerlink" title="fprintf()"></a>fprintf()</h5><pre class=" language-bash"><code class="language-bash">int fscanf <span class="token punctuation">(</span> FILE *fp, char * format, <span class="token punctuation">..</span>. <span class="token punctuation">)</span><span class="token punctuation">;</span>
+int fprintf <span class="token punctuation">(</span> FILE *fp, char * format, <span class="token punctuation">..</span>. <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">//举例
+FILE *fp<span class="token punctuation">;</span>
+int i, j<span class="token punctuation">;</span>
+char *str, ch<span class="token punctuation">;</span>
+fscanf<span class="token punctuation">(</span>fp, <span class="token string">"%d %s"</span>, <span class="token operator">&amp;</span>i, str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+fprintf<span class="token punctuation">(</span>fp,<span class="token string">"%d %c"</span>, j, ch<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
             </div>
             <hr/>
 
@@ -499,7 +515,7 @@
                   property="dct:title" rel="dct:type">
                     《C语言(六)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/13/C-6/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/13/c-6/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -618,7 +634,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/09/C-5/">
+                <a href="/2019/08/09/c-5/">
                     <div class="card-image">
                         
                         
@@ -814,7 +830,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

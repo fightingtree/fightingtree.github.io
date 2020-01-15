@@ -33,7 +33,7 @@ dir内置函数方法名 :python提供的内置函数和属">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -428,13 +428,23 @@ dir内置函数方法名 :python提供的内置函数和属">
 <li>多态：不同的对象调用相同的方法，产生不同的执行结果，增加代码的灵活度</li>
 </ul>
 <h2 id="dir内置函数"><a href="#dir内置函数" class="headerlink" title="dir内置函数"></a>dir内置函数</h2><p><strong>方法名</strong> :python提供的内置函数和属性<br>可以使用:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir([])   <span class="comment">#查看列表的内置函数和属性</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><h3 id="只包含方法"><a href="#只包含方法" class="headerlink" title="只包含方法"></a>只包含方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class 类名：</span><br><span class="line">    def 方法1(self,参数列表):</span><br><span class="line">        pass</span><br><span class="line">    def 方法2(self,参数列表):</span><br><span class="line">        pass</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">dir<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#查看列表的内置函数和属性</span></code></pre>
+<h2 id="定义类"><a href="#定义类" class="headerlink" title="定义类"></a>定义类</h2><h3 id="只包含方法"><a href="#只包含方法" class="headerlink" title="只包含方法"></a>只包含方法</h3><pre class=" language-bash"><code class="language-bash">class 类名：
+    def 方法1<span class="token punctuation">(</span>self,参数列表<span class="token punctuation">)</span>:
+        pass
+    def 方法2<span class="token punctuation">(</span>self,参数列表<span class="token punctuation">)</span>:
+        pass</code></pre>
 <p>方法的定义格式与函数基本一样，区别在于方法的第一个参数必须是self，并且类名的命名方式必须是大驼峰命名法</p>
 <h3 id="self参数"><a href="#self参数" class="headerlink" title="self参数"></a>self参数</h3><p>哪个对象调用该方法，self就指该对象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def eat(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s eat fish"</span> %self.name)</span><br><span class="line">tom = Cat()</span><br><span class="line">tom.name = <span class="string">"Tom"</span>   <span class="comment">#为tom增加name属性(不推荐)</span></span><br><span class="line">tom.eat()      <span class="comment">#输出Tom eat fish</span></span><br><span class="line">bob = Cat</span><br><span class="line">bob.name =<span class="string">"Bob"</span></span><br><span class="line">bob.eat()    <span class="comment">#输出Bob eat fish</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">class Cat:
+    def eat<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s eat fish"</span> %self.name<span class="token punctuation">)</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+tom.name <span class="token operator">=</span> <span class="token string">"Tom"</span>   <span class="token comment" spellcheck="true">#为tom增加name属性(不推荐)</span>
+tom.eat<span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment" spellcheck="true">#输出Tom eat fish</span>
+bob <span class="token operator">=</span> Cat
+bob.name <span class="token operator">=</span><span class="token string">"Bob"</span>
+bob.eat<span class="token punctuation">(</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#输出Bob eat fish</span></code></pre>
 <h3 id="初始化方法"><a href="#初始化方法" class="headerlink" title="初始化方法"></a>初始化方法</h3><ol>
 <li>当使用类名创建对象时，会自动执行以下操作：</li>
 </ol>
@@ -443,14 +453,31 @@ dir内置函数方法名 :python提供的内置函数和属">
 <li>为对象的属性设置初始值：初始化方法(init)</li>
 </ul>
 <ol start="2">
-<li>这个初始化方法就是<strong>init</strong>方法,<strong>init</strong> 是对象的内置方法，<strong>init</strong> 方法是专门用来定义一个类具有哪些属性的方法<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"这是一个初始化方法"</span>)</span><br><span class="line"><span class="comment"># 使用类名()创建对象时，会自动调用初始化方法__init__</span></span><br><span class="line">tom = Cat()   <span class="comment">#输出结果 这是一个初始化方法</span></span><br></pre></td></tr></table></figure>
-
+<li>这个初始化方法就是<strong>init</strong>方法,<strong>init</strong> 是对象的内置方法，<strong>init</strong> 方法是专门用来定义一个类具有哪些属性的方法<pre class=" language-bash"><code class="language-bash">class Cat:
+ def __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+     print<span class="token punctuation">(</span><span class="token string">"这是一个初始化方法"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 使用类名()创建对象时，会自动调用初始化方法__init__</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出结果 这是一个初始化方法</span></code></pre>
 </li>
 </ol>
 <h4 id="在初始化方法内部定义属性"><a href="#在初始化方法内部定义属性" class="headerlink" title="在初始化方法内部定义属性"></a>在初始化方法内部定义属性</h4><p>在<strong>init</strong>方法内部使用self.属性名=属性的初始值 就可以定义属性。在定义属性后，再使用该类创建对象，都会拥有该属性</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.name=<span class="string">"Hello"</span></span><br><span class="line">tom = Cat()</span><br><span class="line">bob = Cat()</span><br><span class="line"><span class="built_in">print</span>(tom.name)</span><br><span class="line"><span class="built_in">print</span>(bob.name)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">Hello</span><br><span class="line">Hello</span><br></pre></td></tr></table></figure>
-<h4 id="改造初始化方法"><a href="#改造初始化方法" class="headerlink" title="改造初始化方法"></a>改造初始化方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line">bob = Cat(<span class="string">"Bob"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom.name)   <span class="comment">#输出Tom</span></span><br><span class="line"><span class="built_in">print</span>(bob.name)   <span class="comment">#输出Bob</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span><span class="token string">"Hello"</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+bob <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>tom.name<span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>bob.name<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 输出结果</span>
+Hello
+Hello</code></pre>
+<h4 id="改造初始化方法"><a href="#改造初始化方法" class="headerlink" title="改造初始化方法"></a>改造初始化方法</h4><pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span>name
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Tom"</span><span class="token punctuation">)</span>
+bob <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>tom.name<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出Tom</span>
+print<span class="token punctuation">(</span>bob.name<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出Bob</span></code></pre>
 <h3 id="内置方法和属性"><a href="#内置方法和属性" class="headerlink" title="内置方法和属性"></a>内置方法和属性</h3><h4 id="del-方法"><a href="#del-方法" class="headerlink" title="del 方法"></a><strong>del</strong> 方法</h4><ol>
 <li>当一个对象被从内存中销毁时，自动调用<strong>del</strong>方法</li>
 <li>如果希望对象在被销毁前再做一些事情，可以考虑<strong>del</strong> 方法</li>
@@ -462,16 +489,51 @@ dir内置函数方法名 :python提供的内置函数和属">
 <li>在对象的生命周期内，可以访问对象属性，或者让对象调用方法</li>
 </ul>
 <h5 id="在代码执行结束后回收"><a href="#在代码执行结束后回收" class="headerlink" title="在代码执行结束后回收"></a>在代码执行结束后回收</h5><p>tom是全局变量，<strong>del</strong> 函数会在所有代码执行完毕后自动调用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">----------------------</span><br><span class="line">Tom已销毁</span><br></pre></td></tr></table></figure>
-
-<h5 id="使用del方法删除对象"><a href="#使用del方法删除对象" class="headerlink" title="使用del方法删除对象"></a>使用del方法删除对象</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line">del tom</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"----------------------"</span>)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">Tom已销毁</span><br><span class="line">----------------------</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span>name
+    def __del__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s 已销毁"</span>%self.name<span class="token punctuation">)</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Tom"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span><span class="token string">"----------------------"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 输出结果</span>
+----------------------
+Tom已销毁</code></pre>
+<h5 id="使用del方法删除对象"><a href="#使用del方法删除对象" class="headerlink" title="使用del方法删除对象"></a>使用del方法删除对象</h5><pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span>name
+    def __del__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s 已销毁"</span>%self.name<span class="token punctuation">)</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Tom"</span><span class="token punctuation">)</span>
+del tom
+print<span class="token punctuation">(</span><span class="token string">"----------------------"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 输出结果</span>
+Tom已销毁
+----------------------</code></pre>
 <h4 id="str-方法"><a href="#str-方法" class="headerlink" title="str 方法"></a><strong>str</strong> 方法</h4><p>返回对象的描述信息,print函数输出使用，必须返回一个字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">&lt;__main__.Cat object at 0x000002D897863B88&gt;</span><br><span class="line">Tom 已销毁</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span>name
+    def __del__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s 已销毁"</span>%self.name<span class="token punctuation">)</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Tom"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>tom<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果</span>
+<span class="token operator">&lt;</span>__main__.Cat object at 0x000002D897863B88<span class="token operator">></span>
+Tom 已销毁</code></pre>
 <p>使用<strong>str</strong>方法后：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Cat:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name=name</span><br><span class="line">    def __del__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s 已销毁"</span>%self.name)</span><br><span class="line">    def __str__(self):</span><br><span class="line">        <span class="built_in">return</span> <span class="string">"hello world"</span></span><br><span class="line">tom = Cat(<span class="string">"Tom"</span>)</span><br><span class="line"><span class="built_in">print</span>(tom)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">hello world</span><br><span class="line">Tom 已销毁</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">class Cat:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name<span class="token operator">=</span>name
+    def __del__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s 已销毁"</span>%self.name<span class="token punctuation">)</span>
+    def __str__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        <span class="token keyword">return</span> <span class="token string">"hello world"</span>
+tom <span class="token operator">=</span> Cat<span class="token punctuation">(</span><span class="token string">"Tom"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>tom<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 输出结果</span>
+hello world
+Tom 已销毁</code></pre>
 <h2 id="需求分析"><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h2><ol>
 <li>画类图</li>
 <li>被使用的类应该先开发</li>
@@ -494,46 +556,161 @@ dir内置函数方法名 :python提供的内置函数和属">
 <li>私有属性：对象不希望公开的属性</li>
 <li>私有方法：对象不希望公开的方法<br>定义方法，在属性名或方法名前加两个下划线</li>
 </ul>
-<h3 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))   <span class="comment">#true,在对象内部的方法可以访问私有属性</span></span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line"><span class="built_in">print</span>(xiaofang.__age) <span class="comment"># false,在对象外部不能访问私有属性</span></span><br><span class="line">xiaofang.secret()</span><br></pre></td></tr></table></figure>
-<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def __secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))</span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line">xiaofang.__secret() <span class="comment">#error，在对象外部不能访问私有方法</span></span><br></pre></td></tr></table></figure>
-<h4 id="伪私有属性和私有方法"><a href="#伪私有属性和私有方法" class="headerlink" title="伪私有属性和私有方法"></a>伪私有属性和私有方法</h4><p>Python中，并没有真正意义上的私有。在给属性、方法命名时，实际上是对名称做了一些特殊处理，使得外界无法访问。<br>可以使用以下方式访问私有属性和方法(在开发中不要使用这种方法访问私有属性和私有方法)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Woman:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        self.__age = 18</span><br><span class="line">    def __secret(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s的年龄为%d"</span> % (self.name,self.__age))</span><br><span class="line"></span><br><span class="line">xiaofang = Woman(<span class="string">"小芳"</span>)</span><br><span class="line"><span class="built_in">print</span>(xiaofang._Woman__age)</span><br><span class="line">xiaofang._Woman__secret()</span><br></pre></td></tr></table></figure>
+<h3 id="私有属性"><a href="#私有属性" class="headerlink" title="私有属性"></a>私有属性</h3><pre class=" language-bash"><code class="language-bash">class Woman:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+        self.__age <span class="token operator">=</span> 18
+    def secret<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s的年龄为%d"</span> % <span class="token punctuation">(</span>self.name,self.__age<span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#true,在对象内部的方法可以访问私有属性</span>
 
+xiaofang <span class="token operator">=</span> Woman<span class="token punctuation">(</span><span class="token string">"小芳"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>xiaofang.__age<span class="token punctuation">)</span> <span class="token comment" spellcheck="true"># false,在对象外部不能访问私有属性</span>
+xiaofang.secret<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h3 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h3><pre class=" language-bash"><code class="language-bash">class Woman:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+        self.__age <span class="token operator">=</span> 18
+    def __secret<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s的年龄为%d"</span> % <span class="token punctuation">(</span>self.name,self.__age<span class="token punctuation">))</span>
+
+xiaofang <span class="token operator">=</span> Woman<span class="token punctuation">(</span><span class="token string">"小芳"</span><span class="token punctuation">)</span>
+xiaofang.__secret<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#error，在对象外部不能访问私有方法</span></code></pre>
+<h4 id="伪私有属性和私有方法"><a href="#伪私有属性和私有方法" class="headerlink" title="伪私有属性和私有方法"></a>伪私有属性和私有方法</h4><p>Python中，并没有真正意义上的私有。在给属性、方法命名时，实际上是对名称做了一些特殊处理，使得外界无法访问。<br>可以使用以下方式访问私有属性和方法(在开发中不要使用这种方法访问私有属性和私有方法)</p>
+<pre class=" language-bash"><code class="language-bash">class Woman:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+        self.__age <span class="token operator">=</span> 18
+    def __secret<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s的年龄为%d"</span> % <span class="token punctuation">(</span>self.name,self.__age<span class="token punctuation">))</span>
+
+xiaofang <span class="token operator">=</span> Woman<span class="token punctuation">(</span><span class="token string">"小芳"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>xiaofang._Woman__age<span class="token punctuation">)</span>
+xiaofang._Woman__secret<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre>
 <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承语法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 类名(父类名):</span><br><span class="line">     pass</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class 类名<span class="token punctuation">(</span>父类名<span class="token punctuation">)</span>:
+     pass</code></pre>
 <h3 id="继承的传递性"><a href="#继承的传递性" class="headerlink" title="继承的传递性"></a>继承的传递性</h3><p>如果B类继承A类，C类继承B类，则C类也继承自A类。子类可以访问父类的公共属性和方法。</p>
 <h3 id="重用"><a href="#重用" class="headerlink" title="重用"></a>重用</h3><p>在子类中重写父类的同名方法，使用子类对象调用方法时，会调用子类中重写的方法。</p>
 <h4 id="覆盖"><a href="#覆盖" class="headerlink" title="覆盖"></a>覆盖</h4><p>子类方法完全不同于父类的同名方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Dog:</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"汪汪汪"</span>)</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"可以说话"</span>)</span><br><span class="line"></span><br><span class="line">xiaotian = Xiaotianquan()</span><br><span class="line">xiaotian.bark()    </span><br><span class="line"><span class="comment">#输出结果 ： 可以说话</span></span><br></pre></td></tr></table></figure>
-<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>子类方法在父类同名方法的基础上再加上额外的属性。使用super().创建一个新的对象调用父类中封装的方法</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Dog(Animal):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"汪汪汪"</span>)</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def bark(self):</span><br><span class="line">        <span class="comment">#1.针对子类的特殊需求，编写代码</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"可以说话"</span>)</span><br><span class="line">        <span class="comment">#2. 使用super().调用原本在父类中封装的方法</span></span><br><span class="line">        super().bark()</span><br><span class="line">        <span class="comment">#3. 增加其他子类的方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"asdsadddd"</span>)</span><br><span class="line"></span><br><span class="line">xiaotian = Xiaotianquan()</span><br><span class="line">xiaotian.bark()</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line">可以说话</span><br><span class="line">汪汪汪</span><br><span class="line">asdsadddd</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class Dog:
+    def bark<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"汪汪汪"</span><span class="token punctuation">)</span>
 
+class Xiaotianquan<span class="token punctuation">(</span>Dog<span class="token punctuation">)</span>:
+    def bark<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"可以说话"</span><span class="token punctuation">)</span>
+
+xiaotian <span class="token operator">=</span> Xiaotianquan<span class="token punctuation">(</span><span class="token punctuation">)</span>
+xiaotian.bark<span class="token punctuation">(</span><span class="token punctuation">)</span>    
+<span class="token comment" spellcheck="true">#输出结果 ： 可以说话</span></code></pre>
+<h4 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h4><p>子类方法在父类同名方法的基础上再加上额外的属性。使用super().创建一个新的对象调用父类中封装的方法</p>
+<pre class=" language-bash"><code class="language-bash">class Dog<span class="token punctuation">(</span>Animal<span class="token punctuation">)</span>:
+    def bark<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"汪汪汪"</span><span class="token punctuation">)</span>
+
+class Xiaotianquan<span class="token punctuation">(</span>Dog<span class="token punctuation">)</span>:
+    def bark<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#1.针对子类的特殊需求，编写代码</span>
+        print<span class="token punctuation">(</span><span class="token string">"可以说话"</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#2. 使用super().调用原本在父类中封装的方法</span>
+        super<span class="token punctuation">(</span><span class="token punctuation">)</span>.bark<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#3. 增加其他子类的方法</span>
+        print<span class="token punctuation">(</span><span class="token string">"asdsadddd"</span><span class="token punctuation">)</span>
+
+xiaotian <span class="token operator">=</span> Xiaotianquan<span class="token punctuation">(</span><span class="token punctuation">)</span>
+xiaotian.bark<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 输出结果</span>
+可以说话
+汪汪汪
+asdsadddd</code></pre>
 <h3 id="多继承"><a href="#多继承" class="headerlink" title="多继承"></a>多继承</h3><p>一个子类可以继承多个父类，并且拥有所有父类的属性和方法：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class 类名(父类名1，父类名2....):</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class 类名<span class="token punctuation">(</span>父类名1，父类名2<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">)</span>:
+    pass</code></pre>
 <p>如果在多个父类中具有同名的方法或属性，应避免使用多继承。</p>
 <h4 id="MRO方法顺序"><a href="#MRO方法顺序" class="headerlink" title="MRO方法顺序"></a>MRO方法顺序</h4><p>在多继承中可以使用类的内置属性<strong>mro</strong>查看方法的调用顺序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class A:</span><br><span class="line">    pass</span><br><span class="line">class B:</span><br><span class="line">    pass</span><br><span class="line">class C:</span><br><span class="line">    pass</span><br><span class="line">class D(C,B,A):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(D.__mro__)</span><br><span class="line"><span class="comment">#输出结果 </span></span><br><span class="line">(&lt;class <span class="string">'__main__.D'</span>&gt;, &lt;class <span class="string">'__main__.C'</span>&gt;, &lt;class <span class="string">'__main__.B'</span>&gt;, &lt;class <span class="string">'__main__.A'</span>&gt;, &lt;class <span class="string">'object'</span>&gt;)  <span class="comment">#结果中显示的顺序即对方法和属性查找的顺序</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class A:
+    pass
+class B:
+    pass
+class C:
+    pass
+class D<span class="token punctuation">(</span>C,B,A<span class="token punctuation">)</span>:
+    pass
+
+print<span class="token punctuation">(</span>D.__mro__<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果 </span>
+<span class="token punctuation">(</span><span class="token operator">&lt;</span>class <span class="token string">'__main__.D'</span><span class="token operator">></span>, <span class="token operator">&lt;</span>class <span class="token string">'__main__.C'</span><span class="token operator">></span>, <span class="token operator">&lt;</span>class <span class="token string">'__main__.B'</span><span class="token operator">></span>, <span class="token operator">&lt;</span>class <span class="token string">'__main__.A'</span><span class="token operator">></span>, <span class="token operator">&lt;</span>class <span class="token string">'object'</span><span class="token operator">></span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#结果中显示的顺序即对方法和属性查找的顺序</span></code></pre>
 <blockquote>
 <p>注：Object类是所有类的基类</p>
 </blockquote>
 <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>不同的子类对象调用相同的父类方法，产生不同的执行结果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Dog:</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">    def game(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s正在玩耍"</span> %(self.name))</span><br><span class="line"></span><br><span class="line">class Xiaotianquan(Dog):</span><br><span class="line">    def game(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s正在巡查公务"</span> % (self.name))</span><br><span class="line"></span><br><span class="line">class Person:</span><br><span class="line">    def __init__(self,personName):</span><br><span class="line">        self.personName = personName</span><br><span class="line">    def playWith(self,dog):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"%s与%s正在玩耍"</span> % (self.personName,dog.name))</span><br><span class="line">        dog.game() <span class="comment">#传递不同的对象产生不同的结果</span></span><br><span class="line"></span><br><span class="line">person = Person(<span class="string">"小明"</span>)</span><br><span class="line">dog = Dog(<span class="string">"旺财"</span>)</span><br><span class="line">person.playWith(dog)  </span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">小明与旺财正在玩耍</span><br><span class="line">旺财正在玩耍</span><br><span class="line"></span><br><span class="line">xiao = Xiaotianquan(<span class="string">"哮天犬"</span>)</span><br><span class="line">person.playWith(xiao)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">小明与哮天犬正在玩耍</span><br><span class="line">哮天犬正在巡查公务</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class Dog:
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+    def game<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s正在玩耍"</span> %<span class="token punctuation">(</span>self.name<span class="token punctuation">))</span>
 
+class Xiaotianquan<span class="token punctuation">(</span>Dog<span class="token punctuation">)</span>:
+    def game<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s正在巡查公务"</span> % <span class="token punctuation">(</span>self.name<span class="token punctuation">))</span>
+
+class Person:
+    def __init__<span class="token punctuation">(</span>self,personName<span class="token punctuation">)</span>:
+        self.personName <span class="token operator">=</span> personName
+    def playWith<span class="token punctuation">(</span>self,dog<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"%s与%s正在玩耍"</span> % <span class="token punctuation">(</span>self.personName,dog.name<span class="token punctuation">))</span>
+        dog.game<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#传递不同的对象产生不同的结果</span>
+
+person <span class="token operator">=</span> Person<span class="token punctuation">(</span><span class="token string">"小明"</span><span class="token punctuation">)</span>
+dog <span class="token operator">=</span> Dog<span class="token punctuation">(</span><span class="token string">"旺财"</span><span class="token punctuation">)</span>
+person.playWith<span class="token punctuation">(</span>dog<span class="token punctuation">)</span>  
+<span class="token comment" spellcheck="true">#输出结果</span>
+小明与旺财正在玩耍
+旺财正在玩耍
+
+xiao <span class="token operator">=</span> Xiaotianquan<span class="token punctuation">(</span><span class="token string">"哮天犬"</span><span class="token punctuation">)</span>
+person.playWith<span class="token punctuation">(</span>xiao<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果</span>
+小明与哮天犬正在玩耍
+哮天犬正在巡查公务</code></pre>
 <h2 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h2><p>在Python中，类也是一个对象，由类创建的对象叫做实例对象</p>
 <h3 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h3><p>类属性就是给类对象定义的属性，通常用来记录这个类相关的特征</p>
 <p>一个工具类，需要统计所有该类创建的实例对象的数量</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Tool(object):</span><br><span class="line">    count = 0</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        <span class="comment"># 让类属性加1</span></span><br><span class="line">        Tool.count+=1</span><br><span class="line"></span><br><span class="line">tool1 = Tool(<span class="string">"斧头"</span>)</span><br><span class="line">tool2 = Tool(<span class="string">"铲子"</span>)</span><br><span class="line"><span class="built_in">print</span>(Tool.count)  <span class="comment"># 输出结果 ：2</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class Tool<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    count <span class="token operator">=</span> 0
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+        <span class="token comment" spellcheck="true"># 让类属性加1</span>
+        Tool.count+<span class="token operator">=</span>1
 
+tool1 <span class="token operator">=</span> Tool<span class="token punctuation">(</span><span class="token string">"斧头"</span><span class="token punctuation">)</span>
+tool2 <span class="token operator">=</span> Tool<span class="token punctuation">(</span><span class="token string">"铲子"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>Tool.count<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 输出结果 ：2</span></code></pre>
 <h3 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h3><p>针对类对象定义的方法,语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@classmethod   <span class="comment">#告诉解释器这是一个类方法</span></span><br><span class="line">def 类方法名(cls): <span class="comment">#第一个参数必须是cls</span></span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">@classmethod   <span class="token comment" spellcheck="true">#告诉解释器这是一个类方法</span>
+def 类方法名<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>: <span class="token comment" spellcheck="true">#第一个参数必须是cls</span>
+    pass</code></pre>
 <p>实例：使用一个类方法打印输出创建的工具个数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Tool(object):</span><br><span class="line">    count = 0</span><br><span class="line">    def __init__(self,name):</span><br><span class="line">        self.name = name</span><br><span class="line">        <span class="comment"># 让类属性加1</span></span><br><span class="line">        Tool.count+=1</span><br><span class="line">    @classmethod</span><br><span class="line">    def showToolCount(cls):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"已经创立了%d个工具"</span> % (cls.count))</span><br><span class="line"></span><br><span class="line">tool1 = Tool(<span class="string">"斧头"</span>)</span><br><span class="line">tool2 = Tool(<span class="string">"铲子"</span>)</span><br><span class="line"><span class="comment">#类方法只能通过类名调用，cls不需要传递，解释器会自动传递</span></span><br><span class="line">Tool.showToolCount()  <span class="comment">#输出结果：已经创立了2个工具</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class Tool<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    count <span class="token operator">=</span> 0
+    def __init__<span class="token punctuation">(</span>self,name<span class="token punctuation">)</span>:
+        self.name <span class="token operator">=</span> name
+        <span class="token comment" spellcheck="true"># 让类属性加1</span>
+        Tool.count+<span class="token operator">=</span>1
+    @classmethod
+    def showToolCount<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"已经创立了%d个工具"</span> % <span class="token punctuation">(</span>cls.count<span class="token punctuation">))</span>
 
+tool1 <span class="token operator">=</span> Tool<span class="token punctuation">(</span><span class="token string">"斧头"</span><span class="token punctuation">)</span>
+tool2 <span class="token operator">=</span> Tool<span class="token punctuation">(</span><span class="token string">"铲子"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#类方法只能通过类名调用，cls不需要传递，解释器会自动传递</span>
+Tool.showToolCount<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出结果：已经创立了2个工具</span></code></pre>
 <h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><p>如果一个方法同时满足以下两个条件：</p>
 <ul>
 <li>不需要访问实例属性或调用实例方法</li>
-<li>不需要访问类属性或调用类方法<br>那么该方法可以封装成一个静态方法，语法如下：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@staticmethod</span><br><span class="line">def 静态方法名():</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+<li>不需要访问类属性或调用类方法<br>那么该方法可以封装成一个静态方法，语法如下：<pre class=" language-bash"><code class="language-bash">@staticmethod
+def 静态方法名<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+  pass</code></pre>
 调用方式与类方法调用方法相同，都不需要创建对象</li>
 </ul>
 <h3 id="方法分类："><a href="#方法分类：" class="headerlink" title="方法分类："></a>方法分类：</h3><ul>
@@ -577,7 +754,7 @@ dir内置函数方法名 :python提供的内置函数和属">
                   property="dct:title" rel="dct:type">
                     《Python(6)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/12/05/Python6/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/12/05/python6/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -888,7 +1065,7 @@ dir内置函数方法名 :python提供的内置函数和属">
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

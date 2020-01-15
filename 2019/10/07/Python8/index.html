@@ -35,7 +35,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -397,7 +397,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        937
+                        941
                     </div>
                     
 
@@ -433,52 +433,57 @@
 <li>Unicode字符串：包含了Unicode字符，Unicode字符串的处理方式和普通字符串类似，只不过它们每个字符占用2(或者4)个字节，所以它们拥有成千上万甚至上亿个字符。</li>
 </ul>
 <p>在Python中，用下列方式可以表示一个文本字符串：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'This is a string'</span></span><br><span class="line"><span class="string">"This is another string"</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'This is a string'</span>
+<span class="token string">"This is another string"</span></code></pre>
 <p>字符串的值被双引号或单引号圈起，这两种表示法在程序中完全一样，都允许你在字符串内部引用引号：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Isn\'</span>t that grand<span class="string">'</span></span><br><span class="line"><span class="string">"Isn'</span>t that grand<span class="string">"</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'Isn\'t that grand'</span>
+<span class="token string">"Isn't that grand"</span></code></pre>
 <p>为了让文本字符串扩展到多行，可以在一行末尾使用反斜杠符号，意味着下一行仍是上面字符串的延续：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">big = <span class="string">"This is a long\</span></span><br><span class="line"><span class="string">string that spans two lines"</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">big <span class="token operator">=</span> <span class="token string">"This is a long\
+string that spans two lines"</span></code></pre>
 <p>如果想让字符串的输出分为两行，可以在字符串中嵌入换行符：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">big = <span class="string">"This is a long\n\</span></span><br><span class="line"><span class="string">string that spans two lines"</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">big <span class="token operator">=</span> <span class="token string">"This is a long\n\
+string that spans two lines"</span></code></pre>
 <p>还有一种方式是用一对连续的三引用符将字符串圈起来：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bigger = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">This is a </span></span><br><span class="line"><span class="string">string that</span></span><br><span class="line"><span class="string">spans two lines</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">bigger <span class="token operator">=</span> <span class="token string">""</span><span class="token string">"
+This is a 
+string that
+spans two lines
+"</span><span class="token string">""</span></code></pre>
 <p>使用上述的三引用符无需加入续行符和换行符，文本将按照原貌被储存</p>
 <p>在Python的字符串对象中，也可以在字符串前面加一个r或R，表示该字符串是一个真正的”原”字符串，需要它的原貌:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">big = r<span class="string">"This is a long\n\</span></span><br><span class="line"><span class="string">string that spans two lines"</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">big <span class="token operator">=</span> r<span class="token string">"This is a long\n\
+string that spans two lines"</span></code></pre>
 <p>使用原字符串，反斜线转义和换行符完全被忽略。还可以在字符串前面加一个U或u使之成为一个Unicode字符串：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello = u<span class="string">"hello\u0020World"</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">hello <span class="token operator">=</span> u<span class="token string">"hello\u0020World"</span></code></pre>
 <p>字符串是无法改变的，意味着无论你对它进行什么操作，你总是创建了一个新的字符串对象，而不是改变了原有字符串。字符串是字符的序列，所以可以通过索引的方法访问单个字符：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myStr = <span class="string">"my string"</span></span><br><span class="line">myStr[0]  <span class="comment">#m</span></span><br><span class="line">myStr[-2]  <span class="comment">#n</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">myStr <span class="token operator">=</span> <span class="token string">"my string"</span>
+myStr<span class="token punctuation">[</span>0<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#m</span>
+myStr<span class="token punctuation">[</span>-2<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#n</span></code></pre>
 <p>也可以用切片的方式访问字符串的一部分：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myStr[1:4] <span class="comment">#y s</span></span><br><span class="line">myStr[3:] <span class="comment">#string</span></span><br><span class="line">myStr[-3:]  <span class="comment">#ing</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">myStr<span class="token punctuation">[</span>1:4<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#y s</span>
+myStr<span class="token punctuation">[</span>3:<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#string</span>
+myStr<span class="token punctuation">[</span>-3:<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#ing</span></code></pre>
 <p>切片还能增加第三个参数，作为切片的步长  </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myStr[:3:-1]  <span class="comment">#gnirt</span></span><br><span class="line">myStr[1::2]  <span class="comment">#ysrn</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">myStr<span class="token punctuation">[</span>:3:-1<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#gnirt</span>
+myStr<span class="token punctuation">[</span>1::2<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#ysrn</span></code></pre>
 <p>可以通过循环遍历字符串:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> myStr</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> c <span class="token keyword">in</span> myStr</code></pre>
 <blockquote>
 <p>注：不能试图改变字符串序列，字符串不能改变</p>
 </blockquote>
 <h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><h3 id="读取文件"><a href="#读取文件" class="headerlink" title="读取文件"></a>读取文件</h3><h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>可以使用下列语句逐行对文件对象进行处理:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> fileName:</span><br><span class="line">    process(line)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> line <span class="token keyword">in</span> fileName:
+    process<span class="token punctuation">(</span>line<span class="token punctuation">)</span></code></pre>
 <p>对于二进制数据，行是一个没有意义的函数，所以可以使用read()函数读取二进制文件。当read()不传入参数时，read会读取并返回文件中所有的剩余字节</p>
 <h4 id="一次性读取文件"><a href="#一次性读取文件" class="headerlink" title="一次性读取文件"></a>一次性读取文件</h4><p>一次性读取文件放入一个大字符串中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">all_the_text = open(<span class="string">'fileName.txt'</span>).<span class="built_in">read</span>()  <span class="comment">#文本文件所有文本</span></span><br><span class="line">all_the_data = open(<span class="string">'fileName'</span>,<span class="string">'rb'</span>).<span class="built_in">read</span>()   <span class="comment">#二进制文件所有数据</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">all_the_text <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'fileName.txt'</span><span class="token punctuation">)</span>.read<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#文本文件所有文本</span>
+all_the_data <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'fileName'</span>,<span class="token string">'rb'</span><span class="token punctuation">)</span>.read<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#二进制文件所有数据</span></code></pre>
 <p>为了安全起见，最好还是给打开的文件对象指定一个名字，这样可以保证在完成操作后迅速关闭文件，防止一些无用的文件对象占用内存：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">file_object = open(<span class="string">'fileName.txt'</span>)</span><br><span class="line">try:</span><br><span class="line">    all_the_text = file_object.read</span><br><span class="line">finally</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
+<pre class=" language-bash"><code class="language-bash">file_object <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">'fileName.txt'</span><span class="token punctuation">)</span>
+try:
+    all_the_text <span class="token operator">=</span> file_object.read
+finally</code></pre>
 
             </div>
             <hr/>
@@ -515,7 +520,7 @@
                   property="dct:title" rel="dct:type">
                     《Python(8)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/07/Python8/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/07/python8/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -581,7 +586,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/09/dataStructure1/">
+                <a href="/2019/10/09/datastructure1/">
                     <div class="card-image">
                         
                         
@@ -634,7 +639,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/07/Python5/">
+                <a href="/2019/10/07/python5/">
                     <div class="card-image">
                         
                         
@@ -830,7 +835,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

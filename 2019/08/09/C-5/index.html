@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="C语言(五), Hexo">
     <meta name="description" content="指针的概念指针就是内存中的地址，地址是内存单元的编号
-123int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)int i =3;p = &amp;amp;i;//p保存的是i的地址，">
+int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)
+int i =3;
+p = &amp;amp;i;//p保存的是i的地址，因">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -391,7 +393,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.8k
+                        1.7k
                     </div>
                     
 
@@ -415,15 +417,21 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h2><p>指针就是内存中的地址，地址是内存单元的编号</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;//p保存的是i的地址，因此p指向i，p的值与i的值互不影响</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>//p是变量的名字，int *表示p变量存放的是int类型变量的地址<span class="token punctuation">(</span>int *是p变量的数据类型<span class="token punctuation">)</span>
+int i <span class="token operator">=</span>3<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>//p保存的是i的地址，因此p指向i，p的值与i的值互不影响</code></pre>
 <blockquote>
 <p>注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;</span><br><span class="line">j = *p;//*p相当于i,所以j=i</span><br><span class="line">//结果为 j =3</span><br><span class="line">//*p就是以p的内容为地址的变量</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i <span class="token operator">=</span>3<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+j <span class="token operator">=</span> *p<span class="token punctuation">;</span>//*p相当于i,所以j<span class="token operator">=</span>i
+//结果为 j <span class="token operator">=</span>3
+//*p就是以p的内容为地址的变量</code></pre>
 <h2 id="指针和指针变量"><a href="#指针和指针变量" class="headerlink" title="指针和指针变量"></a>指针和指针变量</h2><p>指针是地址，指针变量是存放地址的变量，指针和指针变量是两个不同的概念，但是叙述时会把指针变量简称为指针，实际它们含义不一样。</p>
 <h3 id="一个指针变量占几个字节"><a href="#一个指针变量占几个字节" class="headerlink" title="一个指针变量占几个字节"></a>一个指针变量占几个字节</h3><p><font color="#fb8c00">sizeof(数据类型)</font>：返回值是该数据类型所占的字节数<br><font color="#fb8c00">sizeof(变量名)</font>：返回值是该变量所占的字节数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sizeof(int)=4   sizeof(char)=1 sizeof(double)=8</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">sizeof<span class="token punctuation">(</span>int<span class="token punctuation">)</span><span class="token operator">=</span>4   sizeof<span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token operator">=</span>1 sizeof<span class="token punctuation">(</span>double<span class="token punctuation">)</span><span class="token operator">=</span>8</code></pre>
 <ul>
 <li>假设p指向char类型的变量(1个字节)</li>
 <li>假设q指向int类型的变量(4个字节)</li>
@@ -433,29 +441,85 @@
 <blockquote>
 <p>注：一个指针变量，无论它指向的变量占几个字节，该指针变量本身只占四个字节</p>
 </blockquote>
-<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =10;</span><br><span class="line">int * p = &amp;i;</span><br><span class="line">int ** q = &amp;p;//q是存放int*类型变量的地址的指针</span><br><span class="line">int *** r = &amp;q;//r是存放int**类型变量的地址的指针</span><br><span class="line"></span><br><span class="line">r = &amp;p;//error,r只能存放int**类型的变量的地址</span><br></pre></td></tr></table></figure>
+<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2><pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>10<span class="token punctuation">;</span>
+int * p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+int ** q <span class="token operator">=</span> <span class="token operator">&amp;</span>p<span class="token punctuation">;</span>//q是存放int*类型变量的地址的指针
+int *** r <span class="token operator">=</span> <span class="token operator">&amp;</span>q<span class="token punctuation">;</span>//r是存放int**类型变量的地址的指针
 
-<h2 id="指针的分类"><a href="#指针的分类" class="headerlink" title="指针的分类"></a>指针的分类</h2><h3 id="基本类型指针"><a href="#基本类型指针" class="headerlink" title="基本类型指针"></a>基本类型指针</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i=5;</span><br><span class="line">p = &amp;i;</span><br></pre></td></tr></table></figure>
+r <span class="token operator">=</span> <span class="token operator">&amp;</span>p<span class="token punctuation">;</span>//error,r只能存放int**类型的变量的地址</code></pre>
+<h2 id="指针的分类"><a href="#指针的分类" class="headerlink" title="指针的分类"></a>指针的分类</h2><h3 id="基本类型指针"><a href="#基本类型指针" class="headerlink" title="基本类型指针"></a>基本类型指针</h3><pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i<span class="token operator">=</span>5<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>注：在C语言中NULL指针定义为0</p>
 </blockquote>
-<h4 id="基本类型指针的常见错误分析"><a href="#基本类型指针的常见错误分析" class="headerlink" title="基本类型指针的常见错误分析"></a>基本类型指针的常见错误分析</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =5;</span><br><span class="line">* p =i;//error,相当于将p指针指向的int变量赋值成i，但p指针指向的int变量的控制权限并没有分配给本程序</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p =&amp;i;</span><br><span class="line">//* q =p;//error,*q为int类型，而p为int*类型</span><br><span class="line">//* q = *p;//error</span><br></pre></td></tr></table></figure>
+<h4 id="基本类型指针的常见错误分析"><a href="#基本类型指针的常见错误分析" class="headerlink" title="基本类型指针的常见错误分析"></a>基本类型指针的常见错误分析</h4><pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+* p <span class="token operator">=</span>i<span class="token punctuation">;</span>//error,相当于将p指针指向的int变量赋值成i，但p指针指向的int变量的控制权限并没有分配给本程序</code></pre>
+<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+int * p<span class="token punctuation">;</span>
+int * q<span class="token punctuation">;</span>
+p <span class="token operator">=</span><span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+//* q <span class="token operator">=</span>p<span class="token punctuation">;</span>//error,*q为int类型，而p为int*类型
+//* q <span class="token operator">=</span> *p<span class="token punctuation">;</span>//error</code></pre>
 <blockquote>
 <p>注：q的空间是属于本程序的，所以本程序可以读写q的内容，但如果q的内部是垃圾值，则本程序不能读写* q的内容，因为* q所代表的内存单元的控制权限并没有分配给本程序</p>
 </blockquote>
 <h3 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h3><h4 id="指针和一维数组"><a href="#指针和一维数组" class="headerlink" title="指针和一维数组"></a>指针和一维数组</h4><h5 id="数组名"><a href="#数组名" class="headerlink" title="数组名"></a>数组名</h5><p>一维数组名是一个指针常量，存放的是第一个元素的地址</p>
 <h5 id="下标和指针的关系"><a href="#下标和指针的关系" class="headerlink" title="下标和指针的关系"></a>下标和指针的关系</h5><p>如果p是个指针变量，则p[i]永远等价于* （p+i）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//通过函数输出数组的内容</span><br><span class="line">void pArr(int * p,int len)&#123;</span><br><span class="line">    //p为数组名，len为数组大小</span><br><span class="line">    //a[0]=*(a+0),a[2]=*(a+2)</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">"%d"</span>,*(p+i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">	a[4]=&#123;1,2,3,4&#125;;</span><br><span class="line">	b[6]=&#123;1,2,3,4,5,6&#125;;</span><br><span class="line">	c[100]=&#123;1,2,34&#125;;</span><br><span class="line">    pArr(a,4);</span><br><span class="line">    pArr(b,6);</span><br><span class="line">    pArr(c,100);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">//通过函数输出数组的内容
+void pArr<span class="token punctuation">(</span>int * p,int len<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    //p为数组名，len为数组大小
+    //a<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token operator">=</span>*<span class="token punctuation">(</span>a+0<span class="token punctuation">)</span>,a<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token operator">=</span>*<span class="token punctuation">(</span>a+2<span class="token punctuation">)</span>
+    for<span class="token punctuation">(</span>int i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        printf<span class="token punctuation">(</span><span class="token string">"%d"</span>,*<span class="token punctuation">(</span>p+i<span class="token punctuation">))</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    printf<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    a<span class="token punctuation">[</span>4<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,3,4<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    b<span class="token punctuation">[</span>6<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,3,4,5,6<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    c<span class="token punctuation">[</span>100<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,34<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>a,4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>b,6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>c,100<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h5 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h5><ul>
 <li>指针变量不能相加，不能相乘，不能相除</li>
-<li>如果两个指针变量指向的是同一块连续空间中的不同存储单元，则这两个指针变量可以相减<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int j =10;</span><br><span class="line">int * p =&amp;i;</span><br><span class="line">int * q =&amp;j;</span><br><span class="line">p-q;//没有实际意义</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int a[5];</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p = &amp;a[2];</span><br><span class="line">q = &amp;a[4];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"p和q所指向单元相隔%d个单元\n"</span>,p-q);</span><br></pre></td></tr></table></figure>
-
+<li>如果两个指针变量指向的是同一块连续空间中的不同存储单元，则这两个指针变量可以相减<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+int j <span class="token operator">=</span>10<span class="token punctuation">;</span>
+int * p <span class="token operator">=</span><span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+int * q <span class="token operator">=</span><span class="token operator">&amp;</span>j<span class="token punctuation">;</span>
+p-q<span class="token punctuation">;</span>//没有实际意义</code></pre>
+<pre class=" language-bash"><code class="language-bash">int a<span class="token punctuation">[</span>5<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int * p<span class="token punctuation">;</span>
+int * q<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+q <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>4<span class="token punctuation">]</span><span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"p和q所指向单元相隔%d个单元\n"</span>,p-q<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 </li>
 </ul>
-<h4 id="指针和二维数组"><a href="#指针和二维数组" class="headerlink" title="指针和二维数组"></a>指针和二维数组</h4><h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><h4 id="通过被调函数修改主调函数普通变量的值"><a href="#通过被调函数修改主调函数普通变量的值" class="headerlink" title="通过被调函数修改主调函数普通变量的值"></a>通过被调函数修改主调函数普通变量的值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * i) &#123;</span><br><span class="line">	*i = 1;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	int a = 2;</span><br><span class="line">	g(&amp;a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);//最终输出为1</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="指针使函数返回一个以上值"><a href="#指针使函数返回一个以上值" class="headerlink" title="指针使函数返回一个以上值"></a>指针使函数返回一个以上值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * p,int * q)&#123;</span><br><span class="line">	*p = 1;</span><br><span class="line">	*q = 2;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int a=3,b=4;</span><br><span class="line">   g(&amp;a,&amp;b);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d/n"</span>,a,b);//a=1,b=2</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="指针和二维数组"><a href="#指针和二维数组" class="headerlink" title="指针和二维数组"></a>指针和二维数组</h4><h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><h4 id="通过被调函数修改主调函数普通变量的值"><a href="#通过被调函数修改主调函数普通变量的值" class="headerlink" title="通过被调函数修改主调函数普通变量的值"></a>通过被调函数修改主调函数普通变量的值</h4><pre class=" language-bash"><code class="language-bash">int g<span class="token punctuation">(</span>int * i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    *i <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    int a <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+    g<span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,a<span class="token punctuation">)</span><span class="token punctuation">;</span>//最终输出为1
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="指针使函数返回一个以上值"><a href="#指针使函数返回一个以上值" class="headerlink" title="指针使函数返回一个以上值"></a>指针使函数返回一个以上值</h4><pre class=" language-bash"><code class="language-bash">int g<span class="token punctuation">(</span>int * p,int * q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    *p <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+    *q <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   int a<span class="token operator">=</span>3,b<span class="token operator">=</span>4<span class="token punctuation">;</span>
+   g<span class="token punctuation">(</span><span class="token operator">&amp;</span>a,<span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   printf<span class="token punctuation">(</span><span class="token string">"%d/n"</span>,a,b<span class="token punctuation">)</span><span class="token punctuation">;</span>//a<span class="token operator">=</span>1,b<span class="token operator">=</span>2
+   <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="指针和结构体"><a href="#指针和结构体" class="headerlink" title="指针和结构体"></a>指针和结构体</h3><h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><h3 id="传统数组的缺点-静态数组"><a href="#传统数组的缺点-静态数组" class="headerlink" title="传统数组的缺点(静态数组)"></a>传统数组的缺点(静态数组)</h3><ul>
 <li>数组长度必须事先指定，且只能是常熟，不能是变量</li>
 <li>传统形式定义的数组内存无法手动释放，只能在函数运行完毕时由系统自动释放</li>
@@ -465,12 +529,35 @@
 <h3 id="为什么需要动态分配内存"><a href="#为什么需要动态分配内存" class="headerlink" title="为什么需要动态分配内存"></a>为什么需要动态分配内存</h3><p>动态数组很好的解决了传统数组的4个缺陷</p>
 <p>###　动态内存分配举例(动态数组的构造)</p>
 <h4 id="malloc函数的使用"><a href="#malloc函数的使用" class="headerlink" title="malloc函数的使用"></a>malloc函数的使用</h4><p>malloc 是memory allocate(内存分配)的缩写</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i = 5;//静态分配4个字节</span><br><span class="line">int * p = (int *)malloc(4);//4表示请求系统为本程序分配4个字节</span><br><span class="line">//一个分配了8个字节，p占用4个字节，p所指向的内存也占4个字节</span><br><span class="line">//p本身所占的内存是静态分配的，p所指向的内存是动态分配的</span><br><span class="line"></span><br><span class="line">* p =5;</span><br><span class="line">free(p);//表示把p所指向的内存释放掉，p本身的内存是静态的，只能在p变量所在函数运行终止时由系统自动释放</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span> 5<span class="token punctuation">;</span>//静态分配4个字节
+int * p <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>//4表示请求系统为本程序分配4个字节
+//一个分配了8个字节，p占用4个字节，p所指向的内存也占4个字节
+//p本身所占的内存是静态分配的，p所指向的内存是动态分配的
+
+* p <span class="token operator">=</span>5<span class="token punctuation">;</span>
+free<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>//表示把p所指向的内存释放掉，p本身的内存是静态的，只能在p变量所在函数运行终止时由系统自动释放</code></pre>
 <blockquote>
 <p>注：1.使用malloc函数必须加上malloc.h头文件<br>      2.malloc函数只能返回第一个字节的地址<br>      3.malloc函数只有一个形参，并且形参是整形</p>
 </blockquote>
-<h4 id="动态构建一维数组"><a href="#动态构建一维数组" class="headerlink" title="动态构建一维数组"></a>动态构建一维数组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int * pArr;</span><br><span class="line">int len;</span><br><span class="line">int i;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"请输入数组元素个数："</span>);</span><br><span class="line">scanf(<span class="string">"%d"</span>,&amp;len);</span><br><span class="line">pArr = (int *)malloc(4*len);//每4个字节代表一个元素(int为4个字节)</span><br><span class="line"></span><br><span class="line">//对动态一维数组进行赋值</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  scanf(<span class="string">"%d"</span>,pArr+i);</span><br><span class="line">&#125;</span><br><span class="line">//对动态一维数组进行输出</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*(pArr+i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">realloc(pArr,100);//把pArr指针所指向的内存扩大到100个字节</span><br><span class="line"></span><br><span class="line">free(pArr);//释放pArr所指向的内存</span><br></pre></td></tr></table></figure>
+<h4 id="动态构建一维数组"><a href="#动态构建一维数组" class="headerlink" title="动态构建一维数组"></a>动态构建一维数组</h4><pre class=" language-bash"><code class="language-bash">int * pArr<span class="token punctuation">;</span>
+int len<span class="token punctuation">;</span>
+int i<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"请输入数组元素个数："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,<span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pArr <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>4*len<span class="token punctuation">)</span><span class="token punctuation">;</span>//每4个字节代表一个元素<span class="token punctuation">(</span>int为4个字节<span class="token punctuation">)</span>
 
+//对动态一维数组进行赋值
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,pArr+i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+//对动态一维数组进行输出
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*<span class="token punctuation">(</span>pArr+i<span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+realloc<span class="token punctuation">(</span>pArr,100<span class="token punctuation">)</span><span class="token punctuation">;</span>//把pArr指针所指向的内存扩大到100个字节
+
+free<span class="token punctuation">(</span>pArr<span class="token punctuation">)</span><span class="token punctuation">;</span>//释放pArr所指向的内存</code></pre>
 <h3 id="静态内存和动态内存的比较"><a href="#静态内存和动态内存的比较" class="headerlink" title="静态内存和动态内存的比较"></a>静态内存和动态内存的比较</h3><h4 id="静态内存"><a href="#静态内存" class="headerlink" title="静态内存"></a>静态内存</h4><ul>
 <li>静态内存是由系统自动分配的，由系统自动释放</li>
 <li>静态内存是在栈中分配的</li>
@@ -479,8 +566,25 @@
 <li>动态内存手动分配，手动释放</li>
 <li>动态内存是在堆中分配的</li>
 </ul>
-<h3 id="跨函数使用内存的问题"><a href="#跨函数使用内存的问题" class="headerlink" title="跨函数使用内存的问题"></a>跨函数使用内存的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">    int i = 5;</span><br><span class="line">    *q = &amp;i;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">  int * p;</span><br><span class="line">  f(&amp;p);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//error,语法无错误，但是i变量的内存在f()函数执行完毕后已经被释放(i已经不存在)，此时*p指向的并不是i</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">  * q = (int *)malloc(sizeof(int));</span><br><span class="line">  ** q = 5;//等价于*p=5</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int * p;</span><br><span class="line">   f(&amp;p);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//OK,动态分配的内存是手动释放，f()中的** q在函数执行完毕后依然存在</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="跨函数使用内存的问题"><a href="#跨函数使用内存的问题" class="headerlink" title="跨函数使用内存的问题"></a>跨函数使用内存的问题</h3><pre class=" language-bash"><code class="language-bash">void f<span class="token punctuation">(</span>int ** q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    int i <span class="token operator">=</span> 5<span class="token punctuation">;</span>
+    *q <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  int * p<span class="token punctuation">;</span>
+  f<span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*p<span class="token punctuation">)</span><span class="token punctuation">;</span>//error,语法无错误，但是i变量的内存在f<span class="token punctuation">(</span><span class="token punctuation">)</span>函数执行完毕后已经被释放<span class="token punctuation">(</span>i已经不存在<span class="token punctuation">)</span>，此时*p指向的并不是i
+  <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">void f<span class="token punctuation">(</span>int ** q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  * q <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>sizeof<span class="token punctuation">(</span>int<span class="token punctuation">))</span><span class="token punctuation">;</span>
+  ** q <span class="token operator">=</span> 5<span class="token punctuation">;</span>//等价于*p<span class="token operator">=</span>5
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   int * p<span class="token punctuation">;</span>
+   f<span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*p<span class="token punctuation">)</span><span class="token punctuation">;</span>//OK,动态分配的内存是手动释放，f<span class="token punctuation">(</span><span class="token punctuation">)</span>中的** q在函数执行完毕后依然存在
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -517,7 +621,7 @@
                   property="dct:title" rel="dct:type">
                     《C语言(五)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/09/C-5/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/09/c-5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -583,7 +687,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/13/C-6/">
+                <a href="/2019/08/13/c-6/">
                     <div class="card-image">
                         
                         
@@ -632,7 +736,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/09/C-4/">
+                <a href="/2019/08/09/c-4/">
                     <div class="card-image">
                         
                         
@@ -828,7 +932,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

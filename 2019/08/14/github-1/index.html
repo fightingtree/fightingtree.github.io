@@ -31,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -436,14 +436,19 @@
 <h3 id="工作区-wroking-directory"><a href="#工作区-wroking-directory" class="headerlink" title="工作区(wroking directory)"></a>工作区(wroking directory)</h3><p>添加、编辑、修改文件等操作</p>
 <h3 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h3><p>工作区—&gt;暂存区—&gt;git仓库</p>
 <h2 id="git初始化-将文件上传到github"><a href="#git初始化-将文件上传到github" class="headerlink" title="git初始化(将文件上传到github)"></a>git初始化(将文件上传到github)</h2><p>git安装完成后点击右键后再点Git Bash Here在终端窗口中输入下列命令</p>
-<h3 id="基本信息设置"><a href="#基本信息设置" class="headerlink" title="基本信息设置"></a>基本信息设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1、设置用户名</span><br><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line"></span><br><span class="line">2、设置用户名邮箱</span><br><span class="line">git config --global user.email <span class="string">"邮箱地址"</span></span><br></pre></td></tr></table></figure>
+<h3 id="基本信息设置"><a href="#基本信息设置" class="headerlink" title="基本信息设置"></a>基本信息设置</h3><pre class=" language-bash"><code class="language-bash">1、设置用户名
+<span class="token function">git</span> config --global user.name <span class="token string">"用户名"</span>
+
+2、设置用户名邮箱
+<span class="token function">git</span> config --global user.email <span class="token string">"邮箱地址"</span></code></pre>
 <blockquote>
 <p>注：该设置在github仓库主页显示谁提交了该文件</p>
 </blockquote>
 <h3 id="初始化git-创建git仓库"><a href="#初始化git-创建git仓库" class="headerlink" title="初始化git(创建git仓库)"></a>初始化git(创建git仓库)</h3><ol>
-<li>在要上传的文件夹的根目录下打开git bash后输入命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件夹名</span><br><span class="line">git init</span><br></pre></td></tr></table></figure></li>
-<li>将文件提交到暂存区<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add 文件名</span><br></pre></td></tr></table></figure>
-
+<li>在要上传的文件夹的根目录下打开git bash后输入命令<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> 文件夹名
+<span class="token function">git</span> init</code></pre>
+</li>
+<li>将文件提交到暂存区<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> add 文件名</code></pre>
 </li>
 </ol>
 <blockquote>
@@ -451,15 +456,17 @@
 </blockquote>
 <ol start="3">
 <li><p>将文件从暂存区提交到仓库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"描述"</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> commit -m <span class="token string">"描述"</span></code></pre>
 <p>描述内容根据个人需要进行输入，描述内容在github的显示如下<br><img src="https://ae01.alicdn.com/kf/Hc62dfe7f8b1f4855a4086a4fecb3cf32p.jpg" alt=""></p>
 </li>
 <li><p>查看暂存区文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status   //若出现nothing to commit证明提交成功</span><br></pre></td></tr></table></figure></li>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin github项目地址</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> status   //若出现nothing to commit证明提交成功</code></pre>
+</li>
+<li><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> remote add origin github项目地址</code></pre>
 <p>github项目地址<br><img src="https://ae01.alicdn.com/kf/H931645851e3a4e189265eb074f211259r.jpg" alt=""></p>
 </li>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure></li>
+<li><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> push origin master</code></pre>
+</li>
 </ol>
 
             </div>
@@ -563,7 +570,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/25/C_7/">
+                <a href="/2019/08/25/c-7/">
                     <div class="card-image">
                         
                         
@@ -612,7 +619,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/13/C-6/">
+                <a href="/2019/08/13/c-6/">
                     <div class="card-image">
                         
                         
@@ -808,7 +815,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

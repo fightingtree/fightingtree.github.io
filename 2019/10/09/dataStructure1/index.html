@@ -36,7 +36,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -479,7 +479,8 @@
 <li>初始化队列</li>
 </ol>
 <ul>
-<li>容器为列表，列表由10个None cap组成<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[None,None,None,None,None,None,None,None,None,None,None]</span><br></pre></td></tr></table></figure></li>
+<li>容器为列表，列表由10个None cap组成<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>None,None,None,None,None,None,None,None,None,None,None<span class="token punctuation">]</span></code></pre>
+</li>
 <li>队列长度默认为0</li>
 <li>队列首部元素的索引位置默认为0</li>
 </ul>
@@ -501,8 +502,14 @@
 <ul>
 <li>需要传入增加大小的参数cap</li>
 <li>用一个列表保存旧的队列的值</li>
-<li>重新设置容器的大小：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新的容器大小 = [None]* <span class="built_in">cap</span></span><br></pre></td></tr></table></figure></li>
-<li>将保存旧队列的列表的值重新赋值到新队列中：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a. 保存旧队列首部元素索引</span><br><span class="line">b. 将旧列表的元素按照原本位置放置到新的容器中，映射关系公式为：</span><br><span class="line">新队列的第一个元素对应旧队列的首部元素</span><br><span class="line">新队列其他元素对于旧队列的其他元素索引位置关系公式 ：</span><br><span class="line">            索引位置 = (旧队列首部元素的索引位置+1) % 旧容器的长度</span><br></pre></td></tr></table></figure></li>
+<li>重新设置容器的大小：<pre class=" language-bash"><code class="language-bash">新的容器大小 <span class="token operator">=</span> <span class="token punctuation">[</span>None<span class="token punctuation">]</span>* cap</code></pre>
+</li>
+<li>将保存旧队列的列表的值重新赋值到新队列中：<pre class=" language-bash"><code class="language-bash">a. 保存旧队列首部元素索引
+b. 将旧列表的元素按照原本位置放置到新的容器中，映射关系公式为：
+新队列的第一个元素对应旧队列的首部元素
+新队列其他元素对于旧队列的其他元素索引位置关系公式 ：
+          索引位置 <span class="token operator">=</span> <span class="token punctuation">(</span>旧队列首部元素的索引位置+1<span class="token punctuation">)</span> % 旧容器的长度</code></pre>
+</li>
 <li>将队列首部元素的索引置为0</li>
 </ul>
 <ol start="5">
@@ -512,7 +519,8 @@
 <li>判断队列是否为空</li>
 <li>将首部元素的值放入一个变量中</li>
 <li>将原首部元素的索引位置的值设置为None</li>
-<li>使用插入队列的公式将队列的首部元素的索引位置重新设置：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新的首部元素位置索引 = (旧的首部元素位置索引+1) % 容器的总长度</span><br></pre></td></tr></table></figure></li>
+<li>使用插入队列的公式将队列的首部元素的索引位置重新设置：<pre class=" language-bash"><code class="language-bash">新的首部元素位置索引 <span class="token operator">=</span> <span class="token punctuation">(</span>旧的首部元素位置索引+1<span class="token punctuation">)</span> % 容器的总长度</code></pre>
+</li>
 <li>队列长度减1</li>
 </ul>
 <ol start="6">
@@ -521,7 +529,8 @@
 <ul>
 <li>需要传值</li>
 <li>判断容器长度是否足够，若不够则调用重置容器大小的方法增加队列容器大小</li>
-<li>在队列末尾加入元素的索引位置公式为：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新元素索引位置 = (队列首部元素的索引+队列的长度) % 容器的总长度</span><br></pre></td></tr></table></figure></li>
+<li>在队列末尾加入元素的索引位置公式为：<pre class=" language-bash"><code class="language-bash">新元素索引位置 <span class="token operator">=</span> <span class="token punctuation">(</span>队列首部元素的索引+队列的长度<span class="token punctuation">)</span> % 容器的总长度</code></pre>
+</li>
 <li>为新的索引位置赋值</li>
 <li>队列的长度+1</li>
 </ul>
@@ -797,7 +806,7 @@
                   property="dct:title" rel="dct:type">
                     《数据结构与算法》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/09/dataStructure1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/09/datastructure1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -912,7 +921,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/07/Python8/">
+                <a href="/2019/10/07/python8/">
                     <div class="card-image">
                         
                         
@@ -1108,7 +1117,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

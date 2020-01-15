@@ -28,7 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -456,23 +456,23 @@
 </ul>
 <h2 id="工具介绍"><a href="#工具介绍" class="headerlink" title="工具介绍"></a>工具介绍</h2><h3 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h3><p>APT(Advanced Package Tool)是一个打包管理系统。APT运行你使用命令行的方式，快速便捷地安装、更新、删除软件。除了简单以外，APT最大的优势是可以自动为你解析软件之间的依赖关系。也就是说，如果你安装的软件包还需要其他软件，APT会自动为你定位并安装这个软件。这种自动解析软件依赖性的方法是对过去“依赖地狱”(Dependency Hell)的重大改进。</p>
 <p>如果我们想在Linux上安装工具，只要知道安装的软件包的名字A，在命令行输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt-get upgrade  //在软件安装前最好运行此命令，这样可以确保获得安装软件的最新版本</span><br><span class="line">apt-get install A</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> upgrade  //在软件安装前最好运行此命令，这样可以确保获得安装软件的最新版本
+<span class="token function">apt-get</span> <span class="token function">install</span> A</code></pre>
 <p>APT要求在运行安装命令之前知所要安装软件的确切名称。如果不确定软件名称的拼写，可以使用<font color="#fb8c00">apt-cache search A</font>命令,它将显示任何匹配搜索的软件包或者工具名称。</p>
 <blockquote>
 <p>注：如果你对渗透测试或黑客感兴趣，就必须掌握linux。黑客常用的Linux操作系统一般有Kali linux。同时可以使用虚拟机安装上述系统。</p>
 </blockquote>
 <h3 id="配置网络"><a href="#配置网络" class="headerlink" title="配置网络"></a>配置网络</h3><h4 id="查看端口"><a href="#查看端口" class="headerlink" title="查看端口"></a>查看端口</h4><p>打开终端，输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig -a  //ifconfig可以理解为“我想要配置一个端口”</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ifconfig</span> -a  //ifconfig可以理解为“我想要配置一个端口”</code></pre>
 <p>这条命令会把计算机上所有可用的接口以列表的形式罗列出来。大多数计算机至少多会有一个<font color="#fb8c00">eth0</font>网卡和一个<font color="#fb8c00">lo</font>接口。“eth0”口是计算机上的第一个以太网卡，“lo”接口是计算机的环回口。根据计算机的硬件配置，可能会有其他的接口或接口设备清单，如果你使用VM来运行kali，你的主接口一般就是eth0。</p>
 <h4 id="配置IP地址"><a href="#配置IP地址" class="headerlink" title="配置IP地址"></a>配置IP地址</h4><h5 id="手动配置"><a href="#手动配置" class="headerlink" title="手动配置"></a>手动配置</h5><p>如果我们想给网卡分配一个IP地址192.168.1.23，在命令行中输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig eth0 1 192.168.1.23</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ifconfig</span> eth0 1 192.168.1.23</code></pre>
 <h5 id="通过DHCP分配地址"><a href="#通过DHCP分配地址" class="headerlink" title="通过DHCP分配地址"></a>通过DHCP分配地址</h5><p>在命令行执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dhclient</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">dhclient</code></pre>
 <p>dhclient会试图自动为你的NIC分配IP地址，并配置必要设置，包括DNS和网关信息。如果是在虚拟机中运行操作系统，那么虚拟机将充当DHCP服务器。</p>
 <h3 id="关闭-重启Kali"><a href="#关闭-重启Kali" class="headerlink" title="关闭/重启Kali"></a>关闭/重启Kali</h3><p>在命令行输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poweroff  //关闭</span><br><span class="line">reboot   //重启</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">poweroff  //关闭
+<span class="token function">reboot</span>   //重启</code></pre>
 <p>在完成渗透测试时，关闭或重启攻击机器都是很好的主意，这种好习惯可以避免在离开机器时无意中保持工具的运行，或者不恰当地发送流量。</p>
 <h2 id="黑客实验环境的搭建与使用"><a href="#黑客实验环境的搭建与使用" class="headerlink" title="黑客实验环境的搭建与使用"></a>黑客实验环境的搭建与使用</h2><p>黑客实验环境就是一个沙箱环境，在这里流量和攻击被隔离，或者不会触及到未授权和未经同意的目标。搭建实验环境至少需要两台计算机：一台模拟攻击机器，一台模拟受攻击机器。还可以有其他配置方法。对黑客环境而言，最至关重要的一点是要保证网络隔离，你必须通过配置其网络环境来确保通信流量不会逃逸或流出本网络之外。</p>
 <p>搭建沙箱环境，最简单最有效的方法是将你的网络与互联网断开：</p>
@@ -545,7 +545,7 @@
                   property="dct:title" rel="dct:type">
                     《渗透测试(1)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/13/penetrationTest1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/13/penetrationtest1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -611,7 +611,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/13/penetrationTest2/">
+                <a href="/2019/11/13/penetrationtest2/">
                     <div class="card-image">
                         
                         
@@ -672,7 +672,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/11/webSecurity11/">
+                <a href="/2019/11/11/websecurity11/">
                     <div class="card-image">
                         
                         
@@ -872,7 +872,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

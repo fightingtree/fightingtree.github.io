@@ -32,7 +32,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -429,10 +429,15 @@
 <li>极少情况下可能包括由应用程序处理的其他所有HTTP消息头，特别是User-Agent,Referer,Accept,Accept-Language和Host消息头等</li>
 </ul>
 <h4 id="URL文件路径"><a href="#URL文件路径" class="headerlink" title="URL文件路径"></a>URL文件路径</h4><p>查询字符串之前的URL部分并不被视为是进入点，因为人们认为它只是服务器文件系统上的目录和文件名称。但是，在使用RSET风格的URL的应用程序中，查询字符串之前的URL部分实际上可以作为数据参数，并且和进入点一样重要，因为用户输入就是查询字符串本身。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://eis/shop/browse/electronics/iPhone3G   //典型的REST风格的URL</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">http://eis/shop/browse/electronics/iPhone3G   //典型的REST风格的URL</code></pre>
 <p>在上述的示例中，electronics和iPhone3G应被视为存储搜索功能的参数</p>
 <h4 id="请求参数"><a href="#请求参数" class="headerlink" title="请求参数"></a>请求参数</h4><p>多数情况下，在URL查询字符串、消息主体和HTTP cookie中提交的参数都是明显的用户输入进入点，但是，一些应用程序并不对这些参数使用标准的name=value的格式，而是使用定制的方案。定制方案采用非标准查询字符串标记和字段分隔符，甚至可能在参数数据中嵌入其他数据方案(如XML)，以下是一些非标准参数格式的实例:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/dir/file;foo=bar&amp;foo2=bar2;</span><br><span class="line">/dir/file?foo=bar<span class="variable">$foo2</span>=bar2;</span><br><span class="line">/dir/file/foo%3dbar%26foo2%3dbar2;</span><br><span class="line">dir/foo.bar/file;</span><br><span class="line">/dir/file?param=foo:bar;</span><br><span class="line">/dir/file?data=%3cfoo%3ebar%3c%2ffoo%3e%3cfoo2%3ebar2%3c%2ffoo2%3e</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">/dir/file<span class="token punctuation">;</span>foo<span class="token operator">=</span>bar<span class="token operator">&amp;</span>foo2<span class="token operator">=</span>bar2<span class="token punctuation">;</span>
+/dir/file?foo<span class="token operator">=</span>bar<span class="token variable">$foo2</span><span class="token operator">=</span>bar2<span class="token punctuation">;</span>
+/dir/file/foo%3dbar%26foo2%3dbar2<span class="token punctuation">;</span>
+dir/foo.bar/file<span class="token punctuation">;</span>
+/dir/file?param<span class="token operator">=</span>foo:bar<span class="token punctuation">;</span>
+/dir/file?data<span class="token operator">=</span>%3cfoo%3ebar%3c%2ffoo%3e%3cfoo2%3ebar2%3c%2ffoo2%3e</code></pre>
 <h4 id="消息头"><a href="#消息头" class="headerlink" title="消息头"></a>消息头</h4><p>许多应用程序执行定制的日志功能，并可能会记录HTTP信息头(如Referer和User-Agent)的内容，应始终将这些消息头视为基于输入的攻击的可能进入点</p>
 <h4 id="带外通道"><a href="#带外通道" class="headerlink" title="带外通道"></a>带外通道</h4><p>应用程序通过带外通道接收攻击者能够控制的数据</p>
 <h3 id="确定服务器端技术"><a href="#确定服务器端技术" class="headerlink" title="确定服务器端技术"></a>确定服务器端技术</h3><h4 id="提取版本信息"><a href="#提取版本信息" class="headerlink" title="提取版本信息"></a>提取版本信息</h4><p>许多Web服务器公开与Web服务器软件本身和所安装的组件有关的详细版本信息。例如，HTTP Server消息头揭示大量与安装软件有关的详细版本信息。可能揭露与软件类型和版本有关信息的位置：</p>
@@ -447,16 +452,20 @@
 <li>HTTP规范中包含许多可选或由执行者自行决定是否使用的内容，许多Web服务器还以各种不同的方式违背或扩展该规范，因此除了Server消息头以外，还有大量迂回的方法可以用来识别Web服务器(比如Httprecon对应用程序进行扫描)</li>
 </ul>
 <h4 id="文件扩展名"><a href="#文件扩展名" class="headerlink" title="文件扩展名"></a>文件扩展名</h4><p>URL中使用的文件扩展名往往能够揭示应用程序执行相关功能所使用的平台或语言。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">asp--Microsoft Active Server Pages</span><br><span class="line">aspx--Microsoft ASP.NET</span><br><span class="line">jsp--java Server Pages</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">asp--Microsoft Active Server Pages
+aspx--Microsoft ASP.NET
+jsp--java Server Pages</code></pre>
 <p>即使应用程序在它公布内容中并不使用特定的文件扩展名，但我们还是能够确定服务器是否执行支持该扩展名的技术。例如，如果应用程序上安装有ASP.NET，请求一个不存在aspx文件将返回一个由ASP.NET框架生成的错误页面，但是，请求一个扩展名不同的不存在的文件将返回一个由Web服务器生成的常规错误消息。之所以出现上述不同的行为，是因为许多Web服务器将特殊的文件扩展名映射到特定的服务器端组件中，不同的组件处理错误的方式给不相同。</p>
 <h4 id="目录名称"><a href="#目录名称" class="headerlink" title="目录名称"></a>目录名称</h4><p>一些子目录名称常常表示应用程序使用了相关的技术,如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">servlet--Java servlet</span><br><span class="line">pls--Oracle Application Server PL/SQL网关</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">servlet--Java servlet
+pls--Oracle Application Server PL/SQL网关</code></pre>
 <h4 id="会话令牌"><a href="#会话令牌" class="headerlink" title="会话令牌"></a>会话令牌</h4><p>许多Web服务器和Web应用程序平台默认使用的会话令牌也揭示其所使用技术的信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">JSESSIONID--java平台</span><br><span class="line">ASPSESSIONID--Microsoft IIS服务器</span><br><span class="line">CFID/CFTOKEN--Cold Fusion</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">JSESSIONID--java平台
+ASPSESSIONID--Microsoft IIS服务器
+CFID/CFTOKEN--Cold Fusion </code></pre>
 <h4 id="第三方代码组件"><a href="#第三方代码组件" class="headerlink" title="第三方代码组件"></a>第三方代码组件</h4><p>许多Web应用程序整合第三方代码组件执行常见的功能，如购物车、登陆机制和公告牌，可以根据这些组件了解应用程序的功能。</p>
 <h3 id="确定服务器端功能"><a href="#确定服务器端功能" class="headerlink" title="确定服务器端功能"></a>确定服务器端功能</h3><p>通过留意应用程序向客户端披露的线索，通常可推断与服务器功能和结构有关的大量信息</p>
-<h4 id="仔细分析请求"><a href="#仔细分析请求" class="headerlink" title="仔细分析请求"></a>仔细分析请求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://wahh-app.com/workbench.aspx?template=NewBranch.tpl&amp;loc=/default&amp;ver=2.31&amp;edit=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h4 id="仔细分析请求"><a href="#仔细分析请求" class="headerlink" title="仔细分析请求"></a>仔细分析请求</h4><pre class=" language-bash"><code class="language-bash">https://wahh-app.com/workbench.aspx?template<span class="token operator">=</span>NewBranch.tpl<span class="token operator">&amp;</span>loc<span class="token operator">=</span>/default<span class="token operator">&amp;</span>ver<span class="token operator">=</span>2.31<span class="token operator">&amp;</span>edit<span class="token operator">=</span>false</code></pre>
 <ol>
 <li>这里的.aspx表示这是一个ASP.NET的应用程序</li>
 <li>template很可能用于指定一个文件名</li>
@@ -505,7 +514,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(3)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/18/webSecurity3/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/18/websecurity3/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -571,7 +580,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/18/Burp/">
+                <a href="/2019/10/18/burp/">
                     <div class="card-image">
                         
                         
@@ -832,7 +841,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

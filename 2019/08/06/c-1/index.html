@@ -4,11 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言(三), Hexo">
-    <meta name="description" content="什么是流程控制定义：程序代码执行的顺序
-流程控制的分类顺序执行按照代码顺序执行
-选择执行定义：某些代码可能执行，也可能不执行，有选择的执行某些代码
-ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真则执行语">
+    <meta name="keywords" content="C语言(一), Hexo">
+    <meta name="description" content="数据存储基本数据类型
+整数： 整形 int 短整型 short int 长整型 long int
+浮点数： 单精度浮点数 float 双精度浮点数 double
+字符： 单个字符 char
+复合数据类型 结构体 枚举  
+
+[变量
+变量的本">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +20,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言(三) | Hexo</title>
+    <title>C语言(一) | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -31,7 +35,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -245,13 +249,13 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C语言(三)
+                        C语言(一)
                     </div>
                 </div>
             </div>
@@ -386,14 +390,14 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-08
+                    2019-08-06
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        847
+                        968
                     </div>
                     
 
@@ -416,55 +420,134 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="什么是流程控制"><a href="#什么是流程控制" class="headerlink" title="什么是流程控制"></a>什么是流程控制</h2><p>定义：程序代码执行的顺序</p>
-<h2 id="流程控制的分类"><a href="#流程控制的分类" class="headerlink" title="流程控制的分类"></a>流程控制的分类</h2><h3 id="顺序执行"><a href="#顺序执行" class="headerlink" title="顺序执行"></a>顺序执行</h3><p>按照代码顺序执行</p>
-<h3 id="选择执行"><a href="#选择执行" class="headerlink" title="选择执行"></a>选择执行</h3><p>定义：某些代码可能执行，也可能不执行，有选择的执行某些代码</p>
-<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><h5 id="if最简单的用法"><a href="#if最简单的用法" class="headerlink" title="if最简单的用法"></a>if最简单的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">   语句;  //若表达式为真则执行语句，否则不执行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="if的范围问题"><a href="#if的范围问题" class="headerlink" title="if的范围问题"></a>if的范围问题</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)</span><br><span class="line">   语句A；</span><br><span class="line">   语句B；</span><br></pre></td></tr></table></figure>
-<p><font color="#fb8c00">if</font>默认只控制语句A的执行与不执行，不控制语句B，即B一定会被执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">	语句A；</span><br><span class="line">	语句B；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>此时<font color="#fb8c00">if</font>可控制AB</p>
-<blockquote>
-<p>注：if默认只控制一个语句的执行</p>
-</blockquote>
-<h5 id="if-else的用法"><a href="#if-else的用法" class="headerlink" title="if else的用法"></a>if else的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">	语句A；//若表达式为真执行A；</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	语句B；//若表达式为假执行B；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：else默认只控制一个语句的执行<br>      else后不跟表达式</p>
-</blockquote>
-<h5 id="if…else-if…else的用法"><a href="#if…else-if…else的用法" class="headerlink" title="if…else if…else的用法"></a>if…else if…else的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式1)</span><br><span class="line">     语句A；//若1成立执行A</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(表达式2)</span><br><span class="line">	语句B；//若1不成立2成立执行B</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (表达式3)</span><br><span class="line">	语句C；//若12不成立3成立执行C</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	语句D；//若123不成立则执行D</span><br></pre></td></tr></table></figure>
-<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">switch(i)&#123;</span><br><span class="line">	<span class="keyword">case</span> 1:</span><br><span class="line">		语句A;</span><br><span class="line">		<span class="built_in">break</span>;</span><br><span class="line">	<span class="keyword">case</span> 2:</span><br><span class="line">		语句B;</span><br><span class="line">	    <span class="built_in">break</span>;</span><br><span class="line">	default:</span><br><span class="line">	    语句C;</span><br><span class="line">	    <span class="built_in">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注：没有break则按顺序执行，case是程序入口，一旦找到入口程序将从入口按顺序执行，不再进行判断(switch只进行一次判断)，break是程序出口。</p>
-</blockquote>
-<h3 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h3><p>定义：某些代码会被重复执行</p>
-<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int i=1; i&lt;=4;i++)&#123;</span><br><span class="line">	语句A；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><font color="#fb8c00">for</font>语句执行顺序：先执行int i=1,再判断i&lt;=4,若i&lt;=4为真，则执行语句A，最后执行i++,再对i&lt;=4进行判断</p>
-<blockquote>
-<p>注：i++与++i的区别<br>a = i++ 相当于a=i, i=i+1,即先赋值再计算;<br>a = ++i 相当于i=i+1,a=i，即先计算再赋值;</p>
-</blockquote>
-<h5 id="嵌套for循环"><a href="#嵌套for循环" class="headerlink" title="嵌套for循环"></a>嵌套for循环</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(1;2;3)</span><br><span class="line">   <span class="keyword">for</span>(4;5;6)</span><br><span class="line">      A;</span><br><span class="line">      B;</span><br></pre></td></tr></table></figure>
-<p>上述表达式执行顺序(循环一次)：1-2-4-5-A-6-5-3-2-B</p>
-<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(表达式)</span><br><span class="line">   语句A；</span><br></pre></td></tr></table></figure>
-
-<h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><p>主要用于人机交互</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">while</span>(表达式)；</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注： while和for可能一次都不会执行，但是do while至少执行一次。</p>
-</blockquote>
-<h2 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h2><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><ul>
-<li>break如果用于循环用来终止循环</li>
-<li>break如果用于switch，用于终止switch(程序出口)</li>
-<li>break不能直接用于if，除非if属于循环内部的一个子句</li>
+                <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>整数：<br> 整形 <font color="#fb8c00">int</font><br> 短整型 <font color="#fb8c00 ">short int</font><br> 长整型 <font color="#fb8c00" >long int</font></li>
+<li>浮点数：<br> 单精度浮点数 <font color="#fb8c00">float</font><br> 双精度浮点数 <font color="#fb8c00">double</font></li>
+<li>字符：<br> 单个字符 <font color="#fb8c00">char</font></li>
+<li>复合数据类型<br> 结构体<br> 枚举  </li>
 </ul>
-<h4 id="break用于for循环"><a href="#break用于for循环" class="headerlink" title="break用于for循环"></a>break用于for循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;3;i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(3&gt;2)</span><br><span class="line">		<span class="built_in">break</span>;//OK,用于终止外部<span class="keyword">for</span>循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;3;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j=1;j&lt;4;j++)&#123;</span><br><span class="line">    	语句A;</span><br><span class="line">    	<span class="built_in">break</span>;//OK,终止第二个<span class="keyword">for</span>循环</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="break用于switch"><a href="#break用于switch" class="headerlink" title="break用于switch"></a>break用于switch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int x,y;</span><br><span class="line">switch(x)&#123; //第一个switch</span><br><span class="line">	<span class="keyword">case</span> 1:</span><br><span class="line">		switch(y)&#123;  //第二个switch</span><br><span class="line">           <span class="keyword">case</span> 0:</span><br><span class="line">           	语句A；</span><br><span class="line">           	<span class="built_in">break</span>;//终止的是第二个switch</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">break</span>;//终止的是第一个switch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注:在多层for循环中，break只能终止距离它最近的循环；<br>    在多层switch嵌套中，break只能终止距离它最近的switch;</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="[变量"></a>[变量</h3><ul>
+<li>变量的本质就是内存中的一段存储空间</li>
+<li>变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。</li>
+</ul>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span> 17<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"i = %d\n"</span>,i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//%d表示以十进制输出
+//%x表示以十六进制输出
+//%o表示以八进制输出</code></pre>
+<h3 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h3><p>字节是存储数据的单位，并且是硬件所能访问的最小单位。(1字节=8bit, 1K=1024字节，1M =1024K,1G=1024M)</p>
+<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p> 不是一个值，而是一种规定，规定不同的字符是使用哪个整数值去表示。eg : ‘A’–65,’B’–66</p>
+<pre class=" language-bash"><code class="language-bash">char ch <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>//OK
+char ch <span class="token operator">=</span> <span class="token string">'B'</span><span class="token punctuation">;</span>//error,ch被重复定义
+ch <span class="token operator">=</span> <span class="token string">'B'</span><span class="token punctuation">;</span>//OK,把B赋值给ch
+</code></pre>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
+<li>整数：<br> 十进制：<font color="#fb8c00">17</font><br> 八进制：<font color="#fb8c00">017(数字0)</font><br> 十六进制：<font color="#fb8c00">0x17 或 0X17</font></li>
+<li>浮点数：<br> 传统写法：<font color="#fb8c00">3.2</font><br> 科学计数法：<font color="#fb8c00">3.2e3</font>(值为3200)，<font color="#fb8c00">1234.5e-2</font>(值为12.345)</li>
+<li>字符：<br> 单个字符：<font color="#fb8c00">‘a’</font><br> 字符串：<font color="#fb8c00"> “aa”</font><blockquote>
+<p>注： “a”是正确的，因为”a”表示’a’和’\0’的组合</p>
 </blockquote>
-<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><h4 id="用途-1"><a href="#用途-1" class="headerlink" title="用途"></a>用途</h4><p>用于跳过本次循环余下的语句，转去判断是否需要执行下次循环</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(1;2;3)&#123;</span><br><span class="line">	语句A;</span><br><span class="line">	语句B;</span><br><span class="line">    <span class="built_in">continue</span>;//若执行该语句，则执行完AB后直接执行表达式3，不执行语句C</span><br><span class="line">    语句C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>存储方式<br> 字符：’A’先转为ASCII码，再转换为补码(本质上与整数存储方式相同)<br> 整数：以补码形式转换为二进制代码存储在计算机中<br> 实数：以IEEE754标准转换为二进制代码存储在计算机中</li>
+</ul>
+<h2 id="强制数据类型转换"><a href="#强制数据类型转换" class="headerlink" title="强制数据类型转换"></a>强制数据类型转换</h2><p>格式：(数据类型)(表达式)<br>功能：把表达式的值强制转换为前面所执行的数据类型</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span>int<span class="token punctuation">)</span> <span class="token punctuation">(</span>4.5+2.2<span class="token punctuation">)</span><span class="token punctuation">;</span>//最终值为6
+<span class="token punctuation">(</span>float<span class="token punctuation">)</span><span class="token punctuation">(</span>5<span class="token punctuation">)</span><span class="token punctuation">;</span>//最终值为5.000000</code></pre>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="为什么需要结构体"><a href="#为什么需要结构体" class="headerlink" title="为什么需要结构体"></a>为什么需要结构体</h3><p>为了表示一些复杂的事物，而普通的基本类型无法满足实际要求</p>
+<h3 id="什么叫结构体"><a href="#什么叫结构体" class="headerlink" title="什么叫结构体"></a>什么叫结构体</h3><p>把一些基本数据类型组合在一起形成的一个新的复合数据类型</p>
+<h3 id="如何定义结构体"><a href="#如何定义结构体" class="headerlink" title="如何定义结构体"></a>如何定义结构体</h3><pre class=" language-bash"><code class="language-bash">//第一种方式<span class="token punctuation">(</span>推荐使用<span class="token punctuation">)</span>
+struct Student<span class="token punctuation">{</span>
+   int age<span class="token punctuation">;</span>
+   float score<span class="token punctuation">;</span>
+   char sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
+//第二种方式
+struct Student2<span class="token punctuation">{</span>
+   int age<span class="token punctuation">;</span>
+   float score<span class="token punctuation">;</span>
+   char sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> student2<span class="token punctuation">;</span>//定义一个名为student2的结构体
+
+//第三种方式
+struct <span class="token punctuation">{</span>
+   int age<span class="token punctuation">;</span>
+   float score<span class="token punctuation">;</span>
+   char sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> student1<span class="token punctuation">;</span>
+
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   struct Student student <span class="token operator">=</span> <span class="token punctuation">{</span>80,66.6,<span class="token string">'F'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>//初始化一个名为student的结构体
+<span class="token punctuation">}</span></code></pre>
+<h3 id="怎样使用结构体变量"><a href="#怎样使用结构体变量" class="headerlink" title="怎样使用结构体变量"></a>怎样使用结构体变量</h3><h4 id="赋值和初始化"><a href="#赋值和初始化" class="headerlink" title="赋值和初始化"></a>赋值和初始化</h4><pre class=" language-bash"><code class="language-bash">struct Student<span class="token punctuation">{</span>
+   int age<span class="token punctuation">;</span>
+   float score<span class="token punctuation">;</span>
+   char sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   struct Student student <span class="token operator">=</span> <span class="token punctuation">{</span>80,66.6,<span class="token string">'F'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>//初始化，定义的同时赋初值
+
+   struct Student student2<span class="token punctuation">;</span>//定义完后再赋值
+   student2.age <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+   student2.score <span class="token operator">=</span> 90<span class="token punctuation">;</span>
+   student2.sex <span class="token operator">=</span> <span class="token string">'F'</span><span class="token punctuation">;</span>
+   <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="怎样访问结构体变量中的每一个成员"><a href="#怎样访问结构体变量中的每一个成员" class="headerlink" title="怎样访问结构体变量中的每一个成员"></a>怎样访问结构体变量中的每一个成员</h4><ol>
+<li><p>结构体变量名.成员名</p>
+</li>
+<li><p>指针变量名-&gt;成员名</p>
+<pre class=" language-bash"><code class="language-bash">struct Student<span class="token punctuation">{</span>
+int age<span class="token punctuation">;</span>
+float score<span class="token punctuation">;</span>
+char sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+struct Student student <span class="token operator">=</span> <span class="token punctuation">{</span>80,66.6,<span class="token string">'F'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>//初始化，定义的同时赋初值
+
+student.age <span class="token operator">=</span> 10<span class="token punctuation">;</span>//第一种方式
+
+struct Student *pst <span class="token operator">=</span> <span class="token operator">&amp;</span>student<span class="token punctuation">;</span>//第二种方式
+pst-<span class="token operator">></span>age <span class="token operator">=</span> 10<span class="token punctuation">;</span>//pst所指向的结构体的age成员
+<span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注：pst-&gt;age会在计算机内部转化成(* pst).age</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="结构变量的运算"><a href="#结构变量的运算" class="headerlink" title="结构变量的运算"></a>结构变量的运算</h4><p>结构体变量不能相加、相减，也不能相互乘除,只能赋值</p>
+<pre class=" language-bash"><code class="language-bash">struct Student student1,student2<span class="token punctuation">;</span>
+student1 <span class="token operator">=</span> student2<span class="token punctuation">;</span></code></pre>
+<p>####　结构变量和结构体变量指针作为函数参数传递问题</p>
+<pre class=" language-bash"><code class="language-bash">//error,不能直接对结构体进行修改
+void InputStudent1<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   st.age <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+   strcpy<span class="token punctuation">(</span>st.name,<span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//不能写成stu.name<span class="token operator">=</span>“张三”，涉及C语言字符串处理
+<span class="token punctuation">}</span>
+
+//OK
+void InputStudent2<span class="token punctuation">(</span>struct Student * pstu<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   pstu-<span class="token operator">></span>age <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+   strcpy<span class="token punctuation">(</span>pstu-<span class="token operator">></span>name,<span class="token string">"张三"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   pstu-<span class="token operator">></span>sex <span class="token operator">=</span> <span class="token string">'F'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+void OutputStudent<span class="token punctuation">(</span>struct Student ss<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    printf<span class="token punctuation">(</span><span class="token string">"%d %s %c\n"</span>.ss.age,ss.name,ss.sex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   struct Student student1<span class="token punctuation">;</span>
+   InputStudent<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>//error,对结构体变量输入
+   InputStudent2<span class="token punctuation">(</span><span class="token operator">&amp;</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>//OK
+   OutputStudent<span class="token punctuation">(</span>st<span class="token punctuation">)</span><span class="token punctuation">;</span>//对结构体变量输出，也可以传指针
+   <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注：对结构体进行修改必须输入结构体的指针</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
             </div>
             <hr/>
 
@@ -498,9 +581,9 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C语言(三)》
+                    《C语言(一)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/08/C_3/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/06/c-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -541,7 +624,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2019-08-08T11-54-21',
+        id: '2019-08-06T12-05-10',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -566,60 +649,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/08/linux-1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg" class="responsive-img" alt="linux基本指令">
-                        
-                        <span class="card-title">linux基本指令</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            linux操作系统下的基本终端指令、vi编程指令
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-08
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/linux/" class="post-category" target="_blank">
-                                    linux
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/kali/" target="_blank">
-                        <span class="chip bg-color">kali</span>
-                    </a>
-                    
-                    <a href="/tags/vim/" target="_blank">
-                        <span class="chip bg-color">vim</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/08/07/C_2/">
+                <a href="/2019/08/07/c-2/">
                     <div class="card-image">
                         
                         
@@ -635,8 +665,57 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-07
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/08/06/c-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg" class="responsive-img" alt="C语言(一)">
+                        
+                        <span class="card-title">C语言(一)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C语言编程基础知识(数据存储、数据类型)
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-07
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-06
                             </span>
                         <span class="publish-author">
                             
@@ -650,6 +729,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -815,7 +895,7 @@ ifif最简单的用法123if(表达式)&amp;#123;   语句;  //若表达式为真
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

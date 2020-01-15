@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言(二), Hexo">
-    <meta name="description" content="输出printf()输出形式将变量的内容输出到显示器上
-
-printf(“字符串”);1printf(&#34;你好\n&#34;);//\n表示换行
-printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,i);/">
+    <meta name="keywords" content="C语言(三), Hexo">
+    <meta name="description" content="什么是流程控制定义：程序代码执行的顺序
+流程控制的分类顺序执行按照代码顺序执行
+选择执行定义：某些代码可能执行，也可能不执行，有选择的执行某些代码
+ifif最简单的用法if(表达式){
+   语句;  //若表达式为真则执行语句，否则不执行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +17,7 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言(二) | Hexo</title>
+    <title>C语言(三) | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -31,7 +32,7 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -245,13 +246,13 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C语言(二)
+                        C语言(三)
                     </div>
                 </div>
             </div>
@@ -386,21 +387,21 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-07
+                    2019-08-08
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        599
+                        823
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        2 分
+                        3 分
                     </div>
                     
                 
@@ -416,37 +417,115 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="输出printf"><a href="#输出printf" class="headerlink" title="输出printf()"></a>输出printf()</h2><h3 id="输出形式"><a href="#输出形式" class="headerlink" title="输出形式"></a>输出形式</h3><p>将变量的内容输出到显示器上</p>
-<ul>
-<li>printf(“字符串”);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"你好\n"</span>);//\n表示换行</span><br></pre></td></tr></table></figure></li>
-<li>printf(“输出控制符”，输出参数);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i = 10;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i);//将i以十进制的方式输出</span><br></pre></td></tr></table></figure></li>
-<li>printf(“输出控制符1 输出控制符2..”，输出参数1，输出参数2，….)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int j = 3;</span><br><span class="line">int k = 4;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,j,k);//OK</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,j,k);//error,输出控制符与参数个数不匹配</span><br></pre></td></tr></table></figure></li>
-<li>printf(“输出控制符 非输出控制符”，输出参数);<br> 输出控制符包含： %d, %ld, %f, %lf, %C, %x,%s…<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int j = 3;</span><br><span class="line">int k = 4;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"j = %d, k= %d\n"</span>,j,k);</span><br></pre></td></tr></table></figure>
+                <h2 id="什么是流程控制"><a href="#什么是流程控制" class="headerlink" title="什么是流程控制"></a>什么是流程控制</h2><p>定义：程序代码执行的顺序</p>
+<h2 id="流程控制的分类"><a href="#流程控制的分类" class="headerlink" title="流程控制的分类"></a>流程控制的分类</h2><h3 id="顺序执行"><a href="#顺序执行" class="headerlink" title="顺序执行"></a>顺序执行</h3><p>按照代码顺序执行</p>
+<h3 id="选择执行"><a href="#选择执行" class="headerlink" title="选择执行"></a>选择执行</h3><p>定义：某些代码可能执行，也可能不执行，有选择的执行某些代码</p>
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><h5 id="if最简单的用法"><a href="#if最简单的用法" class="headerlink" title="if最简单的用法"></a>if最简单的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   语句<span class="token punctuation">;</span>  //若表达式为真则执行语句，否则不执行
+<span class="token punctuation">}</span></code></pre>
+<h5 id="if的范围问题"><a href="#if的范围问题" class="headerlink" title="if的范围问题"></a>if的范围问题</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
+   语句A；
+   语句B；</code></pre>
+<p><font color="#fb8c00">if</font>默认只控制语句A的执行与不执行，不控制语句B，即B一定会被执行</p>
+<pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    语句A；
+    语句B；
+<span class="token punctuation">}</span></code></pre>
+<p>此时<font color="#fb8c00">if</font>可控制AB</p>
 <blockquote>
-<p>注：float只能用%f输出不能用%d</p>
+<p>注：if默认只控制一个语句的执行</p>
 </blockquote>
-</li>
-</ul>
-<h3 id="为什么需要输出控制符"><a href="#为什么需要输出控制符" class="headerlink" title="为什么需要输出控制符"></a>为什么需要输出控制符</h3><ul>
-<li>01组成的代码可以表示数据也可以表示指令，通过输出控制符表示告诉编译器如何解读</li>
-<li>如果01代码表示的是数据，同样01代码组组合以不同输出格式输出就会有不同的输出结果。</li>
-</ul>
-<h2 id="输入scanf"><a href="#输入scanf" class="headerlink" title="输入scanf()"></a>输入scanf()</h2><p>通过键盘将数据放置到变量中</p>
-<h3 id="输入形式"><a href="#输入形式" class="headerlink" title="输入形式"></a>输入形式</h3><ul>
-<li>scanf(“输入控制符”，输入参数);<br>功能： 将键盘输入的字符转化为输入控制符所规定的格式的数据，然后存入以输入参数的值为地址的变量中。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">scanf(<span class="string">"%d"</span>,&amp;i);//&amp;表示取地址,将键盘输入的字符转换为int类型再赋值给i</span><br></pre></td></tr></table></figure></li>
-<li>scanf(“非输入控制符输入控制符”，输入参数)；<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">scanf(<span class="string">"m%d"</span>,&amp;i);//输入123，m123均为合法输入</span><br></pre></td></tr></table></figure></li>
-<li>scanf(“输入控制符1 输入控制符2…”,输入参数1,输入参数2…);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">scanf(<span class="string">"%d %d"</span>,&amp;i,&amp;j);//输入应为1空格2，12被视为一个数字</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">scanf(<span class="string">"%d,%d"</span>,&amp;i,&amp;j);//输入应为1逗号2，若为1空格2只读取1，2置为填充字</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>###对用户非法输入的处理<br>在连续输入的两个scanf函数之间加入代码</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char ch;</span><br><span class="line"><span class="keyword">while</span>((ch.getchar()) != <span class="string">'\n'</span>)&#123;</span><br><span class="line">	<span class="built_in">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h5 id="if-else的用法"><a href="#if-else的用法" class="headerlink" title="if else的用法"></a>if else的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    语句A；//若表达式为真执行A；
+<span class="token punctuation">}</span>
+else<span class="token punctuation">{</span>
+    语句B；//若表达式为假执行B；
+<span class="token punctuation">}</span></code></pre>
 <blockquote>
-<p>注：1、使用scanf前最好先使用printf提示用户输入格式<br>      2、scanf中尽量不要使用非输入控制符，尤其是转义字符\n。</p>
+<p>注：else默认只控制一个语句的执行<br>      else后不跟表达式</p>
 </blockquote>
-<h3 id="为什么需要输入控制符"><a href="#为什么需要输入控制符" class="headerlink" title="为什么需要输入控制符"></a>为什么需要输入控制符</h3><p>操作系统接收键盘输入的数字都以字符接收，需要输入控制符将其转换为所需格式的数据。</p>
+<h5 id="if…else-if…else的用法"><a href="#if…else-if…else的用法" class="headerlink" title="if…else if…else的用法"></a>if…else if…else的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式1<span class="token punctuation">)</span>
+     语句A；//若1成立执行A
+<span class="token keyword">else</span> if<span class="token punctuation">(</span>表达式2<span class="token punctuation">)</span>
+    语句B；//若1不成立2成立执行B
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>表达式3<span class="token punctuation">)</span>
+    语句C；//若12不成立3成立执行C
+<span class="token keyword">else</span> 
+    语句D；//若123不成立则执行D</code></pre>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
+switch<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">case</span> 1:
+        语句A<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> 2:
+        语句B<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    default:
+        语句C<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注：没有break则按顺序执行，case是程序入口，一旦找到入口程序将从入口按顺序执行，不再进行判断(switch只进行一次判断)，break是程序出口。</p>
+</blockquote>
+<h3 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h3><p>定义：某些代码会被重复执行</p>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>int i<span class="token operator">=</span>1<span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>4<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    语句A；
+<span class="token punctuation">}</span></code></pre>
+<p><font color="#fb8c00">for</font>语句执行顺序：先执行int i=1,再判断i&lt;=4,若i&lt;=4为真，则执行语句A，最后执行i++,再对i&lt;=4进行判断</p>
+<blockquote>
+<p>注：i++与++i的区别<br>a = i++ 相当于a=i, i=i+1,即先赋值再计算;<br>a = ++i 相当于i=i+1,a=i，即先计算再赋值;</p>
+</blockquote>
+<h5 id="嵌套for循环"><a href="#嵌套for循环" class="headerlink" title="嵌套for循环"></a>嵌套for循环</h5><pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>1<span class="token punctuation">;</span>2<span class="token punctuation">;</span>3<span class="token punctuation">)</span>
+   for<span class="token punctuation">(</span>4<span class="token punctuation">;</span>5<span class="token punctuation">;</span>6<span class="token punctuation">)</span>
+      A<span class="token punctuation">;</span>
+      B<span class="token punctuation">;</span></code></pre>
+<p>上述表达式执行顺序(循环一次)：1-2-4-5-A-6-5-3-2-B</p>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><pre class=" language-bash"><code class="language-bash">while<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
+   语句A；</code></pre>
+<h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><p>主要用于人机交互</p>
+<pre class=" language-bash"><code class="language-bash">do<span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>while<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>；</code></pre>
+<blockquote>
+<p>注： while和for可能一次都不会执行，但是do while至少执行一次。</p>
+</blockquote>
+<h2 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h2><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><ul>
+<li>break如果用于循环用来终止循环</li>
+<li>break如果用于switch，用于终止switch(程序出口)</li>
+<li>break不能直接用于if，除非if属于循环内部的一个子句</li>
+</ul>
+<h4 id="break用于for循环"><a href="#break用于for循环" class="headerlink" title="break用于for循环"></a>break用于for循环</h4><pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>3<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>3<span class="token operator">></span>2<span class="token punctuation">)</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>//OK,用于终止外部for循环
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>3<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    for<span class="token punctuation">(</span>j<span class="token operator">=</span>1<span class="token punctuation">;</span>j<span class="token operator">&lt;</span>4<span class="token punctuation">;</span>j++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        语句A<span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>//OK,终止第二个for循环
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="break用于switch"><a href="#break用于switch" class="headerlink" title="break用于switch"></a>break用于switch</h4><pre class=" language-bash"><code class="language-bash">int x,y<span class="token punctuation">;</span>
+switch<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span> //第一个switch
+    <span class="token keyword">case</span> 1:
+        switch<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>  //第二个switch
+           <span class="token keyword">case</span> 0:
+               语句A；
+               <span class="token keyword">break</span><span class="token punctuation">;</span>//终止的是第二个switch
+        <span class="token punctuation">}</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>//终止的是第一个switch
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注:在多层for循环中，break只能终止距离它最近的循环；<br>    在多层switch嵌套中，break只能终止距离它最近的switch;</p>
+</blockquote>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><h4 id="用途-1"><a href="#用途-1" class="headerlink" title="用途"></a>用途</h4><p>用于跳过本次循环余下的语句，转去判断是否需要执行下次循环</p>
+<pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>1<span class="token punctuation">;</span>2<span class="token punctuation">;</span>3<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    语句A<span class="token punctuation">;</span>
+    语句B<span class="token punctuation">;</span>
+    <span class="token keyword">continue</span><span class="token punctuation">;</span>//若执行该语句，则执行完AB后直接执行表达式3，不执行语句C
+    语句C<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -481,9 +560,9 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C语言(二)》
+                    《C语言(三)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/07/C_2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/08/c-3/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -524,7 +603,7 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2019-08-07T16-13-08',
+        id: '2019-08-08T11-54-21',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -549,19 +628,19 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/08/C_3/">
+                <a href="/2019/08/08/linux-1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg" class="responsive-img" alt="C语言(三)">
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg" class="responsive-img" alt="linux基本指令">
                         
-                        <span class="card-title">C语言(三)</span>
+                        <span class="card-title">linux基本指令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言流程控制
+                            linux操作系统下的基本终端指令、vi编程指令
                         
                     </div>
                     <div class="publish-info">
@@ -572,8 +651,8 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
-                                    编程语言
+                            <a href="/categories/linux/" class="post-category" target="_blank">
+                                    linux
                                 </a>
                             
                             
@@ -583,8 +662,12 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/kali/" target="_blank">
+                        <span class="chip bg-color">kali</span>
+                    </a>
+                    
+                    <a href="/tags/vim/" target="_blank">
+                        <span class="chip bg-color">vim</span>
                     </a>
                     
                 </div>
@@ -598,24 +681,24 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/06/C_1/">
+                <a href="/2019/08/07/c-2/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg" class="responsive-img" alt="C语言(一)">
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg" class="responsive-img" alt="C语言(二)">
                         
-                        <span class="card-title">C语言(一)</span>
+                        <span class="card-title">C语言(二)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言编程基础知识(数据存储、数据类型)
+                            C语言的基本输入输出
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-06
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-07
                             </span>
                         <span class="publish-author">
                             
@@ -794,7 +877,7 @@ printf(“输出控制符”，输出参数);12int i = 10;printf(&#34;%d\n&#34;,
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

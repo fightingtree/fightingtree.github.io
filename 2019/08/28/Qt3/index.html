@@ -11,7 +11,10 @@ QProcess类的使用
 代码
 
 Caesar.h
-12345678910111213141516171819202122#ifndef CAESAR_H#define CAE">
+#ifndef CAESAR_H
+#define CAESAR_H
+#include &amp;lt;QProcess&gt;
+#incl">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -34,7 +37,7 @@ Caesar.h
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -400,7 +403,7 @@ Caesar.h
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        280
+                        250
                     </div>
                     
 
@@ -429,11 +432,61 @@ Caesar.h
 <li>代码</li>
 </ol>
 <p>Caesar.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CAESAR_H</span></span><br><span class="line"><span class="comment">#define CAESAR_H</span></span><br><span class="line"><span class="comment">#include &lt;QProcess&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Caesar;</span><br><span class="line">&#125;</span><br><span class="line">class Caesar : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Caesar(QWidget *parent = nullptr);</span><br><span class="line">    ~Caesar();</span><br><span class="line">private:</span><br><span class="line">    Ui::Caesar *ui;</span><br><span class="line">    QProcess *process;</span><br><span class="line">    QString out;</span><br><span class="line">private slots:</span><br><span class="line">    void readOutput();//从进程中读取数据</span><br><span class="line">    void on_encrption_button_clicked();//点击按钮触发外部程序</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CAESAR_H</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef CAESAR_H</span>
+<span class="token comment" spellcheck="true">#define CAESAR_H</span>
+<span class="token comment" spellcheck="true">#include &lt;QProcess></span>
+<span class="token comment" spellcheck="true">#include &lt;QWidget></span>
+namespace Ui <span class="token punctuation">{</span>
+class Caesar<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+class Caesar <span class="token keyword">:</span> public QWidget
+<span class="token punctuation">{</span>
+    Q_OBJECT
+public:
+    explicit Caesar<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ~Caesar<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private:
+    Ui::Caesar *ui<span class="token punctuation">;</span>
+    QProcess *process<span class="token punctuation">;</span>
+    QString out<span class="token punctuation">;</span>
+private slots:
+    void readOutput<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//从进程中读取数据
+    void on_encrption_button_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//点击按钮触发外部程序
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#endif // CAESAR_H</span></code></pre>
 <p>Caesar.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "caesar.h"</span></span><br><span class="line"><span class="comment">#include "ui_caesar.h"</span></span><br><span class="line"><span class="comment">#include &lt;QDebug&gt;</span></span><br><span class="line">Caesar::Caesar(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Caesar)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    this-&gt;process = new QProcess;</span><br><span class="line">    QObject::connect(process,SIGNAL(readyRead()),this,SLOT(readOutput()));</span><br><span class="line">    //准备从进程里读数据的槽</span><br><span class="line">&#125;</span><br><span class="line">Caesar::~Caesar()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Caesar::on_encrption_button_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString cmd = this-&gt;ui-&gt;keyword_line-&gt;text();//获取keyword_line的内容</span><br><span class="line">    QString plaintext=this-&gt;ui-&gt;plaintext_edit-&gt;toPlainText();</span><br><span class="line">    cmd = <span class="string">"./caesar.py e "</span>+plaintext+<span class="string">" "</span>+cmd;</span><br><span class="line">    qDebug()&lt;&lt;cmd; //相当于在终端执行命令 ./caesar e hello 5 </span><br><span class="line">    //即在终端执行cmd字符串的内容</span><br><span class="line">    process-&gt;start(cmd);</span><br><span class="line">    out=tr(<span class="string">""</span>);</span><br><span class="line">    ui-&gt;ciphertext_edit-&gt;setText(out);</span><br><span class="line">&#125;</span><br><span class="line">void Caesar::<span class="function"><span class="title">readOutput</span></span>()&#123;</span><br><span class="line">    out += process-&gt;readAll();</span><br><span class="line">    qDebug()&lt;&lt;out;</span><br><span class="line">    ui-&gt;ciphertext_edit-&gt;setText(out);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "caesar.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_caesar.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QDebug></span>
+Caesar::Caesar<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+    QWidget<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+    ui<span class="token punctuation">(</span>new Ui::Caesar<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    this-<span class="token operator">></span>process <span class="token operator">=</span> new QProcess<span class="token punctuation">;</span>
+    QObject::connect<span class="token punctuation">(</span>process,SIGNAL<span class="token punctuation">(</span>readyRead<span class="token punctuation">(</span><span class="token punctuation">))</span>,this,SLOT<span class="token punctuation">(</span>readOutput<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    //准备从进程里读数据的槽
+<span class="token punctuation">}</span>
+Caesar::~Caesar<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Caesar::on_encrption_button_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString cmd <span class="token operator">=</span> this-<span class="token operator">></span>ui-<span class="token operator">></span>keyword_line-<span class="token operator">></span>text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//获取keyword_line的内容
+    QString plaintext<span class="token operator">=</span>this-<span class="token operator">></span>ui-<span class="token operator">></span>plaintext_edit-<span class="token operator">></span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cmd <span class="token operator">=</span> <span class="token string">"./caesar.py e "</span>+plaintext+<span class="token string">" "</span>+cmd<span class="token punctuation">;</span>
+    qDebug<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>cmd<span class="token punctuation">;</span> //相当于在终端执行命令 ./caesar e hello 5 
+    //即在终端执行cmd字符串的内容
+    process-<span class="token operator">></span>start<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    out<span class="token operator">=</span>tr<span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ui-<span class="token operator">></span>ciphertext_edit-<span class="token operator">></span>setText<span class="token punctuation">(</span>out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Caesar::readOutput<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    out +<span class="token operator">=</span> process-<span class="token operator">></span>readAll<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    qDebug<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>out<span class="token punctuation">;</span>
+    ui-<span class="token operator">></span>ciphertext_edit-<span class="token operator">></span>setText<span class="token punctuation">(</span>out<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>注：可执行文件一定要放在Qt项目对应的built文件中！！！</p>
 </blockquote>
@@ -473,7 +526,7 @@ Caesar.h
                   property="dct:title" rel="dct:type">
                     《Qt(进阶2)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/28/Qt3/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/28/qt3/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -539,7 +592,7 @@ Caesar.h
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/31/Qt4/">
+                <a href="/2019/08/31/qt4/">
                     <div class="card-image">
                         
                         
@@ -588,7 +641,7 @@ Caesar.h
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/QT2/">
+                <a href="/2019/08/27/qt2/">
                     <div class="card-image">
                         
                         
@@ -784,7 +837,7 @@ Caesar.h
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

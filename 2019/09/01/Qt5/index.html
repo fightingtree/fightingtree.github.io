@@ -9,10 +9,13 @@
 代码实现界面展示
 服务器端
 在.pro文件中加入
-1QT += network
+QT += network
 
 server.h
-123456789101112131415161718192021222324#ifndef SERVER_H#de">
+#ifndef SERVER_H
+#define SERVER_H
+#include &amp;lt;QWidget&gt;
+#in">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -35,7 +38,7 @@ server.h
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -405,7 +408,7 @@ server.h
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        525
+                        448
                     </div>
                     
 
@@ -432,22 +435,157 @@ server.h
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="界面展示"><a href="#界面展示" class="headerlink" title="界面展示"></a>界面展示</h3><p><img src="https://i.postimg.cc/9XqzQdmR/2.jpg" alt=""></p>
 <h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><ol>
 <li><p>在.pro文件中加入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QT += network</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">QT +<span class="token operator">=</span> network</code></pre>
 </li>
 <li><p>server.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef SERVER_H</span></span><br><span class="line"><span class="comment">#define SERVER_H</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QTcpServer&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QTcpSocket&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Server;</span><br><span class="line">&#125;</span><br><span class="line">class Server : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Server(QWidget *parent = nullptr);</span><br><span class="line">    ~Server();</span><br><span class="line">private slots:</span><br><span class="line">    void on_pushButton_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_2_clicked();</span><br><span class="line">private:</span><br><span class="line">    Ui::Server *ui;</span><br><span class="line">    QTcpServer *tcpServer;</span><br><span class="line">    QTcpSocket *tcpSocket;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // SERVER_H</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef SERVER_H</span>
+<span class="token comment" spellcheck="true">#define SERVER_H</span>
+<span class="token comment" spellcheck="true">#include &lt;QWidget></span>
+<span class="token comment" spellcheck="true">#include &lt;QTcpServer></span>
+<span class="token comment" spellcheck="true">#include &lt;QTcpSocket></span>
+namespace Ui <span class="token punctuation">{</span>
+class Server<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+class Server <span class="token keyword">:</span> public QWidget
+<span class="token punctuation">{</span>
+ Q_OBJECT
+public:
+ explicit Server<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ~Server<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private slots:
+ void on_pushButton_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ void on_pushButton_2_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private:
+ Ui::Server *ui<span class="token punctuation">;</span>
+ QTcpServer *tcpServer<span class="token punctuation">;</span>
+ QTcpSocket *tcpSocket<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#endif // SERVER_H</span></code></pre>
 </li>
 <li><p>server.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "server.h"</span></span><br><span class="line"><span class="comment">#include "ui_server.h"</span></span><br><span class="line">Server::Server(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Server)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">    tcpServer = NULL;</span><br><span class="line">    tcpSocket = NULL;</span><br><span class="line">    tcpServer = new QTcpServer(this);//监听套接字</span><br><span class="line">    tcpServer -&gt;listen(QHostAddress::Any,8888);//监听，指定端口</span><br><span class="line">    setWindowTitle(<span class="string">"服务器:8888"</span>);</span><br><span class="line">    connect(tcpServer,&amp;QTcpServer::newConnection,[=]()&#123;</span><br><span class="line">        //取出创建好连接的套接字</span><br><span class="line">        tcpSocket = tcpServer-&gt;nextPendingConnection();</span><br><span class="line">        //获取对方的IP、端口</span><br><span class="line">        QString ip= tcpSocket-&gt;peerAddress().toString();</span><br><span class="line">        qint16 port=tcpSocket-&gt;peerPort();</span><br><span class="line">        QString temp = QString(<span class="string">"[%1:%2]:成功连接."</span>).arg(ip).arg(port);</span><br><span class="line">        ui-&gt;read_edit-&gt;setText(temp);</span><br><span class="line"></span><br><span class="line">        connect(tcpSocket,&amp;QTcpSocket::readyRead,[=]()&#123;</span><br><span class="line">            QByteArray array = tcpSocket-&gt;readAll();</span><br><span class="line">            ui-&gt;write_edit-&gt;setText(array); //服务器发送来的信息写在write_edit里</span><br><span class="line"></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">Server::~Server()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Server::on_pushButton_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(NULL == tcpSocket)&#123;</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    QString str = ui-&gt;write_edit-&gt;toPlainText();</span><br><span class="line">    //给客户端发送数据</span><br><span class="line">    tcpSocket-&gt;write(str.toUtf8().data());</span><br><span class="line">&#125;</span><br><span class="line">void Server::on_pushButton_2_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(tcpSocket == NULL)&#123;</span><br><span class="line">        <span class="built_in">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    //主动与客户端断开连接、</span><br><span class="line">    tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">    tcpSocket-&gt;close();</span><br><span class="line">    tcpSocket=NULL;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "server.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_server.h"</span>
+Server::Server<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+ QWidget<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+ ui<span class="token punctuation">(</span>new Ui::Server<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ tcpServer <span class="token operator">=</span> NULL<span class="token punctuation">;</span>
+ tcpSocket <span class="token operator">=</span> NULL<span class="token punctuation">;</span>
+ tcpServer <span class="token operator">=</span> new QTcpServer<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>//监听套接字
+ tcpServer -<span class="token operator">></span>listen<span class="token punctuation">(</span>QHostAddress::Any,8888<span class="token punctuation">)</span><span class="token punctuation">;</span>//监听，指定端口
+ setWindowTitle<span class="token punctuation">(</span><span class="token string">"服务器:8888"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ connect<span class="token punctuation">(</span>tcpServer,<span class="token operator">&amp;</span>QTcpServer::newConnection,<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     //取出创建好连接的套接字
+     tcpSocket <span class="token operator">=</span> tcpServer-<span class="token operator">></span>nextPendingConnection<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     //获取对方的IP、端口
+     QString ip<span class="token operator">=</span> tcpSocket-<span class="token operator">></span>peerAddress<span class="token punctuation">(</span><span class="token punctuation">)</span>.toString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     qint16 port<span class="token operator">=</span>tcpSocket-<span class="token operator">></span>peerPort<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     QString temp <span class="token operator">=</span> QString<span class="token punctuation">(</span><span class="token string">"[%1:%2]:成功连接."</span><span class="token punctuation">)</span>.arg<span class="token punctuation">(</span>ip<span class="token punctuation">)</span>.arg<span class="token punctuation">(</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+     ui-<span class="token operator">></span>read_edit-<span class="token operator">></span>setText<span class="token punctuation">(</span>temp<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
+     connect<span class="token punctuation">(</span>tcpSocket,<span class="token operator">&amp;</span>QTcpSocket::readyRead,<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+         QByteArray array <span class="token operator">=</span> tcpSocket-<span class="token operator">></span>readAll<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         ui-<span class="token operator">></span>write_edit-<span class="token operator">></span>setText<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span> //服务器发送来的信息写在write_edit里
+
+     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Server::~Server<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Server::on_pushButton_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ if<span class="token punctuation">(</span>NULL <span class="token operator">==</span> tcpSocket<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ QString str <span class="token operator">=</span> ui-<span class="token operator">></span>write_edit-<span class="token operator">></span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ //给客户端发送数据
+ tcpSocket-<span class="token operator">></span>write<span class="token punctuation">(</span>str.toUtf8<span class="token punctuation">(</span><span class="token punctuation">)</span>.data<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Server::on_pushButton_2_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ if<span class="token punctuation">(</span>tcpSocket <span class="token operator">==</span> NULL<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ //主动与客户端断开连接、
+ tcpSocket-<span class="token operator">></span>disconnectFromHost<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ tcpSocket-<span class="token operator">></span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ tcpSocket<span class="token operator">=</span>NULL<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 </li>
 </ol>
 <h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><ol>
 <li><p>client.h</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ifndef CLIENT_H</span></span><br><span class="line"><span class="comment">#define CLIENT_H</span></span><br><span class="line"><span class="comment">#include &lt;QTcpSocket&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QWidget&gt;</span></span><br><span class="line">namespace Ui &#123;</span><br><span class="line">class Client;</span><br><span class="line">&#125;</span><br><span class="line">class Client : public QWidget</span><br><span class="line">&#123;</span><br><span class="line">    Q_OBJECT</span><br><span class="line">public:</span><br><span class="line">    explicit Client(QWidget *parent = nullptr);</span><br><span class="line">    ~Client();</span><br><span class="line">private slots:</span><br><span class="line">    void on_pushButton_3_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_clicked();</span><br><span class="line"></span><br><span class="line">    void on_pushButton_2_clicked();</span><br><span class="line">private:</span><br><span class="line">    Ui::Client *ui;</span><br><span class="line">    QTcpSocket *tcpSocket;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">#endif // CLIENT_H</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#ifndef CLIENT_H</span>
+<span class="token comment" spellcheck="true">#define CLIENT_H</span>
+<span class="token comment" spellcheck="true">#include &lt;QTcpSocket></span>
+<span class="token comment" spellcheck="true">#include &lt;QWidget></span>
+namespace Ui <span class="token punctuation">{</span>
+class Client<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+class Client <span class="token keyword">:</span> public QWidget
+<span class="token punctuation">{</span>
+ Q_OBJECT
+public:
+ explicit Client<span class="token punctuation">(</span>QWidget *parent <span class="token operator">=</span> nullptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ~Client<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private slots:
+ void on_pushButton_3_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ void on_pushButton_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ void on_pushButton_2_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+private:
+ Ui::Client *ui<span class="token punctuation">;</span>
+ QTcpSocket *tcpSocket<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">#endif // CLIENT_H</span></code></pre>
 </li>
 <li><p>client.cpp</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include "client.h"</span></span><br><span class="line"><span class="comment">#include "ui_client.h"</span></span><br><span class="line"><span class="comment">#include &lt;QHostAddress&gt;</span></span><br><span class="line">Client::Client(QWidget *parent) :</span><br><span class="line">    QWidget(parent),</span><br><span class="line">    ui(new Ui::Client)</span><br><span class="line">&#123;</span><br><span class="line">    ui-&gt;setupUi(this);</span><br><span class="line">&#125;</span><br><span class="line">Client::~Client()</span><br><span class="line">&#123;</span><br><span class="line">    delete ui;</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_3_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    tcpSocket= NULL;</span><br><span class="line">    tcpSocket = new QTcpSocket(this);</span><br><span class="line">    connect(tcpSocket,&amp;QTcpSocket::connected,[=]()&#123;</span><br><span class="line">        ui-&gt;textEdit-&gt;setText(<span class="string">"成功与服务器建立连接"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    connect(tcpSocket,&amp;QTcpSocket::readyRead,[=]()&#123;</span><br><span class="line">        QByteArray array = tcpSocket-&gt;readAll();</span><br><span class="line">        ui-&gt;textEdit_2-&gt;setText(array);//将服务器发送的内容写在textEdit_2中</span><br><span class="line">    &#125;);</span><br><span class="line">   //获取服务器IP和端口</span><br><span class="line">    QString ip = ui-&gt;ip_line-&gt;text();</span><br><span class="line">    qint16 port = ui-&gt;port_line-&gt;text().toInt();</span><br><span class="line">    //主动与服务器建立连接</span><br><span class="line">    tcpSocket-&gt;connectToHost(QHostAddress(ip),port);</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString str = ui-&gt;textEdit_2-&gt;toPlainText();</span><br><span class="line">    tcpSocket-&gt;write(str.toUtf8().data());//给服务器端发送信息</span><br><span class="line">&#125;</span><br><span class="line">void Client::on_pushButton_2_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    tcpSocket-&gt;disconnectFromHost();</span><br><span class="line">    tcpSocket-&gt;close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include "client.h"</span>
+<span class="token comment" spellcheck="true">#include "ui_client.h"</span>
+<span class="token comment" spellcheck="true">#include &lt;QHostAddress></span>
+Client::Client<span class="token punctuation">(</span>QWidget *parent<span class="token punctuation">)</span> <span class="token keyword">:</span>
+ QWidget<span class="token punctuation">(</span>parent<span class="token punctuation">)</span>,
+ ui<span class="token punctuation">(</span>new Ui::Client<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ ui-<span class="token operator">></span>setupUi<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Client::~Client<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ delete ui<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Client::on_pushButton_3_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ tcpSocket<span class="token operator">=</span> NULL<span class="token punctuation">;</span>
+ tcpSocket <span class="token operator">=</span> new QTcpSocket<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ connect<span class="token punctuation">(</span>tcpSocket,<span class="token operator">&amp;</span>QTcpSocket::connected,<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     ui-<span class="token operator">></span>textEdit-<span class="token operator">></span>setText<span class="token punctuation">(</span><span class="token string">"成功与服务器建立连接"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ connect<span class="token punctuation">(</span>tcpSocket,<span class="token operator">&amp;</span>QTcpSocket::readyRead,<span class="token punctuation">[</span><span class="token operator">=</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     QByteArray array <span class="token operator">=</span> tcpSocket-<span class="token operator">></span>readAll<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     ui-<span class="token operator">></span>textEdit_2-<span class="token operator">></span>setText<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>//将服务器发送的内容写在textEdit_2中
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+//获取服务器IP和端口
+ QString ip <span class="token operator">=</span> ui-<span class="token operator">></span>ip_line-<span class="token operator">></span>text<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ qint16 port <span class="token operator">=</span> ui-<span class="token operator">></span>port_line-<span class="token operator">></span>text<span class="token punctuation">(</span><span class="token punctuation">)</span>.toInt<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ //主动与服务器建立连接
+ tcpSocket-<span class="token operator">></span>connectToHost<span class="token punctuation">(</span>QHostAddress<span class="token punctuation">(</span>ip<span class="token punctuation">)</span>,port<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+void Client::on_pushButton_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ QString str <span class="token operator">=</span> ui-<span class="token operator">></span>textEdit_2-<span class="token operator">></span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ tcpSocket-<span class="token operator">></span>write<span class="token punctuation">(</span>str.toUtf8<span class="token punctuation">(</span><span class="token punctuation">)</span>.data<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>//给服务器端发送信息
+<span class="token punctuation">}</span>
+void Client::on_pushButton_2_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+ tcpSocket-<span class="token operator">></span>disconnectFromHost<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ tcpSocket-<span class="token operator">></span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+</li>
 </ol>
 
             </div>
@@ -485,7 +623,7 @@ server.h
                   property="dct:title" rel="dct:type">
                     《Qt(进阶3)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/01/Qt5/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/01/qt5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -551,7 +689,7 @@ server.h
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/08/Python-1/">
+                <a href="/2019/09/08/python-1/">
                     <div class="card-image">
                         
                         
@@ -600,7 +738,7 @@ server.h
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/31/Qt4/">
+                <a href="/2019/08/31/qt4/">
                     <div class="card-image">
                         
                         
@@ -796,7 +934,7 @@ server.h
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

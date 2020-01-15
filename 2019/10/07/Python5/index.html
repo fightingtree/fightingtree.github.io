@@ -7,8 +7,8 @@
     <meta name="keywords" content="Python(5), Hexo">
     <meta name="description" content="异常异常是一种运行时的错误，通常是由于程序的运行状态超出了程序员所掌控的范围。
 常见的异常AttributeError 向一个对象发起了不可用的功能请求
-1(3,2,1).sort    #元组不能进行更改，无sort方法
-FileNotF">
+(3,2,1).sort    #元组不能进行更改，无sort方法
+FileNotFo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,7 +31,7 @@ FileNotF">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -418,15 +418,23 @@ FileNotF">
             <div id="articleContent">
                 <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><p>异常是一种运行时的错误，通常是由于程序的运行状态超出了程序员所掌控的范围。</p>
 <h3 id="常见的异常"><a href="#常见的异常" class="headerlink" title="常见的异常"></a>常见的异常</h3><p><font color="#fb8c00">AttributeError</font> 向一个对象发起了不可用的功能请求</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(3,2,1).sort    <span class="comment">#元组不能进行更改，无sort方法</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span>3,2,1<span class="token punctuation">)</span>.sort    <span class="token comment" spellcheck="true">#元组不能进行更改，无sort方法</span></code></pre>
 <p><font color="#fb8c00">FileNotFoundError</font> 请求的文件不存在或不再指定位置<br><font color="#fb8c00">importError</font>  import语句无法找到请求的模块<br><font color="#fb8c00">IndexError</font>  索引越界<br><font color="#fb8c00">KeyError</font>  字典中没有该键<br><font color="#fb8c00">NameError</font>  变量的值无法找到<br><font color="#fb8c00">TypeError</font>  一个函数或一个操作符收到的参数类型错误</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = len(23)  <span class="comment">#len()是对于字符串的操作</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">x <span class="token operator">=</span> len<span class="token punctuation">(</span>23<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#len()是对于字符串的操作</span></code></pre>
 <p><font color="#fb8c00">ValueError</font> 函数或操作符收到的参数类型正确，但是值不正确</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = int(<span class="string">'a'</span>)  <span class="comment">#error</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">x <span class="token operator">=</span> int<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#error</span></code></pre>
 <p><font color="#fb8c00">ZeroDivisionError</font>  在除法或取余操作中第二个操作数为0</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num = 1/0  <span class="comment">#error</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">num <span class="token operator">=</span> 1/0  <span class="token comment" spellcheck="true">#error</span></code></pre>
 <h3 id="try语句"><a href="#try语句" class="headerlink" title="try语句"></a>try语句</h3><p>python会首先去执行try语句块，如果异常发生，则跳到except子句</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line"> <span class="comment">#如果用户在此处不进行输入则会发生异常，因为输入的空字符串无法转换为一个整数</span></span><br><span class="line">    num = int(input(<span class="string">"Enter number of dependents:"</span>)) </span><br><span class="line">except ValueError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"\nYou did not respond with an integer value.\n"</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"We will assume your answer is 0\n"</span>)</span><br><span class="line">    num = 0</span><br><span class="line">sum = 1000*num   </span><br><span class="line"><span class="built_in">print</span>(<span class="string">"sum:"</span>,sum)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">try:
+ <span class="token comment" spellcheck="true">#如果用户在此处不进行输入则会发生异常，因为输入的空字符串无法转换为一个整数</span>
+    num <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"Enter number of dependents:"</span><span class="token punctuation">))</span> 
+except ValueError:
+    print<span class="token punctuation">(</span><span class="token string">"\nYou did not respond with an integer value.\n"</span><span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span><span class="token string">"We will assume your answer is 0\n"</span><span class="token punctuation">)</span>
+    num <span class="token operator">=</span> 0
+<span class="token function">sum</span> <span class="token operator">=</span> 1000*num   
+print<span class="token punctuation">(</span><span class="token string">"sum:"</span>,sum<span class="token punctuation">)</span></code></pre>
 <blockquote>
 <p>注：不论是否发生异常，最后两条语句都会被执行。</p>
 </blockquote>
@@ -474,7 +482,7 @@ FileNotF">
                   property="dct:title" rel="dct:type">
                     《Python(5)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/07/Python5/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/07/python5/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -540,7 +548,7 @@ FileNotF">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/07/Python8/">
+                <a href="/2019/10/07/python8/">
                     <div class="card-image">
                         
                         
@@ -589,7 +597,7 @@ FileNotF">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/10/07/Python4/">
+                <a href="/2019/10/07/python4/">
                     <div class="card-image">
                         
                         
@@ -785,7 +793,7 @@ FileNotF">
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

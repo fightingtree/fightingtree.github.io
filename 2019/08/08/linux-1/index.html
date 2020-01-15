@@ -5,8 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="linux基本指令, Hexo">
-    <meta name="description" content="linux基本指令系统操作1reboot 重启
-文件操作123456cd 文件夹名 //进入文件夹内mkdir 文件夹名 //创建一个文件夹(文件夹名在终端标识为蓝色)touch 文件名 //创建一个文件(文件夹名在终端标识为白色)rm -">
+    <meta name="description" content="linux基本指令系统操作reboot 重启
+文件操作cd 文件夹名 //进入文件夹内
+mkdir 文件夹名 //创建一个文件夹(文件夹名在终端标识为蓝色)
+touch 文件名 //创建一个文件(文件夹名在终端标识为白色)
+rm -f 文件">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +32,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,7 +398,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        536
+                        540
                     </div>
                     
 
@@ -418,29 +421,49 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="linux基本指令"><a href="#linux基本指令" class="headerlink" title="linux基本指令"></a>linux基本指令</h2><h3 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot 重启</span><br></pre></td></tr></table></figure>
-<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件夹名 //进入文件夹内</span><br><span class="line">mkdir 文件夹名 //创建一个文件夹(文件夹名在终端标识为蓝色)</span><br><span class="line">touch 文件名 //创建一个文件(文件夹名在终端标识为白色)</span><br><span class="line">rm -f 文件名 //删除一个文件 </span><br><span class="line">rmdir 文件夹名 //删除一个文件夹</span><br><span class="line">mv 文件名1 文件夹名2 //将文件1移到文件夹2中</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gcc -c test.c //编译一个叫test.c的c语言文件，最终会生成一个test.o文件</span><br><span class="line">gcc -o <span class="built_in">test</span> test.o //生成一个名叫<span class="built_in">test</span>的可执行文件</span><br><span class="line">g++ test.cpp -o <span class="built_in">test</span>//编译一个叫test.cpp的cpp文件并生成可执行文件<span class="built_in">test</span></span><br><span class="line">./<span class="built_in">test</span> //执行可执行文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chmod + xx.py  //更改py文件的执行权限</span><br><span class="line">./xx.py  //执行py文件</span><br></pre></td></tr></table></figure>
+                <h2 id="linux基本指令"><a href="#linux基本指令" class="headerlink" title="linux基本指令"></a>linux基本指令</h2><h3 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">reboot</span> 重启</code></pre>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> 文件夹名 //进入文件夹内
+<span class="token function">mkdir</span> 文件夹名 //创建一个文件夹<span class="token punctuation">(</span>文件夹名在终端标识为蓝色<span class="token punctuation">)</span>
+<span class="token function">touch</span> 文件名 //创建一个文件<span class="token punctuation">(</span>文件夹名在终端标识为白色<span class="token punctuation">)</span>
+<span class="token function">rm</span> -f 文件名 //删除一个文件 
+<span class="token function">rmdir</span> 文件夹名 //删除一个文件夹
+<span class="token function">mv</span> 文件名1 文件夹名2 //将文件1移到文件夹2中</code></pre>
+<pre class=" language-bash"><code class="language-bash">gcc -c test.c //编译一个叫test.c的c语言文件，最终会生成一个test.o文件
+gcc -o <span class="token function">test</span> test.o //生成一个名叫test的可执行文件
+g++ test.cpp -o test//编译一个叫test.cpp的cpp文件并生成可执行文件test
+./test //执行可执行文件
 
 
+<span class="token function">chmod</span> + xx.py  //更改py文件的执行权限
+./xx.py  //执行py文件</code></pre>
 <h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>Linux操作系统下的文本编辑器</p>
 <h3 id="打开vim"><a href="#打开vim" class="headerlink" title="打开vim"></a>打开vim</h3><p>打开linux终端，输入指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim 文件名  //若文件名对应文件存在则打开对应文件，若无对应文件则新建一个文件</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">vim 文件名  //若文件名对应文件存在则打开对应文件，若无对应文件则新建一个文件 </code></pre>
 <h3 id="vim三模式"><a href="#vim三模式" class="headerlink" title="vim三模式"></a>vim三模式</h3><ul>
 <li>命令行模式：输入vim后最初进入的模式，可以进行粘贴复制但不能进行编辑，按ESC键后进入命令状态，可在此状态下输入命令对vim文件进行操作</li>
 <li>插入模式：命令行模式按下按下<font color="#fb8c00">i</font>(insert)后进入的模式，可以进行编辑，按ESC键后返回命令行</li>
 <li>底行模式：插入模式按ESC键进入命令行模式后输入保存命令</li>
 </ul>
-<h3 id="vim指令"><a href="#vim指令" class="headerlink" title="vim指令"></a>vim指令</h3><h4 id="vi保存命令"><a href="#vi保存命令" class="headerlink" title="vi保存命令"></a>vi保存命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">:q 退出没有修改的文件</span><br><span class="line">:q! 强制退出，且不保存修改过的部分</span><br><span class="line">:w 保存文件但不退出（相当于windows的ctrl S）</span><br><span class="line">:x 保存文件并退出</span><br><span class="line">:w 名字 将文件重命名保存</span><br><span class="line">:wq</span><br></pre></td></tr></table></figure>
+<h3 id="vim指令"><a href="#vim指令" class="headerlink" title="vim指令"></a>vim指令</h3><h4 id="vi保存命令"><a href="#vi保存命令" class="headerlink" title="vi保存命令"></a>vi保存命令</h4><pre class=" language-bash"><code class="language-bash">   :q 退出没有修改的文件
+   :q<span class="token operator">!</span> 强制退出，且不保存修改过的部分
+   :w 保存文件但不退出（相当于windows的ctrl S）
+   :x 保存文件并退出
+   :w 名字 将文件重命名保存
+   :wq</code></pre>
 <h4 id="vi撤销"><a href="#vi撤销" class="headerlink" title="vi撤销"></a>vi撤销</h4><p>在命令行模式下输入u</p>
 <h3 id="vim设置"><a href="#vim设置" class="headerlink" title="vim设置"></a>vim设置</h3><h4 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h4><ol>
-<li>编辑.vimrc文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .vimrc</span><br></pre></td></tr></table></figure></li>
-<li>在.vimrc中加入以下文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br></pre></td></tr></table></figure></li>
-<li>执行生效<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .vimrc</span><br></pre></td></tr></table></figure>
+<li>编辑.vimrc文件<pre class=" language-bash"><code class="language-bash">vim .vimrc</code></pre>
+</li>
+<li>在.vimrc中加入以下文件<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> fileencodings<span class="token operator">=</span>utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+<span class="token keyword">set</span> termencoding<span class="token operator">=</span>utf-8
+<span class="token keyword">set</span> encoding<span class="token operator">=</span>utf-8</code></pre>
+</li>
+<li>执行生效<pre class=" language-bash"><code class="language-bash"><span class="token function">source</span> .vimrc</code></pre>
 以上参考博客<a href="https://blog.bbskali.cn/index.php/archives/346/" target="_blank" rel="noopener">链接</a></li>
 </ol>
 <p>####　viｍ代码高亮<br>在.vimrc文件中加入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syntax on</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">syntax on</code></pre>
+
             </div>
             <hr/>
 
@@ -603,7 +626,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/08/C_3/">
+                <a href="/2019/08/08/c-3/">
                     <div class="card-image">
                         
                         
@@ -799,7 +822,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

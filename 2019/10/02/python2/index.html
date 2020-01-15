@@ -33,7 +33,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,7 +395,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.8k
+                        1.9k
                     </div>
                     
 
@@ -424,58 +424,110 @@
 </ul>
 <h3 id="内建函数"><a href="#内建函数" class="headerlink" title="内建函数"></a>内建函数</h3><p>python中自带的函数，返回值由python规定</p>
 <h3 id="用户自定义函数"><a href="#用户自定义函数" class="headerlink" title="用户自定义函数"></a>用户自定义函数</h3><p>自定义返回值的函数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def 函数名(参数1，参数2，...):</span><br><span class="line">    语句块</span><br><span class="line">    <span class="built_in">return</span> 返回值</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">def 函数名<span class="token punctuation">(</span>参数1，参数2，<span class="token punctuation">..</span>.<span class="token punctuation">)</span>:
+    语句块
+    <span class="token keyword">return</span> 返回值</code></pre>
 <blockquote>
 <p>注：一旦return语句得到执行，函数立即终止。return语句可以出现在函数体中的任何位置。<br>    python有一个称为None的对象用来表示空值，此对象没有任何方法。</p>
 </blockquote>
 <h4 id="传递参数的形式"><a href="#传递参数的形式" class="headerlink" title="传递参数的形式"></a>传递参数的形式</h4><h5 id="按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同"><a href="#按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同" class="headerlink" title="按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同"></a>按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同</h5><h5 id="按照默认值传递参数"><a href="#按照默认值传递参数" class="headerlink" title="按照默认值传递参数"></a>按照默认值传递参数</h5><p>一个函数的某些(或者全部)参数可以有默认值——当没有值传递给它们时而赋给的值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def total(w,x,y=10,z=20):</span><br><span class="line">    <span class="built_in">return</span>((w**x)+y+z)</span><br><span class="line">total(2,3)  //2^3+10+20 38</span><br><span class="line">total(2,3,4)  //2^3+4+20 32</span><br><span class="line">total(2,3,4,5)  //2^3+4+5  //17</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">def total<span class="token punctuation">(</span>w,x,y<span class="token operator">=</span>10,z<span class="token operator">=</span>20<span class="token punctuation">)</span>:
+    return<span class="token punctuation">((</span>w**x<span class="token punctuation">)</span>+y+z<span class="token punctuation">)</span>
+total<span class="token punctuation">(</span>2,3<span class="token punctuation">)</span>  //2^3+10+20 38
+total<span class="token punctuation">(</span>2,3,4<span class="token punctuation">)</span>  //2^3+4+20 32
+total<span class="token punctuation">(</span>2,3,4,5<span class="token punctuation">)</span>  //2^3+4+5  //17</code></pre>
 <blockquote>
 <p>注：在函数定义中，没有默认值的参数必须放在有默认值的参数前面，如def func(x,y=2,z)<br>是不合法的</p>
 </blockquote>
 <h5 id="按照关键字传递参数"><a href="#按照关键字传递参数" class="headerlink" title="按照关键字传递参数"></a>按照关键字传递参数</h5><p>实际参数可以通过使用相应形式参数的名字传递给函数，而不是根据位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def total(w,x,y=10,z=20):</span><br><span class="line">    <span class="built_in">return</span>((w**x)+y+z)</span><br><span class="line">total(y=4,x=3,w=2)  //2^3+4+20 32</span><br><span class="line">total(2,y=4,x=3) //2^3+4+20 32</span><br><span class="line">total(2,3,y=4) //2^3+4+20 32</span><br><span class="line">total(w=2,3,y=4) //error ,不合法,按位置传递的实参必须要放在按关键字传递的实参前(形参类似)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">def total<span class="token punctuation">(</span>w,x,y<span class="token operator">=</span>10,z<span class="token operator">=</span>20<span class="token punctuation">)</span>:
+    return<span class="token punctuation">((</span>w**x<span class="token punctuation">)</span>+y+z<span class="token punctuation">)</span>
+total<span class="token punctuation">(</span>y<span class="token operator">=</span>4,x<span class="token operator">=</span>3,w<span class="token operator">=</span>2<span class="token punctuation">)</span>  //2^3+4+20 32
+total<span class="token punctuation">(</span>2,y<span class="token operator">=</span>4,x<span class="token operator">=</span>3<span class="token punctuation">)</span> //2^3+4+20 32
+total<span class="token punctuation">(</span>2,3,y<span class="token operator">=</span>4<span class="token punctuation">)</span> //2^3+4+20 32
+total<span class="token punctuation">(</span>w<span class="token operator">=</span>2,3,y<span class="token operator">=</span>4<span class="token punctuation">)</span> //error ,不合法,按位置传递的实参必须要放在按关键字传递的实参前<span class="token punctuation">(</span>形参类似<span class="token punctuation">)</span></code></pre>
 <blockquote>
 <p>注：当实际参数是一个表达式时，先要计算表达式，然后将它的值传给形式参数</p>
 </blockquote>
 <h4 id="向函数传值"><a href="#向函数传值" class="headerlink" title="向函数传值"></a>向函数传值</h4><p>如果函数调用的实际参数是一个变量，那么由实际参数变量指向的对象(而不是实际参数变量本身)传递给了形式参数变量。因此，如果对象是不可变的且函数改变了形式参数变量的值，实际参数所指向的对象不会发生任何改变，当实际参数变量指向数值、字符串或元组对象时，不管怎样通过函数调用改变实际参数的值，都是不可能的。</p>
 <h3 id="main-函数"><a href="#main-函数" class="headerlink" title="main()函数"></a>main()函数</h3><p>主函数(main函数)既没有参数，也没有返回值，是程序的入口函数</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    函数体</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">def main<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    函数体
+main<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <blockquote>
 <p>注：python中需要调用主函数，之后初始化要执行的任务(一般将第一个函数命名为main，它的前面有import语句和全局变量，所有的程序将以main()语句结尾，从而调用main()函数)</p>
 </blockquote>
 <h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><ul>
 <li>在函数内部创建的变量只能被同一函数内部的语句访问，并且当函数退出后变量就不存在了。(每次函数被调用时变量再重新创建)，这样的变量对于函数来说是局部的，有局部作用域。对于函数的参数同样成立。</li>
-<li>如果在两个不同的函数创建了同样名称的变量，那么它们之间没有任何关系，可以当作完全不同的变量，对于函数的参数同样成立。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">	x=2</span><br><span class="line">	<span class="built_in">print</span>(str(x)+<span class="string">": function main"</span>)</span><br><span class="line">	trivial()</span><br><span class="line">	<span class="built_in">print</span>(str(x)+<span class="string">": function main"</span>)</span><br><span class="line">def trivial():</span><br><span class="line">    x=3</span><br><span class="line">    <span class="built_in">print</span>(str(x)+<span class="string">": function trivial"</span>)</span><br><span class="line">main()</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">2 : <span class="keyword">function</span> main</span><br><span class="line">3 : <span class="keyword">function</span> trivial</span><br><span class="line">2 : <span class="keyword">function</span> main</span><br></pre></td></tr></table></figure>
-
+<li>如果在两个不同的函数创建了同样名称的变量，那么它们之间没有任何关系，可以当作完全不同的变量，对于函数的参数同样成立。<pre class=" language-bash"><code class="language-bash">def main<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+  x<span class="token operator">=</span>2
+  print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span>+<span class="token string">": function main"</span><span class="token punctuation">)</span>
+  trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span>+<span class="token string">": function main"</span><span class="token punctuation">)</span>
+def trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+  x<span class="token operator">=</span>3
+  print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">)</span>+<span class="token string">": function trivial"</span><span class="token punctuation">)</span>
+main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果</span>
+2 <span class="token keyword">:</span> <span class="token keyword">function</span> main
+3 <span class="token keyword">:</span> <span class="token keyword">function</span> trivial
+2 <span class="token keyword">:</span> <span class="token keyword">function</span> main  </code></pre>
 </li>
 </ul>
-<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    x=5</span><br><span class="line">    trivial()</span><br><span class="line">def trivial():</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line">main()</span><br><span class="line"><span class="comment"># 结果会产生一个NameError的回溯错误，因为主函数创建的x无法被trivial()识别</span></span><br></pre></td></tr></table></figure>
-
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><pre class=" language-bash"><code class="language-bash">def main<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    x<span class="token operator">=</span>5
+    trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>
+def trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># 结果会产生一个NameError的回溯错误，因为主函数创建的x无法被trivial()识别</span></code></pre>
 <h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><ul>
 <li>定义：一个变量可以被程序中任何部分识别，这样的变量叫做全局变量</li>
 <li>创建方式：将创建它的赋值语句放在程序顶部</li>
-<li>任何函数都能读取全局变量的值，然而它的值不能在函数内部进行修改，除非修改语句之前有以下的语句形式<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global 全局变量名</span><br></pre></td></tr></table></figure>
-
+<li>任何函数都能读取全局变量的值，然而它的值不能在函数内部进行修改，除非修改语句之前有以下的语句形式<pre class=" language-bash"><code class="language-bash">global 全局变量名</code></pre>
 </li>
 </ul>
 <blockquote>
 <p>注：global仅影响所在函数体内其后的语句，它不允许在其他函数内部修改全局变量的值。</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x=0  <span class="comment">#定义一个全局变量</span></span><br><span class="line">def main():</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line">    trivial()</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line">def trivial():</span><br><span class="line">    global x</span><br><span class="line">    x += 7</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">0</span><br><span class="line">7</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">x<span class="token operator">=</span>0  <span class="token comment" spellcheck="true">#定义一个全局变量</span>
+def main<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">))</span>
+    trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">))</span>
+def trivial<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    global x
+    x +<span class="token operator">=</span> 7
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>x<span class="token punctuation">))</span>
+<span class="token comment" spellcheck="true">#输出结果</span>
+0
+7
+7</code></pre>
 <h4 id="命名常量"><a href="#命名常量" class="headerlink" title="命名常量"></a>命名常量</h4><p>命名常量的名字使用大写字母的单词，并且单词间使用下划线分隔，并赋给一个常量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INTEREST_TATE = 0.04</span><br><span class="line">BOOK_TITLE = <span class="string">"python"</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">INTEREST_TATE <span class="token operator">=</span> 0.04
+BOOK_TITLE <span class="token operator">=</span> <span class="token string">"python"</span></code></pre>
 <blockquote>
 <p>注：python中允许给任何变量重新赋值，程序员要负责地不改变这个变量的值</p>
 </blockquote>
 <h3 id="库模块"><a href="#库模块" class="headerlink" title="库模块"></a>库模块</h3><ul>
 <li>python通过称为库模块的文件支持函数的重用</li>
 <li>库模块是一个扩展名为.py的文件，包含了可以被其他任何程序使用(我们可以称为imported)的函数和变量</li>
-<li>库模块可以使用IDLE和任何文本编辑器进行创建<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#不使用库模块</span></span><br><span class="line">def add(x,y):</span><br><span class="line">    flag = x+y</span><br><span class="line">    <span class="built_in">return</span> flag</span><br><span class="line">amount = add(7,8)</span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用库模块</span></span><br><span class="line"><span class="comment">#方式一</span></span><br><span class="line">import sum  <span class="comment">#sum.py文件为add函数的声明与定义</span></span><br><span class="line">amount = sum.add(7,8)   <span class="comment">#使用sum.add()代替上述add()</span></span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用库模块</span></span><br><span class="line"><span class="comment">#方法二</span></span><br><span class="line">from sum import *  //表示调用sum.py文件的所有函数</span><br><span class="line">amount = add(7,8)</span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
-
+<li>库模块可以使用IDLE和任何文本编辑器进行创建<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#不使用库模块</span>
+def add<span class="token punctuation">(</span>x,y<span class="token punctuation">)</span>:
+  flag <span class="token operator">=</span> x+y
+  <span class="token keyword">return</span> flag
+amount <span class="token operator">=</span> add<span class="token punctuation">(</span>7,8<span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>amount<span class="token punctuation">))</span></code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#使用库模块</span>
+<span class="token comment" spellcheck="true">#方式一</span>
+<span class="token function">import</span> <span class="token function">sum</span>  <span class="token comment" spellcheck="true">#sum.py文件为add函数的声明与定义</span>
+amount <span class="token operator">=</span> sum.add<span class="token punctuation">(</span>7,8<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#使用sum.add()代替上述add()</span>
+print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>amount<span class="token punctuation">))</span></code></pre>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#使用库模块</span>
+<span class="token comment" spellcheck="true">#方法二</span>
+from <span class="token function">sum</span> <span class="token function">import</span> *  //表示调用sum.py文件的所有函数
+amount <span class="token operator">=</span> add<span class="token punctuation">(</span>7,8<span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>amount<span class="token punctuation">))</span></code></pre>
 </li>
 </ul>
 <h4 id="python标准库模块"><a href="#python标准库模块" class="headerlink" title="python标准库模块"></a>python标准库模块</h4><ul>
@@ -488,12 +540,28 @@
 <li><font color="#fb8c00">math</font> 包含了三角函数、指数函数和对数函数</li>
 </ul>
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="调用其他函数的函数"><a href="#调用其他函数的函数" class="headerlink" title="调用其他函数的函数"></a>调用其他函数的函数</h3><p>一个函数可以调用另一个函数，当被调用的函数结束时(return语句之后或被调用函数的最后一个语句执行完毕之后)，控制流程返回到调用函数中调用发生之后的位置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    firstPart()</span><br><span class="line">    <span class="built_in">print</span>(str(4)+<span class="string">": from function main"</span>)</span><br><span class="line">def firstPart():</span><br><span class="line">    <span class="built_in">print</span>(str(1)+<span class="string">": from function firstPart"</span>)</span><br><span class="line">    secondPart()</span><br><span class="line">    <span class="built_in">print</span>(str(3)+<span class="string">": from function firstPart"</span>)</span><br><span class="line">def secondPart():</span><br><span class="line">    <span class="built_in">print</span>(str(2)+<span class="string">": from function secondPart"</span>)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">1: from <span class="keyword">function</span> firstPart</span><br><span class="line">2: from <span class="keyword">function</span> secondPart</span><br><span class="line">3: from <span class="keyword">function</span> firstPart</span><br><span class="line">4: from <span class="keyword">function</span> main</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">def main<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    firstPart<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>4<span class="token punctuation">)</span>+<span class="token string">": from function main"</span><span class="token punctuation">)</span>
+def firstPart<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>1<span class="token punctuation">)</span>+<span class="token string">": from function firstPart"</span><span class="token punctuation">)</span>
+    secondPart<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>3<span class="token punctuation">)</span>+<span class="token string">": from function firstPart"</span><span class="token punctuation">)</span>
+def secondPart<span class="token punctuation">(</span><span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span>str<span class="token punctuation">(</span>2<span class="token punctuation">)</span>+<span class="token string">": from function secondPart"</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果</span>
+1: from <span class="token keyword">function</span> firstPart
+2: from <span class="token keyword">function</span> secondPart
+3: from <span class="token keyword">function</span> firstPart
+4: from <span class="token keyword">function</span> main</code></pre>
 <h3 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h3><p>当我们想要对列表中的每个元素执行一个特定函数时，一个for循环可以完成。但是，更加简单的方法是使用列表解析。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list2 = [f(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1]  <span class="comment">#将list1的每个元素的f(item)放入列表list2中，f不是一个内建函数就是用户自定义函数</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def g(x):</span><br><span class="line">    <span class="built_in">return</span> (int(x)**2)</span><br><span class="line">list1 = [<span class="string">'2'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>]</span><br><span class="line">list2 = [g(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1]   <span class="comment">#list2=[4,25,36,49]</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">list2 <span class="token operator">=</span> <span class="token punctuation">[</span>f<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> list1<span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#将list1的每个元素的f(item)放入列表list2中，f不是一个内建函数就是用户自定义函数</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">def g<span class="token punctuation">(</span>x<span class="token punctuation">)</span>:
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>int<span class="token punctuation">(</span>x<span class="token punctuation">)</span>**2<span class="token punctuation">)</span>
+list1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'2'</span>,<span class="token string">'5'</span>,<span class="token string">'6'</span>,<span class="token string">'7'</span><span class="token punctuation">]</span>
+list2 <span class="token operator">=</span> <span class="token punctuation">[</span>g<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> list1<span class="token punctuation">]</span>   <span class="token comment" spellcheck="true">#list2=[4,25,36,49]</span></code></pre>
 <h4 id="过滤列表"><a href="#过滤列表" class="headerlink" title="过滤列表"></a>过滤列表</h4><p>在列表解析时加入if语句对列表进行筛选</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list2 = [g(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1 <span class="keyword">if</span> int(x)%2==1]    <span class="comment">#list2=[25,49],只有奇数的平方才会出现在列表里</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">list2 <span class="token operator">=</span> <span class="token punctuation">[</span>g<span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> list1 <span class="token keyword">if</span> int<span class="token punctuation">(</span>x<span class="token punctuation">)</span>%2<span class="token operator">==</span>1<span class="token punctuation">]</span>    <span class="token comment" spellcheck="true">#list2=[25,49],只有奇数的平方才会出现在列表里</span></code></pre>
 <blockquote>
 <p>注：列表解析可以用在字符串、元组和range函数产生的算术表达式</p>
 </blockquote>
@@ -599,7 +667,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/10/02/OS1/">
+                <a href="/2019/10/02/os1/">
                     <div class="card-image">
                         
                         
@@ -844,7 +912,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

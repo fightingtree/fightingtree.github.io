@@ -30,7 +30,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -419,29 +419,31 @@
 <blockquote>
 <p>注：ASCII标准给一些字符赋的值也会高于126</p>
 </blockquote>
-<h4 id="chr-ord"><a href="#chr-ord" class="headerlink" title="chr()/ord"></a>chr()/ord</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">n = 77</span><br><span class="line"><span class="built_in">print</span>(chr(n))   <span class="comment">#打印输出ASCII值为77的单字符串</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">'a'</span></span><br><span class="line"><span class="built_in">print</span>(ord(a))   <span class="comment">#打印输出单字符串'a'的ASCII值</span></span><br></pre></td></tr></table></figure>
+<h4 id="chr-ord"><a href="#chr-ord" class="headerlink" title="chr()/ord"></a>chr()/ord</h4><pre class=" language-bash"><code class="language-bash">n <span class="token operator">=</span> 77
+print<span class="token punctuation">(</span>chr<span class="token punctuation">(</span>n<span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#打印输出ASCII值为77的单字符串</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">str <span class="token operator">=</span> <span class="token string">'a'</span>
+print<span class="token punctuation">(</span>ord<span class="token punctuation">(</span>a<span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#打印输出单字符串'a'的ASCII值</span></code></pre>
 <h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><ul>
 <li>按字典序排序：数字优先于大写字母，大写字母优先于小写字母，两个字符串逐个字符(从左到右)进行比较来确定哪个字符串应该优先于另一个。</li>
 <li>整型数可以与浮点数进行比较，其他不同类型的值不能进行比较，例如，字符串不能与数字进行比较。</li>
 <li>关系运算符可以用于列表或元组中。要使两个列表或两个元组相同，它们必须有相同的长度，对应位置的元素也必须是相同的值。</li>
-<li>条件的真值的判断通过依此比较对应元素值直到两个元素不同(或者不能比较)为止，或者直到其中一个序列没有元素为止<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[3,5] &lt; [3,7]</span><br><span class="line">[3,5] &lt; [3,5,6]</span><br><span class="line">[3,5,7] &lt; [3,7,2]</span><br><span class="line">[7,<span class="string">"three"</span>,5] &lt; [7,<span class="string">"two"</span>,2]</span><br></pre></td></tr></table></figure>
-
+<li>条件的真值的判断通过依此比较对应元素值直到两个元素不同(或者不能比较)为止，或者直到其中一个序列没有元素为止<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>3,5<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token punctuation">[</span>3,7<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>3,5<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token punctuation">[</span>3,5,6<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>3,5,7<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token punctuation">[</span>3,7,2<span class="token punctuation">]</span>
+<span class="token punctuation">[</span>7,<span class="token string">"three"</span>,5<span class="token punctuation">]</span> <span class="token operator">&lt;</span> <span class="token punctuation">[</span>7,<span class="token string">"two"</span>,2<span class="token punctuation">]</span></code></pre>
 </li>
 </ul>
 <blockquote>
 <p>注：条件”three”==3的值为假，但条件”three”&lt;3将会触发一个Traceback错误</p>
 </blockquote>
 <h4 id="in运算符"><a href="#in运算符" class="headerlink" title="in运算符"></a>in运算符</h4><p>当in这种运算符用于一个列表或元组时，意味着包含关系</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'b'</span> <span class="keyword">in</span> [<span class="string">'a'</span>,<span class="string">'b'</span>.<span class="string">'c'</span>]  <span class="comment">#b是该列表的子字符串</span></span><br><span class="line"><span class="string">'B'</span> not <span class="keyword">in</span> (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)   <span class="comment">#B不是该元组的子字符串</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token string">'b'</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'a'</span>,<span class="token string">'b'</span><span class="token keyword">.</span><span class="token string">'c'</span><span class="token punctuation">]</span>  <span class="token comment" spellcheck="true">#b是该列表的子字符串</span>
+<span class="token string">'B'</span> not <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token string">'a'</span>,<span class="token string">'b'</span>,<span class="token string">'c'</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#B不是该元组的子字符串</span></code></pre>
 <h4 id="列表元素的排序"><a href="#列表元素的排序" class="headerlink" title="列表元素的排序"></a>列表元素的排序</h4><p>列表中的元素可以用sort方法进行比较和排序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list1.sort()</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">list1.sort<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <p>将list1改变为一个拥有相同元素的序列，但是其中的元素不管是数字还是字母都按照升序排列。</p>
 <h5 id="sorted函数"><a href="#sorted函数" class="headerlink" title="sorted函数"></a>sorted函数</h5><p>sort方法改变了列表中所有元素的顺序，sorted函数则返回一个新的排好序的列表</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list2 = sorted(list1)    <span class="comment">#list2会包含和list1一样的元素，但list2已经排好序</span></span><br></pre></td></tr></table></figure>
-
-
+<pre class=" language-bash"><code class="language-bash">list2 <span class="token operator">=</span> sorted<span class="token punctuation">(</span>list1<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#list2会包含和list1一样的元素，但list2已经排好序</span></code></pre>
 <blockquote>
 <p>注：sort()方法不能用于赋值语句,sort没有返回值，所以list2 = list1.sort()只是在原地对数据进行重排。</p>
 </blockquote>
@@ -451,8 +453,12 @@
 <li>布尔数据类型:True/False</li>
 <li>当数字作为条件时，0会被赋值为False,其他所有其他数字会被赋值为True</li>
 </ul>
-<h4 id="三种返回布尔值的方法"><a href="#三种返回布尔值的方法" class="headerlink" title="三种返回布尔值的方法"></a>三种返回布尔值的方法</h4><h5 id="startwith-endwith"><a href="#startwith-endwith" class="headerlink" title="startwith()/endwith()"></a>startwith()/endwith()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"fantastic"</span>.startwith(<span class="string">"fan"</span>)  <span class="comment">#fantastic以fan开头，True</span></span><br><span class="line"><span class="string">"fantastic"</span>.endwith(<span class="string">"stic"</span>)   <span class="comment">#fantastic以stic结尾，True</span></span><br><span class="line"><span class="string">"fantastic"</span>.startwith(<span class="string">"Fan"</span>)  <span class="comment">#False</span></span><br><span class="line"><span class="string">"elephant"</span>.endwith(<span class="string">"fant"</span>)    <span class="comment">#False</span></span><br></pre></td></tr></table></figure>
-<h5 id="isinstance"><a href="#isinstance" class="headerlink" title="isinstance()"></a>isinstance()</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isinstance(<span class="string">"32"</span>,int)  <span class="comment">#False "32"的数据类型是否为整形</span></span><br><span class="line">isinstance(32,int)   <span class="comment">#True</span></span><br></pre></td></tr></table></figure>
+<h4 id="三种返回布尔值的方法"><a href="#三种返回布尔值的方法" class="headerlink" title="三种返回布尔值的方法"></a>三种返回布尔值的方法</h4><h5 id="startwith-endwith"><a href="#startwith-endwith" class="headerlink" title="startwith()/endwith()"></a>startwith()/endwith()</h5><pre class=" language-bash"><code class="language-bash"><span class="token string">"fantastic"</span>.startwith<span class="token punctuation">(</span><span class="token string">"fan"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#fantastic以fan开头，True</span>
+<span class="token string">"fantastic"</span>.endwith<span class="token punctuation">(</span><span class="token string">"stic"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#fantastic以stic结尾，True</span>
+<span class="token string">"fantastic"</span>.startwith<span class="token punctuation">(</span><span class="token string">"Fan"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#False</span>
+<span class="token string">"elephant"</span>.endwith<span class="token punctuation">(</span><span class="token string">"fant"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#False</span></code></pre>
+<h5 id="isinstance"><a href="#isinstance" class="headerlink" title="isinstance()"></a>isinstance()</h5><pre class=" language-bash"><code class="language-bash">isinstance<span class="token punctuation">(</span><span class="token string">"32"</span>,int<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#False "32"的数据类型是否为整形</span>
+isinstance<span class="token punctuation">(</span>32,int<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#True</span></code></pre>
 <h5 id="判断数据类型的方法"><a href="#判断数据类型的方法" class="headerlink" title="判断数据类型的方法"></a>判断数据类型的方法</h5><p>假设str1是非空字符串</p>
 <ul>
 <li><font color="#fb8c00">str1.isdigit()</font> str1的所有字符都是数字</li>
@@ -460,15 +466,31 @@
 <li><font color="#fb8c00">str1.isalnum()</font> str1的所有字符都是字母表上的字母或数字</li>
 <li><font color="#fb8c00">str1.isspace()</font> str1仅含有空白字符 </li>
 </ul>
-<h2 id="判断结构-分支结构"><a href="#判断结构-分支结构" class="headerlink" title="判断结构(分支结构)"></a>判断结构(分支结构)</h2><h3 id="if-else语句"><a href="#if-else语句" class="headerlink" title="if-else语句"></a>if-else语句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition1:</span><br><span class="line">    语句块1</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	语句块2</span><br></pre></td></tr></table></figure>
+<h2 id="判断结构-分支结构"><a href="#判断结构-分支结构" class="headerlink" title="判断结构(分支结构)"></a>判断结构(分支结构)</h2><h3 id="if-else语句"><a href="#if-else语句" class="headerlink" title="if-else语句"></a>if-else语句</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> condition1:
+    语句块1
+else:
+    语句块2</code></pre>
 <blockquote>
 <p>注：语句块中的每行语句必须向右缩进相同的距离，缩进代表了一个块的结束和开始(使用4个空格缩进语句块)</p>
 </blockquote>
 <h3 id="嵌套语句"><a href="#嵌套语句" class="headerlink" title="嵌套语句"></a>嵌套语句</h3><p>if-else的缩进块中可以包含其他的if-else语句</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition1:</span><br><span class="line">    <span class="keyword">if</span> condition2:</span><br><span class="line">    	语句块1</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    	语句块2</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	语句块3</span><br></pre></td></tr></table></figure>
-<h3 id="elif子句"><a href="#elif子句" class="headerlink" title="elif子句"></a>elif子句</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition1:</span><br><span class="line">	语句块1</span><br><span class="line"><span class="keyword">elif</span> condition2:</span><br><span class="line">	语句块2</span><br><span class="line"><span class="keyword">elif</span> condition3:</span><br><span class="line">	语句块3</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	语句块4</span><br></pre></td></tr></table></figure>
-
-<h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> condition:  <span class="comment">#循环的头部,condition被称为循环的继续条件</span></span><br><span class="line">    循环体</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> condition1:
+    <span class="token keyword">if</span> condition2:
+        语句块1
+    else:
+        语句块2
+else:
+    语句块3</code></pre>
+<h3 id="elif子句"><a href="#elif子句" class="headerlink" title="elif子句"></a>elif子句</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">if</span> condition1:
+    语句块1
+<span class="token keyword">elif</span> condition2:
+    语句块2
+<span class="token keyword">elif</span> condition3:
+    语句块3
+else:
+    语句块4</code></pre>
+<h2 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h2><pre class=" language-bash"><code class="language-bash"><span class="token keyword">while</span> condition:  <span class="token comment" spellcheck="true">#循环的头部,condition被称为循环的继续条件</span>
+    循环体</code></pre>
 <ul>
 <li>循环体的每次执行称为通过该循环的一轮(pass)</li>
 <li>继续条件是个布尔表达式，等于True或False</li>
@@ -476,28 +498,53 @@
 </ul>
 <h3 id="break-continue"><a href="#break-continue" class="headerlink" title="break/continue"></a>break/continue</h3><ul>
 <li>当break语句执行时，循环会马上终止，跳出整个循环</li>
-<li>当continue语句执行时，当前循环终止，进行下一轮循环<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> x&gt;10:    </span><br><span class="line">    <span class="keyword">if</span> condition:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"hello"</span>)</span><br><span class="line">        <span class="built_in">break</span>  <span class="comment">#执行print("hello,world")</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">	    <span class="built_in">print</span>(<span class="string">"world"</span>)</span><br><span class="line">	    <span class="built_in">continue</span>  <span class="comment">#执行while x&gt;10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"hello,world"</span>)</span><br></pre></td></tr></table></figure>
-
+<li>当continue语句执行时，当前循环终止，进行下一轮循环<pre class=" language-bash"><code class="language-bash"><span class="token keyword">while</span> x<span class="token operator">></span>10:    
+  <span class="token keyword">if</span> condition:
+      print<span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span>
+      <span class="token keyword">break</span>  <span class="token comment" spellcheck="true">#执行print("hello,world")</span>
+  else:
+      print<span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>
+      <span class="token keyword">continue</span>  <span class="token comment" spellcheck="true">#执行while x>10</span>
+print<span class="token punctuation">(</span><span class="token string">"hello,world"</span><span class="token punctuation">)</span></code></pre>
 </li>
 </ul>
-<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> var <span class="keyword">in</span> sequence:  <span class="comment">#sequence可以是等差数列、字符串、列表、元组或是一个文件对象</span></span><br><span class="line">    语句块</span><br></pre></td></tr></table></figure>
-
+<h2 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h2><pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> var <span class="token keyword">in</span> sequence:  <span class="token comment" spellcheck="true">#sequence可以是等差数列、字符串、列表、元组或是一个文件对象</span>
+    语句块</code></pre>
 <h3 id="等差数列的循环遍历"><a href="#等差数列的循环遍历" class="headerlink" title="等差数列的循环遍历"></a>等差数列的循环遍历</h3><h4 id="range-函数"><a href="#range-函数" class="headerlink" title="range()函数"></a>range()函数</h4><p><font color="#fb8c00">range()</font>函数可以用来产生一个等差数列，如果m/n是整数，并且m &lt; n，则函数range(m,n)会产生一系列整数m,m+1,m+2…..n-1</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">range(0,4) <span class="comment">#0,1,2,3 可以被简写为range(4)</span></span><br><span class="line">range(-2,3)  <span class="comment">#-2,-1,0,1,2</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">range<span class="token punctuation">(</span>0,4<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#0,1,2,3 可以被简写为range(4)</span>
+range<span class="token punctuation">(</span>-2,3<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#-2,-1,0,1,2</span></code></pre>
 <blockquote>
 <p>注：若想输出range函数的值，可以使用print(list(range(1,5)))</p>
 </blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(2,6):</span><br><span class="line">    <span class="built_in">print</span>(i,i*i)</span><br><span class="line">输出：</span><br><span class="line">2 4</span><br><span class="line">3 9</span><br><span class="line">4 16</span><br><span class="line">5 25</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>2,6<span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span>i,i*i<span class="token punctuation">)</span>
+输出：
+2 4
+3 9
+4 16
+5 25</code></pre>
 <h4 id="range-函数的步长值"><a href="#range-函数的步长值" class="headerlink" title="range()函数的步长值"></a>range()函数的步长值</h4><p><font color="#fb8c00">range(m,n,s)</font>会产生整数序列m,m+s,m+2s….m + r * s,其中r是最后一个满足m + r * s&lt; n的数。也就是说，这一序列开始于m,每一次都将m加上s，直到下一次将会产生一个数大于n，可选的n叫做range函数的步长值。 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">range(3,10,2)  <span class="comment">#3,5,7,9</span></span><br><span class="line">range(-10,10,4) <span class="comment">#-10,-6,-2,2,6</span></span><br><span class="line">range(6,0,-1)   <span class="comment">#6,5,4,3,2,1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="for循环的嵌套"><a href="#for循环的嵌套" class="headerlink" title="for循环的嵌套"></a>for循环的嵌套</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> range(1,6):</span><br><span class="line">    <span class="keyword">for</span> n <span class="keyword">in</span> range(1,6):</span><br><span class="line">        <span class="built_in">print</span>(m*n，<span class="string">"\t"</span>,end=<span class="string">""</span>)  打印横行</span><br><span class="line">    <span class="built_in">print</span>()   <span class="comment">#打印竖列    </span></span><br><span class="line">    <span class="comment">#结果为一个5x5的表格</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="字符串的字符循环遍历"><a href="#字符串的字符循环遍历" class="headerlink" title="字符串的字符循环遍历"></a>字符串的字符循环遍历</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ch <span class="keyword">in</span> str1:</span><br><span class="line">    语句块    <span class="comment">#将会从第一个字符开始，针对字符串的每一个字符执行一遍循环体，因此这个循环会被执行len(str1)次</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="文本文件的行循环遍历"><a href="#文本文件的行循环遍历" class="headerlink" title="文本文件的行循环遍历"></a>文本文件的行循环遍历</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">infile = open(<span class="string">"filename.txt"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> infile:</span><br><span class="line">    语句块</span><br><span class="line">infile.close()</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">range<span class="token punctuation">(</span>3,10,2<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#3,5,7,9</span>
+range<span class="token punctuation">(</span>-10,10,4<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#-10,-6,-2,2,6</span>
+range<span class="token punctuation">(</span>6,0,-1<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#6,5,4,3,2,1</span></code></pre>
+<h3 id="for循环的嵌套"><a href="#for循环的嵌套" class="headerlink" title="for循环的嵌套"></a>for循环的嵌套</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> m <span class="token keyword">in</span> range<span class="token punctuation">(</span>1,6<span class="token punctuation">)</span>:
+    <span class="token keyword">for</span> n <span class="token keyword">in</span> range<span class="token punctuation">(</span>1,6<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span>m*n，<span class="token string">"\t"</span>,end<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">)</span>  打印横行
+    print<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#打印竖列    </span>
+    <span class="token comment" spellcheck="true">#结果为一个5x5的表格</span></code></pre>
+<h3 id="字符串的字符循环遍历"><a href="#字符串的字符循环遍历" class="headerlink" title="字符串的字符循环遍历"></a>字符串的字符循环遍历</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> ch <span class="token keyword">in</span> str1:
+    语句块    <span class="token comment" spellcheck="true">#将会从第一个字符开始，针对字符串的每一个字符执行一遍循环体，因此这个循环会被执行len(str1)次</span></code></pre>
+<h3 id="文本文件的行循环遍历"><a href="#文本文件的行循环遍历" class="headerlink" title="文本文件的行循环遍历"></a>文本文件的行循环遍历</h3><pre class=" language-bash"><code class="language-bash">infile <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">"filename.txt"</span>,<span class="token string">'r'</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> line <span class="token keyword">in</span> infile:
+    语句块
+infile.close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
 <h3 id="pass语句"><a href="#pass语句" class="headerlink" title="pass语句"></a>pass语句</h3><p>如果只是希望循环遍历一个序列而并不做任何事情，这种时候可以使用pass语句</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">infile = open(<span class="string">"filename.txt"</span>,<span class="string">'r'</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> infile:</span><br><span class="line">    pass</span><br><span class="line"><span class="built_in">print</span>(line.rstrip())  <span class="comment">#打印文件的最后一行</span></span><br><span class="line">infile.close()</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">infile <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">"filename.txt"</span>,<span class="token string">'r'</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> line <span class="token keyword">in</span> infile:
+    pass
+print<span class="token punctuation">(</span>line.rstrip<span class="token punctuation">(</span><span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#打印文件的最后一行</span>
+infile.close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+
             </div>
             <hr/>
 
@@ -844,7 +891,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

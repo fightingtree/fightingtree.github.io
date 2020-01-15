@@ -28,7 +28,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -428,21 +428,41 @@
 <li>如果一个表单标记为隐藏，它就不会显示在屏幕上，但是，用户提交表单时，保存在表单中的字段名称和值仍被传送给应用程序</li>
 </ul>
 <h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>典型的表单如下<br><img src="https://i.postimg.cc/X7SqGrq2/1.png" alt=""><br>创建该表单的HTML代码如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=<span class="string">"post"</span> action=<span class="string">"shop.aspx?prod=1"</span>&gt;</span><br><span class="line">	Product:HuaWei x30&lt;br/&gt;</span><br><span class="line">	Price: 3300&lt;br/&gt;</span><br><span class="line">	Quantity:&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"quantity"</span>&gt;&lt;br/&gt;</span><br><span class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"price"</span> value=<span class="string">"3300"</span>&gt;</span><br><span class="line">	&lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Buy"</span>&gt;</span><br><span class="line">	&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>form method<span class="token operator">=</span><span class="token string">"post"</span> action<span class="token operator">=</span><span class="token string">"shop.aspx?prod=1"</span><span class="token operator">></span>
+    Product:HuaWei x30<span class="token operator">&lt;</span>br/<span class="token operator">></span>
+    Price: 3300<span class="token operator">&lt;</span>br/<span class="token operator">></span>
+    Quantity:<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> name<span class="token operator">=</span><span class="token string">"quantity"</span><span class="token operator">></span><span class="token operator">&lt;</span>br/<span class="token operator">></span>
+    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"price"</span> value<span class="token operator">=</span><span class="token string">"3300"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"submit"</span> value<span class="token operator">=</span><span class="token string">"Buy"</span><span class="token operator">></span>
+    <span class="token operator">&lt;</span>/form<span class="token operator">></span></code></pre>
 <p>注：表单字段名为price，其被标记为隐藏(hidden),用户提交表单时，这个字段将被交送给服务器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /SHOP/shop.aspx?pord=1 HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br><span class="line">Content-Type: Application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 20</span><br><span class="line"></span><br><span class="line">quantity=1&amp;price=3300</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">POST /SHOP/shop.aspx?pord<span class="token operator">=</span>1 HTTP/1.1
+Host: mdsec.net
+Content-Type: Application/x-www-form-urlencoded
+Content-Length: 20
+
+quantity<span class="token operator">=</span>1<span class="token operator">&amp;</span>price<span class="token operator">=</span>3300</code></pre>
 <p>虽然price字段并未显示在输入框里，用户无法对其进行编辑，但这只是因为应用程序指示浏览器隐藏该字段而已。</p>
 <p>要实现编辑操作，可以对HTML源码进行修改，然后重新载入页面，但是，使用拦截代理服务器对数据进行动态修改更为方便。</p>
 <h3 id="HTTP-cookie"><a href="#HTTP-cookie" class="headerlink" title="HTTP cookie"></a>HTTP cookie</h3><p>HTTP cookie是通过客户端传送数据的另一种常用机制，HTTP cookie一般并不显示在屏幕上，也不可由用户直接修改。用户可以通过拦截代理服务器，通过更改设置cookie的服务器响应或随后发布这些cookie的客户端请求，对HTTP cookie进行修改。</p>
 <h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><p>消费者登录应用程序后，收到以下响应</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Set-Cookie: DiscountAgreed=25</span><br><span class="line">Content-Length: 1530</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Set-Cookie: DiscountAgreed<span class="token operator">=</span>25
+Content-Length: 1530
+<span class="token punctuation">..</span>.</code></pre>
 <p>DiscountAgreed cookie是依靠客户端控件(基于cookie一般无法被修改这个事实)保护通过客户端传送的数据的典型示例，如果应用程序信任DiscountAgreed cookie返回给服务器的值，那么消费者就可以修改这个值获得任意折扣</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /shop/shop.aspx?pord=3 HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br><span class="line">cookie: DiscountAgreed=15</span><br><span class="line">Content-Length: 10</span><br><span class="line"></span><br><span class="line">quantity=1</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">POST /shop/shop.aspx?pord<span class="token operator">=</span>3 HTTP/1.1
+Host: mdsec.net
+cookie: DiscountAgreed<span class="token operator">=</span>15
+Content-Length: 10
 
+quantity<span class="token operator">=</span>1</code></pre>
 <h3 id="URL参数"><a href="#URL参数" class="headerlink" title="URL参数"></a>URL参数</h3><p>应用程序常常通过预先设定的URL参数通过客户端传送数据。如果包含参数的URL显示在浏览器的地址栏里，任何用户不需要任何工具就可以修改URL的参数</p>
 <h3 id="Referer消息头"><a href="#Referer消息头" class="headerlink" title="Referer消息头"></a>Referer消息头</h3><p>浏览器在大多数HTTP请求中使用Referer消息头，浏览器使用这个消息头指示提出当前请求的页面的URL(或是因为用户单击了一个超链接或提交了一个表单，或者是因为该页面引用了其他资源)。因此，我们可以利用这个消息头向客户端传送数据，这是因为应用程序处理的URL受其控制。</p>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>忘记密码的用户向服务器提出重制密码的请求</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /auth/CreateUser.ashx HTTP/1.1</span><br><span class="line">Host: mdsec.bet</span><br><span class="line">Referer: https://mdsec.net/auth/Admin.ashx</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">GET /auth/CreateUser.ashx HTTP/1.1
+Host: mdsec.bet
+Referer: https://mdsec.net/auth/Admin.ashx</code></pre>
 <p>应用程序可以使用Referer证实这个请求是在正确的阶段(Adimin.ashx)提出的，然后才允许用户访问请求的功能(这里指重置密码)。但是，因为用户控制着每个HTTP请求，包括HTTP消息头，他可以进入CreateUser.ashx并使用拦截服务器将Referer消息头的值改为应用程序需要的值，从而轻易避开这种控制</p>
 <h3 id="模糊数据"><a href="#模糊数据" class="headerlink" title="模糊数据"></a>模糊数据</h3><p>对传送的数据进行加密或进行了某种形式的模糊处理。</p>
 <h4 id="ASP-NET-ViewState"><a href="#ASP-NET-ViewState" class="headerlink" title="ASP.NET ViewState"></a>ASP.NET ViewState</h4><ul>
@@ -456,12 +476,15 @@
 <li>HTML表单是一种最简单、最常用的机制，它用于从用户收集输入并将其提交给服务器。</li>
 <li>这种方法的基本应用：用户在已命名的字段中输入数据，再将它们以名/值对的形式提交给服务器。</li>
 </ul>
-<h3 id="长度限制"><a href="#长度限制" class="headerlink" title="长度限制"></a>长度限制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form method=<span class="string">"post"</span> action=<span class="string">"shop.aspx?pord=1"</span>&gt;</span><br><span class="line">Quantity: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> name=<span class="string">"quantity"</span> maxlength=<span class="string">"1"</span>&gt;&lt;/br&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="长度限制"><a href="#长度限制" class="headerlink" title="长度限制"></a>长度限制</h3><pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>form method<span class="token operator">=</span><span class="token string">"post"</span> action<span class="token operator">=</span><span class="token string">"shop.aspx?pord=1"</span><span class="token operator">></span>
+Quantity: <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> name<span class="token operator">=</span><span class="token string">"quantity"</span> maxlength<span class="token operator">=</span><span class="token string">"1"</span><span class="token operator">></span><span class="token operator">&lt;</span>/br<span class="token operator">></span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span></code></pre>
 <p>上述HTML语句规定quantity字段的最大长度为1，因此，浏览器将阻止用户在输入字段中输入任何超过一个字符的值，而服务器端引用程序也认为它收到的quantity参数将小于10.但是，通过拦截提交表单的请求，并在其中输入任意值，或拦截包含表单的响应，并删除maxlength属性，就可以轻易避开这种限制。</p>
 <h3 id="基于脚本的确认"><a href="#基于脚本的确认" class="headerlink" title="基于脚本的确认"></a>基于脚本的确认</h3><p>通过Javascript对用户输入进行限制。</p>
 <h3 id="禁用元素"><a href="#禁用元素" class="headerlink" title="禁用元素"></a>禁用元素</h3><p>如果HTML表单中的一个元素被标记为禁用，它会在屏幕上出现，但以灰色显示，并且无法像常规空间那样编辑或使用。提交表单时，表单也不会向服务器传送这个元素。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">Price: &lt;input <span class="built_in">type</span>=<span class="string">"text"</span> disabled=<span class="string">"true"</span> name=<span class="string">"price"</span> value=<span class="string">"200"</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>form<span class="token operator">></span>
+Price: <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"text"</span> disabled<span class="token operator">=</span><span class="token string">"true"</span> name<span class="token operator">=</span><span class="token string">"price"</span> value<span class="token operator">=</span><span class="token string">"200"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span></code></pre>
 <h2 id="收集用户数据：浏览器扩展"><a href="#收集用户数据：浏览器扩展" class="headerlink" title="收集用户数据：浏览器扩展"></a>收集用户数据：浏览器扩展</h2><p>另一种确认并提交用户数据的主要方法是使用在浏览器扩展中运行的客户端组件(如Java/Flash)</p>
 <ul>
 <li>浏览器扩展可以通过输入表单，或者在某些情况下通过与客户端操作系统的文件系统或注册表交互，以各种不同的方式收集数据。</li>
@@ -485,11 +508,11 @@
 <li>应用程序可能会首先对数据或对象进行序列化处理，然后通过HTTP请求传送这些数据或对象。通常而言，需要对序列化数据进行解压缩才能了解这些数据。可以根据所采用的客户端组件推断出相关数据的序列化格式，但是，任何时候，仔细检查相关HTTP消息才能确认序列化格式</li>
 </ul>
 <h5 id="java序列化"><a href="#java序列化" class="headerlink" title="java序列化"></a>java序列化</h5><p>java语言本身支持对象的序列化。而且，java applet可能会以这种方式在客户端与服务器应用程序组件之间传送序列化数据结构。通常序列化java对象会使用Content-Type消息头：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Length: application/x-java-serialized-object</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Content-Length: application/x-java-serialized-object</code></pre>
 <h5 id="Flash序列化"><a href="#Flash序列化" class="headerlink" title="Flash序列化"></a>Flash序列化</h5><p>Flash使用自己的可用于在服务器和客户端组件之间传输复杂数据结构的序列化格式，通常可以通过以下Content-Type消息头辨别动作信息格式(AMF)：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/x-amf</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Content-Type: application/x-amf</code></pre>
 <h5 id="Silverlight序列化"><a href="#Silverlight序列化" class="headerlink" title="Silverlight序列化"></a>Silverlight序列化</h5><p>Silverlight应用程序能够利用.NET平台内置的Windows通信基础(WCF)远程框架。使用WCF的Silverlight客户端组件通常采用微软的用于SOAP的.NET二进制格式，可以通过Content-Type消息头辨别该格式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Content-Type: application/soap+msbin1</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Content-Type: application/soap+msbin1</code></pre>
 <h4 id="拦截浏览器扩展流量时遇到的障碍"><a href="#拦截浏览器扩展流量时遇到的障碍" class="headerlink" title="拦截浏览器扩展流量时遇到的障碍"></a>拦截浏览器扩展流量时遇到的障碍</h4><p>如果浏览器已设置成使用拦截代理服务器，代理服务器可能并不会拦截，或无法拦截浏览器扩展组件提出的请求。之所以出现这种情况，可能是由于组件的HTTP代理或SSL出现问题。产生这个问题的原因主要有：</p>
 <ol>
 <li>客户端组件可能并不执行在浏览器或计算机的设置中指定的代理配置，这是因为组件可能会在浏览器本身或扩展框架提供的API以外发出它们自己的HTTP请求。</li>
@@ -514,7 +537,7 @@
 <li>字节码：字节码是一种有相关解释器(如Java虚拟机或Flash播放器)执行的、不依赖于特定平台的高级二进制表示形式，每种浏览器扩展技术都使用它们自己的字节码格式，因此，浏览器扩展可在解释器本身可运行的任何平台上运行。</li>
 </ul>
 <h4 id="反编译字节码流程"><a href="#反编译字节码流程" class="headerlink" title="反编译字节码流程"></a>反编译字节码流程</h4><h5 id="下载字节码"><a href="#下载字节码" class="headerlink" title="下载字节码"></a>下载字节码</h5><p>第一步是下载要处理的可执行字节码。一般情况下，字节码会从HTML源代码(运行浏览器扩展的应用程序页面)中指定的URL加载到单独的文件中。Java applet通常使用&lt; applet&gt;标签加载，其他组件则使用&lt; object&gt;标签加载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;applet code=<span class="string">"CheckQuantity.class"</span> codebase=<span class="string">"/scripts"</span> id=<span class="string">"CheckQuantityApplet"</span>&gt;&lt;/applet&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>applet code<span class="token operator">=</span><span class="token string">"CheckQuantity.class"</span> codebase<span class="token operator">=</span><span class="token string">"/scripts"</span> id<span class="token operator">=</span><span class="token string">"CheckQuantityApplet"</span><span class="token operator">></span><span class="token operator">&lt;</span>/applet<span class="token operator">></span></code></pre>
 <p>某些情况下，加载字节码的URL可能并不明显，因为组件可能使用不同浏览器扩展框架提供的各种包装脚本(wrapper script)进行加载。确定字节码的另一种方法，是在浏览器加载浏览器扩展后，在代理服务器历史记录中查找该URL</p>
 <h5 id="反编译字节码"><a href="#反编译字节码" class="headerlink" title="反编译字节码"></a>反编译字节码</h5><ul>
 <li>字节码通常以独立文件包的形式发布，可能需要进行解压缩才能获得单个字节码文件，然后将其反编译为源代码。</li>
@@ -625,7 +648,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(4)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/23/webSecurity4/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/23/websecurity4/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -944,7 +967,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

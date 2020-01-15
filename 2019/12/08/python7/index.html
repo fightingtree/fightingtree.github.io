@@ -33,7 +33,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -390,7 +390,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        766
+                        768
                     </div>
                     
 
@@ -437,10 +437,59 @@
 <ul>
 <li>重写<strong>new</strong> 方法一定要<font color="#fb8c00">return super().<strong>new</strong>(cls)</font></li>
 </ul>
-<h5 id="new-重写"><a href="#new-重写" class="headerlink" title="new 重写"></a><strong>new</strong> 重写</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.为对象分配空间</span></span><br><span class="line">        instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#2. 返回对象的引用</span></span><br><span class="line">        <span class="built_in">return</span> instance</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"播放器初始化"</span>)</span><br><span class="line"></span><br><span class="line">player = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player)</span><br></pre></td></tr></table></figure>
-<h5 id="单例模式中的new-重写"><a href="#单例模式中的new-重写" class="headerlink" title="单例模式中的new 重写"></a>单例模式中的<strong>new</strong> 重写</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    <span class="comment">#记录第一个被创建对象的引用</span></span><br><span class="line">    instance = None</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span></span><br><span class="line">        <span class="keyword">if</span> (cls.instance is None):</span><br><span class="line">            <span class="comment">#2.调用父类的方法为第一个对象分配空间</span></span><br><span class="line">            cls.instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#3.返回类属性保存的对象引用</span></span><br><span class="line">        <span class="built_in">return</span>  cls.instance</span><br><span class="line"></span><br><span class="line">player1 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player1)</span><br><span class="line">player2 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player2)</span><br><span class="line"><span class="comment">#输出结果： 输出结果player1 player2地址相同</span></span><br></pre></td></tr></table></figure>
+<h5 id="new-重写"><a href="#new-重写" class="headerlink" title="new 重写"></a><strong>new</strong> 重写</h5><pre class=" language-bash"><code class="language-bash">class musicPlayer<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    def __new__<span class="token punctuation">(</span>cls, *args, **kwargs<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#1.为对象分配空间</span>
+        instance <span class="token operator">=</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span>.__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#2. 返回对象的引用</span>
+        <span class="token keyword">return</span> instance
+    def __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        print<span class="token punctuation">(</span><span class="token string">"播放器初始化"</span><span class="token punctuation">)</span>
+
+player <span class="token operator">=</span> musicPlayer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>player<span class="token punctuation">)</span></code></pre>
+<h5 id="单例模式中的new-重写"><a href="#单例模式中的new-重写" class="headerlink" title="单例模式中的new 重写"></a>单例模式中的<strong>new</strong> 重写</h5><pre class=" language-bash"><code class="language-bash">class musicPlayer<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    <span class="token comment" spellcheck="true">#记录第一个被创建对象的引用</span>
+    instance <span class="token operator">=</span> None
+    def __new__<span class="token punctuation">(</span>cls, *args, **kwargs<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cls.instance is None<span class="token punctuation">)</span>:
+            <span class="token comment" spellcheck="true">#2.调用父类的方法为第一个对象分配空间</span>
+            cls.instance <span class="token operator">=</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span>.__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#3.返回类属性保存的对象引用</span>
+        <span class="token keyword">return</span>  cls.instance
+
+player1 <span class="token operator">=</span> musicPlayer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>player1<span class="token punctuation">)</span>
+player2 <span class="token operator">=</span> musicPlayer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>player2<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#输出结果： 输出结果player1 player2地址相同</span></code></pre>
 <p>执行上述代码后，每一次创建的对象地址虽然相同，但是<strong>init</strong>初始化方法仍然会在每次创建对象时被调用，现在需要初始化方法只在最初创建时调用一次：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class musicPlayer(object):</span><br><span class="line">    <span class="comment">#记录第一个被创建对象的引用</span></span><br><span class="line">    instance = None</span><br><span class="line">    <span class="comment">#记录是否执行过初始化方法</span></span><br><span class="line">    initFlag = False</span><br><span class="line">    def __new__(cls, *args, **kwargs):</span><br><span class="line">        <span class="comment">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span></span><br><span class="line">        <span class="keyword">if</span> (cls.instance is None):</span><br><span class="line">            <span class="comment">#2.调用父类的方法为第一个对象分配空间</span></span><br><span class="line">            cls.instance = super().__new__(cls)</span><br><span class="line">        <span class="comment">#3.返回类属性保存的对象引用</span></span><br><span class="line">        <span class="built_in">return</span>  cls.instance</span><br><span class="line">    def __init__(self):</span><br><span class="line">        <span class="comment">#1. 判断是否执行过初始化方法</span></span><br><span class="line">        <span class="keyword">if</span> (musicPlayer.initFlag == True):</span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line">        <span class="comment">#2. 如果没有执行过则执行初始化方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"初始化"</span>)</span><br><span class="line">        <span class="comment">#3. 修改类属性的值</span></span><br><span class="line">        musicPlayer.initFlag = True</span><br><span class="line"></span><br><span class="line">player1 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player1)</span><br><span class="line">player2 = musicPlayer()</span><br><span class="line"><span class="built_in">print</span>(player2)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">class musicPlayer<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    <span class="token comment" spellcheck="true">#记录第一个被创建对象的引用</span>
+    instance <span class="token operator">=</span> None
+    <span class="token comment" spellcheck="true">#记录是否执行过初始化方法</span>
+    initFlag <span class="token operator">=</span> False
+    def __new__<span class="token punctuation">(</span>cls, *args, **kwargs<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#1.判断类属性是否是空对象，如果是空对象证明还没有创建对象</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>cls.instance is None<span class="token punctuation">)</span>:
+            <span class="token comment" spellcheck="true">#2.调用父类的方法为第一个对象分配空间</span>
+            cls.instance <span class="token operator">=</span> super<span class="token punctuation">(</span><span class="token punctuation">)</span>.__new__<span class="token punctuation">(</span>cls<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#3.返回类属性保存的对象引用</span>
+        <span class="token keyword">return</span>  cls.instance
+    def __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#1. 判断是否执行过初始化方法</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>musicPlayer.initFlag <span class="token operator">==</span> True<span class="token punctuation">)</span>:
+            <span class="token keyword">return</span>
+        <span class="token comment" spellcheck="true">#2. 如果没有执行过则执行初始化方法</span>
+        print<span class="token punctuation">(</span><span class="token string">"初始化"</span><span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#3. 修改类属性的值</span>
+        musicPlayer.initFlag <span class="token operator">=</span> True
+
+player1 <span class="token operator">=</span> musicPlayer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>player1<span class="token punctuation">)</span>
+player2 <span class="token operator">=</span> musicPlayer<span class="token punctuation">(</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>player2<span class="token punctuation">)</span></code></pre>
 <p>上述代码虽创建了两次对象，但是初始化方法<strong>init</strong> 只被调用了一次。</p>
 
             </div>
@@ -595,7 +644,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/12/05/Python6/">
+                <a href="/2019/12/05/python6/">
                     <div class="card-image">
                         
                         
@@ -795,7 +844,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

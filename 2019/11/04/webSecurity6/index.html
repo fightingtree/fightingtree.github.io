@@ -30,7 +30,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -536,7 +536,7 @@
 </ul>
 <h4 id="cookie域限制"><a href="#cookie域限制" class="headerlink" title="cookie域限制"></a>cookie域限制</h4><ul>
 <li>位于foo.wahh-app.com的应用程序在建立一个cookie后，浏览器会默认在随后的所有请求中将cookie重新提交到foo.wahh-app.com及任何子域（如admin.foo.wahh-app.com）。它不会将cookie提交给其他任何域，包括父域wahh-app.com和父域的其他任何子域(如bar.wahh-app.com)</li>
-<li>服务器可以在Set-Cookie指令中插入一个domain属性，以改变这种默认行为。假设位于foo.wahh-app.com的应用程序返回下列HTTP消息头：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: sessionId=19284701;domain=wahh-app.com</span><br></pre></td></tr></table></figure>
+<li>服务器可以在Set-Cookie指令中插入一个domain属性，以改变这种默认行为。假设位于foo.wahh-app.com的应用程序返回下列HTTP消息头：<pre class=" language-bash"><code class="language-bash">Set-Cookie: sessionId<span class="token operator">=</span>19284701<span class="token punctuation">;</span>domain<span class="token operator">=</span>wahh-app.com</code></pre>
 浏览器会将这个cookie重新提交给wahh-app.com的所有子域，包括bar.wahh-app.com</li>
 </ul>
 <blockquote>
@@ -562,7 +562,7 @@
 <li>其他应用程序可能并不安全，但外部攻击者可以利用一个不安全的应用程序截获由机密应用程序创建的会话令牌。</li>
 </ul>
 <h4 id="cookie路径限制"><a href="#cookie路径限制" class="headerlink" title="cookie路径限制"></a>cookie路径限制</h4><p>位于/apps/secure/foo-app/index.jsp的应用程序建立一个cookie后，浏览器会默认在随后的所有请求中将cookie重新提交到路径/apps/secure/foo-app/及任何子目录。它不会将cookie提交到父目录或服务器上的任何目录路径。服务器可以在Set-Cookie指令中插入一个path属性，改变这种默认行为。例如，如果应用程序返回以下HTTP消息头：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: sessionId=187ab023e09c00a881a; path=/apps/;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Set-Cookie: sessionId<span class="token operator">=</span>187ab023e09c00a881a<span class="token punctuation">;</span> path<span class="token operator">=</span>/apps/<span class="token punctuation">;</span></code></pre>
 <p>那么浏览器会将这个cookie重新返回到/apps/路径的所有子目录中</p>
 <h2 id="保障会话管理的安全"><a href="#保障会话管理的安全" class="headerlink" title="保障会话管理的安全"></a>保障会话管理的安全</h2><h3 id="生成强大的令牌"><a href="#生成强大的令牌" class="headerlink" title="生成强大的令牌"></a>生成强大的令牌</h3><p>最有效的令牌生成机制应具备以下两点：</p>
 <ul>
@@ -627,7 +627,7 @@
                   property="dct:title" rel="dct:type">
                     《Web安全(6)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/04/webSecurity6/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/04/websecurity6/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -693,7 +693,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/05/webSecurity7/">
+                <a href="/2019/11/05/websecurity7/">
                     <div class="card-image">
                         
                         
@@ -746,7 +746,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/04/phpStudy1/">
+                <a href="/2019/11/04/phpstudy1/">
                     <div class="card-image">
                         
                         
@@ -946,7 +946,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

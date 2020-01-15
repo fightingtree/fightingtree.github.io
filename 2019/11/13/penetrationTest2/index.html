@@ -30,7 +30,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -451,10 +451,9 @@
 <p>注：只要是属于目标的资源，任何时候与之直接交互，都有可能留下数字指纹(Digital Fingerprint)</p>
 </blockquote>
 <h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>Linux环境下在终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install httrack</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">apt-get</span> <span class="token function">install</span> httrack</code></pre>
 <p>安装完成后使用如下命令运行它：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httrack</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">httrack</code></pre>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>克隆网站很容易被追踪，同时被视为极具攻击性，没有事先获得授权的话，不要运用此工具！</p>
 <ul>
 <li>在终端启动HTTrack后，该程序将询问一系列基本问题，然后开始复制目标网站。在大部分情况下，你可以一直按回车键接受默认答案。</li>
@@ -469,10 +468,9 @@
 <li>Kali本身已经内置了The Harvester。</li>
 </ul>
 <h3 id="使用The-Harvester"><a href="#使用The-Harvester" class="headerlink" title="使用The Harvester"></a>使用The Harvester</h3><p>在终端输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester //启动theharvester,界面会展示相关参数及用法</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">theharvester //启动theharvester,界面会展示相关参数及用法</code></pre>
 <p>在终端输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester -d qq.com -l 10 -b baidu</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">theharvester -d qq.com -l 10 -b baidu</code></pre>
 <p>上述命令的解释：</p>
 <ul>
 <li><font color="#fb8c00">-d</font> 用来指定目标的域名(qq.com)</li>
@@ -482,22 +480,21 @@
 <p>以上命令将搜索关于qq.com的电子邮箱、子域名和主机。结果如下：<br><img src="https://i.postimg.cc/v8nCBBpH/1.jpg" alt="">                     <img src="https://i.postimg.cc/FsQ8Jv4b/2.jpg" alt=""><br>如果还想对<font color="#fb8c00">email.qq.com、m.v.qq.com</font>等子域名进行彻底侦察，则将上述命令中的<font color="#fb8c00">qq.com</font>替换成相应域名即可。</p>
 <h2 id="Whois"><a href="#Whois" class="headerlink" title="Whois"></a>Whois</h2><p>利用Whois，可以获取与目标相关的具体信息，包括IP地址，公司DNS主机名以及地址和电话号码等联系信息。</p>
 <h3 id="使用Whois"><a href="#使用Whois" class="headerlink" title="使用Whois"></a>使用Whois</h3><p>在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois target_domain   //target_domain为目标域名</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">whois target_domain   //target_domain为目标域名</code></pre>
 <p>如果要获取与百度相关的具体信息，则在命令行输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois baidu.com</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">whois baidu.com</code></pre>
 <p>所得到的结果如下：<br><img src="https://i.postimg.cc/QxkPQz82/3.jpg" alt=""></p>
 <blockquote>
 <p>注：需要特别留意DNS服务器。即上图中的(Name Server),可用下面所介绍的Host将其转换成IP地址。</p>
 </blockquote>
 <h2 id="Host工具"><a href="#Host工具" class="headerlink" title="Host工具"></a>Host工具</h2><p>做侦察时经常会收集到主机名，而不是IP地址。这时就需要<font color="#fb8c00">host</font>工具将IP地址翻译出来。<br>在终端中输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host target_domain</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">host target_domain</code></pre>
 <p>如果我们想把之前发现的baidu.com翻译为IP地址，可以在终端输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host baidu.com</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">host baidu.com</code></pre>
 <p>也可以反过来将IP地址翻译为主机名：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host IP_Address</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">host IP_Address</code></pre>
 <p>可以使用以下命令查看Host帮助文档：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man host</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token function">man</span> host</code></pre>
 <h2 id="从DNS中提取信息"><a href="#从DNS中提取信息" class="headerlink" title="从DNS中提取信息"></a>从DNS中提取信息</h2><ul>
 <li>DNS(Domain Name Server,域名系统)：域名系统（服务）协议（DNS）是一种分布式网络目录服务，主要用于域名与IP 地址的相互转换，以及控制因特网的电子邮件的发送。(源于百度百科)</li>
 <li>DNS是本地网络和互联网的核心组件。它的一个用途就是负责将域名翻译成IP地址。对于人类而言<font color="#fb8c00">google.com</font>比<font color="#fb8c00"><a href="http://74.125.95.105" target="_blank" rel="noopener">http://74.125.95.105</a></font>好记，对于计算机则相反。DNS就在两者中充当翻译。</li>
@@ -505,13 +502,13 @@
 <li>DNS服务器上包含了它所知道的所有设备的IP地址及其对应的域名的记录信息，许多网络部署了多台DNS服务器，以保证冗余或负载平衡。因此，多台DNS服务器之间需要进行信息共享。这个“共享”过程正是通过区域传输(zone transfer)实现的，区域传输通常也叫AXFR，在这个过程中，一台DNS服务器将其所有域名与IP映射发送到另一台DNS服务器。这一过程允许多台DNS服务器保持信息同步。即使我们无法进行区域传输，仍然有必要考察一下被授权范围内的DNS服务器</li>
 </ul>
 <h3 id="NS-Lookup"><a href="#NS-Lookup" class="headerlink" title="NS Lookup"></a>NS Lookup</h3><p>NS Looup是检查DNS的首选工具，这个工具能查询到DNS服务器，并可能获得DNS服务器知道的各种主机的记录。Kali中已经内置了NS Lookup。<br>NS Lookup可以在交互的模式下运行，也就是说，先启动这个程序，然后再输入特定参数使其运行的特点。所以在终端输入如下命令就可运行NS Lookup</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">nslookup</span></code></pre>
 <p>运行NS Lookup之后，我们输入以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server 8.8.8.8 //输入想查询的DNS服务器的IP地址</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">server 8.8.8.8 //输入想查询的DNS服务器的IP地址</code></pre>
 <p>接着指明所要查询的记录类型。如果只想要查找一般性信息，可以使用关键字<font color="#fb8c00">any</font>，指定类型为任何类型：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=any  //一定要注意空格，否则会出错</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> type<span class="token operator">=</span>any  //一定要注意空格，否则会出错</code></pre>
 <p>如果你想查看DNS服务器的某些特殊信息，比如目标公司处理电子邮件的邮件服务器的IP地址(具体使用方法可以使用<font color="#fb8c00">man nslookup</font>命令查询)，就可以输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=mx</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">set</span> type<span class="token operator">=</span>mx</code></pre>
 <p>假如你想知道百度处理邮件时用的邮件服务器，前面我们通过whois已经发现了百度的DNS服务器，现对其中一个进行操作：<br><img src="https://i.postimg.cc/P556mrFD/4.jpg" alt=""><br>其中最后显示的五项都为百度的邮件服务器。</p>
 <h2 id="筛选信息寻找可攻击的目标"><a href="#筛选信息寻找可攻击的目标" class="headerlink" title="筛选信息寻找可攻击的目标"></a>筛选信息寻找可攻击的目标</h2><p>整理信息时，建议创建一个简易的列表，用来集中记录收集到的IP地址。对于电子邮件地址、主机名称和URL地址等，还应该分别进行维护。仔细整理过手机来的侦察信息并把数据转换为可攻击的目标之后，我们就应该拥有一个IP列表，其中的IP地址就算不属于目标，至少也是相关的。<br>侦察阶段的最后一个是步骤是检查你所创建的IP列表，确认IP列表里的IP地址都在授权范围内。</p>
 <h3 id="Shodan"><a href="#Shodan" class="headerlink" title="Shodan"></a>Shodan</h3><p>搜集信息的网站博主推荐Shodan、ZoomEye、FOFA。下面对Shodan进行详细介绍：</p>
@@ -520,7 +517,18 @@
 <li>Shodan的不部分数据来自banner,banner是有关设备上运行的软件的元数据。</li>
 </ul>
 <h4 id="搜索查询基础"><a href="#搜索查询基础" class="headerlink" title="搜索查询基础"></a>搜索查询基础</h4><p>设备运行服务，这些服务就是Shodan所收集的信息。网站托管在运行Web服务的设备上，Shodan将通过与该Web服务对话来收集信息。每个服务的信息都存储在一个名为banner的对象中。banner是Shodan搜集的基本数据单位，其中也包含你想要搜索的信息，一个简单的banner如下所示：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">{</span>
+    <span class="token string">"data"</span><span class="token keyword">:</span> <span class="token string">"Moxa Nport Device
+            Status: Authentication disabled
+            Name: NP5232I_4728
+            MAC: 00:90:e8:47:10:2d"</span>,
+    <span class="token string">"ip_str"</span><span class="token keyword">:</span> <span class="token string">"46.252.132.235"</span>,
+    <span class="token string">"port"</span><span class="token keyword">:</span> 4800,
+    <span class="token string">"org"</span><span class="token keyword">:</span> <span class="token string">"Starhub Mobile"</span>,
+    <span class="token string">"location"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"country_code"</span><span class="token keyword">:</span> <span class="token string">"SG"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>上述banner有五个属性，每个属性都代表不同的含义：</p>
 <ul>
 <li><font color="#fb8c00">data</font> 服务本身的主要响应</li>
@@ -530,29 +538,52 @@
 <li><font color="#fb8c00">location</font> 设备所在的位置</li>
 </ul>
 <p>Shodan默认只搜索data属性，data属性的内容因服务类型而不同，比如，下面是一个典型的HTTP banner：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.1.19</span><br><span class="line">Date: Sat, 03 Oct 2015 06:09:24 GMT</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 6466</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 OK
+Server: nginx/1.1.19
+Date: Sat, 03 Oct 2015 06:09:24 GMT
+Content-Type: text/html<span class="token punctuation">;</span> charset<span class="token operator">=</span>utf-8
+Content-Length: 6466
+Connection: keep-alive</code></pre>
 <p>上述信息表示设备运行在版本号为1.1.19的配置Web服务软件上。</p>
 <p>下面是西门子S7工厂控制协议的banner:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Copyright: Original Siemens Equipment</span><br><span class="line">PLC name: S7_Turbine</span><br><span class="line">Module <span class="built_in">type</span>: CPU 313C</span><br><span class="line">Unknown (129): Boot Loader           A</span><br><span class="line">Module: 6ES7 313-5BG04-0AB0  v.0.3</span><br><span class="line">Basic Firmware: v.3.3.8</span><br><span class="line">Module name: CPU 313C</span><br><span class="line">Serial number of module: S Q-D9U083642013</span><br><span class="line">Plant identification: </span><br><span class="line">Basic Hardware: 6ES7 313-5BG04-0AB0  v.0.3</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Copyright: Original Siemens Equipment
+PLC name: S7_Turbine
+Module type: CPU 313C
+Unknown <span class="token punctuation">(</span>129<span class="token punctuation">)</span>: Boot Loader           A
+Module: 6ES7 313-5BG04-0AB0  v.0.3
+Basic Firmware: v.3.3.8
+Module name: CPU 313C
+Serial number of module: S Q-D9U083642013
+Plant identification: 
+Basic Hardware: 6ES7 313-5BG04-0AB0  v.0.3</code></pre>
 <p>上述西门子S7协议提供了一个固件的信息。</p>
 <blockquote>
 <p>注：在利用Shodan进行搜索时，你必须先确定要搜索的设备类型，因为不同类型的banner之间的差别很大</p>
 </blockquote>
 <h4 id="搜索语法"><a href="#搜索语法" class="headerlink" title="搜索语法"></a>搜索语法</h4><p>以下述Moxa设备的banner为例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">{</span>
+    <span class="token string">"data"</span><span class="token keyword">:</span> <span class="token string">"Moxa Nport Device
+            Status: Authentication disabled
+            Name: NP5232I_4728
+            MAC: 00:90:e8:47:10:2d"</span>,
+    <span class="token string">"ip_str"</span><span class="token keyword">:</span> <span class="token string">"46.252.132.235"</span>,
+    <span class="token string">"port"</span><span class="token keyword">:</span> 4800,
+    <span class="token string">"org"</span><span class="token keyword">:</span> <span class="token string">"Starhub Mobile"</span>,
+    <span class="token string">"location"</span><span class="token keyword">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"country_code"</span><span class="token keyword">:</span> <span class="token string">"SG"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <p>如果你想知道更多关于这个Moxa Nport设备的信息，一个简单的查询可以为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Moxa Nport</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">Moxa Nport</code></pre>
 <p>但是，如果你想搜索属于Starhub Mobile组织的所有设备，输入<font color="#fb8c00">Starhub Mobile</font>不会返回预期的结果，这是因为Shodan默认只搜索data属性的内容。</p>
 <h4 id="搜索过滤器"><a href="#搜索过滤器" class="headerlink" title="搜索过滤器"></a>搜索过滤器</h4><p>搜索过滤器是你告诉Shodan具体想要搜索什么信息的关键字，过滤器的组成如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filtername:value   //过滤器名与值之间没有空格</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">filtername:value   //过滤器名与值之间没有空格</code></pre>
 <p>如果你想搜索在新加坡的所有设备可以使用以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">country:SG   //country只接收两个字母的国家代码</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">country:SG   //country只接收两个字母的国家代码</code></pre>
 <p>如果你想搜索在Starhub Mobile的所有设备可以使用以下查询：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span>  //如果查询的值之间有空格要使用引号将其包起来</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">org:<span class="token string">"Starhub Mobile"</span>  //如果查询的值之间有空格要使用引号将其包起来</code></pre>
 <p>过滤器也可以用来缩小查询范围，如，下面的查询将显示所有属于Starhub Mobile组织并且位于新加坡(城市)的所有设备：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span> city:Singapore</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">org:<span class="token string">"Starhub Mobile"</span> city:Singapore</code></pre>
 <h4 id="网站导航"><a href="#网站导航" class="headerlink" title="网站导航"></a>网站导航</h4><p>Shodan网站有三种类型的服务：</p>
 <ol>
 <li>Shodan(<a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a>)</li>
@@ -620,7 +651,7 @@
                   property="dct:title" rel="dct:type">
                     《渗透测试(2)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/13/penetrationTest2/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/13/penetrationtest2/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -686,7 +717,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/11/14/penetrationTest3/">
+                <a href="/2019/11/14/penetrationtest3/">
                     <div class="card-image">
                         
                         
@@ -747,7 +778,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/13/penetrationTest1/">
+                <a href="/2019/11/13/penetrationtest1/">
                     <div class="card-image">
                         
                         
@@ -955,7 +986,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

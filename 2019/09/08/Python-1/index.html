@@ -8,7 +8,7 @@
     <meta name="description" content="IDLEIDLE是一个PythonShell,（安装结束后在开始菜单键入idle打开）shell的意思就是“外壳”，基本上来说，就是一个通过键入文本与程序交互的途径
 关于python
 在python中，缩进具有语法意义
-程序块：12for ">
+程序块：for li">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -31,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -393,7 +393,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.6k
+                        2.7k
                     </div>
                     
 
@@ -419,7 +419,9 @@
                 <h2 id="IDLE"><a href="#IDLE" class="headerlink" title="IDLE"></a>IDLE</h2><p>IDLE是一个PythonShell,（安装结束后在开始菜单键入idle打开）shell的意思就是“外壳”，基本上来说，就是一个通过键入文本与程序交互的途径</p>
 <h2 id="关于python"><a href="#关于python" class="headerlink" title="关于python"></a>关于python</h2><ul>
 <li>在python中，缩进具有语法意义</li>
-<li>程序块：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> line:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure></li>
+<li>程序块：<pre class=" language-bash"><code class="language-bash"><span class="token keyword">for</span> line <span class="token keyword">in</span> line:
+  print<span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span></code></pre>
+</li>
 <li>程序块中的每一行用4个空格进行缩进，在程序中，每一个程序块头是循环结构或判断结构的开始</li>
 <li>python被称为块结构语言(block-structured language)，一个程序块可以嵌套在另一个程序块里。</li>
 <li>程序文档是注释的集合</li>
@@ -452,50 +454,71 @@
 <h2 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h2><h3 id="处理数值类型的函数"><a href="#处理数值类型的函数" class="headerlink" title="处理数值类型的函数"></a>处理数值类型的函数</h3><ul>
 <li><font color="#fb8c00">abs()</font>绝对值函数</li>
 <li><font color="#fb8c00">int()</font>保持整数不变，并将浮点数通过丢弃小数部分转换为整数</li>
-<li><font color="#fb8c00">round(n,r)</font>四舍五入保留n的小数点后r位<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = 2</span><br><span class="line">b = 3</span><br><span class="line"><span class="built_in">print</span>(abs(1-(4*b))  <span class="comment">#11</span></span><br><span class="line"><span class="built_in">print</span>(int(a**b)+.8) <span class="comment">#表示2^3+0.8，结果为8</span></span><br><span class="line"><span class="built_in">print</span>(round(a/b,3))  <span class="comment">#0.667</span></span><br></pre></td></tr></table></figure>
-
+<li><font color="#fb8c00">round(n,r)</font>四舍五入保留n的小数点后r位<pre class=" language-bash"><code class="language-bash">a <span class="token operator">=</span> 2
+b <span class="token operator">=</span> 3
+print<span class="token punctuation">(</span>abs<span class="token punctuation">(</span>1-<span class="token punctuation">(</span>4*b<span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#11</span>
+print<span class="token punctuation">(</span>int<span class="token punctuation">(</span>a**b<span class="token punctuation">)</span>+.8<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#表示2^3+0.8，结果为8</span>
+print<span class="token punctuation">(</span>round<span class="token punctuation">(</span>a/b,3<span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#0.667</span></code></pre>
 </li>
 </ul>
 <h3 id="增量赋值"><a href="#增量赋值" class="headerlink" title="增量赋值"></a>增量赋值</h3><p><font color="#fb8c00">var += n</font> +=可看成执行了一个增量赋值，即 var = var + n，其他增量赋值运算符有-=、<em>=、/=、</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">num1 = 6</span><br><span class="line">num1 += 1 <span class="comment"># 7</span></span><br><span class="line"></span><br><span class="line">num2 =7</span><br><span class="line">num 2 -= 5 <span class="comment">#2</span></span><br><span class="line"></span><br><span class="line">num3 = 8</span><br><span class="line">num3 /= 2 <span class="comment">#4</span></span><br><span class="line"></span><br><span class="line">num4 = 1</span><br><span class="line">num4 *= 3 <span class="comment">#3</span></span><br><span class="line"></span><br><span class="line">num5 = 2</span><br><span class="line">num5 **= 3 <span class="comment">#8 表示2^3</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">num1 <span class="token operator">=</span> 6
+num1 +<span class="token operator">=</span> 1 <span class="token comment" spellcheck="true"># 7</span>
 
+num2 <span class="token operator">=</span>7
+num 2 -<span class="token operator">=</span> 5 <span class="token comment" spellcheck="true">#2</span>
 
+num3 <span class="token operator">=</span> 8
+num3 /<span class="token operator">=</span> 2 <span class="token comment" spellcheck="true">#4</span>
+
+num4 <span class="token operator">=</span> 1
+num4 *<span class="token operator">=</span> 3 <span class="token comment" spellcheck="true">#3</span>
+
+num5 <span class="token operator">=</span> 2
+num5 **<span class="token operator">=</span> 3 <span class="token comment" spellcheck="true">#8 表示2^3</span></code></pre>
 <h2 id="python输入输出"><a href="#python输入输出" class="headerlink" title="python输入输出"></a>python输入输出</h2><h3 id="print-函数"><a href="#print-函数" class="headerlink" title="print 函数"></a>print 函数</h3><ol>
 <li><p>自动计算</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(5+3)    <span class="comment">#输出为8</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span>5+3<span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#输出为8</span></code></pre>
 </li>
 <li><p>连接字符串</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello"</span>+<span class="string">"world"</span>)  <span class="comment">#输出hellowrold</span></span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"hello"</span>+<span class="token string">"world"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出hellowrold</span></code></pre>
+</li>
 <li><p>重复输出</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello world"</span>*8)   <span class="comment">#将hello world 重复输出8遍</span></span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"hello world"</span>*8<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#将hello world 重复输出8遍</span></code></pre>
+</li>
 <li><p>eval/int/float/str函数   </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span> (int(<span class="string">"23.7"</span>))   <span class="comment">#23</span></span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">float</span>(<span class="string">"23"</span>))   <span class="comment">#23.0</span></span><br><span class="line"><span class="built_in">print</span> (<span class="built_in">eval</span>(<span class="string">"2+3*3"</span>))  <span class="comment">#11  eval函数将计算相应表达式，赋值为合适的整型或浮点型</span></span><br></pre></td></tr></table></figure></li>
+<pre class=" language-bash"><code class="language-bash">print <span class="token punctuation">(</span>int<span class="token punctuation">(</span><span class="token string">"23.7"</span><span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#23</span>
+print <span class="token punctuation">(</span>float<span class="token punctuation">(</span><span class="token string">"23"</span><span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#23.0</span>
+print <span class="token punctuation">(</span>eval<span class="token punctuation">(</span><span class="token string">"2+3*3"</span><span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#11  eval函数将计算相应表达式，赋值为合适的整型或浮点型</span></code></pre>
+</li>
 <li><p>end参数<br><font color="#fb8c00">print(value0,value1,…..,end=endString)</font>  末尾显示endString</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"hello"</span>,end=<span class="string">","</span>)  <span class="comment">#末尾显示","，代替换行参数</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"world"</span>)     <span class="comment">#hello,world</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"hello"</span>,end<span class="token operator">=</span><span class="token string">","</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#末尾显示","，代替换行参数</span>
+print<span class="token punctuation">(</span><span class="token string">"world"</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">#hello,world</span></code></pre>
 </li>
 </ol>
 <blockquote>
 <p>注：print函数会触发一个换行操作，意味着下一个Print函数的输出将从新的一行开始</p>
 </blockquote>
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>python的变量与其他语言不同，python并不把值存储在变量中，而更像把名字贴在值上面（有些python程序员会说Python没有变量，只有名字）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">first = 3</span><br><span class="line">second = 2</span><br><span class="line"><span class="built_in">print</span>(first + second)  <span class="comment">#5</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">first <span class="token operator">=</span> 3
+second <span class="token operator">=</span> 2
+print<span class="token punctuation">(</span>first + second<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#5</span></code></pre>
 <blockquote>
 <p>注： 1.在使用变量之前要先对其赋值<br>       2.变量不能以数字开头<br>       3.python区分大小写</p>
 </blockquote>
 <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>字符串字面量是字符构成的一个序列，并视其为一个整体。</p>
 <h3 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h3><p>字符串也可以叫文本，文本与数字不同<br>数字</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first = 3+5</span><br><span class="line"><span class="built_in">print</span>(first)  <span class="comment">#8</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">first <span class="token operator">=</span> 3+5
+print<span class="token punctuation">(</span>first<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#8</span></code></pre>
 <p>文本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">first = <span class="string">'3'</span>+<span class="string">'5'</span></span><br><span class="line"><span class="built_in">print</span>(first) <span class="comment">#35</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">first <span class="token operator">=</span> <span class="token string">'3'</span>+<span class="token string">'5'</span>
+print<span class="token punctuation">(</span>first<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#35</span></code></pre>
 <h3 id="转义符号"><a href="#转义符号" class="headerlink" title="转义符号"></a>转义符号</h3><h4 id="反斜杠"><a href="#反斜杠" class="headerlink" title="反斜杠\"></a>反斜杠\</h4><p><font color="#fb8c00">&lt;/font&gt;续行符<br><font color="#fb8c00">\r</font>回车<br><font color="#fb8c00">\b</font>退格<br><font color="#fb8c00">\f</font>换页<br><font color="#fb8c00">\n</font>换行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"let\'s go"</span>)</span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"let\'s go"</span><span class="token punctuation">)</span></code></pre>
 <blockquote>
 <p>注：计算字符串长度时，每个转义序列当作一个字符。反斜杠不被认为是一个字符，而是指示器告诉python对跟随其后的字符进行特殊处理</p>
 </blockquote>
-<h4 id="原始字符串"><a href="#原始字符串" class="headerlink" title="原始字符串"></a>原始字符串</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str = r<span class="string">'C:\now'</span>   <span class="comment"># \n将不会被识别为转义字符</span></span><br></pre></td></tr></table></figure>
+<h4 id="原始字符串"><a href="#原始字符串" class="headerlink" title="原始字符串"></a>原始字符串</h4><pre class=" language-bash"><code class="language-bash">str <span class="token operator">=</span> r<span class="token string">'C:\now'</span>   <span class="token comment" spellcheck="true"># \n将不会被识别为转义字符</span></code></pre>
 <h3 id="索引和切片"><a href="#索引和切片" class="headerlink" title="索引和切片"></a>索引和切片</h3><p>子字符串或切片是字符串中连续字符的一个序列。如果str1是一个字符串，str1[m:n]是以位置m开始，到位置n-1结束的子字符串。</p>
 <blockquote>
 <p>注：若m&gt;=n，即位置m对应的字符串不在位置n对应的字符串左边，则str1[m:n]表示空字符串(“”)。</p>
@@ -503,12 +526,17 @@
 <h4 id="find-rfind函数"><a href="#find-rfind函数" class="headerlink" title="find/rfind函数"></a>find/rfind函数</h4><ul>
 <li>subStr是一个字符串，str1.find(subStr)表示从左向右搜索字符串str1，并返回subStr首次出现的正向索引位置。</li>
 <li>str1.rfind(subStr)将从右向左搜索字符串，并返回subStr首次出现的正向索引位置。</li>
-<li>如果subStr不在str1中，则find()/rfind()函数返回值为-1。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>); <span class="comment">#python</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>[1],<span class="string">"python"</span>[5]),<span class="string">"python"</span>[2:4] <span class="comment">#y n th</span></span><br><span class="line">str1 = <span class="string">"hello world"</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">'w'</span>))   <span class="comment">#6</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">'x'</span>))     <span class="comment">#-1</span></span><br><span class="line"><span class="built_in">print</span>(str1.rfind(<span class="string">'l'</span>))    <span class="comment">#9</span></span><br></pre></td></tr></table></figure>
-
+<li>如果subStr不在str1中，则find()/rfind()函数返回值为-1。<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">#python</span>
+print<span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span>,<span class="token string">"python"</span><span class="token punctuation">[</span>5<span class="token punctuation">]</span><span class="token punctuation">)</span>,<span class="token string">"python"</span><span class="token punctuation">[</span>2:4<span class="token punctuation">]</span> <span class="token comment" spellcheck="true">#y n th</span>
+str1 <span class="token operator">=</span> <span class="token string">"hello world"</span>
+print<span class="token punctuation">(</span>str1.find<span class="token punctuation">(</span><span class="token string">'w'</span><span class="token punctuation">))</span>   <span class="token comment" spellcheck="true">#6</span>
+print<span class="token punctuation">(</span>str1.find<span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">))</span>     <span class="token comment" spellcheck="true">#-1</span>
+print<span class="token punctuation">(</span>str1.rfind<span class="token punctuation">(</span><span class="token string">'l'</span><span class="token punctuation">))</span>    <span class="token comment" spellcheck="true">#9</span></code></pre>
 </li>
 </ul>
 <h4 id="反向索引"><a href="#反向索引" class="headerlink" title="反向索引"></a>反向索引</h4><p>反向索引最右端的字符索引值为-1，它左边的一个字符索引值为-2，以此类推</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"python"</span>[-1],<span class="string">"python"</span>[-5,-2])  <span class="comment">#o yth</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">[</span>-1<span class="token punctuation">]</span>,<span class="token string">"python"</span><span class="token punctuation">[</span>-5,-2<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#o yth</span></code></pre>
 <blockquote>
 <p>注：除Python外其他语言不允许反向索引 </p>
 </blockquote>
@@ -516,8 +544,8 @@
 <blockquote>
 <p>注：python不允许字符串中单个字符的索引越界，但是在切片中可以索引越界</p>
 </blockquote>
-<h3 id="字符串连接与重复"><a href="#字符串连接与重复" class="headerlink" title="字符串连接与重复"></a>字符串连接与重复</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"good"</span>+<span class="string">"bye"</span>)  <span class="comment">#goodbye</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"ha"</span>*4) <span class="comment">#hahahaha</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串连接与重复"><a href="#字符串连接与重复" class="headerlink" title="字符串连接与重复"></a>字符串连接与重复</h3><pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"good"</span>+<span class="token string">"bye"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#goodbye</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"ha"</span>*4<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#hahahaha</span></code></pre>
 <blockquote>
 <p>注：字符串不能与一个数字进行连接操作</p>
 </blockquote>
@@ -530,43 +558,56 @@
 <blockquote>
 <p>注：字符串中的字符无法直接修改</p>
 </blockquote>
-<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="字符串转整形"><a href="#字符串转整形" class="headerlink" title="字符串转整形"></a>字符串转整形</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">'123'</span></span><br><span class="line">b = int(a)  <span class="comment">#强制转换</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="浮点数转整数"><a href="#浮点数转整数" class="headerlink" title="浮点数转整数"></a>浮点数转整数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 5.11</span><br><span class="line">b = int(a)  <span class="comment">#最终b为5</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="整形转字符串"><a href="#整形转字符串" class="headerlink" title="整形转字符串"></a>整形转字符串</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = 11</span><br><span class="line">b = str(a)</span><br></pre></td></tr></table></figure>
+<h2 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h2><h3 id="字符串转整形"><a href="#字符串转整形" class="headerlink" title="字符串转整形"></a>字符串转整形</h3><pre class=" language-bash"><code class="language-bash">a <span class="token operator">=</span> <span class="token string">'123'</span>
+b <span class="token operator">=</span> int<span class="token punctuation">(</span>a<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#强制转换</span></code></pre>
+<h3 id="浮点数转整数"><a href="#浮点数转整数" class="headerlink" title="浮点数转整数"></a>浮点数转整数</h3><pre class=" language-bash"><code class="language-bash">a <span class="token operator">=</span> 5.11
+b <span class="token operator">=</span> int<span class="token punctuation">(</span>a<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#最终b为5</span></code></pre>
+<h3 id="整形转字符串"><a href="#整形转字符串" class="headerlink" title="整形转字符串"></a>整形转字符串</h3><pre class=" language-bash"><code class="language-bash">a <span class="token operator">=</span> 11
+b <span class="token operator">=</span> str<span class="token punctuation">(</span>a<span class="token punctuation">)</span>  </code></pre>
 <blockquote>
 <p>注：其他转换以此类推</p>
 </blockquote>
 <h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ul>
 <li>列表(list)是python对象的一个有序序列，其中对象可以是任何类型，并不要求类型一致。</li>
-<li>列表用中括号括起来，每个元素之间用逗号分隔。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">team =[<span class="string">"hello"</span>,2019,<span class="string">"world"</span>,2019]</span><br><span class="line">nums = [1,2,3,4]</span><br><span class="line">words = [<span class="string">"hello"</span>,<span class="string">"python"</span>]</span><br></pre></td></tr></table></figure>
-
+<li>列表用中括号括起来，每个元素之间用逗号分隔。<pre class=" language-bash"><code class="language-bash">team <span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"hello"</span>,2019,<span class="token string">"world"</span>,2019<span class="token punctuation">]</span>
+nums <span class="token operator">=</span> <span class="token punctuation">[</span>1,2,3,4<span class="token punctuation">]</span>
+words <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"python"</span><span class="token punctuation">]</span></code></pre>
 </li>
 </ul>
 <h3 id="列表操作"><a href="#列表操作" class="headerlink" title="列表操作"></a>列表操作</h3><p>以上述列表为例进行操作</p>
 <ul>
-<li><font color="#fb8c00">len()</font> 列表中元素个数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(words)  <span class="comment">#2</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">max()</font> 最大值(元素必须是相同类型)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(nums)   <span class="comment">#4</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">min()</font> 最小值(元素必须是相同类型)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(nums)   <span class="comment">#1</span></span><br></pre></td></tr></table></figure>
-
+<li><font color="#fb8c00">len()</font> 列表中元素个数<pre class=" language-bash"><code class="language-bash">len<span class="token punctuation">(</span>words<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#2</span></code></pre>
+</li>
+<li><font color="#fb8c00">max()</font> 最大值(元素必须是相同类型)<pre class=" language-bash"><code class="language-bash">max<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#4</span></code></pre>
+</li>
+<li><font color="#fb8c00">min()</font> 最小值(元素必须是相同类型)<pre class=" language-bash"><code class="language-bash">min<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#1</span></code></pre>
 </li>
 </ul>
 <blockquote>
 <p>注：当max与min作用于包含字符串的列表时，字符串按字典排序进行比较</p>
 </blockquote>
 <ul>
-<li><font color="#fb8c00">sum()</font> 求和(元素必须是数字)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(nums)  <span class="comment">#10</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">count()</font> 一个对象出现的次数<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.count(2019)   <span class="comment">#2</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">index()</font>  一个对象首次出现的索引位置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.index(2019)   <span class="comment">#1</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">reverse()</font> 所有元素的逆序<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.reverse()   <span class="comment">#["python","hello"]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">append()</font> 在列表末端插入对象<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.append(2019)   <span class="comment">#["hello","python",2019]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">extend()</font> 在列表末端插入新列表的所有元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nums.extend([7,8])  <span class="comment">#[1,2,3,4,7,8]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">del()</font>  移除给定索引位置上的元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">del team[-1]   <span class="comment">#["hello",2019,"world"]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">remove()</font> 移除一个对象的首次出现<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">team.remove(2019)   <span class="comment">#["hello","world",2019]</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">insert(索引位置，元素)</font> 在给定索引位置上插入新元素<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">words.insert(1,2019) <span class="comment">#["hello",2019,"python"]</span></span><br><span class="line">```  </span><br><span class="line">+ &lt;font color=<span class="string">"#fb8c00"</span>&gt;+&lt;/font&gt; 连接</span><br><span class="line">```bash</span><br><span class="line">[<span class="string">"hello"</span>,2019]+[<span class="string">"world"</span>,2020]   <span class="comment">#等同于["hello",2019].extend("world",2020)</span></span><br></pre></td></tr></table></figure></li>
-<li><font color="#fb8c00">*</font> 列表重复<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[0]*3   <span class="comment">#[0,0,0]</span></span><br></pre></td></tr></table></figure>
-
+<li><font color="#fb8c00">sum()</font> 求和(元素必须是数字)<pre class=" language-bash"><code class="language-bash">sum<span class="token punctuation">(</span>nums<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#10</span></code></pre>
+</li>
+<li><font color="#fb8c00">count()</font> 一个对象出现的次数<pre class=" language-bash"><code class="language-bash">team.count<span class="token punctuation">(</span>2019<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#2</span></code></pre>
+</li>
+<li><font color="#fb8c00">index()</font>  一个对象首次出现的索引位置<pre class=" language-bash"><code class="language-bash">team.index<span class="token punctuation">(</span>2019<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#1</span></code></pre>
+</li>
+<li><font color="#fb8c00">reverse()</font> 所有元素的逆序<pre class=" language-bash"><code class="language-bash">words.reverse<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#["python","hello"]</span></code></pre>
+</li>
+<li><font color="#fb8c00">append()</font> 在列表末端插入对象<pre class=" language-bash"><code class="language-bash">words.append<span class="token punctuation">(</span>2019<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#["hello","python",2019]</span></code></pre>
+</li>
+<li><font color="#fb8c00">extend()</font> 在列表末端插入新列表的所有元素<pre class=" language-bash"><code class="language-bash">nums.extend<span class="token punctuation">(</span><span class="token punctuation">[</span>7,8<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#[1,2,3,4,7,8]</span></code></pre>
+</li>
+<li><font color="#fb8c00">del()</font>  移除给定索引位置上的元素<pre class=" language-bash"><code class="language-bash">del team<span class="token punctuation">[</span>-1<span class="token punctuation">]</span>   <span class="token comment" spellcheck="true">#["hello",2019,"world"]</span></code></pre>
+</li>
+<li><font color="#fb8c00">remove()</font> 移除一个对象的首次出现<pre class=" language-bash"><code class="language-bash">team.remove<span class="token punctuation">(</span>2019<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#["hello","world",2019]</span></code></pre>
+</li>
+<li><font color="#fb8c00">insert(索引位置，元素)</font> 在给定索引位置上插入新元素<pre class=" language-bash"><code class="language-bash">words.insert<span class="token punctuation">(</span>1,2019<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#["hello",2019,"python"]</span></code></pre>
+</li>
+<li><font color="#fb8c00">+</font> 连接<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token string">"hello"</span>,2019<span class="token punctuation">]</span>+<span class="token punctuation">[</span><span class="token string">"world"</span>,2020<span class="token punctuation">]</span>   <span class="token comment" spellcheck="true">#等同于["hello",2019].extend("world",2020)</span></code></pre>
+</li>
+<li><font color="#fb8c00">*</font> 列表重复<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">[</span>0<span class="token punctuation">]</span>*3   <span class="token comment" spellcheck="true">#[0,0,0] </span></code></pre>
 </li>
 </ul>
 <blockquote>
@@ -574,14 +615,14 @@
 </blockquote>
 <h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>切片是由冒号语法表示的子列表<br><font color="#fb8c00">del list1[m:n]</font> 移除list1中从索引m到n-1的所有元素  </p>
 <h3 id="split和join方法"><a href="#split和join方法" class="headerlink" title="split和join方法"></a>split和join方法</h3><h4 id="split"><a href="#split" class="headerlink" title="split"></a>split</h4><p>split将字符串变成其子串组成的列表<br><font color="#fb8c00">L = strVar.split(分隔符)</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"a,b,c"</span>.split(<span class="string">','</span>))  <span class="comment">#['a','b','c']</span></span><br></pre></td></tr></table></figure>
+<pre class=" language-bash"><code class="language-bash">print<span class="token punctuation">(</span><span class="token string">"a,b,c"</span>.split<span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#['a','b','c']</span></code></pre>
 <blockquote>
 <p>注：三种常用的单字符分隔符为’,’ / 换行符’\n’ / 空格，若没有指定分隔符，将使用空白分隔符(换行符、制表符和空格组成的任意字符串)作为分隔符</p>
 </blockquote>
 <h4 id="join"><a href="#join" class="headerlink" title="join"></a>join</h4><p>join是split方法的逆操作，将一个字符串列表变成一个由列表中所有元素用指定分隔符分割连接成的字符串<br><font color="#fb8c00">strVar = “,”.join(L)</font></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">line = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">" "</span>.join(line)) <span class="comment">#["a b c"]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">","</span>.join(line))  <span class="comment">#["a,b,c"]</span></span><br></pre></td></tr></table></figure>
-
-
+<pre class=" language-bash"><code class="language-bash">line <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span>,<span class="token string">'b'</span>,<span class="token string">'c'</span><span class="token punctuation">]</span>
+print<span class="token punctuation">(</span><span class="token string">" "</span>.join<span class="token punctuation">(</span>line<span class="token punctuation">))</span> <span class="token comment" spellcheck="true">#["a b c"]</span>
+print<span class="token punctuation">(</span><span class="token string">","</span>.join<span class="token punctuation">(</span>line<span class="token punctuation">))</span>  <span class="token comment" spellcheck="true">#["a,b,c"]</span></code></pre>
 <h2 id="元组对象"><a href="#元组对象" class="headerlink" title="元组对象"></a>元组对象</h2><ul>
 <li>元组(tuple)与列表类似，是元素的有序列表。</li>
 <li>元组与列表的主要区别在于元组不可以直接修改，即元组没有append,extend和insert方法</li>
@@ -594,21 +635,43 @@
 <blockquote>
 <p>注：单个元素组成的元组有一个末尾的逗号，如(0,)</p>
 </blockquote>
-<h3 id="元组定义"><a href="#元组定义" class="headerlink" title="元组定义"></a>元组定义</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">t = (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line">或</span><br><span class="line">t=<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span></span><br></pre></td></tr></table></figure>
+<h3 id="元组定义"><a href="#元组定义" class="headerlink" title="元组定义"></a>元组定义</h3><pre class=" language-bash"><code class="language-bash">t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'a'</span>,<span class="token string">'b'</span>,<span class="token string">'c'</span><span class="token punctuation">)</span>
+或
+t<span class="token operator">=</span><span class="token string">'a'</span>,<span class="token string">'b'</span>,<span class="token string">'c'</span></code></pre>
 <blockquote>
 <p>注：print函数总会显示由括号包围的元组</p>
 </blockquote>
 <h3 id="tuple函数"><a href="#tuple函数" class="headerlink" title="tuple函数"></a>tuple函数</h3><p>tuple函数可以将列表或字符串转化为元组。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tuple([<span class="string">'a'</span>,<span class="string">'b'</span>])  的值为 (<span class="string">'a'</span>,<span class="string">'b'</span>)</span><br><span class="line">tuple(<span class="string">"python"</span>) 的值为(<span class="string">'p'</span>,<span class="string">'y'</span>,<span class="string">'t'</span>,<span class="string">'h'</span>,<span class="string">'o'</span>,<span class="string">'n'</span>)</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">tuple<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'a'</span>,<span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  的值为 <span class="token punctuation">(</span><span class="token string">'a'</span>,<span class="token string">'b'</span><span class="token punctuation">)</span>
+tuple<span class="token punctuation">(</span><span class="token string">"python"</span><span class="token punctuation">)</span> 的值为<span class="token punctuation">(</span><span class="token string">'p'</span>,<span class="token string">'y'</span>,<span class="token string">'t'</span>,<span class="token string">'h'</span>,<span class="token string">'o'</span>,<span class="token string">'n'</span><span class="token punctuation">)</span></code></pre>
 <h2 id="嵌套列表"><a href="#嵌套列表" class="headerlink" title="嵌套列表"></a>嵌套列表</h2><p>列表和元组中的元素也可以是列表或元组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">regions = [(<span class="string">"hello"</span>,2019),(<span class="string">"world"</span>,<span class="string">"python"</span>),(2020,1999)]</span><br><span class="line"><span class="built_in">print</span>(regions[0][1]) <span class="comment">#hello</span></span><br><span class="line"><span class="built_in">print</span>(regiions[2][0])  <span class="comment">#2020</span></span><br><span class="line"><span class="built_in">print</span>(regions[0][1]+regions[2][1])  <span class="comment">#2019+1999=4018</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="comment">## 不可变对象和可变对象</span></span><br><span class="line">+ 对象是一个可以存储数据并有可以操纵数据的操作或方法实体。数值、字符串、列表和元组都是对象。</span><br><span class="line">+ 当一个变量使用赋值语句创建出来后，等号右边的值变成了内存中的一个对象</span><br><span class="line">+ 列表能够原地修改，但是数值、字符串和元组不可以。</span><br><span class="line">+ 能够原地修改的对象称为可变的，而不能原地修改的对象称为不可变的。</span><br><span class="line">```bash</span><br><span class="line">L =[5,6]</span><br><span class="line">n = 2</span><br><span class="line">s = <span class="string">"python"</span></span><br><span class="line">t = (<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>)</span><br><span class="line">L.append(7)</span><br><span class="line">n += 1</span><br><span class="line">s = s.upper()</span><br><span class="line">t = t[1:]</span><br></pre></td></tr></table></figure>
-<p>在前四行代码执行后的内存分配情况<br><img src="https://i.postimg.cc/25zCdvNw/1.png" alt=""></p>
+<pre class=" language-bash"><code class="language-bash">regions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token string">"hello"</span>,2019<span class="token punctuation">)</span>,<span class="token punctuation">(</span><span class="token string">"world"</span>,<span class="token string">"python"</span><span class="token punctuation">)</span>,<span class="token punctuation">(</span>2020,1999<span class="token punctuation">)</span><span class="token punctuation">]</span>
+print<span class="token punctuation">(</span>regions<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#hello</span>
+print<span class="token punctuation">(</span>regiions<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#2020</span>
+print<span class="token punctuation">(</span>regions<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span>+regions<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">[</span>1<span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#2019+1999=4018</span></code></pre>
+<h2 id="不可变对象和可变对象"><a href="#不可变对象和可变对象" class="headerlink" title="不可变对象和可变对象"></a>不可变对象和可变对象</h2><ul>
+<li>对象是一个可以存储数据并有可以操纵数据的操作或方法实体。数值、字符串、列表和元组都是对象。</li>
+<li>当一个变量使用赋值语句创建出来后，等号右边的值变成了内存中的一个对象</li>
+<li>列表能够原地修改，但是数值、字符串和元组不可以。</li>
+<li>能够原地修改的对象称为可变的，而不能原地修改的对象称为不可变的。<pre class=" language-bash"><code class="language-bash">L <span class="token operator">=</span><span class="token punctuation">[</span>5,6<span class="token punctuation">]</span>
+n <span class="token operator">=</span> 2
+s <span class="token operator">=</span> <span class="token string">"python"</span>
+t <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'a'</span>,<span class="token string">'b'</span>,<span class="token string">'c'</span><span class="token punctuation">)</span>
+L.append<span class="token punctuation">(</span>7<span class="token punctuation">)</span>
+n +<span class="token operator">=</span> 1
+s <span class="token operator">=</span> s.upper<span class="token punctuation">(</span><span class="token punctuation">)</span>
+t <span class="token operator">=</span> t<span class="token punctuation">[</span>1:<span class="token punctuation">]</span></code></pre>
+在前四行代码执行后的内存分配情况<br><img src="https://i.postimg.cc/25zCdvNw/1.png" alt=""></li>
+</ul>
 <p>在全部代码执行后的内存分配情况<br><img src="https://i.postimg.cc/MGdq9TW8/2.jpg" alt=""></p>
-<h2 id="列表复制"><a href="#列表复制" class="headerlink" title="列表复制"></a>列表复制</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list1 = [<span class="string">'a'</span>,<span class="string">'b'</span>]</span><br><span class="line">list2 = list1</span><br><span class="line">list2[1] = <span class="string">'c'</span></span><br><span class="line"><span class="built_in">print</span>(list1)   <span class="comment"># ['a','c']</span></span><br></pre></td></tr></table></figure>
+<h2 id="列表复制"><a href="#列表复制" class="headerlink" title="列表复制"></a>列表复制</h2><pre class=" language-bash"><code class="language-bash">list1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span>,<span class="token string">'b'</span><span class="token punctuation">]</span>
+list2 <span class="token operator">=</span> list1
+list2<span class="token punctuation">[</span>1<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'c'</span>
+print<span class="token punctuation">(</span>list1<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true"># ['a','c']</span></code></pre>
 <p>在第二行代码中，变量list2引用的是和list1一样的内存位置，对list2中一个元素的改变将对list1产生相同的变化<br>如果将第二行代码改成 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list2 = list(list1)</span><br><span class="line">或</span><br><span class="line">list2 = list1[:]</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">list2 <span class="token operator">=</span> list<span class="token punctuation">(</span>list1<span class="token punctuation">)</span>
+或
+list2 <span class="token operator">=</span> list1<span class="token punctuation">[</span>:<span class="token punctuation">]</span></code></pre>
 <blockquote>
 <p>注：list函数可以将元组或字符串转化为列表。例如：list((‘a’,’b’))的值为[‘a’,’b’] list(“python”)的值为[‘p’,’y’,’t’,’h’,’o’,’n’]</p>
 </blockquote>
@@ -649,7 +712,7 @@
                   property="dct:title" rel="dct:type">
                     《Python(一)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/08/Python-1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/08/python-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -764,7 +827,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/09/01/Qt5/">
+                <a href="/2019/09/01/qt5/">
                     <div class="card-image">
                         
                         
@@ -968,7 +1031,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

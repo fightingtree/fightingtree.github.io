@@ -6,7 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Qt(基础2), Hexo">
     <meta name="description" content="QFile读文件点击按钮弹出界面将选择读取的文件内容读取到textEdit中
-1234567891011121314151617181920212223#include &amp;lt;QFile&amp;gt;#include &amp;lt;QFileDial">
+#include &amp;lt;QFile&gt;
+#include &amp;lt;QFileDialog&gt;
+void MainWindow::on_buttonRead_clic">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -29,7 +31,7 @@
     </style>
 
     <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
-<meta name="generator" content="Hexo 4.2.0"></head>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 
 
 <body>
@@ -391,7 +393,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        305
+                        281
                     </div>
                     
 
@@ -415,14 +417,50 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="QFile"><a href="#QFile" class="headerlink" title="QFile"></a>QFile</h2><h3 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h3><p>点击按钮弹出界面将选择读取的文件内容读取到textEdit中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;QFile&gt;</span></span><br><span class="line"><span class="comment">#include &lt;QFileDialog&gt;</span></span><br><span class="line">void MainWindow::on_buttonRead_clicked()</span><br><span class="line">&#123;</span><br><span class="line">    QString path = QFileDialog::getOpenFileName(this,<span class="string">"open"</span>,<span class="string">"../"</span>,<span class="string">"TXT(*.txt)"</span>);//最后一个参数可写可不写，指定打开文件的类型</span><br><span class="line">    <span class="keyword">if</span>(path.isEmpty()==<span class="literal">false</span>)&#123;</span><br><span class="line">        QFile file(path);//文件对象</span><br><span class="line">        bool isOK=file.open(QIODevice::ReadOnly);//以只读的方式打开</span><br><span class="line">        <span class="keyword">if</span>(isOK == <span class="literal">true</span>)&#123;</span><br><span class="line"><span class="comment">#if 0  //全部读</span></span><br><span class="line">            QByteArray array = file.readAll();//读取文件全部内容</span><br><span class="line">            ui-&gt;textEdit-&gt;setText(array);//将文件内容显示到textEdit中</span><br><span class="line"><span class="comment">#endif</span></span><br><span class="line">        //按行读</span><br><span class="line">            QByteArray array;</span><br><span class="line">            <span class="keyword">while</span>(file.atEnd()==<span class="literal">false</span>)&#123;</span><br><span class="line">                array += file.readLine();</span><br><span class="line">            &#125;</span><br><span class="line">            ui-&gt;textEdit-&gt;setText(array);</span><br><span class="line">        &#125;</span><br><span class="line">        file.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#include &lt;QFile></span>
+<span class="token comment" spellcheck="true">#include &lt;QFileDialog></span>
+void MainWindow::on_buttonRead_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QString path <span class="token operator">=</span> QFileDialog::getOpenFileName<span class="token punctuation">(</span>this,<span class="token string">"open"</span>,<span class="token string">"../"</span>,<span class="token string">"TXT(*.txt)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//最后一个参数可写可不写，指定打开文件的类型
+    if<span class="token punctuation">(</span>path.isEmpty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>false<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        QFile file<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>//文件对象
+        bool isOK<span class="token operator">=</span>file.open<span class="token punctuation">(</span>QIODevice::ReadOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>//以只读的方式打开
+        if<span class="token punctuation">(</span>isOK <span class="token operator">==</span> true<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token comment" spellcheck="true">#if 0  //全部读</span>
+            QByteArray array <span class="token operator">=</span> file.readAll<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//读取文件全部内容
+            ui-<span class="token operator">></span>textEdit-<span class="token operator">></span>setText<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>//将文件内容显示到textEdit中
+<span class="token comment" spellcheck="true">#endif</span>
+        //按行读
+            QByteArray array<span class="token punctuation">;</span>
+            while<span class="token punctuation">(</span>file.atEnd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>false<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                array +<span class="token operator">=</span> file.readLine<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            ui-<span class="token operator">></span>textEdit-<span class="token operator">></span>setText<span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        file.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><p>点击按钮将textEdit的内容写到指定文件中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">void MainWindow::on_buttonWrite_clicked()</span><br><span class="line">&#123;</span><br><span class="line">     QString path = QFileDialog::getSaveFileName(this,<span class="string">"save"</span>,<span class="string">"../"</span>,<span class="string">"TXT(*.txt)"</span>);</span><br><span class="line">     <span class="keyword">if</span>(path.isEmpty()==<span class="literal">false</span>)&#123;</span><br><span class="line">         QFile file;</span><br><span class="line">         file.setFileName(path);</span><br><span class="line">         bool isOK= file.open(QIODevice::WriteOnly);//以写的方式打开</span><br><span class="line">         <span class="keyword">if</span>(isOK== <span class="literal">true</span>)&#123;</span><br><span class="line">             QString str = ui-&gt;textEdit-&gt;toPlainText();//获取编辑框内容</span><br><span class="line">             file.write(str.toUtf8());</span><br><span class="line">         &#125;</span><br><span class="line">         file.close();</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">void MainWindow::on_buttonWrite_clicked<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+     QString path <span class="token operator">=</span> QFileDialog::getSaveFileName<span class="token punctuation">(</span>this,<span class="token string">"save"</span>,<span class="token string">"../"</span>,<span class="token string">"TXT(*.txt)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     if<span class="token punctuation">(</span>path.isEmpty<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">==</span>false<span class="token punctuation">)</span><span class="token punctuation">{</span>
+         QFile <span class="token function">file</span><span class="token punctuation">;</span>
+         file.setFileName<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+         bool isOK<span class="token operator">=</span> file.open<span class="token punctuation">(</span>QIODevice::WriteOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>//以写的方式打开
+         if<span class="token punctuation">(</span>isOK<span class="token operator">==</span> true<span class="token punctuation">)</span><span class="token punctuation">{</span>
+             QString str <span class="token operator">=</span> ui-<span class="token operator">></span>textEdit-<span class="token operator">></span>toPlainText<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//获取编辑框内容
+             file.write<span class="token punctuation">(</span>str.toUtf8<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+         file.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
 <h2 id="QFileInfo"><a href="#QFileInfo" class="headerlink" title="QFileInfo"></a>QFileInfo</h2><p>获取文件信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">QFileInfo info(path);</span><br><span class="line">info.fileName().toUtf8().data();//文件名字</span><br><span class="line">info.suffix();//文件后缀</span><br><span class="line">info.size();//文件大小</span><br><span class="line">info.created().toString(<span class="string">"yyyy-MM-dd hh:mm:ss"</span>)//创建文件的时间2019-08-31 10:31:00(<span class="comment">#include &lt;QDateTime&gt;)</span></span><br></pre></td></tr></table></figure>
-
+<pre class=" language-bash"><code class="language-bash">QFileInfo info<span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+info.fileName<span class="token punctuation">(</span><span class="token punctuation">)</span>.toUtf8<span class="token punctuation">(</span><span class="token punctuation">)</span>.data<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//文件名字
+info.suffix<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//文件后缀
+info.size<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//文件大小
+info.created<span class="token punctuation">(</span><span class="token punctuation">)</span>.toString<span class="token punctuation">(</span><span class="token string">"yyyy-MM-dd hh:mm:ss"</span><span class="token punctuation">)</span>//创建文件的时间2019-08-31 10:31:00<span class="token punctuation">(</span><span class="token comment" spellcheck="true">#include &lt;QDateTime>)</span></code></pre>
 <blockquote>
 <p>注： QByteArray转为QString的方式为强制转换</p>
 </blockquote>
@@ -462,7 +500,7 @@
                   property="dct:title" rel="dct:type">
                     《Qt(基础2)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/31/Qt4/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/31/qt4/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -528,7 +566,7 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/01/Qt5/">
+                <a href="/2019/09/01/qt5/">
                     <div class="card-image">
                         
                         
@@ -585,7 +623,7 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/28/Qt3/">
+                <a href="/2019/08/28/qt3/">
                     <div class="card-image">
                         
                         
@@ -785,7 +823,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">169.5k</span>
+                <span class="white-color">166.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
