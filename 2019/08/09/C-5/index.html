@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C语言(五) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="指针的概念指针就是内存中的地址，地址是内存单元的编号 123int * p;&#x2F;&#x2F;p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)int i &#x3D;3;p &#x3D; &amp;i;&#x2F;&#x2F;p保存的是i的地址，因此p指向i，p的值与i的值互不影响   注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量  123456int * p;int i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言(五)">
+<meta property="og:url" content="https://fightingtree.github.io/2019/08/09/C-5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="指针的概念指针就是内存中的地址，地址是内存单元的编号 123int * p;&#x2F;&#x2F;p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)int i &#x3D;3;p &#x3D; &amp;i;&#x2F;&#x2F;p保存的是i的地址，因此p指向i，p的值与i的值互不影响   注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量  123456int * p;int i">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-09T08:01:25.000Z">
+<meta property="article:modified_time" content="2019-12-08T12:05:53.941Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/09/C-5/" class="article-date">
+  <time datetime="2019-08-09T08:01:25.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言(五)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h2><p>指针就是内存中的地址，地址是内存单元的编号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;//p保存的是i的地址，因此p指向i，p的值与i的值互不影响</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =3;</span><br><span class="line">p = &amp;i;</span><br><span class="line">j = *p;//*p相当于i,所以j=i</span><br><span class="line">//结果为 j =3</span><br><span class="line">//*p就是以p的内容为地址的变量</span><br></pre></td></tr></table></figure>
+<h2 id="指针和指针变量"><a href="#指针和指针变量" class="headerlink" title="指针和指针变量"></a>指针和指针变量</h2><p>指针是地址，指针变量是存放地址的变量，指针和指针变量是两个不同的概念，但是叙述时会把指针变量简称为指针，实际它们含义不一样。</p>
+<h3 id="一个指针变量占几个字节"><a href="#一个指针变量占几个字节" class="headerlink" title="一个指针变量占几个字节"></a>一个指针变量占几个字节</h3><p><font color="#fb8c00">sizeof(数据类型)</font>：返回值是该数据类型所占的字节数<br><font color="#fb8c00">sizeof(变量名)</font>：返回值是该变量所占的字节数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sizeof(int)=4   sizeof(char)=1 sizeof(double)=8</span><br></pre></td></tr></table></figure>
+<ul>
+<li>假设p指向char类型的变量(1个字节)</li>
+<li>假设q指向int类型的变量(4个字节)</li>
+<li>假设r指向double类型的变量(8个字节)</li>
+<li>pqr大小均为4个字节(pqr只存地址的第一个字节，但CPU与内存间有32根地址线，地址表示位有32位)</li>
+</ul>
+<blockquote>
+<p>注：一个指针变量，无论它指向的变量占几个字节，该指针变量本身只占四个字节</p>
+</blockquote>
+<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =10;</span><br><span class="line">int * p = &amp;i;</span><br><span class="line">int ** q = &amp;p;//q是存放int*类型变量的地址的指针</span><br><span class="line">int *** r = &amp;q;//r是存放int**类型变量的地址的指针</span><br><span class="line"></span><br><span class="line">r = &amp;p;//error,r只能存放int**类型的变量的地址</span><br></pre></td></tr></table></figure>
+
+<h2 id="指针的分类"><a href="#指针的分类" class="headerlink" title="指针的分类"></a>指针的分类</h2><h3 id="基本类型指针"><a href="#基本类型指针" class="headerlink" title="基本类型指针"></a>基本类型指针</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i=5;</span><br><span class="line">p = &amp;i;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在C语言中NULL指针定义为0</p>
+</blockquote>
+<h4 id="基本类型指针的常见错误分析"><a href="#基本类型指针的常见错误分析" class="headerlink" title="基本类型指针的常见错误分析"></a>基本类型指针的常见错误分析</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int * p;</span><br><span class="line">int i =5;</span><br><span class="line">* p =i;//error,相当于将p指针指向的int变量赋值成i，但p指针指向的int变量的控制权限并没有分配给本程序</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p =&amp;i;</span><br><span class="line">//* q =p;//error,*q为int类型，而p为int*类型</span><br><span class="line">//* q = *p;//error</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：q的空间是属于本程序的，所以本程序可以读写q的内容，但如果q的内部是垃圾值，则本程序不能读写* q的内容，因为* q所代表的内存单元的控制权限并没有分配给本程序</p>
+</blockquote>
+<h3 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h3><h4 id="指针和一维数组"><a href="#指针和一维数组" class="headerlink" title="指针和一维数组"></a>指针和一维数组</h4><h5 id="数组名"><a href="#数组名" class="headerlink" title="数组名"></a>数组名</h5><p>一维数组名是一个指针常量，存放的是第一个元素的地址</p>
+<h5 id="下标和指针的关系"><a href="#下标和指针的关系" class="headerlink" title="下标和指针的关系"></a>下标和指针的关系</h5><p>如果p是个指针变量，则p[i]永远等价于* （p+i）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//通过函数输出数组的内容</span><br><span class="line">void pArr(int * p,int len)&#123;</span><br><span class="line">    //p为数组名，len为数组大小</span><br><span class="line">    //a[0]=*(a+0),a[2]=*(a+2)</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;len;i++)&#123;</span><br><span class="line">    	<span class="built_in">printf</span>(<span class="string">"%d"</span>,*(p+i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">	a[4]=&#123;1,2,3,4&#125;;</span><br><span class="line">	b[6]=&#123;1,2,3,4,5,6&#125;;</span><br><span class="line">	c[100]=&#123;1,2,34&#125;;</span><br><span class="line">    pArr(a,4);</span><br><span class="line">    pArr(b,6);</span><br><span class="line">    pArr(c,100);</span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h5><ul>
+<li>指针变量不能相加，不能相乘，不能相除</li>
+<li>如果两个指针变量指向的是同一块连续空间中的不同存储单元，则这两个指针变量可以相减<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i =5;</span><br><span class="line">int j =10;</span><br><span class="line">int * p =&amp;i;</span><br><span class="line">int * q =&amp;j;</span><br><span class="line">p-q;//没有实际意义</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int a[5];</span><br><span class="line">int * p;</span><br><span class="line">int * q;</span><br><span class="line">p = &amp;a[2];</span><br><span class="line">q = &amp;a[4];</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"p和q所指向单元相隔%d个单元\n"</span>,p-q);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="指针和二维数组"><a href="#指针和二维数组" class="headerlink" title="指针和二维数组"></a>指针和二维数组</h4><h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><h4 id="通过被调函数修改主调函数普通变量的值"><a href="#通过被调函数修改主调函数普通变量的值" class="headerlink" title="通过被调函数修改主调函数普通变量的值"></a>通过被调函数修改主调函数普通变量的值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * i) &#123;</span><br><span class="line">	*i = 1;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	int a = 2;</span><br><span class="line">	g(&amp;a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);//最终输出为1</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="指针使函数返回一个以上值"><a href="#指针使函数返回一个以上值" class="headerlink" title="指针使函数返回一个以上值"></a>指针使函数返回一个以上值</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int * p,int * q)&#123;</span><br><span class="line">	*p = 1;</span><br><span class="line">	*q = 2;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int a=3,b=4;</span><br><span class="line">   g(&amp;a,&amp;b);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d/n"</span>,a,b);//a=1,b=2</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="指针和结构体"><a href="#指针和结构体" class="headerlink" title="指针和结构体"></a>指针和结构体</h3><h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><h3 id="传统数组的缺点-静态数组"><a href="#传统数组的缺点-静态数组" class="headerlink" title="传统数组的缺点(静态数组)"></a>传统数组的缺点(静态数组)</h3><ul>
+<li>数组长度必须事先指定，且只能是常熟，不能是变量</li>
+<li>传统形式定义的数组内存无法手动释放，只能在函数运行完毕时由系统自动释放</li>
+<li>数组的长度不能在函数运行的过程中动态的扩充或缩小</li>
+<li>A函数定义的数组，在A函数运行期间可以被其他函数使用，但A函数运行完毕后，A函数中的数组将无法再被其他函数使用(不能跨函数使用)</li>
+</ul>
+<h3 id="为什么需要动态分配内存"><a href="#为什么需要动态分配内存" class="headerlink" title="为什么需要动态分配内存"></a>为什么需要动态分配内存</h3><p>动态数组很好的解决了传统数组的4个缺陷</p>
+<p>###　动态内存分配举例(动态数组的构造)</p>
+<h4 id="malloc函数的使用"><a href="#malloc函数的使用" class="headerlink" title="malloc函数的使用"></a>malloc函数的使用</h4><p>malloc 是memory allocate(内存分配)的缩写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i = 5;//静态分配4个字节</span><br><span class="line">int * p = (int *)malloc(4);//4表示请求系统为本程序分配4个字节</span><br><span class="line">//一个分配了8个字节，p占用4个字节，p所指向的内存也占4个字节</span><br><span class="line">//p本身所占的内存是静态分配的，p所指向的内存是动态分配的</span><br><span class="line"></span><br><span class="line">* p =5;</span><br><span class="line">free(p);//表示把p所指向的内存释放掉，p本身的内存是静态的，只能在p变量所在函数运行终止时由系统自动释放</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：1.使用malloc函数必须加上malloc.h头文件<br>      2.malloc函数只能返回第一个字节的地址<br>      3.malloc函数只有一个形参，并且形参是整形</p>
+</blockquote>
+<h4 id="动态构建一维数组"><a href="#动态构建一维数组" class="headerlink" title="动态构建一维数组"></a>动态构建一维数组</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int * pArr;</span><br><span class="line">int len;</span><br><span class="line">int i;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"请输入数组元素个数："</span>);</span><br><span class="line">scanf(<span class="string">"%d"</span>,&amp;len);</span><br><span class="line">pArr = (int *)malloc(4*len);//每4个字节代表一个元素(int为4个字节)</span><br><span class="line"></span><br><span class="line">//对动态一维数组进行赋值</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  scanf(<span class="string">"%d"</span>,pArr+i);</span><br><span class="line">&#125;</span><br><span class="line">//对动态一维数组进行输出</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;len;i++)&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*(pArr+i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">realloc(pArr,100);//把pArr指针所指向的内存扩大到100个字节</span><br><span class="line"></span><br><span class="line">free(pArr);//释放pArr所指向的内存</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态内存和动态内存的比较"><a href="#静态内存和动态内存的比较" class="headerlink" title="静态内存和动态内存的比较"></a>静态内存和动态内存的比较</h3><h4 id="静态内存"><a href="#静态内存" class="headerlink" title="静态内存"></a>静态内存</h4><ul>
+<li>静态内存是由系统自动分配的，由系统自动释放</li>
+<li>静态内存是在栈中分配的</li>
+</ul>
+<h4 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h4><ul>
+<li>动态内存手动分配，手动释放</li>
+<li>动态内存是在堆中分配的</li>
+</ul>
+<h3 id="跨函数使用内存的问题"><a href="#跨函数使用内存的问题" class="headerlink" title="跨函数使用内存的问题"></a>跨函数使用内存的问题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">    int i = 5;</span><br><span class="line">    *q = &amp;i;</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">  int * p;</span><br><span class="line">  f(&amp;p);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//error,语法无错误，但是i变量的内存在f()函数执行完毕后已经被释放(i已经不存在)，此时*p指向的并不是i</span><br><span class="line">  <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">void f(int ** q)&#123;</span><br><span class="line">  * q = (int *)malloc(sizeof(int));</span><br><span class="line">  ** q = 5;//等价于*p=5</span><br><span class="line">&#125;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   int * p;</span><br><span class="line">   f(&amp;p);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,*p);//OK,动态分配的内存是手动释放，f()中的** q在函数执行完毕后依然存在</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/09/C-5/" data-id="ck5ewyoz80004i8twhvgv18yi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/13/C-6/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言(六)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/09/C-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言(四)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

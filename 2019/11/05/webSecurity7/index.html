@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Web安全(7) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="访问控制机制从逻辑上讲，应用程序核心安全机制的访问控制建立在验证和会话管理之上。应用程序首先核实用户的身份，然后确认它收到的某个特殊的请求序列由该用户提出。应用程序之所以那么做，至少从安全上讲，是因为它必须决定是否允许某个请求执行特定的操作或访问它请求的资源。访问控制是应用程序的一个重要的防御机制，因为它们负责做出这些关键决定。如果访问控制存在缺陷，攻击者往往能够攻破整个应用程序，控制其管理功能并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web安全(7)">
+<meta property="og:url" content="https://fightingtree.github.io/2019/11/05/webSecurity7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="访问控制机制从逻辑上讲，应用程序核心安全机制的访问控制建立在验证和会话管理之上。应用程序首先核实用户的身份，然后确认它收到的某个特殊的请求序列由该用户提出。应用程序之所以那么做，至少从安全上讲，是因为它必须决定是否允许某个请求执行特定的操作或访问它请求的资源。访问控制是应用程序的一个重要的防御机制，因为它们负责做出这些关键决定。如果访问控制存在缺陷，攻击者往往能够攻破整个应用程序，控制其管理功能并">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-11-05T12:33:25.000Z">
+<meta property="article:modified_time" content="2019-12-18T06:27:47.553Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="安全">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webSecurity7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/05/webSecurity7/" class="article-date">
+  <time datetime="2019-11-05T12:33:25.000Z" itemprop="datePublished">2019-11-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Web安全(7)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="访问控制机制"><a href="#访问控制机制" class="headerlink" title="访问控制机制"></a>访问控制机制</h2><p>从逻辑上讲，应用程序核心安全机制的访问控制建立在验证和会话管理之上。应用程序首先核实用户的身份，然后确认它收到的某个特殊的请求序列由该用户提出。应用程序之所以那么做，至少从安全上讲，是因为它必须决定是否允许某个请求执行特定的操作或访问它请求的资源。访问控制是应用程序的一个重要的防御机制，因为它们负责做出这些关键决定。如果访问控制存在缺陷，攻击者往往能够攻破整个应用程序，控制其管理功能并访问属于其他用户的敏感数据。<br>不完善的访问控制中最常见的Web应用程序漏洞存在的一个普遍原因在于，需要对每一个请求，以及特殊用户在特定时刻尝试对资源执行的每一项操作执行访问控制检查。而且，与许多其他类型的控制不同，这一设计决策需要由人做出，而无法采用技术解决。<br>访问控制漏洞的概念十分简单：应用程序允许攻击者执行某种攻击者没有资格执行的操作</p>
+<h2 id="常见漏洞"><a href="#常见漏洞" class="headerlink" title="常见漏洞"></a>常见漏洞</h2><p>访问控制可分为三大类：垂直访问控制、水平访问控制和上下文相关的控制</p>
+<ul>
+<li>垂直访问控制允许各种类型的用户访问应用程序的不同功能。在最简单的情况下，应用程序通过这种控制界定普通用户与管理员。</li>
+<li>水平访问控制允许用户访问一组类型相同的、内容及其广泛的资源。如，电子银行只允许转移自己账户内的资金</li>
+<li>上下文相关的访问控制可确保基于应用程序当前的状态，将用户访问仅限于所允许的内容。如，在某个过程中，用户需要依照顺序完成多个阶段的操作，上下文相关的访问控制可以防止用户不按规定的顺序访问这些阶段。</li>
+<li>许多时候，垂直与水平访问控制互相交叠。如，企业应该程序允许会计文员支付某一单位而非其他单位的发票，但允许付账经理支付任何单位的发票。财务总监能够查看公司每个组织单元的发票支付和收据，但不得支付任何发票。</li>
+</ul>
+<p>如果用户能够访问他无权访问的资源或功能，就表示访问控制存在缺陷。主要有三种与访问控制为目的的攻击，分别与三种访问控制对应：</p>
+<ul>
+<li>垂直权限提升：一名用户能够执行某项功能，但分配给他的角色并不具有这种权限。如，一名普通用户能够执行管理员的功能</li>
+<li>水平权限提升：一名用户能够查看或修改他没有资格查看或修改的资源。如，用户使用Web邮件应用程序查看其他人的电子邮件</li>
+<li>业务逻辑漏洞：用户可以利用应用程序状态机中的漏洞获得关键资源的访问权限。如，用户能够避开购物结算序列中的支付步骤</li>
+</ul>
+<p>许多时候，应用程序水平权限划分中存在的漏洞可能会立即引起垂直权限提升攻击。例如，如果一名用户能够以某种方式设置其他用户的密码，那么该用户就能攻击管理员的账户并控制整个应用程序</p>
+<h3 id="完全不受保护的功能"><a href="#完全不受保护的功能" class="headerlink" title="完全不受保护的功能"></a>完全不受保护的功能</h3><p>在许多的访问控制不完善的情况下，敏感功能和数据可被任何知道相关URL的用户访问。例如，在许多应用程序中，任何人只需访问一个特定的URL就可以完全控制它的管理功能<br><font color="#fb8c00">https:// wahh-app.com/admin</font><br>在这种情况下，应用程序通常仅实施如下访问：以管理员身份登录的用户在他们的用户界面上看到一个该URL的链接，而其他用户无法看到这个链接。这种细微的差别是应用程序用于“防止”敏感功能被未授权使用的唯一机制<br>有时候，允许用户访问强大功能的URL可能很难猜测，甚至相当隐秘，如：<br><font color="#fb8c00">https:// wahh-app.com/menus/secure/ff457/DoAdminMenu2.jsp</font><br>这种情况下，开发者假设攻击者无法知道或发现这个URL。局外人很难攻破一个应用程序，因为他们不太可能猜测出实现这种目的的URL。</p>
+<p>然而，攻击者仍然可以通过仔细检查客户端源代码仍能发现这些URL。许多应用程序使用JavaScript在客户端动态建立用户界面。它一般建立各种与用户状态有关的标记，然后根据这些标记在用户界面中增加不同的元素。如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var isAdmin = <span class="literal">false</span>;</span><br><span class="line">.......</span><br><span class="line"><span class="keyword">if</span> (isAdmin)&#123;</span><br><span class="line">	adminMenu.addItem(<span class="string">"/menus/secure/ff457/addNewPortalUser2.jsp"</span>,<span class="string">"Create a new user"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上述示例中，攻击者只需检查JavaScript代码就可以确定具备管理功能的URL，并尝试访问它们</p>
+<h4 id="基于标识符的功能"><a href="#基于标识符的功能" class="headerlink" title="基于标识符的功能"></a>基于标识符的功能</h4><p>当应用程序使用一项功能访问某个特殊的资源时，被请求资源的标识符常常以请求参数的形式，在URL查询字符串或POST请求主体中提交给服务器。如，应用程序可能会使用下面的URL显示一份属于某个用户的特殊文档：<br><font color="#fb8c00">https:// wahh-app.com/ViewDocument.php?docid=1280149120</font><br>拥有这份文档的用户登录后，这个URL的链接将会在该用户的“我的文档”页面显示。其他用户无法看到这个链接。但是，如果访问控制不完善，那么请求URL的任何用户都能够像授权用户那样查看这份文档。<br>在上述示例中，寻求获得未授权访问的攻击者不仅需要知道应用程序的页面名称(ViewDocument.php)，而且需要知道他想要查看的文档的标识符。有时，应用程序生成的资源标识符非常难以预测，例如，它们可能是随机选择的GUID(Global Unique Indentifier，全局统一标识符)，也可能是连续生成的数字，但是，通常，希望发现其他用户资源标识符的攻击者可在应用程序的某个位置找到这些信息，例如访问日志中。</p>
+<blockquote>
+<p>注：应用程序日志是一个信息金矿，其中包含大量可被用作标识符的数据项，可利用它们探查通过标识符访问的功能。应用程序日志中常见的标识符包括：用户名、用户ID、账号、文档ID、用户群组与角色以及电子邮件</p>
+</blockquote>
+<h3 id="多阶段功能"><a href="#多阶段功能" class="headerlink" title="多阶段功能"></a>多阶段功能</h3><p>应用程序许多功能通过几个阶段执行，并在执行过程中由客户端向服务器发送许多请求。例如，添加新用户功能可能包括从用户维护菜单中选取这个选项，从下拉列表中选择部门和用户职位，然后添加新用户名、初始密码和其他信息。如果一名用户试图加载用户维护菜单并从中选取“创建新用户”选项，应用程序就会核实该用户是否拥有必要权限，如果用户未获授权，就阻止其进行访问。但是，如果攻击者直接进入核实用户所属部门和其他细节阶段，可能就没有有效的访问控制对其加以限制。开发者认为，任何达到验证过程后续阶段的用户一定已经拥有相关权限，因为前面的阶段已经验证了这些权限。通过这种方法，任何应用程序用户都能够添加一个新的管理用户账户，因而完全控制整个程序，访问许多其他已经实施完善的访问控制机制的功能。</p>
+<h3 id="静态功能"><a href="#静态功能" class="headerlink" title="静态功能"></a>静态功能</h3><p>在绝大多数情况下，用户都是通过向在服务器上执行的动态页面发布请求来访问受保护的功能和资源。这时，每个动态页面负责执行适当的访问控制检查，并确认用户拥有执行相关操作所需的权限。<br>但是，有些时候，用户会直接向位于服务器Web根目录下的静态资源提出请求，要求访问这些被保护资源。如，一个在线出版商允许用户浏览他的书籍目录并购买电子书进行下载。支付费用后，应用程序就将用户指向以下URL：<br><font color="#fb8c00">https:// wahh-books.com/download/9780636628104.pdf</font><br>因为这是一个完全静态的资源，所以它并不在服务器上运行，它的内容直接由Web服务器返回。因此，资源自身并不能执行任何检查以确认提出请求的用户拥有必要权限。如果可以通过这种方式访问静态资源，那么这些资源很可能没有受到有效的访问控制机制的保护，任何知晓URL命名方案的人都可以利用这种缺陷访问任何所需的资源</p>
+<h3 id="平台配置错误"><a href="#平台配置错误" class="headerlink" title="平台配置错误"></a>平台配置错误</h3><p>一些应用程序在Web服务器或应用程序平台层使用控件来控制访问。通常，应用程序会根据用户的角色来限制对特定URL路径的访问。例如，如果用户不属于管理员，访问/admin路径的请求可能会遭到拒绝。原则上，这是完全合法的访问控制方法，但是，如果在配置平台级控件时出现错误，就可能导致未授权访问。<br>正常情况下，平台级配置与防火墙策略规则类似，它们基于以下条件允许或拒绝访问请求：</p>
+<ul>
+<li>HTTP请求方法</li>
+<li>URL路径</li>
+<li>用户角色</li>
+</ul>
+<ol>
+<li>如果用于创建新用户的管理功能使用POST方法，平台可能具有禁止POST方法并允许其他方法的拒绝规则。但是，如果应用程序级脚本并不验证针对此功能的所有请求是否使用POST方法，则攻击者就可以通过使用GET方法提交同一请求来避开这种控制。由于大多数用于检索请求参数的应用程序级API对于请求方法并无限制，因此，攻击者只需在GET请求中的URL查询字符串中提供所需参数，就可以未授权使用上述功能</li>
+<li>即使平台级规则拒绝访问GET和POST方法，应用程序仍有可能易于受到攻击，这是因为，使用其他HTTP方法的请求可能最终由处理GET和POST请求的相同应用程序代码来处理。HEAD方法就是一个典型的例子。根据规范，服务器应使用这些代码来响应对应的GET请求的相同消息头(但不包含消息主体)来处理HEAD请求，即执行对应的GET处理程序并返回生产的HTTP消息头。如果攻击者能够使用HEAD请求增加一个管理用户账户，那么，即使在请求中未收到任何消息主体，他仍然能够成功实施攻击。</li>
+<li>某些情况下，对于使用无法识别的HTTP方法的请求，平台会直接将它们将由GET请求处理程序处理。在这种情况下，通过在请求中指定任意无效的HTTP方法，就可以避开拒绝某些指定的HTTP方法的平台级控制。</li>
+</ol>
+<h3 id="访问控制方法不安全"><a href="#访问控制方法不安全" class="headerlink" title="访问控制方法不安全"></a>访问控制方法不安全</h3><p>一些应用程序使用一种极其不安全的访问控制模型：基于客户端提交的请求参数或受攻击者控制的其他条件做出访问控制决定。</p>
+<h4 id="基于参数的访问控制"><a href="#基于参数的访问控制" class="headerlink" title="基于参数的访问控制"></a>基于参数的访问控制</h4><p>在一些这种模型中，应用程序在用户登录时决定用户的角色或访问级别，并在登录后通过隐藏表单字段、cookie或预先设定的查询字符串参数由客户端传送这些信息。应用程序在处理随后请求的过程中读取这个请求参数，并为用户分配相应的访问级别<br>例如，使用应用程序的管理员将看到以下URL：<br><font color="#fb8c00">https:// wahh-app.com/login/home.jsp?admin=true</font><br>但普通用户看到一个URL中包含一个不同的参数，或者根本不包含任何参数。任何知道分配给管理员的参数的用户只需在自己的请求中加入这个参数，就可以访问管理功能</p>
+<h4 id="基于Referer的访问控制"><a href="#基于Referer的访问控制" class="headerlink" title="基于Referer的访问控制"></a>基于Referer的访问控制</h4><p>在其他不安全的访问控制模型中，应用程序使用HTTP Referer消息头做出访问控制决定。例如，应用程序会根据用户的权限，严格控制用户访问主维护菜单。但是，如果某名用户提出请求，要求访问某项管理功能，应用程序可能账户只是检查该请求是否由管理菜单页面提出的，如果确实由该页面提出，即认为该用户一定已经访问过那个页面，并因此已经拥有了必要的权限。</p>
+<h4 id="基于位置的访问控制"><a href="#基于位置的访问控制" class="headerlink" title="基于位置的访问控制"></a>基于位置的访问控制</h4><p>根据用户的地理位置限制对资源的访问。在这种情况下，应用程序会采用各种方法来确定用户的位置，其中最常用的是用户当前的IP地址的地理位置。<br>攻击者能够轻易突破这种访问控制，常用方法如下：</p>
+<ul>
+<li>使用位于所需位置的Web代理服务器</li>
+<li>使用在所需位置终止的VPN</li>
+<li>使用支持数据漫游的移动设备</li>
+<li>直接修改客户端用于确定地理位置的机制</li>
+</ul>
+<h2 id="攻击访问控制"><a href="#攻击访问控制" class="headerlink" title="攻击访问控制"></a>攻击访问控制</h2><h3 id="使用不同用户账户进行测试"><a href="#使用不同用户账户进行测试" class="headerlink" title="使用不同用户账户进行测试"></a>使用不同用户账户进行测试</h3><p>测试应用程序的访问控制效率最简单、最有效的方法，是使用其他账户访问应用程序。(使用Burp Suite的compare site map方法)</p>
+<h3 id="测试多阶段过程"><a href="#测试多阶段过程" class="headerlink" title="测试多阶段过程"></a>测试多阶段过程</h3><p>在这个过程中的每一步骤都需要单独进行测试，以确认访问控制是否得到正确应用。</p>
+<h2 id="保障访问控制的安全"><a href="#保障访问控制的安全" class="headerlink" title="保障访问控制的安全"></a>保障访问控制的安全</h2><ul>
+<li>不要认为用户不知道用于指定应用程序资源的URL或标识符就无法访问这些资源</li>
+<li>不要信任任何用户提交的表示访问权限的参数</li>
+<li>不要认为用户将按设定的顺序访问应用程序页面</li>
+<li>不要相信用户不会篡改通过客户端传送的数据</li>
+<li>仔细评估并记录每个应用程序功能单元的访问控制要求</li>
+<li>通过用户会话做出所有访问控制决定</li>
+<li>使用一个中央应用程序组件检查访问控制</li>
+<li>使用编程技巧确保前面的方法没有例外。一种有效的方法是规定每个应用程序页面必须采用一个由中央访问控制机制查询的界面。强制开发者将访问控制逻辑代码写入每个页面，不得找借口省略这些代码。</li>
+</ul>
+<h3 id="多层权限模型"><a href="#多层权限模型" class="headerlink" title="多层权限模型"></a>多层权限模型</h3><ul>
+<li>可根据在应用程序服务器层面定义的用户角色，使用应用程序服务器的功能</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/11/05/webSecurity7/" data-id="ck5ewyp0t004qi8twck1ic3fa" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/06/webSecurity8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Web安全(8)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/04/webSecurity6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Web安全(6)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C语言(一) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数据存储基本数据类型 整数： 整形 int 短整型 short int 长整型 long int 浮点数： 单精度浮点数 float 双精度浮点数 double 字符： 单个字符 char 复合数据类型 结构体 枚举    [变量 变量的本质就是内存中的一段存储空间 变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。  进制12345int i &#x3D; 17;printf(&quot;i &#x3D; %d\">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言(一)">
+<meta property="og:url" content="https://fightingtree.github.io/2019/08/06/C_1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据存储基本数据类型 整数： 整形 int 短整型 short int 长整型 long int 浮点数： 单精度浮点数 float 双精度浮点数 double 字符： 单个字符 char 复合数据类型 结构体 枚举    [变量 变量的本质就是内存中的一段存储空间 变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。  进制12345int i &#x3D; 17;printf(&quot;i &#x3D; %d\">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-08-06T04:05:10.000Z">
+<meta property="article:modified_time" content="2019-11-04T10:47:36.070Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="C">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/06/C_1/" class="article-date">
+  <time datetime="2019-08-06T04:05:10.000Z" itemprop="datePublished">2019-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C语言(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>整数：<br> 整形 <font color="#fb8c00">int</font><br> 短整型 <font color="#fb8c00 ">short int</font><br> 长整型 <font color="#fb8c00" >long int</font></li>
+<li>浮点数：<br> 单精度浮点数 <font color="#fb8c00">float</font><br> 双精度浮点数 <font color="#fb8c00">double</font></li>
+<li>字符：<br> 单个字符 <font color="#fb8c00">char</font></li>
+<li>复合数据类型<br> 结构体<br> 枚举  </li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="[变量"></a>[变量</h3><ul>
+<li>变量的本质就是内存中的一段存储空间</li>
+<li>变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。</li>
+</ul>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 17;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i = %d\n"</span>,i);</span><br><span class="line">//%d表示以十进制输出</span><br><span class="line">//%x表示以十六进制输出</span><br><span class="line">//%o表示以八进制输出</span><br></pre></td></tr></table></figure>
+<h3 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h3><p>字节是存储数据的单位，并且是硬件所能访问的最小单位。(1字节=8bit, 1K=1024字节，1M =1024K,1G=1024M)</p>
+<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p> 不是一个值，而是一种规定，规定不同的字符是使用哪个整数值去表示。eg : ‘A’–65,’B’–66</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char ch = <span class="string">'A'</span>;//OK</span><br><span class="line">char ch = <span class="string">'B'</span>;//error,ch被重复定义</span><br><span class="line">ch = <span class="string">'B'</span>;//OK,把B赋值给ch</span><br></pre></td></tr></table></figure>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
+<li>整数：<br> 十进制：<font color="#fb8c00">17</font><br> 八进制：<font color="#fb8c00">017(数字0)</font><br> 十六进制：<font color="#fb8c00">0x17 或 0X17</font></li>
+<li>浮点数：<br> 传统写法：<font color="#fb8c00">3.2</font><br> 科学计数法：<font color="#fb8c00">3.2e3</font>(值为3200)，<font color="#fb8c00">1234.5e-2</font>(值为12.345)</li>
+<li>字符：<br> 单个字符：<font color="#fb8c00">‘a’</font><br> 字符串：<font color="#fb8c00"> “aa”</font><blockquote>
+<p>注： “a”是正确的，因为”a”表示’a’和’\0’的组合</p>
+</blockquote>
+</li>
+<li>存储方式<br> 字符：’A’先转为ASCII码，再转换为补码(本质上与整数存储方式相同)<br> 整数：以补码形式转换为二进制代码存储在计算机中<br> 实数：以IEEE754标准转换为二进制代码存储在计算机中</li>
+</ul>
+<h2 id="强制数据类型转换"><a href="#强制数据类型转换" class="headerlink" title="强制数据类型转换"></a>强制数据类型转换</h2><p>格式：(数据类型)(表达式)<br>功能：把表达式的值强制转换为前面所执行的数据类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(int) (4.5+2.2);//最终值为6</span><br><span class="line">(<span class="built_in">float</span>)(5);//最终值为5.000000</span><br></pre></td></tr></table></figure>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="为什么需要结构体"><a href="#为什么需要结构体" class="headerlink" title="为什么需要结构体"></a>为什么需要结构体</h3><p>为了表示一些复杂的事物，而普通的基本类型无法满足实际要求</p>
+<h3 id="什么叫结构体"><a href="#什么叫结构体" class="headerlink" title="什么叫结构体"></a>什么叫结构体</h3><p>把一些基本数据类型组合在一起形成的一个新的复合数据类型</p>
+<h3 id="如何定义结构体"><a href="#如何定义结构体" class="headerlink" title="如何定义结构体"></a>如何定义结构体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//第一种方式(推荐使用)</span><br><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//第二种方式</span><br><span class="line">struct Student2&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student2;//定义一个名为student2的结构体</span><br><span class="line"></span><br><span class="line">//第三种方式</span><br><span class="line">struct &#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student1;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化一个名为student的结构体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="怎样使用结构体变量"><a href="#怎样使用结构体变量" class="headerlink" title="怎样使用结构体变量"></a>怎样使用结构体变量</h3><h4 id="赋值和初始化"><a href="#赋值和初始化" class="headerlink" title="赋值和初始化"></a>赋值和初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   struct Student student2;//定义完后再赋值</span><br><span class="line">   student2.age = 10;</span><br><span class="line">   student2.score = 90;</span><br><span class="line">   student2.sex = <span class="string">'F'</span>;</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="怎样访问结构体变量中的每一个成员"><a href="#怎样访问结构体变量中的每一个成员" class="headerlink" title="怎样访问结构体变量中的每一个成员"></a>怎样访问结构体变量中的每一个成员</h4><ol>
+<li>结构体变量名.成员名</li>
+<li>指针变量名-&gt;成员名<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   student.age = 10;//第一种方式</span><br><span class="line"></span><br><span class="line">   struct Student *pst = &amp;student;//第二种方式</span><br><span class="line">   pst-&gt;age = 10;//pst所指向的结构体的age成员</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：pst-&gt;age会在计算机内部转化成(* pst).age</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="结构变量的运算"><a href="#结构变量的运算" class="headerlink" title="结构变量的运算"></a>结构变量的运算</h4><p>结构体变量不能相加、相减，也不能相互乘除,只能赋值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct Student student1,student2;</span><br><span class="line">student1 = student2;</span><br></pre></td></tr></table></figure>
+<p>####　结构变量和结构体变量指针作为函数参数传递问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//error,不能直接对结构体进行修改</span><br><span class="line">void InputStudent1(st)&#123;</span><br><span class="line">   st.age = 10;</span><br><span class="line">   strcpy(st.name,<span class="string">"张三"</span>);//不能写成stu.name=“张三”，涉及C语言字符串处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//OK</span><br><span class="line">void InputStudent2(struct Student * pstu)&#123;</span><br><span class="line">   pstu-&gt;age = 10;</span><br><span class="line">   strcpy(pstu-&gt;name,<span class="string">"张三"</span>);</span><br><span class="line">   pstu-&gt;sex = <span class="string">'F'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void OutputStudent(struct Student ss)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %s %c\n"</span>.ss.age,ss.name,ss.sex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student1;</span><br><span class="line">   InputStudent(st);//error,对结构体变量输入</span><br><span class="line">   InputStudent2(&amp;st);//OK</span><br><span class="line">   OutputStudent(st);//对结构体变量输出，也可以传指针</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：对结构体进行修改必须输入结构体的指针</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/06/C_1/" data-id="ck5ewyoza0006i8twgplgf89j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/07/C_2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          C语言(二)
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

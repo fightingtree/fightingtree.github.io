@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://fightingtree.github.io/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="fightingtree">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-C-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/09/C-4/" class="article-date">
+  <time datetime="2019-08-09T05:58:34.000Z" itemprop="datePublished">2019-08-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/09/C-4/">C语言(四)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C语言的函数-面向过程"><a href="#C语言的函数-面向过程" class="headerlink" title="C语言的函数(面向过程)"></a>C语言的函数(面向过程)</h2><p>函数是C语言的基本单位</p>
+<h3 id="为什么需要函数"><a href="#为什么需要函数" class="headerlink" title="为什么需要函数"></a>为什么需要函数</h3><ul>
+<li>避免了重复性操作</li>
+<li>有利于程序的模块化</li>
+</ul>
+<h3 id="什么叫函数"><a href="#什么叫函数" class="headerlink" title="什么叫函数"></a>什么叫函数</h3><ul>
+<li>逻辑上：能够完成特定功能的独立的代码单元</li>
+<li>物理上：能够接收数据(也可以不接收数据)，并对接收数据进行处理，能够将数据处理的结果返回(也可以不返回结果)</li>
+<li>总结： 函数是一个工具，它是为了解决大量类似问题而设计的</li>
+</ul>
+<h3 id="定义函数"><a href="#定义函数" class="headerlink" title="定义函数"></a>定义函数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">函数的返回值 函数名(函数的形参列表)&#123;</span><br><span class="line">	函数执行体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：如果函数名前的返回值类型与函数执行体中的return表达式不同，则最终函数返回类型以函数名前的返回类型为准。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int <span class="function"><span class="title">f</span></span>()&#123;</span><br><span class="line">	<span class="built_in">return</span> 10.5;//函数类型为int,所以f()最终返回10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="return和break的区别"><a href="#return和break的区别" class="headerlink" title="return和break的区别"></a>return和break的区别</h2><ul>
+<li>终止被调函数，向主调函数返回表达式的值</li>
+<li>若表达式为空，则只终止函数，不向主调函数返回任何值</li>
+<li>break用来终止循环和switch，return用来终止被调函数</li>
+</ul>
+<h2 id="函数的分类"><a href="#函数的分类" class="headerlink" title="函数的分类"></a>函数的分类</h2><h3 id="有-无参函数"><a href="#有-无参函数" class="headerlink" title="有/无参函数"></a>有/无参函数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int f(void);//无参函数</span><br><span class="line">int f(int x);//有参函数</span><br></pre></td></tr></table></figure>
+<h3 id="有-无返回值函数"><a href="#有-无返回值函数" class="headerlink" title="有/无返回值函数"></a>有/无返回值函数</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span>;//无返回值</span><br><span class="line"><span class="built_in">return</span> 0;//有返回值</span><br></pre></td></tr></table></figure>
+<h3 id="库函数和用户自定义"><a href="#库函数和用户自定义" class="headerlink" title="库函数和用户自定义"></a>库函数和用户自定义</h3><h3 id="普通函数和主函数-main函数"><a href="#普通函数和主函数-main函数" class="headerlink" title="普通函数和主函数(main函数)"></a>普通函数和主函数(main函数)</h3><ul>
+<li>一个主程序有且只能有一个主函数</li>
+<li>主函数可以调用普通函数，普通函数不能调用主函数</li>
+<li>普通函数可以相互调用</li>
+<li>主函数是程序的入口也是程序的出口</li>
+</ul>
+<h2 id="函数的声明"><a href="#函数的声明" class="headerlink" title="函数的声明"></a>函数的声明</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void f(void);//函数定义若放于main函数之后，需要在main函数之前先对函数进行声明</span><br><span class="line">int <span class="function"><span class="title">main</span></span>()&#123;</span><br><span class="line">	f();</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">void f(void)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"哈哈\n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：函数的定义应放于函数调用之前，否则应在函数调用前进行声明。<br>对库函数的声明是通过#include&lt;库函数所在的文件名&gt;实现的</p>
+</blockquote>
+<h2 id="形参和实参"><a href="#形参和实参" class="headerlink" title="形参和实参"></a>形参和实参</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void f(int x,<span class="built_in">float</span> y);//x,y是形参</span><br><span class="line">f(10,8.2);//10，8.2是实参</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：形参与实参应满足：个数相同、位置一一对应、数据类型必须相互兼容</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int g(int i) &#123;</span><br><span class="line">	i = 1;</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br><span class="line">int <span class="function"><span class="title">main</span></span>() &#123;</span><br><span class="line">	int a = 2;</span><br><span class="line">	g(a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);//最终输出为2</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：形参永远无法改变实参的值(以上改变变量的值的方法可以用指针实现，详情参见C语言(五)博客。</p>
+</blockquote>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h3 id="按作用域分类"><a href="#按作用域分类" class="headerlink" title="按作用域分类"></a>按作用域分类</h3><h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><p>在所有函数外部定义的变量叫全局变量</p>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><p>在一个函数内部定义的变量或者函数的形参都统称为局部变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int k = 100;//k是全局变量</span><br><span class="line"></span><br><span class="line">void f(int i)&#123;</span><br><span class="line">	int j = 20;</span><br><span class="line">&#125;   //i和j都属于局部变量</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：全局变量的作用域是从定义位置开始到整个程序结束，局部变量只能在本函数内部使用</p>
+</blockquote>
+<h4 id="全局变量与局部变量命名冲突的问题"><a href="#全局变量与局部变量命名冲突的问题" class="headerlink" title="全局变量与局部变量命名冲突的问题"></a>全局变量与局部变量命名冲突的问题</h4><p>在一个函数内部如果定义的局部变量的名字和全局变量名一样时，局部变量会屏蔽全局变量。</p>
+<h3 id="按变量的存储方式分类"><a href="#按变量的存储方式分类" class="headerlink" title="按变量的存储方式分类"></a>按变量的存储方式分类</h3><ul>
+<li>静态变量</li>
+<li>自动变量</li>
+<li>寄存器变量</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/09/C-4/" data-id="ck5ewyoz50001i8tw3h3d7mto" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-socket" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/socket/" class="article-date">
+  <time datetime="2019-08-08T08:37:03.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/socket/">socket编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="网络应用程序设计模式"><a href="#网络应用程序设计模式" class="headerlink" title="网络应用程序设计模式"></a>网络应用程序设计模式</h2><h3 id="C-S-（client-server）客户端-服务器（数据量大，稳定性好）"><a href="#C-S-（client-server）客户端-服务器（数据量大，稳定性好）" class="headerlink" title="C/S （client/server）客户端/服务器（数据量大，稳定性好）"></a>C/S （client/server）客户端/服务器（数据量大，稳定性好）</h3><p>优点：协议选用灵活、QQ、LOL、先下载客户端、数据可提前缓存<br>缺点：对用户安全造成威胁、开发工作量大</p>
+<h3 id="B-S（浏览器-服务器模式）（数据量小）"><a href="#B-S（浏览器-服务器模式）（数据量小）" class="headerlink" title="B/S（浏览器/服务器模式）（数据量小）"></a>B/S（浏览器/服务器模式）（数据量小）</h3><p>优点：使用计算机自带浏览器，较安全，只需开发服务器，客户端采用计算机自带浏览器<br>缺点：协议不可变http、QQ农场、可以跨平台（windows\linux）</p>
+<h2 id="socket基本概念"><a href="#socket基本概念" class="headerlink" title="socket基本概念"></a>socket基本概念</h2><h3 id="客户端-client"><a href="#客户端-client" class="headerlink" title="客户端(client)"></a>客户端(client)</h3><p>或称为用户端，是指与服务器相对应，为客户提供本地服务的程序。产品或服务所指的终点、软件。</p>
+<h3 id="服务器-server"><a href="#服务器-server" class="headerlink" title="服务器(server)"></a>服务器(server)</h3><p>对客户端发送的请求做出处理并将结果返回给客户端</p>
+<h3 id="端口号和IP"><a href="#端口号和IP" class="headerlink" title="端口号和IP"></a>端口号和IP</h3><ul>
+<li>Socket成对出现，数据接收端、数据发送端</li>
+<li>端口号：在主机中唯一标识一个进程</li>
+<li>IP：在网络环境中唯一标识一台主机</li>
+<li>端口号+IP:在网络环境中唯一标识一个进程（socket）</li>
+<li>使用socket必须确认IP，端口号</li>
+</ul>
+<h3 id="网络字节序"><a href="#网络字节序" class="headerlink" title="网络字节序"></a>网络字节序</h3><p>网络中的数据以二进制字节码流传输</p>
+<h4 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h4><ul>
+<li>大端：低地址存在高位上，高地址存在低位</li>
+<li>小端：低地址存在低位上，高地址存在高位上(计算机)</li>
+</ul>
+<h4 id="字节序转换"><a href="#字节序转换" class="headerlink" title="字节序转换"></a>字节序转换</h4><p>网络数据流应采用大端字节序，计算机选用的是小端存储，当计算机传数据时，从小端到大端，所以要进行字节序转换。</p>
+<h5 id="库函数-数字转网络字节序"><a href="#库函数-数字转网络字节序" class="headerlink" title="库函数(数字转网络字节序)"></a>库函数(数字转网络字节序)</h5><ul>
+<li>htonl(host to network long):主机到网络IP32位</li>
+<li>ntohl（network to host long）:网络到主机IP32位<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line">uint32_t htonl(uint32_t hostlong);//32位IP，从主机到网络</span><br><span class="line">uint16_t htons(uint16_t hostshort);//16位端口号 </span><br><span class="line">uint32_t ntohl(uint32_t netlong);//从网络到主机</span><br><span class="line">uint16_t ntohs(uint16_t netshort)；</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="IP地址转换函数-字符串转网络字节序"><a href="#IP地址转换函数-字符串转网络字节序" class="headerlink" title="IP地址转换函数(字符串转网络字节序)"></a>IP地址转换函数(字符串转网络字节序)</h5><ul>
+<li>点分十进制字符串转换成网络字节序  inet_pton（IP to network）</li>
+<li>网络字节序转换成点分十进制字符串  inet_ntop(network to IP)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line">//af指定所用IP地址的形式(IPV4:AF_INET,IPV6:AF_INET6)</span><br><span class="line">//src指定源地址IP</span><br><span class="line">//dst指定目的地址IP</span><br><span class="line">int inet_pton(int af, const char *src, void *dst);</span><br><span class="line">const char *inet_ntop(int af,const void *src, char *dst, socklen_t size);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="socket编程的实现"><a href="#socket编程的实现" class="headerlink" title="socket编程的实现"></a>socket编程的实现</h2><h3 id="socket框架"><a href="#socket框架" class="headerlink" title="socket框架"></a>socket框架</h3><h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><ol>
+<li>socket() // 建立套接字</li>
+<li>对套接字进行初始化</li>
+<li>bind() //绑定端口号和IP(struct sockaddr_in addr)</li>
+<li>listen() //指定最大同时发起数</li>
+<li>accept() //阻塞等待客户端发起连接</li>
+<li>read() //读取客户端发送来的信息(对应客户端第4步)</li>
+<li>对客户端信息进行处理</li>
+<li>Write() //将处理好的信息发送给客户端</li>
+<li>Close(); //关闭套接字</li>
+</ol>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><ol>
+<li>socket();</li>
+<li>bind();//可以隐式绑定</li>
+<li>connect()；//发起连接</li>
+<li>write();//写发送给服务器的信息</li>
+<li>read(); //读从服务器返回的信息(对应服务器端第7步)</li>
+<li>close();</li>
+</ol>
+<blockquote>
+<p>注：程序启动时先启动服务器端，由服务器执行到第4步阻塞等待客户端发送信息，再启动客户端</p>
+</blockquote>
+<h3 id="客户端与服务器通信实现"><a href="#客户端与服务器通信实现" class="headerlink" title="客户端与服务器通信实现"></a>客户端与服务器通信实现</h3><ul>
+<li>初始化缓冲区<font color="#fb8c00">char buf[]</font></li>
+<li>通过缓冲区<font color="#fb8c00">buf</font>传信息</li>
+<li>在服务器端对<font color="#fb8c00">buf</font>进行清零操作</li>
+<li>每个<font color="#fb8c00">write()</font>对<font color="#fb8c00">buf</font>重新赋值，<font color="#fb8c00">read()</font>对应另一方的上一个<font color="#fb8c00">write()</font></li>
+<li>客户端<font color="#fb8c00">write()</font>在<font color="#fb8c00">buf</font>写信息</li>
+<li>服务器<font color="#fb8c00">read()</font>读客户端<font color="#fb8c00">buf</font>信息</li>
+</ul>
+<h3 id="框架函数实现"><a href="#框架函数实现" class="headerlink" title="框架函数实现"></a>框架函数实现</h3><h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;sys/types.h&gt;</span></span><br><span class="line"><span class="comment">#include&lt;sys/socket.h&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="socket"><a href="#socket" class="headerlink" title="socket()"></a>socket()</h4><p>创建套接字</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int socket(int domain, int <span class="built_in">type</span>, int protocol);//创建套接口</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Domain:函数socket()的参数domain用于设置网络通信的域，函数socket()根据这个参数选择通信协议的族。通信协议族在文件sys/socket.h中定义</li>
+<li>Type: 函数socket()的参数type用于设置套接字通信的类型，有SOCK_STREAM（流式套接字）、SOCK_DGRAM(数据包套接字)</li>
+<li>Protocol: 函数socket()的第3个参数protocol用于制定某个协议的特定类型，即type类型中的某个类型。通常某协议中只有一种特定类型，这样protocol参数仅能设置为0；但是有些协议有多种特定的类型，就需要设置这个参数来选择特定的类型。</li>
+</ul>
+<h4 id="初始化套接字"><a href="#初始化套接字" class="headerlink" title="初始化套接字"></a>初始化套接字</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//套接字数据结构</span><br><span class="line">Struct sockaddr_in&#123;</span><br><span class="line">_kernel_sa_family_t sin_family;</span><br><span class="line">_be16 sin_port;</span><br><span class="line">Struct <span class="keyword">in</span> addr sin_addr;</span><br><span class="line">&#125;</span><br><span class="line">//初始化</span><br><span class="line">Struct sockaddr_in addr;</span><br><span class="line">Addr.sin_family =AF_NET/NET6;</span><br><span class="line">Addr.sin_port =htops/ntops;</span><br><span class="line">Addr.sin_addr.s_addr =htops;</span><br></pre></td></tr></table></figure>
+<h4 id="bind"><a href="#bind" class="headerlink" title="bind()"></a>bind()</h4><p>对套接字绑定端口号、IP,需要进行类型强转</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int <span class="built_in">bind</span>(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Sockfd:socket文件描述符</li>
+<li>Addr:构造出IP地址加端口号(1000以下的端口给系统用，不能大于65535)</li>
+<li>Addrlen：sizeof(addr)长度</li>
+<li>返回值：成功返回0，失败返回-1</li>
+</ul>
+<h4 id="listen"><a href="#listen" class="headerlink" title="listen()"></a>listen()</h4><p>同时可以有多少个客户端与服务器建立连接，对套接字进行操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int listen（int sockfd, int backlog）;//backlog最大值为128</span><br></pre></td></tr></table></figure>
+<h4 id="accept"><a href="#accept" class="headerlink" title="accept()"></a>accept()</h4><p>阻塞等待客户端发起连接，需进行类型强转</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int accept(int sockfd, struct sockaddr *addr，socklen_t *addrlen);</span><br></pre></td></tr></table></figure>
+<h4 id="connect"><a href="#connect" class="headerlink" title="connect()"></a>connect()</h4><p>需进行类型强转</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);</span><br></pre></td></tr></table></figure>
+
+<h2 id="socket编程实例"><a href="#socket编程实例" class="headerlink" title="socket编程实例"></a>socket编程实例</h2><p>客户端向服务器发送请求，服务器向客户端返回当前时间，并记录访问客户端的IP号、端口号</p>
+<h3 id="服务器端"><a href="#服务器端" class="headerlink" title="服务器端"></a>服务器端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;netdb.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;time.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;signal.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;memory.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;ctype.h&gt;</span></span><br><span class="line"></span><br><span class="line">int sockfd;//全局套接字描述符</span><br><span class="line">char IP[16];</span><br><span class="line">char *str;</span><br><span class="line">//控制ctrl c产生的信号量处理函数</span><br><span class="line">void signal_handler(int signno)&#123;</span><br><span class="line">    <span class="keyword">if</span>(signno== SIGINT)&#123;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">"服务器关闭\n"</span>);</span><br><span class="line">       close(sockfd);</span><br><span class="line">       <span class="built_in">exit</span>(1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//输出客户端相关信息</span><br><span class="line">char * out_addr(struct sockaddr_in *client_addr)&#123;</span><br><span class="line">     //转换客户端port字节序</span><br><span class="line">     int port = htons(client_addr-&gt;sin_port);</span><br><span class="line">     memset(IP,0,sizeof(IP));</span><br><span class="line">     //将ip地址从网络字节序转换成点十分进制</span><br><span class="line">     inet_ntop(AF_INET,&amp;client_addr-&gt;sin_addr.s_addr,IP, sizeof(IP));</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">"用户:%s(%d) 已连接\n"</span>,IP,port);</span><br><span class="line">     <span class="built_in">return</span> IP;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取时间</span><br><span class="line">char * do_service(int cfd)&#123;</span><br><span class="line">     long t = time(0);//获得系统时间</span><br><span class="line">     str = ctime(&amp;t);</span><br><span class="line">     size_t size = strlen(str) * sizeof(char);</span><br><span class="line">     //将时间写入客户端sockaddr中</span><br><span class="line">     <span class="keyword">if</span>(write(cfd,str,size)!=size)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"写入出错"</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">return</span> str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main(int argc,char *argv[])&#123;</span><br><span class="line">        //在命令行中传递端口号</span><br><span class="line">	<span class="keyword">if</span>(argc &lt;2)&#123;</span><br><span class="line">	   <span class="built_in">printf</span>(<span class="string">"usage:%s #port\n"</span>,argv[0]);</span><br><span class="line">	   <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//当客户端按下ctrl c时服务器端自动结束，否则服务器会一直循环</span><br><span class="line">	//设置信号量进行控制</span><br><span class="line">	<span class="keyword">if</span>(signal(SIGINT, signal_handler)== SIG_ERR)&#123;</span><br><span class="line">	    perror(<span class="string">"信号量错误"</span>);</span><br><span class="line">	    <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line">        //创建文件</span><br><span class="line">	FILE *f;</span><br><span class="line">	//创建套接字，SOCK_STREAM使用TCP</span><br><span class="line">	sockfd = socket(AF_INET,SOCK_STREAM,0);</span><br><span class="line"></span><br><span class="line">	//在绑定函数之前对套接字进行初始化操作</span><br><span class="line">	struct sockaddr_in server_addr;//套接字地址</span><br><span class="line">	struct sockaddr_in client_addr;</span><br><span class="line">	memset(&amp;server_addr,0,sizeof(server_addr));//对套接字地址进行清空操作</span><br><span class="line">	server_addr.sin_family =AF_INET;//与套接字协议保持一致,IPV4</span><br><span class="line">	server_addr.sin_port = htons(atoi(argv[1]));//将端口号转换字节序，命令行传入的第二个参数为端口号，atoi将其强制转换为整形</span><br><span class="line">	server_addr.sin_addr.s_addr = INADDR_ANY;//响应所有接口的链接请求</span><br><span class="line">        </span><br><span class="line">	</span><br><span class="line">	//绑定端口号、IP</span><br><span class="line">	int bindno;//用于错误处理</span><br><span class="line">	bindno = <span class="built_in">bind</span>(sockfd,(struct sockaddr *)&amp;server_addr, sizeof(server_addr));</span><br><span class="line">        <span class="keyword">if</span>(bindno &lt; 0)&#123;</span><br><span class="line">	   perror(<span class="string">"绑定出错"</span>);</span><br><span class="line">	   <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//在指定端口进行监听</span><br><span class="line">	int listenno;//错误处理</span><br><span class="line">	listenno = listen(sockfd,128);//最多同时允许128个客户端请求建立链接</span><br><span class="line">        <span class="keyword">if</span>(listenno &lt;0)&#123;</span><br><span class="line">	   perror(<span class="string">"监听出错"</span>);</span><br><span class="line">	   <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//调用accept函数阻塞直到等待客户端请求连接</span><br><span class="line">	socklen_t client_addr_len = sizeof(client_addr);//定义客户端套接字长度</span><br><span class="line">	<span class="keyword">while</span>(1)&#123;</span><br><span class="line">	     int cfd;//客户端文件描述符</span><br><span class="line">	     cfd = accept(sockfd, (struct sockaddr *)&amp;client_addr, &amp;client_addr_len);</span><br><span class="line">	     <span class="keyword">if</span>(cfd &lt;0)&#123;</span><br><span class="line">	        perror(<span class="string">"接收失败"</span>);</span><br><span class="line">		<span class="built_in">continue</span>;//继续获得</span><br><span class="line">	     &#125;</span><br><span class="line"></span><br><span class="line">	     //<span class="built_in">read</span>函数读取客户端信息</span><br><span class="line">	     out_addr(&amp;client_addr);//获取客户端地址信息</span><br><span class="line">	     do_service(cfd);//对客户端文件进行相关操作</span><br><span class="line">	     f= fopen(<span class="string">"client_IP.txt"</span>,<span class="string">"a+"</span>);</span><br><span class="line">	     fprintf(f,<span class="string">"用户IP：%s,请求时间:%s"</span>,IP,str);</span><br><span class="line">	     fclose(f);</span><br><span class="line">             close(cfd);//关闭客户端套接字</span><br><span class="line">        &#125;</span><br><span class="line">	fclose(f);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;netdb.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sys/socket.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;arpa/inet.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;memory.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])&#123;</span><br><span class="line">	<span class="keyword">if</span>(argc&lt;3)&#123;</span><br><span class="line">	  <span class="built_in">printf</span>(<span class="string">"用户:%s IP #port\n"</span>,argv[0]);</span><br><span class="line">	  <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	//创建套接字</span><br><span class="line">	int sockfd = socket(AF_INET,SOCK_STREAM,0);</span><br><span class="line">	<span class="keyword">if</span>(sockfd&lt;0)&#123;</span><br><span class="line">	   perror(<span class="string">"套接字出错"</span>);</span><br><span class="line">	   <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line">	struct sockaddr_in server_addr;</span><br><span class="line">	memset(&amp;server_addr,0,sizeof(server_addr));</span><br><span class="line">	server_addr.sin_family = AF_INET;</span><br><span class="line">	server_addr.sin_port = htons(atoi(argv[2]));//转换字节序</span><br><span class="line">	//将IP地址转换成网络字节序</span><br><span class="line">	inet_pton(AF_INET,argv[1],&amp;server_addr.sin_addr.s_addr);</span><br><span class="line"></span><br><span class="line">	//调用connect请求与服务器建立连接</span><br><span class="line">	int a;</span><br><span class="line">	a = connect(sockfd,(struct sockaddr *)&amp;server_addr, sizeof(server_addr));</span><br><span class="line">	<span class="keyword">if</span>(a&lt;0)&#123;</span><br><span class="line">	  perror(<span class="string">"连接出错"</span>);</span><br><span class="line">	  <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">        //调用IO函数与服务器进行通信</span><br><span class="line">	//提供一个缓冲区给服务器放置时间</span><br><span class="line">	char buf[1024];</span><br><span class="line">	memset(&amp;buf,0,sizeof(buf));//清空缓冲区</span><br><span class="line">	size_t size;</span><br><span class="line">	size = <span class="built_in">read</span>(sockfd, buf,sizeof(buf));</span><br><span class="line">	<span class="keyword">if</span>(size&lt;0)&#123;</span><br><span class="line">	    perror(<span class="string">"读取错误"</span>);</span><br><span class="line">	    <span class="built_in">exit</span>(1);</span><br><span class="line">	&#125;</span><br><span class="line">	//将日期写在屏幕上</span><br><span class="line">	write(STDOUT_FILENO,buf,size);</span><br><span class="line">        //关闭套接字</span><br><span class="line">	close(sockfd);</span><br><span class="line">	<span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/08/socket/" data-id="ck5ewyp0g003oi8tw0q4shwjq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/linux-1/" class="article-date">
+  <time datetime="2019-08-08T08:06:52.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/linux-1/">linux基本指令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="linux基本指令"><a href="#linux基本指令" class="headerlink" title="linux基本指令"></a>linux基本指令</h2><h3 id="系统操作"><a href="#系统操作" class="headerlink" title="系统操作"></a>系统操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reboot 重启</span><br></pre></td></tr></table></figure>
+<h3 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件夹名 //进入文件夹内</span><br><span class="line">mkdir 文件夹名 //创建一个文件夹(文件夹名在终端标识为蓝色)</span><br><span class="line">touch 文件名 //创建一个文件(文件夹名在终端标识为白色)</span><br><span class="line">rm -f 文件名 //删除一个文件 </span><br><span class="line">rmdir 文件夹名 //删除一个文件夹</span><br><span class="line">mv 文件名1 文件夹名2 //将文件1移到文件夹2中</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gcc -c test.c //编译一个叫test.c的c语言文件，最终会生成一个test.o文件</span><br><span class="line">gcc -o <span class="built_in">test</span> test.o //生成一个名叫<span class="built_in">test</span>的可执行文件</span><br><span class="line">g++ test.cpp -o <span class="built_in">test</span>//编译一个叫test.cpp的cpp文件并生成可执行文件<span class="built_in">test</span></span><br><span class="line">./<span class="built_in">test</span> //执行可执行文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">chmod + xx.py  //更改py文件的执行权限</span><br><span class="line">./xx.py  //执行py文件</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>Linux操作系统下的文本编辑器</p>
+<h3 id="打开vim"><a href="#打开vim" class="headerlink" title="打开vim"></a>打开vim</h3><p>打开linux终端，输入指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim 文件名  //若文件名对应文件存在则打开对应文件，若无对应文件则新建一个文件</span><br></pre></td></tr></table></figure>
+<h3 id="vim三模式"><a href="#vim三模式" class="headerlink" title="vim三模式"></a>vim三模式</h3><ul>
+<li>命令行模式：输入vim后最初进入的模式，可以进行粘贴复制但不能进行编辑，按ESC键后进入命令状态，可在此状态下输入命令对vim文件进行操作</li>
+<li>插入模式：命令行模式按下按下<font color="#fb8c00">i</font>(insert)后进入的模式，可以进行编辑，按ESC键后返回命令行</li>
+<li>底行模式：插入模式按ESC键进入命令行模式后输入保存命令</li>
+</ul>
+<h3 id="vim指令"><a href="#vim指令" class="headerlink" title="vim指令"></a>vim指令</h3><h4 id="vi保存命令"><a href="#vi保存命令" class="headerlink" title="vi保存命令"></a>vi保存命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">:q 退出没有修改的文件</span><br><span class="line">:q! 强制退出，且不保存修改过的部分</span><br><span class="line">:w 保存文件但不退出（相当于windows的ctrl S）</span><br><span class="line">:x 保存文件并退出</span><br><span class="line">:w 名字 将文件重命名保存</span><br><span class="line">:wq</span><br></pre></td></tr></table></figure>
+<h4 id="vi撤销"><a href="#vi撤销" class="headerlink" title="vi撤销"></a>vi撤销</h4><p>在命令行模式下输入u</p>
+<h3 id="vim设置"><a href="#vim设置" class="headerlink" title="vim设置"></a>vim设置</h3><h4 id="中文乱码问题"><a href="#中文乱码问题" class="headerlink" title="中文乱码问题"></a>中文乱码问题</h4><ol>
+<li>编辑.vimrc文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim .vimrc</span><br></pre></td></tr></table></figure></li>
+<li>在.vimrc中加入以下文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br></pre></td></tr></table></figure></li>
+<li>执行生效<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> .vimrc</span><br></pre></td></tr></table></figure>
+以上参考博客<a href="https://blog.bbskali.cn/index.php/archives/346/" target="_blank" rel="noopener">链接</a></li>
+</ol>
+<p>####　viｍ代码高亮<br>在.vimrc文件中加入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syntax on</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/08/linux-1/" data-id="ck5ewyp00002di8twb08baahs" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C_3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/08/C_3/" class="article-date">
+  <time datetime="2019-08-08T03:54:21.000Z" itemprop="datePublished">2019-08-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/08/C_3/">C语言(三)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是流程控制"><a href="#什么是流程控制" class="headerlink" title="什么是流程控制"></a>什么是流程控制</h2><p>定义：程序代码执行的顺序</p>
+<h2 id="流程控制的分类"><a href="#流程控制的分类" class="headerlink" title="流程控制的分类"></a>流程控制的分类</h2><h3 id="顺序执行"><a href="#顺序执行" class="headerlink" title="顺序执行"></a>顺序执行</h3><p>按照代码顺序执行</p>
+<h3 id="选择执行"><a href="#选择执行" class="headerlink" title="选择执行"></a>选择执行</h3><p>定义：某些代码可能执行，也可能不执行，有选择的执行某些代码</p>
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><h5 id="if最简单的用法"><a href="#if最简单的用法" class="headerlink" title="if最简单的用法"></a>if最简单的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">   语句;  //若表达式为真则执行语句，否则不执行</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="if的范围问题"><a href="#if的范围问题" class="headerlink" title="if的范围问题"></a>if的范围问题</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)</span><br><span class="line">   语句A；</span><br><span class="line">   语句B；</span><br></pre></td></tr></table></figure>
+<p><font color="#fb8c00">if</font>默认只控制语句A的执行与不执行，不控制语句B，即B一定会被执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">	语句A；</span><br><span class="line">	语句B；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时<font color="#fb8c00">if</font>可控制AB</p>
+<blockquote>
+<p>注：if默认只控制一个语句的执行</p>
+</blockquote>
+<h5 id="if-else的用法"><a href="#if-else的用法" class="headerlink" title="if else的用法"></a>if else的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式)&#123;</span><br><span class="line">	语句A；//若表达式为真执行A；</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	语句B；//若表达式为假执行B；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：else默认只控制一个语句的执行<br>      else后不跟表达式</p>
+</blockquote>
+<h5 id="if…else-if…else的用法"><a href="#if…else-if…else的用法" class="headerlink" title="if…else if…else的用法"></a>if…else if…else的用法</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(表达式1)</span><br><span class="line">     语句A；//若1成立执行A</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(表达式2)</span><br><span class="line">	语句B；//若1不成立2成立执行B</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (表达式3)</span><br><span class="line">	语句C；//若12不成立3成立执行C</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">	语句D；//若123不成立则执行D</span><br></pre></td></tr></table></figure>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">switch(i)&#123;</span><br><span class="line">	<span class="keyword">case</span> 1:</span><br><span class="line">		语句A;</span><br><span class="line">		<span class="built_in">break</span>;</span><br><span class="line">	<span class="keyword">case</span> 2:</span><br><span class="line">		语句B;</span><br><span class="line">	    <span class="built_in">break</span>;</span><br><span class="line">	default:</span><br><span class="line">	    语句C;</span><br><span class="line">	    <span class="built_in">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：没有break则按顺序执行，case是程序入口，一旦找到入口程序将从入口按顺序执行，不再进行判断(switch只进行一次判断)，break是程序出口。</p>
+</blockquote>
+<h3 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h3><p>定义：某些代码会被重复执行</p>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(int i=1; i&lt;=4;i++)&#123;</span><br><span class="line">	语句A；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><font color="#fb8c00">for</font>语句执行顺序：先执行int i=1,再判断i&lt;=4,若i&lt;=4为真，则执行语句A，最后执行i++,再对i&lt;=4进行判断</p>
+<blockquote>
+<p>注：i++与++i的区别<br>a = i++ 相当于a=i, i=i+1,即先赋值再计算;<br>a = ++i 相当于i=i+1,a=i，即先计算再赋值;</p>
+</blockquote>
+<h5 id="嵌套for循环"><a href="#嵌套for循环" class="headerlink" title="嵌套for循环"></a>嵌套for循环</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(1;2;3)</span><br><span class="line">   <span class="keyword">for</span>(4;5;6)</span><br><span class="line">      A;</span><br><span class="line">      B;</span><br></pre></td></tr></table></figure>
+<p>上述表达式执行顺序(循环一次)：1-2-4-5-A-6-5-3-2-B</p>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(表达式)</span><br><span class="line">   语句A；</span><br></pre></td></tr></table></figure>
+
+<h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><p>主要用于人机交互</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;<span class="keyword">while</span>(表达式)；</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注： while和for可能一次都不会执行，但是do while至少执行一次。</p>
+</blockquote>
+<h2 id="break和continue"><a href="#break和continue" class="headerlink" title="break和continue"></a>break和continue</h2><h3 id="break"><a href="#break" class="headerlink" title="break"></a>break</h3><h4 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h4><ul>
+<li>break如果用于循环用来终止循环</li>
+<li>break如果用于switch，用于终止switch(程序出口)</li>
+<li>break不能直接用于if，除非if属于循环内部的一个子句</li>
+</ul>
+<h4 id="break用于for循环"><a href="#break用于for循环" class="headerlink" title="break用于for循环"></a>break用于for循环</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;3;i++)&#123;</span><br><span class="line">	<span class="keyword">if</span>(3&gt;2)</span><br><span class="line">		<span class="built_in">break</span>;//OK,用于终止外部<span class="keyword">for</span>循环</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line"><span class="keyword">for</span>(i=0;i&lt;3;i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(j=1;j&lt;4;j++)&#123;</span><br><span class="line">    	语句A;</span><br><span class="line">    	<span class="built_in">break</span>;//OK,终止第二个<span class="keyword">for</span>循环</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="break用于switch"><a href="#break用于switch" class="headerlink" title="break用于switch"></a>break用于switch</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int x,y;</span><br><span class="line">switch(x)&#123; //第一个switch</span><br><span class="line">	<span class="keyword">case</span> 1:</span><br><span class="line">		switch(y)&#123;  //第二个switch</span><br><span class="line">           <span class="keyword">case</span> 0:</span><br><span class="line">           	语句A；</span><br><span class="line">           	<span class="built_in">break</span>;//终止的是第二个switch</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">break</span>;//终止的是第一个switch</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注:在多层for循环中，break只能终止距离它最近的循环；<br>    在多层switch嵌套中，break只能终止距离它最近的switch;</p>
+</blockquote>
+<h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><h4 id="用途-1"><a href="#用途-1" class="headerlink" title="用途"></a>用途</h4><p>用于跳过本次循环余下的语句，转去判断是否需要执行下次循环</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(1;2;3)&#123;</span><br><span class="line">	语句A;</span><br><span class="line">	语句B;</span><br><span class="line">    <span class="built_in">continue</span>;//若执行该语句，则执行完AB后直接执行表达式3，不执行语句C</span><br><span class="line">    语句C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/08/C_3/" data-id="ck5ewyozf000fi8tw3c8va62s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C_2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/07/C_2/" class="article-date">
+  <time datetime="2019-08-07T08:13:08.000Z" itemprop="datePublished">2019-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/07/C_2/">C语言(二)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="输出printf"><a href="#输出printf" class="headerlink" title="输出printf()"></a>输出printf()</h2><h3 id="输出形式"><a href="#输出形式" class="headerlink" title="输出形式"></a>输出形式</h3><p>将变量的内容输出到显示器上</p>
+<ul>
+<li>printf(“字符串”);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"你好\n"</span>);//\n表示换行</span><br></pre></td></tr></table></figure></li>
+<li>printf(“输出控制符”，输出参数);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i = 10;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,i);//将i以十进制的方式输出</span><br></pre></td></tr></table></figure></li>
+<li>printf(“输出控制符1 输出控制符2..”，输出参数1，输出参数2，….)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int j = 3;</span><br><span class="line">int k = 4;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,j,k);//OK</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>,j,k);//error,输出控制符与参数个数不匹配</span><br></pre></td></tr></table></figure></li>
+<li>printf(“输出控制符 非输出控制符”，输出参数);<br> 输出控制符包含： %d, %ld, %f, %lf, %C, %x,%s…<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int j = 3;</span><br><span class="line">int k = 4;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"j = %d, k= %d\n"</span>,j,k);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：float只能用%f输出不能用%d</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="为什么需要输出控制符"><a href="#为什么需要输出控制符" class="headerlink" title="为什么需要输出控制符"></a>为什么需要输出控制符</h3><ul>
+<li>01组成的代码可以表示数据也可以表示指令，通过输出控制符表示告诉编译器如何解读</li>
+<li>如果01代码表示的是数据，同样01代码组组合以不同输出格式输出就会有不同的输出结果。</li>
+</ul>
+<h2 id="输入scanf"><a href="#输入scanf" class="headerlink" title="输入scanf()"></a>输入scanf()</h2><p>通过键盘将数据放置到变量中</p>
+<h3 id="输入形式"><a href="#输入形式" class="headerlink" title="输入形式"></a>输入形式</h3><ul>
+<li>scanf(“输入控制符”，输入参数);<br>功能： 将键盘输入的字符转化为输入控制符所规定的格式的数据，然后存入以输入参数的值为地址的变量中。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">scanf(<span class="string">"%d"</span>,&amp;i);//&amp;表示取地址,将键盘输入的字符转换为int类型再赋值给i</span><br></pre></td></tr></table></figure></li>
+<li>scanf(“非输入控制符输入控制符”，输入参数)；<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i;</span><br><span class="line">scanf(<span class="string">"m%d"</span>,&amp;i);//输入123，m123均为合法输入</span><br></pre></td></tr></table></figure></li>
+<li>scanf(“输入控制符1 输入控制符2…”,输入参数1,输入参数2…);<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">scanf(<span class="string">"%d %d"</span>,&amp;i,&amp;j);//输入应为1空格2，12被视为一个数字</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int i,j;</span><br><span class="line">scanf(<span class="string">"%d,%d"</span>,&amp;i,&amp;j);//输入应为1逗号2，若为1空格2只读取1，2置为填充字</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>###对用户非法输入的处理<br>在连续输入的两个scanf函数之间加入代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char ch;</span><br><span class="line"><span class="keyword">while</span>((ch.getchar()) != <span class="string">'\n'</span>)&#123;</span><br><span class="line">	<span class="built_in">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：1、使用scanf前最好先使用printf提示用户输入格式<br>      2、scanf中尽量不要使用非输入控制符，尤其是转义字符\n。</p>
+</blockquote>
+<h3 id="为什么需要输入控制符"><a href="#为什么需要输入控制符" class="headerlink" title="为什么需要输入控制符"></a>为什么需要输入控制符</h3><p>操作系统接收键盘输入的数字都以字符接收，需要输入控制符将其转换为所需格式的数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/07/C_2/" data-id="ck5ewyozd000ai8tw48u3gqvx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-C_1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/06/C_1/" class="article-date">
+  <time datetime="2019-08-06T04:05:10.000Z" itemprop="datePublished">2019-08-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/06/C_1/">C语言(一)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>整数：<br> 整形 <font color="#fb8c00">int</font><br> 短整型 <font color="#fb8c00 ">short int</font><br> 长整型 <font color="#fb8c00" >long int</font></li>
+<li>浮点数：<br> 单精度浮点数 <font color="#fb8c00">float</font><br> 双精度浮点数 <font color="#fb8c00">double</font></li>
+<li>字符：<br> 单个字符 <font color="#fb8c00">char</font></li>
+<li>复合数据类型<br> 结构体<br> 枚举  </li>
+</ul>
+<h3 id="变量"><a href="#变量" class="headerlink" title="[变量"></a>[变量</h3><ul>
+<li>变量的本质就是内存中的一段存储空间</li>
+<li>变量必须初始化(赋值)，如果不赋值最终输出为填充字(垃圾值)。</li>
+</ul>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 17;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"i = %d\n"</span>,i);</span><br><span class="line">//%d表示以十进制输出</span><br><span class="line">//%x表示以十六进制输出</span><br><span class="line">//%o表示以八进制输出</span><br></pre></td></tr></table></figure>
+<h3 id="字节"><a href="#字节" class="headerlink" title="字节"></a>字节</h3><p>字节是存储数据的单位，并且是硬件所能访问的最小单位。(1字节=8bit, 1K=1024字节，1M =1024K,1G=1024M)</p>
+<h3 id="ASCII码"><a href="#ASCII码" class="headerlink" title="ASCII码"></a>ASCII码</h3><p> 不是一个值，而是一种规定，规定不同的字符是使用哪个整数值去表示。eg : ‘A’–65,’B’–66</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char ch = <span class="string">'A'</span>;//OK</span><br><span class="line">char ch = <span class="string">'B'</span>;//error,ch被重复定义</span><br><span class="line">ch = <span class="string">'B'</span>;//OK,把B赋值给ch</span><br></pre></td></tr></table></figure>
+
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ul>
+<li>整数：<br> 十进制：<font color="#fb8c00">17</font><br> 八进制：<font color="#fb8c00">017(数字0)</font><br> 十六进制：<font color="#fb8c00">0x17 或 0X17</font></li>
+<li>浮点数：<br> 传统写法：<font color="#fb8c00">3.2</font><br> 科学计数法：<font color="#fb8c00">3.2e3</font>(值为3200)，<font color="#fb8c00">1234.5e-2</font>(值为12.345)</li>
+<li>字符：<br> 单个字符：<font color="#fb8c00">‘a’</font><br> 字符串：<font color="#fb8c00"> “aa”</font><blockquote>
+<p>注： “a”是正确的，因为”a”表示’a’和’\0’的组合</p>
+</blockquote>
+</li>
+<li>存储方式<br> 字符：’A’先转为ASCII码，再转换为补码(本质上与整数存储方式相同)<br> 整数：以补码形式转换为二进制代码存储在计算机中<br> 实数：以IEEE754标准转换为二进制代码存储在计算机中</li>
+</ul>
+<h2 id="强制数据类型转换"><a href="#强制数据类型转换" class="headerlink" title="强制数据类型转换"></a>强制数据类型转换</h2><p>格式：(数据类型)(表达式)<br>功能：把表达式的值强制转换为前面所执行的数据类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(int) (4.5+2.2);//最终值为6</span><br><span class="line">(<span class="built_in">float</span>)(5);//最终值为5.000000</span><br></pre></td></tr></table></figure>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="为什么需要结构体"><a href="#为什么需要结构体" class="headerlink" title="为什么需要结构体"></a>为什么需要结构体</h3><p>为了表示一些复杂的事物，而普通的基本类型无法满足实际要求</p>
+<h3 id="什么叫结构体"><a href="#什么叫结构体" class="headerlink" title="什么叫结构体"></a>什么叫结构体</h3><p>把一些基本数据类型组合在一起形成的一个新的复合数据类型</p>
+<h3 id="如何定义结构体"><a href="#如何定义结构体" class="headerlink" title="如何定义结构体"></a>如何定义结构体</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//第一种方式(推荐使用)</span><br><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">//第二种方式</span><br><span class="line">struct Student2&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student2;//定义一个名为student2的结构体</span><br><span class="line"></span><br><span class="line">//第三种方式</span><br><span class="line">struct &#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125; student1;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化一个名为student的结构体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="怎样使用结构体变量"><a href="#怎样使用结构体变量" class="headerlink" title="怎样使用结构体变量"></a>怎样使用结构体变量</h3><h4 id="赋值和初始化"><a href="#赋值和初始化" class="headerlink" title="赋值和初始化"></a>赋值和初始化</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   struct Student student2;//定义完后再赋值</span><br><span class="line">   student2.age = 10;</span><br><span class="line">   student2.score = 90;</span><br><span class="line">   student2.sex = <span class="string">'F'</span>;</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="怎样访问结构体变量中的每一个成员"><a href="#怎样访问结构体变量中的每一个成员" class="headerlink" title="怎样访问结构体变量中的每一个成员"></a>怎样访问结构体变量中的每一个成员</h4><ol>
+<li>结构体变量名.成员名</li>
+<li>指针变量名-&gt;成员名<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">   int age;</span><br><span class="line">   <span class="built_in">float</span> score;</span><br><span class="line">   char sex;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student = &#123;80,66.6,<span class="string">'F'</span>&#125;;//初始化，定义的同时赋初值</span><br><span class="line"></span><br><span class="line">   student.age = 10;//第一种方式</span><br><span class="line"></span><br><span class="line">   struct Student *pst = &amp;student;//第二种方式</span><br><span class="line">   pst-&gt;age = 10;//pst所指向的结构体的age成员</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：pst-&gt;age会在计算机内部转化成(* pst).age</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="结构变量的运算"><a href="#结构变量的运算" class="headerlink" title="结构变量的运算"></a>结构变量的运算</h4><p>结构体变量不能相加、相减，也不能相互乘除,只能赋值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct Student student1,student2;</span><br><span class="line">student1 = student2;</span><br></pre></td></tr></table></figure>
+<p>####　结构变量和结构体变量指针作为函数参数传递问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">//error,不能直接对结构体进行修改</span><br><span class="line">void InputStudent1(st)&#123;</span><br><span class="line">   st.age = 10;</span><br><span class="line">   strcpy(st.name,<span class="string">"张三"</span>);//不能写成stu.name=“张三”，涉及C语言字符串处理</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//OK</span><br><span class="line">void InputStudent2(struct Student * pstu)&#123;</span><br><span class="line">   pstu-&gt;age = 10;</span><br><span class="line">   strcpy(pstu-&gt;name,<span class="string">"张三"</span>);</span><br><span class="line">   pstu-&gt;sex = <span class="string">'F'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void OutputStudent(struct Student ss)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %s %c\n"</span>.ss.age,ss.name,ss.sex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">   struct Student student1;</span><br><span class="line">   InputStudent(st);//error,对结构体变量输入</span><br><span class="line">   InputStudent2(&amp;st);//OK</span><br><span class="line">   OutputStudent(st);//对结构体变量输出，也可以传指针</span><br><span class="line">   <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：对结构体进行修改必须输入结构体的指针</p>
+</blockquote>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/08/06/C_1/" data-id="ck5ewyoza0006i8twgplgf89j" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

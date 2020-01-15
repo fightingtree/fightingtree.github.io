@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Python(3) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数的分类 函数分为两种类型： 一种设计成返回值，一种仅执行代码而不返回 函数用来将复杂的问题分解为更小的问题，进而消除重复性代码，通过分解为不同的逻辑单元使其更容易阅读  内建函数python中自带的函数，返回值由python规定 用户自定义函数自定义返回值的函数 123def 函数名(参数1，参数2，...):    语句块    return 返回值  注：一旦return语句得到执行，函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python(3)">
+<meta property="og:url" content="https://fightingtree.github.io/2019/10/02/python2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="函数的分类 函数分为两种类型： 一种设计成返回值，一种仅执行代码而不返回 函数用来将复杂的问题分解为更小的问题，进而消除重复性代码，通过分解为不同的逻辑单元使其更容易阅读  内建函数python中自带的函数，返回值由python规定 用户自定义函数自定义返回值的函数 123def 函数名(参数1，参数2，...):    语句块    return 返回值  注：一旦return语句得到执行，函数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-02T02:30:40.000Z">
+<meta property="article:modified_time" content="2019-10-07T07:17:33.869Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-python2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/02/python2/" class="article-date">
+  <time datetime="2019-10-02T02:30:40.000Z" itemprop="datePublished">2019-10-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python(3)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="函数的分类"><a href="#函数的分类" class="headerlink" title="函数的分类"></a>函数的分类</h2><ul>
+<li>函数分为两种类型： 一种设计成返回值，一种仅执行代码而不返回</li>
+<li>函数用来将复杂的问题分解为更小的问题，进而消除重复性代码，通过分解为不同的逻辑单元使其更容易阅读</li>
+</ul>
+<h3 id="内建函数"><a href="#内建函数" class="headerlink" title="内建函数"></a>内建函数</h3><p>python中自带的函数，返回值由python规定</p>
+<h3 id="用户自定义函数"><a href="#用户自定义函数" class="headerlink" title="用户自定义函数"></a>用户自定义函数</h3><p>自定义返回值的函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def 函数名(参数1，参数2，...):</span><br><span class="line">    语句块</span><br><span class="line">    <span class="built_in">return</span> 返回值</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：一旦return语句得到执行，函数立即终止。return语句可以出现在函数体中的任何位置。<br>    python有一个称为None的对象用来表示空值，此对象没有任何方法。</p>
+</blockquote>
+<h4 id="传递参数的形式"><a href="#传递参数的形式" class="headerlink" title="传递参数的形式"></a>传递参数的形式</h4><h5 id="按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同"><a href="#按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同" class="headerlink" title="按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同"></a>按照位置传递参数：调用语句中的实际参数与函数头中的形式参数一一对应，实参的数目必须与形参相同，实参的数据类型必须与形参相同</h5><h5 id="按照默认值传递参数"><a href="#按照默认值传递参数" class="headerlink" title="按照默认值传递参数"></a>按照默认值传递参数</h5><p>一个函数的某些(或者全部)参数可以有默认值——当没有值传递给它们时而赋给的值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def total(w,x,y=10,z=20):</span><br><span class="line">    <span class="built_in">return</span>((w**x)+y+z)</span><br><span class="line">total(2,3)  //2^3+10+20 38</span><br><span class="line">total(2,3,4)  //2^3+4+20 32</span><br><span class="line">total(2,3,4,5)  //2^3+4+5  //17</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：在函数定义中，没有默认值的参数必须放在有默认值的参数前面，如def func(x,y=2,z)<br>是不合法的</p>
+</blockquote>
+<h5 id="按照关键字传递参数"><a href="#按照关键字传递参数" class="headerlink" title="按照关键字传递参数"></a>按照关键字传递参数</h5><p>实际参数可以通过使用相应形式参数的名字传递给函数，而不是根据位置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def total(w,x,y=10,z=20):</span><br><span class="line">    <span class="built_in">return</span>((w**x)+y+z)</span><br><span class="line">total(y=4,x=3,w=2)  //2^3+4+20 32</span><br><span class="line">total(2,y=4,x=3) //2^3+4+20 32</span><br><span class="line">total(2,3,y=4) //2^3+4+20 32</span><br><span class="line">total(w=2,3,y=4) //error ,不合法,按位置传递的实参必须要放在按关键字传递的实参前(形参类似)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：当实际参数是一个表达式时，先要计算表达式，然后将它的值传给形式参数</p>
+</blockquote>
+<h4 id="向函数传值"><a href="#向函数传值" class="headerlink" title="向函数传值"></a>向函数传值</h4><p>如果函数调用的实际参数是一个变量，那么由实际参数变量指向的对象(而不是实际参数变量本身)传递给了形式参数变量。因此，如果对象是不可变的且函数改变了形式参数变量的值，实际参数所指向的对象不会发生任何改变，当实际参数变量指向数值、字符串或元组对象时，不管怎样通过函数调用改变实际参数的值，都是不可能的。</p>
+<h3 id="main-函数"><a href="#main-函数" class="headerlink" title="main()函数"></a>main()函数</h3><p>主函数(main函数)既没有参数，也没有返回值，是程序的入口函数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    函数体</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：python中需要调用主函数，之后初始化要执行的任务(一般将第一个函数命名为main，它的前面有import语句和全局变量，所有的程序将以main()语句结尾，从而调用main()函数)</p>
+</blockquote>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><ul>
+<li>在函数内部创建的变量只能被同一函数内部的语句访问，并且当函数退出后变量就不存在了。(每次函数被调用时变量再重新创建)，这样的变量对于函数来说是局部的，有局部作用域。对于函数的参数同样成立。</li>
+<li>如果在两个不同的函数创建了同样名称的变量，那么它们之间没有任何关系，可以当作完全不同的变量，对于函数的参数同样成立。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">	x=2</span><br><span class="line">	<span class="built_in">print</span>(str(x)+<span class="string">": function main"</span>)</span><br><span class="line">	trivial()</span><br><span class="line">	<span class="built_in">print</span>(str(x)+<span class="string">": function main"</span>)</span><br><span class="line">def trivial():</span><br><span class="line">    x=3</span><br><span class="line">    <span class="built_in">print</span>(str(x)+<span class="string">": function trivial"</span>)</span><br><span class="line">main()</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">2 : <span class="keyword">function</span> main</span><br><span class="line">3 : <span class="keyword">function</span> trivial</span><br><span class="line">2 : <span class="keyword">function</span> main</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    x=5</span><br><span class="line">    trivial()</span><br><span class="line">def trivial():</span><br><span class="line">    <span class="built_in">print</span>(x)</span><br><span class="line">main()</span><br><span class="line"><span class="comment"># 结果会产生一个NameError的回溯错误，因为主函数创建的x无法被trivial()识别</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><ul>
+<li>定义：一个变量可以被程序中任何部分识别，这样的变量叫做全局变量</li>
+<li>创建方式：将创建它的赋值语句放在程序顶部</li>
+<li>任何函数都能读取全局变量的值，然而它的值不能在函数内部进行修改，除非修改语句之前有以下的语句形式<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">global 全局变量名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>注：global仅影响所在函数体内其后的语句，它不允许在其他函数内部修改全局变量的值。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">x=0  <span class="comment">#定义一个全局变量</span></span><br><span class="line">def main():</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line">    trivial()</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line">def trivial():</span><br><span class="line">    global x</span><br><span class="line">    x += 7</span><br><span class="line">    <span class="built_in">print</span>(str(x))</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">0</span><br><span class="line">7</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+
+<h4 id="命名常量"><a href="#命名常量" class="headerlink" title="命名常量"></a>命名常量</h4><p>命名常量的名字使用大写字母的单词，并且单词间使用下划线分隔，并赋给一个常量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INTEREST_TATE = 0.04</span><br><span class="line">BOOK_TITLE = <span class="string">"python"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：python中允许给任何变量重新赋值，程序员要负责地不改变这个变量的值</p>
+</blockquote>
+<h3 id="库模块"><a href="#库模块" class="headerlink" title="库模块"></a>库模块</h3><ul>
+<li>python通过称为库模块的文件支持函数的重用</li>
+<li>库模块是一个扩展名为.py的文件，包含了可以被其他任何程序使用(我们可以称为imported)的函数和变量</li>
+<li>库模块可以使用IDLE和任何文本编辑器进行创建<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#不使用库模块</span></span><br><span class="line">def add(x,y):</span><br><span class="line">    flag = x+y</span><br><span class="line">    <span class="built_in">return</span> flag</span><br><span class="line">amount = add(7,8)</span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用库模块</span></span><br><span class="line"><span class="comment">#方式一</span></span><br><span class="line">import sum  <span class="comment">#sum.py文件为add函数的声明与定义</span></span><br><span class="line">amount = sum.add(7,8)   <span class="comment">#使用sum.add()代替上述add()</span></span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用库模块</span></span><br><span class="line"><span class="comment">#方法二</span></span><br><span class="line">from sum import *  //表示调用sum.py文件的所有函数</span><br><span class="line">amount = add(7,8)</span><br><span class="line"><span class="built_in">print</span>(str(amount))</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="python标准库模块"><a href="#python标准库模块" class="headerlink" title="python标准库模块"></a>python标准库模块</h4><ul>
+<li><font color="#fb8c00">os</font> 删除和重命名文件</li>
+<li><font color="#fb8c00">os.path</font> 确定指定的文件是否存在，是os的子模块</li>
+<li><font color="#fb8c00">pickle</font> 在文件中存储对象(如字典、列表和集合)，并能从文件中取回对象</li>
+<li><font color="#fb8c00">random</font> 随机选择数字和子集</li>
+<li><font color="#fb8c00">tkinter</font> 支持程序拥有一个图形用户界面</li>
+<li><font color="#fb8c00">turtle</font> 支持图形化turtle</li>
+<li><font color="#fb8c00">math</font> 包含了三角函数、指数函数和对数函数</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="调用其他函数的函数"><a href="#调用其他函数的函数" class="headerlink" title="调用其他函数的函数"></a>调用其他函数的函数</h3><p>一个函数可以调用另一个函数，当被调用的函数结束时(return语句之后或被调用函数的最后一个语句执行完毕之后)，控制流程返回到调用函数中调用发生之后的位置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def main():</span><br><span class="line">    firstPart()</span><br><span class="line">    <span class="built_in">print</span>(str(4)+<span class="string">": from function main"</span>)</span><br><span class="line">def firstPart():</span><br><span class="line">    <span class="built_in">print</span>(str(1)+<span class="string">": from function firstPart"</span>)</span><br><span class="line">    secondPart()</span><br><span class="line">    <span class="built_in">print</span>(str(3)+<span class="string">": from function firstPart"</span>)</span><br><span class="line">def secondPart():</span><br><span class="line">    <span class="built_in">print</span>(str(2)+<span class="string">": from function secondPart"</span>)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">1: from <span class="keyword">function</span> firstPart</span><br><span class="line">2: from <span class="keyword">function</span> secondPart</span><br><span class="line">3: from <span class="keyword">function</span> firstPart</span><br><span class="line">4: from <span class="keyword">function</span> main</span><br></pre></td></tr></table></figure>
+<h3 id="列表解析"><a href="#列表解析" class="headerlink" title="列表解析"></a>列表解析</h3><p>当我们想要对列表中的每个元素执行一个特定函数时，一个for循环可以完成。但是，更加简单的方法是使用列表解析。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list2 = [f(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1]  <span class="comment">#将list1的每个元素的f(item)放入列表list2中，f不是一个内建函数就是用户自定义函数</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def g(x):</span><br><span class="line">    <span class="built_in">return</span> (int(x)**2)</span><br><span class="line">list1 = [<span class="string">'2'</span>,<span class="string">'5'</span>,<span class="string">'6'</span>,<span class="string">'7'</span>]</span><br><span class="line">list2 = [g(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1]   <span class="comment">#list2=[4,25,36,49]</span></span><br></pre></td></tr></table></figure>
+<h4 id="过滤列表"><a href="#过滤列表" class="headerlink" title="过滤列表"></a>过滤列表</h4><p>在列表解析时加入if语句对列表进行筛选</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list2 = [g(x) <span class="keyword">for</span> x <span class="keyword">in</span> list1 <span class="keyword">if</span> int(x)%2==1]    <span class="comment">#list2=[25,49],只有奇数的平方才会出现在列表里</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：列表解析可以用在字符串、元组和range函数产生的算术表达式</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/10/02/python2/" data-id="ck5ewyp0f003li8twebyd667m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/02/OS1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          操作系统知识点总结(1)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/29/php1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

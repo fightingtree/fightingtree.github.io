@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>数据结构与算法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数据结果编程心得 确定好所有属性 先用注释的方式将整个算法思路写下来，再一步步慢慢实现 每个成员函数的编写都根据属性来进行考虑、修改 确定成员函数需不需要return(鉴别方法和函数)  数组栈先进后出规则(浏览器历史记录等) 属性 容器：列表  实现思路 创建一个空列表作为栈的容器(属性) 获取栈的大小   len 方法   判断栈是否为空 压栈   需要传值 push()函数需自己实现 利用列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构与算法">
+<meta property="og:url" content="https://fightingtree.github.io/2019/10/09/dataStructure1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结果编程心得 确定好所有属性 先用注释的方式将整个算法思路写下来，再一步步慢慢实现 每个成员函数的编写都根据属性来进行考虑、修改 确定成员函数需不需要return(鉴别方法和函数)  数组栈先进后出规则(浏览器历史记录等) 属性 容器：列表  实现思路 创建一个空列表作为栈的容器(属性) 获取栈的大小   len 方法   判断栈是否为空 压栈   需要传值 push()函数需自己实现 利用列">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-10-09T09:18:50.000Z">
+<meta property="article:modified_time" content="2019-12-18T08:07:04.871Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-dataStructure1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/10/09/dataStructure1/" class="article-date">
+  <time datetime="2019-10-09T09:18:50.000Z" itemprop="datePublished">2019-10-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构与算法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="数据结果编程心得"><a href="#数据结果编程心得" class="headerlink" title="数据结果编程心得"></a>数据结果编程心得</h2><ol>
+<li>确定好所有属性</li>
+<li>先用注释的方式将整个算法思路写下来，再一步步慢慢实现</li>
+<li>每个成员函数的编写都根据属性来进行考虑、修改</li>
+<li>确定成员函数需不需要return(鉴别方法和函数)</li>
+</ol>
+<h2 id="数组栈"><a href="#数组栈" class="headerlink" title="数组栈"></a>数组栈</h2><p>先进后出规则(浏览器历史记录等)</p>
+<h3 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h3><ol>
+<li>容器：列表</li>
+</ol>
+<h3 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h3><ol>
+<li>创建一个空列表作为栈的容器(属性)</li>
+<li>获取栈的大小</li>
+</ol>
+<ul>
+<li><strong>len</strong> 方法</li>
+</ul>
+<ol start="3">
+<li>判断栈是否为空</li>
+<li>压栈</li>
+</ol>
+<ul>
+<li>需要传值</li>
+<li>push()函数需自己实现</li>
+<li>利用列表的append()方法</li>
+</ul>
+<ol start="5">
+<li>弹栈</li>
+</ol>
+<ul>
+<li>判断栈是否为空</li>
+<li>pop()函数为内置函数</li>
+</ul>
+<ol start="6">
+<li>返回栈顶元素</li>
+</ol>
+<ul>
+<li>判断栈是否为空</li>
+<li>返回反向索引的第一个值</li>
+</ul>
+<h3 id="栈应用"><a href="#栈应用" class="headerlink" title="栈应用"></a>栈应用</h3><ol>
+<li>数字逆序输出</li>
+<li>符号匹配问题</li>
+</ol>
+<h2 id="循环队列"><a href="#循环队列" class="headerlink" title="循环队列"></a>循环队列</h2><p>先进先出，循环队列</p>
+<h3 id="属性-1"><a href="#属性-1" class="headerlink" title="属性"></a>属性</h3><ol>
+<li>容器：列表</li>
+<li>队列的长度</li>
+<li>队列首部元素的索引位置</li>
+</ol>
+<h3 id="实现思路-1"><a href="#实现思路-1" class="headerlink" title="实现思路"></a>实现思路</h3><ol>
+<li>初始化队列</li>
+</ol>
+<ul>
+<li>容器为列表，列表由10个None cap组成<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[None,None,None,None,None,None,None,None,None,None,None]</span><br></pre></td></tr></table></figure></li>
+<li>队列长度默认为0</li>
+<li>队列首部元素的索引位置默认为0</li>
+</ul>
+<ol start="2">
+<li>获取队列长度</li>
+</ol>
+<ul>
+<li>使用<strong>len</strong> 方法</li>
+</ul>
+<ol start="3">
+<li>判断队列是否为空</li>
+</ol>
+<ul>
+<li>看队列长度是否为0</li>
+</ul>
+<ol start="4">
+<li>为队列重置容器大小</li>
+</ol>
+<ul>
+<li>需要传入增加大小的参数cap</li>
+<li>用一个列表保存旧的队列的值</li>
+<li>重新设置容器的大小：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新的容器大小 = [None]* <span class="built_in">cap</span></span><br></pre></td></tr></table></figure></li>
+<li>将保存旧队列的列表的值重新赋值到新队列中：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a. 保存旧队列首部元素索引</span><br><span class="line">b. 将旧列表的元素按照原本位置放置到新的容器中，映射关系公式为：</span><br><span class="line">新队列的第一个元素对应旧队列的首部元素</span><br><span class="line">新队列其他元素对于旧队列的其他元素索引位置关系公式 ：</span><br><span class="line">            索引位置 = (旧队列首部元素的索引位置+1) % 旧容器的长度</span><br></pre></td></tr></table></figure></li>
+<li>将队列首部元素的索引置为0</li>
+</ul>
+<ol start="5">
+<li>删除首部元素(出队)</li>
+</ol>
+<ul>
+<li>判断队列是否为空</li>
+<li>将首部元素的值放入一个变量中</li>
+<li>将原首部元素的索引位置的值设置为None</li>
+<li>使用插入队列的公式将队列的首部元素的索引位置重新设置：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新的首部元素位置索引 = (旧的首部元素位置索引+1) % 容器的总长度</span><br></pre></td></tr></table></figure></li>
+<li>队列长度减1</li>
+</ul>
+<ol start="6">
+<li>在队列尾部加入元素(入队)</li>
+</ol>
+<ul>
+<li>需要传值</li>
+<li>判断容器长度是否足够，若不够则调用重置容器大小的方法增加队列容器大小</li>
+<li>在队列末尾加入元素的索引位置公式为：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">新元素索引位置 = (队列首部元素的索引+队列的长度) % 容器的总长度</span><br></pre></td></tr></table></figure></li>
+<li>为新的索引位置赋值</li>
+<li>队列的长度+1</li>
+</ul>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="单向链表"><a href="#单向链表" class="headerlink" title="单向链表"></a>单向链表</h3><h4 id="属性-2"><a href="#属性-2" class="headerlink" title="属性"></a>属性</h4><h5 id="结点类"><a href="#结点类" class="headerlink" title="结点类"></a>结点类</h5><ol>
+<li>结点的值</li>
+<li>下一个结点的引用</li>
+</ol>
+<h5 id="链表类"><a href="#链表类" class="headerlink" title="链表类"></a>链表类</h5><ol>
+<li>链表首部结点</li>
+</ol>
+<h4 id="实现思路-2"><a href="#实现思路-2" class="headerlink" title="实现思路"></a>实现思路</h4><ol>
+<li>初始化</li>
+</ol>
+<ul>
+<li>首部结点(初始化为None)</li>
+</ul>
+<ol start="2">
+<li>链表长度</li>
+</ol>
+<ul>
+<li>从链表首部结点开始遍历链表，直至结点的下一个结点引用为0</li>
+<li>返回链表长度</li>
+</ul>
+<ol start="3">
+<li>判断链表是否为空</li>
+</ol>
+<ul>
+<li>链表长度是否为0</li>
+</ul>
+<ol start="4">
+<li>首部加结点</li>
+</ol>
+<ul>
+<li>保留旧首部结点</li>
+<li>将新首部结点的下一个结点引用修改为旧首部结点</li>
+<li>修改链表的首部结点引用</li>
+</ul>
+<ol start="5">
+<li>尾部加结点</li>
+</ol>
+<ul>
+<li>遍历到链表的尾部结点</li>
+<li>修改尾部结点的下一个结点引用</li>
+</ul>
+<ol start="6">
+<li>在指定位置加入结点</li>
+</ol>
+<ul>
+<li>判断链表是否为空</li>
+<li>遍历到指定位置(使用循环：指定位置-1)</li>
+<li>保存指定位置下一个结点的引用</li>
+<li>修改指定位置下一个结点的引用指向新增结点</li>
+<li>修改新增结点的下一个结点引用指向之前保存的结点引用</li>
+</ul>
+<ol start="7">
+<li>在指定位置删除结点</li>
+</ol>
+<ul>
+<li>判断链表是否为空</li>
+<li>遍历到指定位置前一个位置 </li>
+<li>修改三个结点的引用</li>
+</ul>
+<ol start="8">
+<li>查找指定位置的结点</li>
+</ol>
+<ul>
+<li>判断链表是否为空</li>
+<li>遍历到指定位置，返回结点的值</li>
+</ul>
+<ol start="9">
+<li>打印链表</li>
+</ol>
+<ul>
+<li>遍历每一个结点，并将结点的值一次追加放入一个空列表中</li>
+<li>打印输出列表</li>
+</ul>
+<h3 id="双向链表"><a href="#双向链表" class="headerlink" title="双向链表"></a>双向链表</h3><p>每个结点都包含了指向其前驱结点的引用和指向后驱结点的引用。在列表的起始位置添加头结点，在列表的结尾位置添加尾结点。这些结点并不存储主序列的元素</p>
+<h4 id="属性-3"><a href="#属性-3" class="headerlink" title="属性"></a>属性</h4><h5 id="结点类-1"><a href="#结点类-1" class="headerlink" title="结点类"></a>结点类</h5><ol>
+<li>结点值</li>
+<li>结点前缀引用(初始值需要传入)</li>
+<li>结点后缀引用(初始值需要传入)</li>
+</ol>
+<h5 id="双向链表类"><a href="#双向链表类" class="headerlink" title="双向链表类"></a>双向链表类</h5><ol>
+<li>尾部哨兵</li>
+<li>头部哨兵</li>
+<li>头部哨兵的后缀引用</li>
+<li>尾部哨兵的前缀引用</li>
+<li>链表长度</li>
+</ol>
+<h4 id="实现思路-3"><a href="#实现思路-3" class="headerlink" title="实现思路"></a>实现思路</h4><ol>
+<li>初始化结点类</li>
+<li>初始化双向链表类</li>
+<li>链表长度</li>
+<li>链表是否为空</li>
+<li>向链表追加结点(每次都在链表的尾部哨兵前加入)</li>
+</ol>
+<ul>
+<li>保存尾部哨兵的前缀结点</li>
+<li>修改尾部哨兵的前缀引用为新结点</li>
+<li>修改尾部哨兵的旧的前缀结点的后缀引用为新结点</li>
+<li>修改新结点的前后缀引用</li>
+<li>链表长度加1</li>
+</ul>
+<ol start="6">
+<li>在指定结点间加入新的结点(传入值，前后缀结点)</li>
+</ol>
+<ul>
+<li>创建新结点，结点前后缀引用为传入的前后缀结点</li>
+<li>修改前缀结点的后缀引用</li>
+<li>修改后缀结点的前缀引用</li>
+<li>链表长度+1</li>
+<li>返回新加入的结点</li>
+</ul>
+<ol start="7">
+<li>删除结点(传入结点)</li>
+</ol>
+<ul>
+<li>判断链表是否为空</li>
+<li>保存要删除的结点</li>
+<li>修改删除结点的前后缀结点的引用</li>
+<li>链表长度-1</li>
+</ul>
+<ol start="8">
+<li>打印输出</li>
+</ol>
+<ul>
+<li>判断是否为空</li>
+<li>初始化空列表</li>
+<li>遍历链表向空列表中追加元素</li>
+<li>打印列表</li>
+</ul>
+<blockquote>
+<p>注：在双向链表中，删除、加入结点对每一个涉及到的结点的前后缀引用都要进行修改</p>
+</blockquote>
+<h3 id="循环链表实现队列"><a href="#循环链表实现队列" class="headerlink" title="循环链表实现队列"></a>循环链表实现队列</h3><p>队列有一个头部和尾部，但是尾部的next指针指向头部</p>
+<h4 id="属性-4"><a href="#属性-4" class="headerlink" title="属性"></a>属性</h4><h5 id="结点类-2"><a href="#结点类-2" class="headerlink" title="结点类"></a>结点类</h5><ol>
+<li>结点的值</li>
+<li>下一个结点的引用</li>
+</ol>
+<h5 id="循环链表实现"><a href="#循环链表实现" class="headerlink" title="循环链表实现"></a>循环链表实现</h5><ol>
+<li>队列的尾部引用</li>
+<li>队列的长度</li>
+</ol>
+<h4 id="实现思路-4"><a href="#实现思路-4" class="headerlink" title="实现思路"></a>实现思路</h4><ol>
+<li>初始化结点类</li>
+<li>初始化循环队列类</li>
+</ol>
+<ul>
+<li>需传入一个结点作为尾部引用</li>
+<li>将尾部的next指针(头部)也指向node</li>
+<li>队列长度</li>
+</ul>
+<ol start="3">
+<li>队列长度</li>
+<li>队列是否为空</li>
+<li>队列尾部加入结点</li>
+</ol>
+<ul>
+<li>保存头部结点</li>
+<li>将加入结点的引用设置为头部结点</li>
+<li>重置队列的尾部引用</li>
+<li>长度+1</li>
+</ul>
+<ol start="6">
+<li>队列首部删除元素</li>
+</ol>
+<ul>
+<li>保存首部元素</li>
+<li>修改尾部引用指向首部元素的下一个结点引用</li>
+<li>长度-1</li>
+<li>返回删除的元素</li>
+</ul>
+<ol start="7">
+<li>打印</li>
+</ol>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>每个父节点最多有两个子节点，深度搜素使用递归，广度搜索使用栈</p>
+<h4 id="属性-5"><a href="#属性-5" class="headerlink" title="属性"></a>属性</h4><h5 id="节点类"><a href="#节点类" class="headerlink" title="节点类"></a>节点类</h5><ol>
+<li>节点值</li>
+<li>左子树</li>
+<li>右子树</li>
+</ol>
+<h5 id="二叉树类"><a href="#二叉树类" class="headerlink" title="二叉树类"></a>二叉树类</h5><ol>
+<li>根节点</li>
+</ol>
+<h4 id="实现思路-5"><a href="#实现思路-5" class="headerlink" title="实现思路"></a>实现思路</h4><ol>
+<li>初始化节点类</li>
+<li>初始化二叉树类</li>
+<li>加入节点(传入节点)</li>
+</ol>
+<ul>
+<li>判断根节点是否为空，为空则插入</li>
+<li>根节点追加到空列表中</li>
+<li>空列表不为空则循环</li>
+<li>利用栈，分别判断左右子树(先左后右)是否为空，为空则插入节点，否则将该节点压栈</li>
+</ul>
+<ol start="4">
+<li>前序遍历(传入节点)</li>
+</ol>
+<ul>
+<li>按照遍历顺序分别判断左右节点是否为空，不为空则递归</li>
+<li>在该节点被遍历的位置打印输出</li>
+</ul>
+<ol start="5">
+<li>后序遍历</li>
+<li>中序遍历</li>
+<li>层序遍历</li>
+</ol>
+<ul>
+<li>判断根节点是否为空</li>
+<li>根节点追加到空列表中</li>
+<li>空列表不为空则循环</li>
+<li>打印输出列表的首部元素</li>
+<li>利用栈，分别判断左右子树是否为空，不为空则将该节点压栈</li>
+</ul>
+<ol start="8">
+<li>树高</li>
+</ol>
+<ul>
+<li>判断根节点是否为空，为空返回0</li>
+<li>判断左右子树的四种情况(elif)，左右子树均为空时打印输出，其他情况哪个节点不为空该节点就调用递归并加1</li>
+<li>左右节点都不为空的情况下取递归次数最多的那一边</li>
+</ul>
+<ol start="9">
+<li>叶子节点</li>
+</ol>
+<ul>
+<li>判断根节点是否为空</li>
+<li>判断左右子树的四种情况(elif)，左右子树均为空时打印输出，其他情况哪个节点不为空该节点就调用递归</li>
+</ul>
+<h3 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h3><p>二叉搜索树是具有有以下性质的二叉树：</p>
+<ul>
+<li>若左子树不为空，则左子树上所有节点的值均小于或等于它的根节点的值。</li>
+<li>若右子树不为空，则右子树上所有节点的值均大于或等于它的根节点的值。</li>
+<li>左、右子树也分别为二叉搜索树。</li>
+</ul>
+<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><ul>
+<li>大顶堆：所有的父节点的值都比孩子节点大，叶子节点值最小。root 根节点是第一个节点值最大</li>
+<li>小顶堆：和大顶堆相反，所有父节点值，都小于子节点值，root 根节点是 第一个节点值最小</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/10/09/dataStructure1/" data-id="ck5ewyozu001vi8tw8jdu5o03" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/10/11/javascript2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javascript(2)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/07/Python8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python(8)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

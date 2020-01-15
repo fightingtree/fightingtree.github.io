@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>渗透测试(2) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介侦察也就是信息收集。在收集目标信息上花的时间越多，后续阶段的成功率就越高。 侦察步骤 侦察以彻底地搜索目标的公共信息开始：有些组织把这些信息叫做开源情报(Open-Source Intellgence,OSINT)。这个步骤的好处是，通常不用发送数据包也能收集到海量数据。虽然侦查阶段所用到的用某些工具直接向目标发送信息，但要分清哪些工具会跟目标联络，哪些不会，这点很重要。该步骤有两个任务：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="渗透测试(2)">
+<meta property="og:url" content="https://fightingtree.github.io/2019/11/13/penetrationTest2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简介侦察也就是信息收集。在收集目标信息上花的时间越多，后续阶段的成功率就越高。 侦察步骤 侦察以彻底地搜索目标的公共信息开始：有些组织把这些信息叫做开源情报(Open-Source Intellgence,OSINT)。这个步骤的好处是，通常不用发送数据包也能收集到海量数据。虽然侦查阶段所用到的用某些工具直接向目标发送信息，但要分清哪些工具会跟目标联络，哪些不会，这点很重要。该步骤有两个任务：">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.postimg.cc/v8nCBBpH/1.jpg">
+<meta property="og:image" content="https://i.postimg.cc/FsQ8Jv4b/2.jpg">
+<meta property="og:image" content="https://i.postimg.cc/QxkPQz82/3.jpg">
+<meta property="og:image" content="https://i.postimg.cc/P556mrFD/4.jpg">
+<meta property="og:image" content="https://i.postimg.cc/L8QxvKrb/5.jpg">
+<meta property="article:published_time" content="2019-11-13T08:41:09.000Z">
+<meta property="article:modified_time" content="2019-12-18T06:25:32.216Z">
+<meta property="article:author" content="fightingtree">
+<meta property="article:tag" content="Web">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="渗透测试">
+<meta property="article:tag" content="Kali">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.postimg.cc/v8nCBBpH/1.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://fightingtree.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-penetrationTest2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/11/13/penetrationTest2/" class="article-date">
+  <time datetime="2019-11-13T08:41:09.000Z" itemprop="datePublished">2019-11-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      渗透测试(2)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>侦察也就是信息收集。在收集目标信息上花的时间越多，后续阶段的成功率就越高。</p>
+<h3 id="侦察步骤"><a href="#侦察步骤" class="headerlink" title="侦察步骤"></a>侦察步骤</h3><ol>
+<li>侦察以彻底地搜索目标的公共信息开始：有些组织把这些信息叫做开源情报(Open-Source Intellgence,OSINT)。这个步骤的好处是，通常不用发送数据包也能收集到海量数据。虽然侦查阶段所用到的用某些工具直接向目标发送信息，但要分清哪些工具会跟目标联络，哪些不会，这点很重要。该步骤有两个任务：</li>
+</ol>
+<ul>
+<li>收集与目标相关的信息，越多越好。</li>
+<li>分类收集所有信息，创建可进行攻击的IP地址或者统一资源定位符(URL)列表。</li>
+</ul>
+<h3 id="制定策略"><a href="#制定策略" class="headerlink" title="制定策略"></a>制定策略</h3><p>若想顺利地进行侦察工作，必须先制定一个策略。典型的策略应包含主动和被动的侦察。</p>
+<ul>
+<li>主动侦察(active recooaissance)包括与目标系统直接交互。在这个过程中，目标可能会记录下我们的IP地址及活动。如果我们试图以隐身的方式进行渗透测试，就更有可能被检测出来。</li>
+<li>被动侦察(passive recooaissance)则可以利用从网上获取的海量信息。当执行被动侦察时，不会直接与目标交互，因此目标不会知道或记录我们的活动。</li>
+</ul>
+<h3 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h3><p>收集信息时，应把数据信息集中保存。可能的话，最好都以电子格式保存。</p>
+<h2 id="HTTrack-网站复制机"><a href="#HTTrack-网站复制机" class="headerlink" title="HTTrack:网站复制机"></a>HTTrack:网站复制机</h2><p>首先要做的是细致浏览目标的网站。</p>
+<ul>
+<li>HTTrack可以将网站逐页复制下来，能够创建与目标网站完全相同的脱机副本。</li>
+<li>复制的内容包括原始网站所有网页、链接、图片和代码，这些文件将储存在你的本地电脑里。</li>
+<li>利用这类网站复制工具，可以在脱机状态下尽情挖掘某个网站的资源，而不用花时间在目标公司的Web服务器上闲逛。</li>
+</ul>
+<blockquote>
+<p>注：只要是属于目标的资源，任何时候与之直接交互，都有可能留下数字指纹(Digital Fingerprint)</p>
+</blockquote>
+<h3 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h3><p>Linux环境下在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install httrack</span><br></pre></td></tr></table></figure>
+<p>安装完成后使用如下命令运行它：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httrack</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>克隆网站很容易被追踪，同时被视为极具攻击性，没有事先获得授权的话，不要运用此工具！</p>
+<ul>
+<li>在终端启动HTTrack后，该程序将询问一系列基本问题，然后开始复制目标网站。在大部分情况下，你可以一直按回车键接受默认答案。</li>
+<li>成功的复制至少需要输入项目名称和一个有效的URL才能复制。</li>
+<li>完成问题的回答后，输入“Y”开始进行克隆。</li>
+<li>因为我们创建的是网站的精确副本，必须考虑本地计算机上的可用空间，在开始复制之前，必须确保有足够的空间</li>
+</ul>
+<p>不管是把整个网站复制下来还是实时浏览网站，都要关注细节。一开始就应该不断总结记录你在目标网站中找到的信息，比如物理地址、电子邮箱、商业关系(伙伴关系)、员工的姓名、与社会化媒体的联系等等。</p>
+<h3 id="进入被动侦察"><a href="#进入被动侦察" class="headerlink" title="进入被动侦察"></a>进入被动侦察</h3><p>有了目标的基本信息以后，就可以进入被动侦察阶段，被动侦察不会向目标系统发送任何数据包，在被动侦察中，我们所要用到的一个武器是互联网。首先要做的是利用各个搜索引擎对目标进行地毯式地搜索。(推荐使用google)</p>
+<h2 id="The-Harvester：挖掘并利用邮箱地址"><a href="#The-Harvester：挖掘并利用邮箱地址" class="headerlink" title="The Harvester：挖掘并利用邮箱地址"></a>The Harvester：挖掘并利用邮箱地址</h2><ul>
+<li>The Harvester可用于搜索Google/Bing/PGP服务器的电子邮件、主机以及子域名。还能搜索LinkedIn的用户名。</li>
+<li>Kali本身已经内置了The Harvester。</li>
+</ul>
+<h3 id="使用The-Harvester"><a href="#使用The-Harvester" class="headerlink" title="使用The Harvester"></a>使用The Harvester</h3><p>在终端输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester //启动theharvester,界面会展示相关参数及用法</span><br></pre></td></tr></table></figure>
+
+<p>在终端输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theharvester -d qq.com -l 10 -b baidu</span><br></pre></td></tr></table></figure>
+<p>上述命令的解释：</p>
+<ul>
+<li><font color="#fb8c00">-d</font> 用来指定目标的域名(qq.com)</li>
+<li><font color="#fb8c00">-l</font> 用来限定搜索结果的数目(10)</li>
+<li><font color="#fb8c00">-b</font> 用来指定进行搜索的公共知识库(baidu)，如果不确定来源，可以选择使用<font color="#fb8c00">-b all</font>，同时搜索Harvester能够使用的知识库。</li>
+</ul>
+<p>以上命令将搜索关于qq.com的电子邮箱、子域名和主机。结果如下：<br><img src="https://i.postimg.cc/v8nCBBpH/1.jpg" alt="">                     <img src="https://i.postimg.cc/FsQ8Jv4b/2.jpg" alt=""><br>如果还想对<font color="#fb8c00">email.qq.com、m.v.qq.com</font>等子域名进行彻底侦察，则将上述命令中的<font color="#fb8c00">qq.com</font>替换成相应域名即可。</p>
+<h2 id="Whois"><a href="#Whois" class="headerlink" title="Whois"></a>Whois</h2><p>利用Whois，可以获取与目标相关的具体信息，包括IP地址，公司DNS主机名以及地址和电话号码等联系信息。</p>
+<h3 id="使用Whois"><a href="#使用Whois" class="headerlink" title="使用Whois"></a>使用Whois</h3><p>在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois target_domain   //target_domain为目标域名</span><br></pre></td></tr></table></figure>
+<p>如果要获取与百度相关的具体信息，则在命令行输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois baidu.com</span><br></pre></td></tr></table></figure>
+<p>所得到的结果如下：<br><img src="https://i.postimg.cc/QxkPQz82/3.jpg" alt=""></p>
+<blockquote>
+<p>注：需要特别留意DNS服务器。即上图中的(Name Server),可用下面所介绍的Host将其转换成IP地址。</p>
+</blockquote>
+<h2 id="Host工具"><a href="#Host工具" class="headerlink" title="Host工具"></a>Host工具</h2><p>做侦察时经常会收集到主机名，而不是IP地址。这时就需要<font color="#fb8c00">host</font>工具将IP地址翻译出来。<br>在终端中输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host target_domain</span><br></pre></td></tr></table></figure>
+<p>如果我们想把之前发现的baidu.com翻译为IP地址，可以在终端输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host baidu.com</span><br></pre></td></tr></table></figure>
+<p>也可以反过来将IP地址翻译为主机名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host IP_Address</span><br></pre></td></tr></table></figure>
+<p>可以使用以下命令查看Host帮助文档：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man host</span><br></pre></td></tr></table></figure>
+
+<h2 id="从DNS中提取信息"><a href="#从DNS中提取信息" class="headerlink" title="从DNS中提取信息"></a>从DNS中提取信息</h2><ul>
+<li>DNS(Domain Name Server,域名系统)：域名系统（服务）协议（DNS）是一种分布式网络目录服务，主要用于域名与IP 地址的相互转换，以及控制因特网的电子邮件的发送。(源于百度百科)</li>
+<li>DNS是本地网络和互联网的核心组件。它的一个用途就是负责将域名翻译成IP地址。对于人类而言<font color="#fb8c00">google.com</font>比<font color="#fb8c00"><a href="http://74.125.95.105" target="_blank" rel="noopener">http://74.125.95.105</a></font>好记，对于计算机则相反。DNS就在两者中充当翻译。</li>
+<li>DNS想要工作，必须首先掌握网络中每一台电脑的IP地址和对应域名。</li>
+<li>DNS服务器上包含了它所知道的所有设备的IP地址及其对应的域名的记录信息，许多网络部署了多台DNS服务器，以保证冗余或负载平衡。因此，多台DNS服务器之间需要进行信息共享。这个“共享”过程正是通过区域传输(zone transfer)实现的，区域传输通常也叫AXFR，在这个过程中，一台DNS服务器将其所有域名与IP映射发送到另一台DNS服务器。这一过程允许多台DNS服务器保持信息同步。即使我们无法进行区域传输，仍然有必要考察一下被授权范围内的DNS服务器</li>
+</ul>
+<h3 id="NS-Lookup"><a href="#NS-Lookup" class="headerlink" title="NS Lookup"></a>NS Lookup</h3><p>NS Looup是检查DNS的首选工具，这个工具能查询到DNS服务器，并可能获得DNS服务器知道的各种主机的记录。Kali中已经内置了NS Lookup。<br>NS Lookup可以在交互的模式下运行，也就是说，先启动这个程序，然后再输入特定参数使其运行的特点。所以在终端输入如下命令就可运行NS Lookup</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br></pre></td></tr></table></figure>
+<p>运行NS Lookup之后，我们输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server 8.8.8.8 //输入想查询的DNS服务器的IP地址</span><br></pre></td></tr></table></figure>
+<p>接着指明所要查询的记录类型。如果只想要查找一般性信息，可以使用关键字<font color="#fb8c00">any</font>，指定类型为任何类型：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=any  //一定要注意空格，否则会出错</span><br></pre></td></tr></table></figure>
+<p>如果你想查看DNS服务器的某些特殊信息，比如目标公司处理电子邮件的邮件服务器的IP地址(具体使用方法可以使用<font color="#fb8c00">man nslookup</font>命令查询)，就可以输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> <span class="built_in">type</span>=mx</span><br></pre></td></tr></table></figure>
+<p>假如你想知道百度处理邮件时用的邮件服务器，前面我们通过whois已经发现了百度的DNS服务器，现对其中一个进行操作：<br><img src="https://i.postimg.cc/P556mrFD/4.jpg" alt=""><br>其中最后显示的五项都为百度的邮件服务器。</p>
+<h2 id="筛选信息寻找可攻击的目标"><a href="#筛选信息寻找可攻击的目标" class="headerlink" title="筛选信息寻找可攻击的目标"></a>筛选信息寻找可攻击的目标</h2><p>整理信息时，建议创建一个简易的列表，用来集中记录收集到的IP地址。对于电子邮件地址、主机名称和URL地址等，还应该分别进行维护。仔细整理过手机来的侦察信息并把数据转换为可攻击的目标之后，我们就应该拥有一个IP列表，其中的IP地址就算不属于目标，至少也是相关的。<br>侦察阶段的最后一个是步骤是检查你所创建的IP列表，确认IP列表里的IP地址都在授权范围内。</p>
+<h3 id="Shodan"><a href="#Shodan" class="headerlink" title="Shodan"></a>Shodan</h3><p>搜集信息的网站博主推荐Shodan、ZoomEye、FOFA。下面对Shodan进行详细介绍：</p>
+<h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><ul>
+<li>Shodan是一个Internet连接设备的搜索引擎。Shodan搜集所有直接连接到Internet上的设备的信息，如果设备直接连接到Internet，则Shodan会查询该设备以获取各种公开可用的信息。</li>
+<li>Shodan的不部分数据来自banner,banner是有关设备上运行的软件的元数据。</li>
+</ul>
+<h4 id="搜索查询基础"><a href="#搜索查询基础" class="headerlink" title="搜索查询基础"></a>搜索查询基础</h4><p>设备运行服务，这些服务就是Shodan所收集的信息。网站托管在运行Web服务的设备上，Shodan将通过与该Web服务对话来收集信息。每个服务的信息都存储在一个名为banner的对象中。banner是Shodan搜集的基本数据单位，其中也包含你想要搜索的信息，一个简单的banner如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述banner有五个属性，每个属性都代表不同的含义：</p>
+<ul>
+<li><font color="#fb8c00">data</font> 服务本身的主要响应</li>
+<li><font color="#fb8c00">ip_str</font> 设备的IP地址</li>
+<li><font color="#fb8c00">port</font> 服务的端口号</li>
+<li><font color="#fb8c00">org</font> 拥有这个IP空间的组织</li>
+<li><font color="#fb8c00">location</font> 设备所在的位置</li>
+</ul>
+<p>Shodan默认只搜索data属性，data属性的内容因服务类型而不同，比如，下面是一个典型的HTTP banner：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: nginx/1.1.19</span><br><span class="line">Date: Sat, 03 Oct 2015 06:09:24 GMT</span><br><span class="line">Content-Type: text/html; charset=utf-8</span><br><span class="line">Content-Length: 6466</span><br><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure>
+<p>上述信息表示设备运行在版本号为1.1.19的配置Web服务软件上。</p>
+<p>下面是西门子S7工厂控制协议的banner:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Copyright: Original Siemens Equipment</span><br><span class="line">PLC name: S7_Turbine</span><br><span class="line">Module <span class="built_in">type</span>: CPU 313C</span><br><span class="line">Unknown (129): Boot Loader           A</span><br><span class="line">Module: 6ES7 313-5BG04-0AB0  v.0.3</span><br><span class="line">Basic Firmware: v.3.3.8</span><br><span class="line">Module name: CPU 313C</span><br><span class="line">Serial number of module: S Q-D9U083642013</span><br><span class="line">Plant identification: </span><br><span class="line">Basic Hardware: 6ES7 313-5BG04-0AB0  v.0.3</span><br></pre></td></tr></table></figure>
+<p>上述西门子S7协议提供了一个固件的信息。</p>
+<blockquote>
+<p>注：在利用Shodan进行搜索时，你必须先确定要搜索的设备类型，因为不同类型的banner之间的差别很大</p>
+</blockquote>
+<h4 id="搜索语法"><a href="#搜索语法" class="headerlink" title="搜索语法"></a>搜索语法</h4><p>以下述Moxa设备的banner为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"data"</span>: <span class="string">"Moxa Nport Device</span></span><br><span class="line"><span class="string">            Status: Authentication disabled</span></span><br><span class="line"><span class="string">            Name: NP5232I_4728</span></span><br><span class="line"><span class="string">            MAC: 00:90:e8:47:10:2d"</span>,</span><br><span class="line">    <span class="string">"ip_str"</span>: <span class="string">"46.252.132.235"</span>,</span><br><span class="line">    <span class="string">"port"</span>: 4800,</span><br><span class="line">    <span class="string">"org"</span>: <span class="string">"Starhub Mobile"</span>,</span><br><span class="line">    <span class="string">"location"</span>: &#123;</span><br><span class="line">        <span class="string">"country_code"</span>: <span class="string">"SG"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你想知道更多关于这个Moxa Nport设备的信息，一个简单的查询可以为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Moxa Nport</span><br></pre></td></tr></table></figure>
+<p>但是，如果你想搜索属于Starhub Mobile组织的所有设备，输入<font color="#fb8c00">Starhub Mobile</font>不会返回预期的结果，这是因为Shodan默认只搜索data属性的内容。</p>
+<h4 id="搜索过滤器"><a href="#搜索过滤器" class="headerlink" title="搜索过滤器"></a>搜索过滤器</h4><p>搜索过滤器是你告诉Shodan具体想要搜索什么信息的关键字，过滤器的组成如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filtername:value   //过滤器名与值之间没有空格</span><br></pre></td></tr></table></figure>
+<p>如果你想搜索在新加坡的所有设备可以使用以下查询：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">country:SG   //country只接收两个字母的国家代码</span><br></pre></td></tr></table></figure>
+<p>如果你想搜索在Starhub Mobile的所有设备可以使用以下查询：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span>  //如果查询的值之间有空格要使用引号将其包起来</span><br></pre></td></tr></table></figure>
+
+<p>过滤器也可以用来缩小查询范围，如，下面的查询将显示所有属于Starhub Mobile组织并且位于新加坡(城市)的所有设备：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org:<span class="string">"Starhub Mobile"</span> city:Singapore</span><br></pre></td></tr></table></figure>
+
+<h4 id="网站导航"><a href="#网站导航" class="headerlink" title="网站导航"></a>网站导航</h4><p>Shodan网站有三种类型的服务：</p>
+<ol>
+<li>Shodan(<a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a>)</li>
+<li>Shodan Maps(<a href="https://maps.shodan.io" target="_blank" rel="noopener">https://maps.shodan.io</a>)</li>
+<li>Shodan Images(<a href="https://images.shodan.io" target="_blank" rel="noopener">https://images.shodan.io</a>)<br>上述网站都访问相同的Shodan数据但是却能达到不同的目的。</li>
+</ol>
+<h5 id="Main-Shodan-Website"><a href="#Main-Shodan-Website" class="headerlink" title="Main Shodan Website"></a>Main Shodan Website</h5><p>访问Shodan收集到的数据的最主要接口，是访问<a href="https://www.shodan.io" target="_blank" rel="noopener">https://www.shodan.io</a> ，搜索默认会查询过去30天内的结果<br>除了搜索，该网站该提供以下功能</p>
+<ol>
+<li>下载数据<br>搜索完成后，可以通过菜单栏的Download Results导出搜索得到的数据(如下图)<br><img src="https://i.postimg.cc/L8QxvKrb/5.jpg" alt=""><br>并且可以导出为不同的文件格式</li>
+</ol>
+<ul>
+<li>JSON文件包含Shodan收集到的整个banner和所有元数据，这是首选的导出文件格式，因为它包含了所有有用信息，并且JSON文件与Shodan命令行客户端兼容，这意味着你可以从Shodan下载数据并利用终端进行进一步加工。</li>
+<li>在你只关心banner基本信息并且需要快速下载这些信息并导出为外部文件(如Excel)时，将数据导出为CSV文件最合适。</li>
+<li>XML文件是被弃用的导出文件格式，除非你有软件必须依赖于XML文件的数据，否则不要使用它<br>下载数据需要消耗export credits(需要进行购买)。</li>
+</ul>
+<ol start="2">
+<li><p>生成报告<br>网站允许你根据查询的结果生成报告，报告通过图表的形式向你展示结果的分布情况。该功能是免费的，可以通过菜单Download Results旁边的Create Report来实现。报告是根据目前的数据生成的，报告一旦生成就不会改变。</p>
+</li>
+<li><p>可以在社区(Explore)与其他人交流分享在Shodan获得的经验与方法。(注意不要分享违法敏感信息)</p>
+</li>
+</ol>
+<blockquote>
+<p>注：Shodan CLI能将shodan JSON数据文件转换为Excel电子表格</p>
+</blockquote>
+<h5 id="Shodan-Maps"><a href="#Shodan-Maps" class="headerlink" title="Shodan Maps"></a>Shodan Maps</h5><ul>
+<li>Shodan Maps以图形化的形式呈现搜索结果，它一次呈现1000条结果。</li>
+<li>在上面介绍过的过滤器在此模块仍然适用</li>
+</ul>
+<blockquote>
+<p>注：可在kali的metasploit中直接使用shodan</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://fightingtree.github.io/2019/11/13/penetrationTest2/" data-id="ck5ewyp070030i8tw0f9uhus4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/11/14/penetrationTest3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          渗透测试(3)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/13/penetrationTest1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">渗透测试(1)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">工具使用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">编程思想</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/">编程语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Burp-Suite/" rel="tag">Burp Suite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/" rel="tag">HTML</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kali/" rel="tag">Kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Metasploit/" rel="tag">Metasploit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OOP/" rel="tag">OOP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OWASP/" rel="tag">OWASP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/" rel="tag">PHP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Qt/" rel="tag">Qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/" rel="tag">github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kali/" rel="tag">kali</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phpStudy/" rel="tag">phpStudy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/socket/" rel="tag">socket</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" rel="tag">嵌入式开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" rel="tag">渗透测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Burp-Suite/" style="font-size: 10px;">Burp Suite</a> <a href="/tags/C/" style="font-size: 17px;">C</a> <a href="/tags/CSS/" style="font-size: 11px;">CSS</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Kali/" style="font-size: 13px;">Kali</a> <a href="/tags/Metasploit/" style="font-size: 10px;">Metasploit</a> <a href="/tags/OOP/" style="font-size: 11px;">OOP</a> <a href="/tags/OWASP/" style="font-size: 10px;">OWASP</a> <a href="/tags/PHP/" style="font-size: 10px;">PHP</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/Qt/" style="font-size: 14px;">Qt</a> <a href="/tags/Web/" style="font-size: 19px;">Web</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/javascript/" style="font-size: 13px;">javascript</a> <a href="/tags/kali/" style="font-size: 10px;">kali</a> <a href="/tags/phpStudy/" style="font-size: 10px;">phpStudy</a> <a href="/tags/socket/" style="font-size: 11px;">socket</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 20px;">安全</a> <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">嵌入式开发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 12px;">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" style="font-size: 16px;">渗透测试</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 15px;">计算机网络</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/12/08/python7/">Python(7)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/05/Python6/">Python(6)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network3/">无线网络</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/01/network2/">网络安全</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/26/FTP/">FTP溢出漏洞分析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 fightingtree<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
