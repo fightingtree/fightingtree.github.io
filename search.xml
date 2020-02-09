@@ -173,33 +173,6 @@
     
     
     <entry>
-      <title>Sqlmap</title>
-      <link href="/2019/11/18/sqlmap/"/>
-      <url>/2019/11/18/sqlmap/</url>
-      
-        <content type="html"><![CDATA[<h2 id="Sqlmap"><a href="#Sqlmap" class="headerlink" title="Sqlmap"></a>Sqlmap</h2><p>Sqlmap是一个开源的渗透测试工具，它可以自动化检测和利用SQL注入缺陷以及接管数据库服务器的过程。它有一个强大的检测引擎，许多适合于终极渗透测试的小众特性和广泛开关，从数据库指纹、从数据库获取数据到访问底层文件系统和通过带外连接在操作系统上执行命令</p><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>需要Python环境，建议在官网进行下载，下载完毕后解压进入到sqlmap文件夹内，找到sqlmap.py文件，在此位置打开终端，输入以下命令启动sqlmap:</p><pre class=" language-bash"><code class="language-bash">python sqlmap.py</code></pre><p>输入以下命令查看帮助：</p><pre class=" language-bash"><code class="language-bash">python sqlmap.py -hpython sqlmap.py -hh  <span class="token comment" spellcheck="true">#查看高级帮助</span></code></pre><blockquote><p>注：kali中已经内置sqlmap，直接使用sqlmap启动即可</p></blockquote><h2 id="Sqlmap确定目标"><a href="#Sqlmap确定目标" class="headerlink" title="Sqlmap确定目标"></a>Sqlmap确定目标</h2><h3 id="Sqlmap直连数据库"><a href="#Sqlmap直连数据库" class="headerlink" title="Sqlmap直连数据库"></a>Sqlmap直连数据库</h3><h4 id="服务型数据库"><a href="#服务型数据库" class="headerlink" title="服务型数据库"></a>服务型数据库</h4><p>前提：知道数据库的用户名和密码<br>Sqlmap支持直连数据库,通过以下命令来直连：</p><pre class=" language-bash"><code class="language-bash">python sqlmap.py -d <span class="token string">"mysql://admin:admin@192.168.21.17:3360/testdb"</span> -f --banner --dbs --users</code></pre><ul><li><font color="#fb8c00">-d</font> 直连</li><li><font color="#fb8c00">DBMS://用户名:密码@目标IP地址：端口号/数据库名称</font></li><li><font color="#fb8c00">-f –参数1 –参数2</font>获取数据库相应信息</li></ul><h3 id="Sqlmap-URL探测"><a href="#Sqlmap-URL探测" class="headerlink" title="Sqlmap URL探测"></a>Sqlmap URL探测</h3>]]></content>
-      
-      
-      <categories>
-          
-          <category> 工具使用 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 安全 </tag>
-            
-            <tag> 渗透测试 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>渗透测试(4)</title>
       <link href="/2019/11/17/penetrationtest4/"/>
       <url>/2019/11/17/penetrationtest4/</url>
