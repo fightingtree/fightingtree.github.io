@@ -5,14 +5,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="恶意代码分析, FightingTree">
-    <meta name="description" content="系统引导过程系统引导与恶意软件的关系恶意软件如何再次获得控制权：
+    <meta name="description" content="磁盘结构与组织磁盘分为两种：软盘(Diskette)和硬盘(Fixed Disk)。
 
-自身被结束之后
-操作系统重启之后
-操作系统重装之后
-硬盘更换之后
+扇区：每个磁道分为若干扇区(Sector)，每个扇区可以放512字节的数据。
 
-BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在">
+磁道磁盘格式化时被分成若干个同心圆，称为磁道。每条磁道由首部、18个扇区">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -388,6 +385,10 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在">
                                 <span class="chip bg-color">安全</span>
                             </a>
                         
+                            <a href="/tags/DOS/" target="_blank">
+                                <span class="chip bg-color">DOS</span>
+                            </a>
+                        
                             <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" target="_blank">
                                 <span class="chip bg-color">逆向工程</span>
                             </a>
@@ -419,14 +420,14 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        916
+                        1.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -442,77 +443,51 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="系统引导过程"><a href="#系统引导过程" class="headerlink" title="系统引导过程"></a>系统引导过程</h2><h3 id="系统引导与恶意软件的关系"><a href="#系统引导与恶意软件的关系" class="headerlink" title="系统引导与恶意软件的关系"></a>系统引导与恶意软件的关系</h3><p>恶意软件如何再次获得控制权：</p>
+                <h2 id="磁盘结构与组织"><a href="#磁盘结构与组织" class="headerlink" title="磁盘结构与组织"></a>磁盘结构与组织</h2><p>磁盘分为两种：软盘(Diskette)和硬盘(Fixed Disk)。</p>
 <ul>
-<li>自身被结束之后</li>
-<li>操作系统重启之后</li>
-<li>操作系统重装之后</li>
-<li>硬盘更换之后</li>
+<li>扇区：每个磁道分为若干扇区(Sector)，每个扇区可以放512字节的数据。</li>
 </ul>
-<h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>BIOS(Basic Input and Output System,基本输入输出系统)，存储在主板BIOS Flash(或ROM)芯片上，为计算机提供最底层的、最直接的硬件设置和控制。计算机重启或开机之后，首先是BIOS获得计算机控制权，再与计算机操作系统进行对接。</p>
-<h4 id="BIOS引导模式"><a href="#BIOS引导模式" class="headerlink" title="BIOS引导模式"></a>BIOS引导模式</h4><ol>
-<li>传统BIOS模式</li>
-<li>UEFI(Unified Extensible Firmware Interface,统一可扩展固件接口)</li>
-</ol>
-<h5 id="两种模式下的启动流程"><a href="#两种模式下的启动流程" class="headerlink" title="两种模式下的启动流程"></a>两种模式下的启动流程</h5><ol>
-<li>传统BIOS引导：开机-&gt;BIOS引导-&gt;POST自检-&gt;MBR(硬盘第一个扇区，主引导扇区，硬盘主引导程序)-&gt;DBR(活动分区引导程序)-&gt;bootmgr(或NTLDR，操作系统引导)-&gt;读取BCD(或boot.ini)-&gt;启动对应的系统</li>
-<li>UEFI BIOS引导：开机-&gt;BIOS初始化-&gt;启动ESP分区管理器(EFI分区bootxxx.efi)-&gt;加载BCD-&gt;调用对应系统盘winload.efi-&gt;启动对应系统</li>
-</ol>
-<h4 id="BIOS的自检与初始化工作"><a href="#BIOS的自检与初始化工作" class="headerlink" title="BIOS的自检与初始化工作"></a>BIOS的自检与初始化工作</h4><p>任务：检测系统中的一些关键设备(如内存或显卡)是否存在和能否正常工作，进行初始化，并将控制权交给后续引导程序。</p>
+<h3 id="磁道"><a href="#磁道" class="headerlink" title="磁道"></a>磁道</h3><p>磁盘格式化时被分成若干个同心圆，称为磁道。每条磁道由首部、18个扇区、尾部构成。</p>
 <ul>
-<li>可以根据用户指定的顺序从软盘、硬盘或光驱启动。如果从硬盘启动，则将控制权交给硬盘主引导程序。</li>
+<li>首部：首部是允许一定的定位误差间隔</li>
+<li>尾部：为了防止不同驱动器对软盘格式化时快速的变化</li>
 </ul>
-<h3 id="硬盘主引导程序"><a href="#硬盘主引导程序" class="headerlink" title="硬盘主引导程序"></a>硬盘主引导程序</h3><p>MBR(Master Boot Record)，硬盘第一个分区</p>
-<h4 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h4><ul>
-<li>通过主分区表定位活动分区</li>
-<li>装载活动分区的引导程序，并移交控制权</li>
-</ul>
-<h3 id="活动分区引导程序"><a href="#活动分区引导程序" class="headerlink" title="活动分区引导程序"></a>活动分区引导程序</h3><p>DBR(DOS Boot Record),或称OBR(OS Boot Record),或称分区引导记录(PBR,Partition Boot Record),分区的第一个扇区</p>
-<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>加载操作系统引导程序(如Windows XP系统的那NTLDR)</p>
-<h3 id="操作系统引导"><a href="#操作系统引导" class="headerlink" title="操作系统引导"></a>操作系统引导</h3><p>以Winodws NTLDR为例：</p>
-<ol>
-<li>将处理器从16位内存模式扩展为32(64)位内存模式</li>
-<li>启动小型文件系统驱动，以识别FAT32和NTFS文件系统</li>
-<li>读取boot.ini，进行多操作系统选择(或hiberfil.sys恢复休眠)</li>
-<li>检测和配置硬件</li>
-</ol>
-<h5 id="系统内核引导"><a href="#系统内核引导" class="headerlink" title="系统内核引导"></a>系统内核引导</h5><ol start="5">
-<li>NTLDR加载内核程序NTOSKRNL.EXE以及硬件抽象层HAL.dll等</li>
-<li>读取并加载HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet下指定的驱动程序</li>
-<li>NTLDR将把控制权传递给NTOSKRNL.EXE，至此引导过程结束。</li>
-</ol>
-<h3 id="Windows系统装载"><a href="#Windows系统装载" class="headerlink" title="Windows系统装载"></a>Windows系统装载</h3><ol>
-<li>创建系统环境变量</li>
-<li>启动Win32.sys(Windows子系统的内核模式部分)</li>
-<li>启动csrss.exe(Windows子系统的用户模式部分)</li>
-<li>启动winlogon.exe<br>屏幕显示：Windows logo界面和进度条</li>
-</ol>
-<h4 id="登录阶段"><a href="#登录阶段" class="headerlink" title="登录阶段"></a>登录阶段</h4><ol>
-<li>启动需要自动启动的Windows服务</li>
-<li>启动本地安全认证Lsass.exe</li>
-<li>显示登录界面</li>
-</ol>
-<h4 id="Windows登录之后"><a href="#Windows登录之后" class="headerlink" title="Windows登录之后"></a>Windows登录之后</h4><p>系统启动当前用户环境下的自启动项程序</p>
+<h3 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h3><p>每个磁道分为若干扇区(Sector)，每个扇区可以放512字节的数据。每个扇区由四个部分组成：</p>
 <ul>
-<li>注册表特定键值</li>
-<li>特定目录(如startup)等<br>用户触发和执行各类程序</li>
+<li>标识区(ID区)：标识扇区的开始和记录目标地址的信息</li>
+<li>间隙：保护数据</li>
+<li>数据区：记录数据</li>
+<li>间隙：同上述间隙</li>
 </ul>
-<h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p>硬盘是控制代码的静态存储仓库，恶意软件争夺控制权的中心。</p>
-<h3 id="硬盘的结构"><a href="#硬盘的结构" class="headerlink" title="硬盘的结构"></a>硬盘的结构</h3><ul>
-<li>主引导扇区</li>
-<li>基本分区</li>
-<li>扩展分区</li>
-</ul>
-<h3 id="硬盘的逻辑结构"><a href="#硬盘的逻辑结构" class="headerlink" title="硬盘的逻辑结构"></a>硬盘的逻辑结构</h3><h4 id="主引导扇区"><a href="#主引导扇区" class="headerlink" title="主引导扇区"></a>主引导扇区</h4><p>位于整个硬盘的0柱面0磁头1扇区(硬盘的第一个扇区)</p>
+<h3 id="物理扇区和逻辑扇区"><a href="#物理扇区和逻辑扇区" class="headerlink" title="物理扇区和逻辑扇区"></a>物理扇区和逻辑扇区</h3><p>磁盘的扇区定位可以通过两种方式实现：物理扇区和逻辑扇区</p>
+<h4 id="物理扇区"><a href="#物理扇区" class="headerlink" title="物理扇区"></a>物理扇区</h4><p>物理扇区是指某个扇区在磁盘上的绝对位置，由驱动器号、面号、磁道号、扇区号4个参数组成</p>
+<h4 id="逻辑扇区"><a href="#逻辑扇区" class="headerlink" title="逻辑扇区"></a>逻辑扇区</h4><p>逻辑扇区是指一张盘片上的所有扇区按扇区的访问顺序进行统一顺序编号，这个编号就称为逻辑扇区或相对扇区。</p>
+<h4 id="换算关系"><a href="#换算关系" class="headerlink" title="换算关系"></a>换算关系</h4><p>逻辑扇区号(十进制) = (道号X总面数+面号)X每道扇区数+扇区号-系统隐藏扇区数-1<br>其中，系统隐藏扇区为在DOS区前非DOS使用的扇区数，软盘为0，硬盘为17</p>
+<h4 id="簇"><a href="#簇" class="headerlink" title="簇"></a>簇</h4><p>DOS系统分配磁盘存储空间的最小单位是簇，一个簇由几个连续的逻辑扇区组成。</p>
+<h2 id="DOS磁盘组织"><a href="#DOS磁盘组织" class="headerlink" title="DOS磁盘组织"></a>DOS磁盘组织</h2><p>DOS系统格式化的软盘由4个部分组成：引导扇区、文件分配表FAT、文件目录表FDT、数据区</p>
+<h3 id="引导扇区"><a href="#引导扇区" class="headerlink" title="引导扇区"></a>引导扇区</h3><p>Boot Area,位于逻辑0扇区处，即软盘的0面0道1扇区上，由FORMAT.COM程序格式化磁盘时形成。其主要功能是完成DOS系统的启动。引导扇区由3个主要部分组成:</p>
 <ul>
-<li>MBR引导程序：占了前446个字节(偏移0H-1BDH)</li>
-<li>DPT(硬盘分区表)：随后的64字节</li>
-<li>结束标志：最后的两个字节55AA(便宜1FEH-1FFH)<br><img src="https://i.postimg.cc/7hz80SDz/1.png" alt=""></li>
+<li>磁盘基本输入输出参数块BPB：在引导扇区位移0B-1CH处,是长度为19个字节的BPB。BPB最后三个字节，从位移18H开始，说明磁盘的每道扇区数、磁头个数、隐藏扇区数，它们是给磁盘驱动程序使用的。</li>
+<li>磁盘基数表： 对DOS引导盘，从引导扇区的位移21H开始的11个字节为磁盘基数表，它主要供磁盘驱动器硬件操作时使用</li>
+<li>引导记录程序</li>
 </ul>
-<h4 id="DPT分区项"><a href="#DPT分区项" class="headerlink" title="DPT分区项"></a>DPT分区项</h4><p>DPT的4个分区项：</p>
-<ol>
-<li>第一个分区是主分区：</li>
-</ol>
+<h3 id="文件分配表FAT"><a href="#文件分配表FAT" class="headerlink" title="文件分配表FAT"></a>文件分配表FAT</h3><p>FAT是DOS的一个重要数据表格，从逻辑1扇区开始，它存放每个文件在磁盘上的分布信息。磁盘上有两个完全相同的文件分配表，FAT1和FAT2,FAT2是FAT1的备份，是为了防止FAT1被破坏而特意设置的。</p>
+<h3 id="文件目录表FDT"><a href="#文件目录表FDT" class="headerlink" title="文件目录表FDT"></a>文件目录表FDT</h3><p>它记录根目录下每一个磁盘文件的文件名、扩展名、生成时间、文件长度等信息</p>
+<h3 id="数据区"><a href="#数据区" class="headerlink" title="数据区"></a>数据区</h3><p>除了上述三个区域外，磁盘剩余的空间都用来存储程序和数据。</p>
+<h3 id="软盘"><a href="#软盘" class="headerlink" title="软盘"></a>软盘</h3><p>软盘容量计算：磁道数X每个磁道扇区数X扇区可存储数据面数X512(可移动U盘)</p>
+<h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p>硬盘容量=柱面数X扇区数X每扇区字节数X磁头数</p>
+<h3 id="硬盘的数据组织"><a href="#硬盘的数据组织" class="headerlink" title="硬盘的数据组织"></a>硬盘的数据组织</h3><p>硬盘系统可以划分为几个分区，用以支持DOS以外的操作系统。硬盘最多可分为4个分区，每个分区可以具有不同大小的存储空间，但每个分区分配的存储空间是连续的。每一种操作系统在硬盘上建立的分区，操作时都由一个自己特有的实用程序来完成。DOS分区的实用程序为FDISK.COM</p>
+<h3 id="硬盘数据分区"><a href="#硬盘数据分区" class="headerlink" title="硬盘数据分区"></a>硬盘数据分区</h3><p>硬盘初始化时，可根据用户选择的地址和大小建立一个或几个用于DOS的区域。经过分区后，在硬盘上就建立了一个硬盘的主引导扇区和几个分区(不大于4个)：<br><img src="https://i.postimg.cc/hth3KyvY/1.png" alt=""></p>
+<h4 id="主引导扇区"><a href="#主引导扇区" class="headerlink" title="主引导扇区"></a>主引导扇区</h4><p>主引导扇区位于硬盘0面0柱1扇区，它是硬盘上的第一物理扇区。组成：</p>
+<ul>
+<li>主引导程序(位移量000H-1BDH)：用于硬盘启动时将系统控制转给用户指定的并在分区中登记了的某个操作系统区</li>
+<li>分区表(位移量1BEH-1FDH):用于指明硬盘划分的情况，含4个可能的分区，每个分区的记录占用16个字节，由FDISK.COM程序建立<br>主引导扇区的最后两个字节(位移量1FE-1FFH)：”55AA”为其结束标志。</li>
+</ul>
+<p>主引导扇区存放硬盘的主引导记录。硬盘主引导记录包括三个方面的内容：</p>
+<ul>
+<li>主引导程序代码：用来找出系统当前的活动分区，负责把对应的一个操作系统的引导记录(当前活动分区的引导记录)装入内存，然后把控制权转给该分区的引导记录。</li>
+<li>分区表：从位移量1BEH开始的64个字节是硬盘分区表</li>
+</ul>
 
             </div>
             <hr/>
@@ -628,14 +603,7 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在">
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            系统引导过程系统引导与恶意软件的关系恶意软件如何再次获得控制权：
-
-自身被结束之后
-操作系统重启之后
-操作系统重装之后
-硬盘更换之后
-
-BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在
+                            DOS基本系统知识
                         
                     </div>
                     <div class="publish-info">
@@ -660,6 +628,10 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在
                     
                     <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
                         <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/DOS/" target="_blank">
+                        <span class="chip bg-color">DOS</span>
                     </a>
                     
                     <a href="/tags/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/" target="_blank">
@@ -881,7 +853,7 @@ BIOSBIOS(Basic Input and Output System,基本输入输出系统)，存储在
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">175.8k</span>
+                <span class="white-color">176.2k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

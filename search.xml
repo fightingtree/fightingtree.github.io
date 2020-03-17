@@ -8,7 +8,7 @@
       <link href="/2020/03/11/reverse/"/>
       <url>/2020/03/11/reverse/</url>
       
-        <content type="html"><![CDATA[<h2 id="系统引导过程"><a href="#系统引导过程" class="headerlink" title="系统引导过程"></a>系统引导过程</h2><h3 id="系统引导与恶意软件的关系"><a href="#系统引导与恶意软件的关系" class="headerlink" title="系统引导与恶意软件的关系"></a>系统引导与恶意软件的关系</h3><p>恶意软件如何再次获得控制权：</p><ul><li>自身被结束之后</li><li>操作系统重启之后</li><li>操作系统重装之后</li><li>硬盘更换之后</li></ul><h3 id="BIOS"><a href="#BIOS" class="headerlink" title="BIOS"></a>BIOS</h3><p>BIOS(Basic Input and Output System,基本输入输出系统)，存储在主板BIOS Flash(或ROM)芯片上，为计算机提供最底层的、最直接的硬件设置和控制。计算机重启或开机之后，首先是BIOS获得计算机控制权，再与计算机操作系统进行对接。</p><h4 id="BIOS引导模式"><a href="#BIOS引导模式" class="headerlink" title="BIOS引导模式"></a>BIOS引导模式</h4><ol><li>传统BIOS模式</li><li>UEFI(Unified Extensible Firmware Interface,统一可扩展固件接口)</li></ol><h5 id="两种模式下的启动流程"><a href="#两种模式下的启动流程" class="headerlink" title="两种模式下的启动流程"></a>两种模式下的启动流程</h5><ol><li>传统BIOS引导：开机-&gt;BIOS引导-&gt;POST自检-&gt;MBR(硬盘第一个扇区，主引导扇区，硬盘主引导程序)-&gt;DBR(活动分区引导程序)-&gt;bootmgr(或NTLDR，操作系统引导)-&gt;读取BCD(或boot.ini)-&gt;启动对应的系统</li><li>UEFI BIOS引导：开机-&gt;BIOS初始化-&gt;启动ESP分区管理器(EFI分区bootxxx.efi)-&gt;加载BCD-&gt;调用对应系统盘winload.efi-&gt;启动对应系统</li></ol><h4 id="BIOS的自检与初始化工作"><a href="#BIOS的自检与初始化工作" class="headerlink" title="BIOS的自检与初始化工作"></a>BIOS的自检与初始化工作</h4><p>任务：检测系统中的一些关键设备(如内存或显卡)是否存在和能否正常工作，进行初始化，并将控制权交给后续引导程序。</p><ul><li>可以根据用户指定的顺序从软盘、硬盘或光驱启动。如果从硬盘启动，则将控制权交给硬盘主引导程序。</li></ul><h3 id="硬盘主引导程序"><a href="#硬盘主引导程序" class="headerlink" title="硬盘主引导程序"></a>硬盘主引导程序</h3><p>MBR(Master Boot Record)，硬盘第一个分区</p><h4 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h4><ul><li>通过主分区表定位活动分区</li><li>装载活动分区的引导程序，并移交控制权</li></ul><h3 id="活动分区引导程序"><a href="#活动分区引导程序" class="headerlink" title="活动分区引导程序"></a>活动分区引导程序</h3><p>DBR(DOS Boot Record),或称OBR(OS Boot Record),或称分区引导记录(PBR,Partition Boot Record),分区的第一个扇区</p><h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>加载操作系统引导程序(如Windows XP系统的那NTLDR)</p><h3 id="操作系统引导"><a href="#操作系统引导" class="headerlink" title="操作系统引导"></a>操作系统引导</h3><p>以Winodws NTLDR为例：</p><ol><li>将处理器从16位内存模式扩展为32(64)位内存模式</li><li>启动小型文件系统驱动，以识别FAT32和NTFS文件系统</li><li>读取boot.ini，进行多操作系统选择(或hiberfil.sys恢复休眠)</li><li>检测和配置硬件</li></ol><h5 id="系统内核引导"><a href="#系统内核引导" class="headerlink" title="系统内核引导"></a>系统内核引导</h5><ol start="5"><li>NTLDR加载内核程序NTOSKRNL.EXE以及硬件抽象层HAL.dll等</li><li>读取并加载HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet下指定的驱动程序</li><li>NTLDR将把控制权传递给NTOSKRNL.EXE，至此引导过程结束。</li></ol><h3 id="Windows系统装载"><a href="#Windows系统装载" class="headerlink" title="Windows系统装载"></a>Windows系统装载</h3><ol><li>创建系统环境变量</li><li>启动Win32.sys(Windows子系统的内核模式部分)</li><li>启动csrss.exe(Windows子系统的用户模式部分)</li><li>启动winlogon.exe<br>屏幕显示：Windows logo界面和进度条</li></ol><h4 id="登录阶段"><a href="#登录阶段" class="headerlink" title="登录阶段"></a>登录阶段</h4><ol><li>启动需要自动启动的Windows服务</li><li>启动本地安全认证Lsass.exe</li><li>显示登录界面</li></ol><h4 id="Windows登录之后"><a href="#Windows登录之后" class="headerlink" title="Windows登录之后"></a>Windows登录之后</h4><p>系统启动当前用户环境下的自启动项程序</p><ul><li>注册表特定键值</li><li>特定目录(如startup)等<br>用户触发和执行各类程序</li></ul><h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p>硬盘是控制代码的静态存储仓库，恶意软件争夺控制权的中心。</p><h3 id="硬盘的结构"><a href="#硬盘的结构" class="headerlink" title="硬盘的结构"></a>硬盘的结构</h3><ul><li>主引导扇区</li><li>基本分区</li><li>扩展分区</li></ul><h3 id="硬盘的逻辑结构"><a href="#硬盘的逻辑结构" class="headerlink" title="硬盘的逻辑结构"></a>硬盘的逻辑结构</h3><h4 id="主引导扇区"><a href="#主引导扇区" class="headerlink" title="主引导扇区"></a>主引导扇区</h4><p>位于整个硬盘的0柱面0磁头1扇区(硬盘的第一个扇区)</p><ul><li>MBR引导程序：占了前446个字节(偏移0H-1BDH)</li><li>DPT(硬盘分区表)：随后的64字节</li><li>结束标志：最后的两个字节55AA(便宜1FEH-1FFH)<br><img src="https://i.postimg.cc/7hz80SDz/1.png" alt=""></li></ul><h4 id="DPT分区项"><a href="#DPT分区项" class="headerlink" title="DPT分区项"></a>DPT分区项</h4><p>DPT的4个分区项：</p><ol><li>第一个分区是主分区：</li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="磁盘结构与组织"><a href="#磁盘结构与组织" class="headerlink" title="磁盘结构与组织"></a>磁盘结构与组织</h2><p>磁盘分为两种：软盘(Diskette)和硬盘(Fixed Disk)。</p><ul><li>扇区：每个磁道分为若干扇区(Sector)，每个扇区可以放512字节的数据。</li></ul><h3 id="磁道"><a href="#磁道" class="headerlink" title="磁道"></a>磁道</h3><p>磁盘格式化时被分成若干个同心圆，称为磁道。每条磁道由首部、18个扇区、尾部构成。</p><ul><li>首部：首部是允许一定的定位误差间隔</li><li>尾部：为了防止不同驱动器对软盘格式化时快速的变化</li></ul><h3 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h3><p>每个磁道分为若干扇区(Sector)，每个扇区可以放512字节的数据。每个扇区由四个部分组成：</p><ul><li>标识区(ID区)：标识扇区的开始和记录目标地址的信息</li><li>间隙：保护数据</li><li>数据区：记录数据</li><li>间隙：同上述间隙</li></ul><h3 id="物理扇区和逻辑扇区"><a href="#物理扇区和逻辑扇区" class="headerlink" title="物理扇区和逻辑扇区"></a>物理扇区和逻辑扇区</h3><p>磁盘的扇区定位可以通过两种方式实现：物理扇区和逻辑扇区</p><h4 id="物理扇区"><a href="#物理扇区" class="headerlink" title="物理扇区"></a>物理扇区</h4><p>物理扇区是指某个扇区在磁盘上的绝对位置，由驱动器号、面号、磁道号、扇区号4个参数组成</p><h4 id="逻辑扇区"><a href="#逻辑扇区" class="headerlink" title="逻辑扇区"></a>逻辑扇区</h4><p>逻辑扇区是指一张盘片上的所有扇区按扇区的访问顺序进行统一顺序编号，这个编号就称为逻辑扇区或相对扇区。</p><h4 id="换算关系"><a href="#换算关系" class="headerlink" title="换算关系"></a>换算关系</h4><p>逻辑扇区号(十进制) = (道号X总面数+面号)X每道扇区数+扇区号-系统隐藏扇区数-1<br>其中，系统隐藏扇区为在DOS区前非DOS使用的扇区数，软盘为0，硬盘为17</p><h4 id="簇"><a href="#簇" class="headerlink" title="簇"></a>簇</h4><p>DOS系统分配磁盘存储空间的最小单位是簇，一个簇由几个连续的逻辑扇区组成。</p><h2 id="DOS磁盘组织"><a href="#DOS磁盘组织" class="headerlink" title="DOS磁盘组织"></a>DOS磁盘组织</h2><p>DOS系统格式化的软盘由4个部分组成：引导扇区、文件分配表FAT、文件目录表FDT、数据区</p><h3 id="引导扇区"><a href="#引导扇区" class="headerlink" title="引导扇区"></a>引导扇区</h3><p>Boot Area,位于逻辑0扇区处，即软盘的0面0道1扇区上，由FORMAT.COM程序格式化磁盘时形成。其主要功能是完成DOS系统的启动。引导扇区由3个主要部分组成:</p><ul><li>磁盘基本输入输出参数块BPB：在引导扇区位移0B-1CH处,是长度为19个字节的BPB。BPB最后三个字节，从位移18H开始，说明磁盘的每道扇区数、磁头个数、隐藏扇区数，它们是给磁盘驱动程序使用的。</li><li>磁盘基数表： 对DOS引导盘，从引导扇区的位移21H开始的11个字节为磁盘基数表，它主要供磁盘驱动器硬件操作时使用</li><li>引导记录程序</li></ul><h3 id="文件分配表FAT"><a href="#文件分配表FAT" class="headerlink" title="文件分配表FAT"></a>文件分配表FAT</h3><p>FAT是DOS的一个重要数据表格，从逻辑1扇区开始，它存放每个文件在磁盘上的分布信息。磁盘上有两个完全相同的文件分配表，FAT1和FAT2,FAT2是FAT1的备份，是为了防止FAT1被破坏而特意设置的。</p><h3 id="文件目录表FDT"><a href="#文件目录表FDT" class="headerlink" title="文件目录表FDT"></a>文件目录表FDT</h3><p>它记录根目录下每一个磁盘文件的文件名、扩展名、生成时间、文件长度等信息</p><h3 id="数据区"><a href="#数据区" class="headerlink" title="数据区"></a>数据区</h3><p>除了上述三个区域外，磁盘剩余的空间都用来存储程序和数据。</p><h3 id="软盘"><a href="#软盘" class="headerlink" title="软盘"></a>软盘</h3><p>软盘容量计算：磁道数X每个磁道扇区数X扇区可存储数据面数X512(可移动U盘)</p><h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><p>硬盘容量=柱面数X扇区数X每扇区字节数X磁头数</p><h3 id="硬盘的数据组织"><a href="#硬盘的数据组织" class="headerlink" title="硬盘的数据组织"></a>硬盘的数据组织</h3><p>硬盘系统可以划分为几个分区，用以支持DOS以外的操作系统。硬盘最多可分为4个分区，每个分区可以具有不同大小的存储空间，但每个分区分配的存储空间是连续的。每一种操作系统在硬盘上建立的分区，操作时都由一个自己特有的实用程序来完成。DOS分区的实用程序为FDISK.COM</p><h3 id="硬盘数据分区"><a href="#硬盘数据分区" class="headerlink" title="硬盘数据分区"></a>硬盘数据分区</h3><p>硬盘初始化时，可根据用户选择的地址和大小建立一个或几个用于DOS的区域。经过分区后，在硬盘上就建立了一个硬盘的主引导扇区和几个分区(不大于4个)：<br><img src="https://i.postimg.cc/hth3KyvY/1.png" alt=""></p><h4 id="主引导扇区"><a href="#主引导扇区" class="headerlink" title="主引导扇区"></a>主引导扇区</h4><p>主引导扇区位于硬盘0面0柱1扇区，它是硬盘上的第一物理扇区。组成：</p><ul><li>主引导程序(位移量000H-1BDH)：用于硬盘启动时将系统控制转给用户指定的并在分区中登记了的某个操作系统区</li><li>分区表(位移量1BEH-1FDH):用于指明硬盘划分的情况，含4个可能的分区，每个分区的记录占用16个字节，由FDISK.COM程序建立<br>主引导扇区的最后两个字节(位移量1FE-1FFH)：”55AA”为其结束标志。</li></ul><p>主引导扇区存放硬盘的主引导记录。硬盘主引导记录包括三个方面的内容：</p><ul><li>主引导程序代码：用来找出系统当前的活动分区，负责把对应的一个操作系统的引导记录(当前活动分区的引导记录)装入内存，然后把控制权转给该分区的引导记录。</li><li>分区表：从位移量1BEH开始的64个字节是硬盘分区表</li></ul>]]></content>
       
       
       <categories>
@@ -21,6 +21,8 @@
         <tags>
             
             <tag> 安全 </tag>
+            
+            <tag> DOS </tag>
             
             <tag> 逆向工程 </tag>
             
@@ -76,9 +78,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 服务器 </tag>
             
@@ -109,9 +111,9 @@
             
             <tag> 安全 </tag>
             
-            <tag> 计算机网络 </tag>
-            
             <tag> 服务器 </tag>
+            
+            <tag> 计算机网络 </tag>
             
         </tags>
       
@@ -132,9 +134,9 @@
             
             <tag> 安全 </tag>
             
-            <tag> 计算机网络 </tag>
-            
             <tag> 服务器 </tag>
+            
+            <tag> 计算机网络 </tag>
             
         </tags>
       
@@ -236,9 +238,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -324,7 +326,7 @@
       <link href="/2019/12/01/dos/"/>
       <url>/2019/12/01/dos/</url>
       
-        <content type="html"><![CDATA[<h2 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h2><p>DOS(Disk Operating System,磁盘操作系统)，是一个基于磁盘管理的、单用户单任务的操作系统。</p><h3 id="DOS命令分类"><a href="#DOS命令分类" class="headerlink" title="DOS命令分类"></a>DOS命令分类</h3><ol><li>内部命令：是DOS命令中常驻内存的一部分，它是在当系统冷、热启动时由磁盘上的系统文件装入内存的，用户使用时仅仅时调用内存中系统区的某一个程序段来执行。</li><li>外部命令：以可执行的程序文件形式(后缀通常为.exe或.com)存在磁盘上，也就是说该命令文件必须记录在磁盘或已插入驱动器的软盘上，否则DOS是找不到命令的。</li><li>批处理命令：在使用磁盘命令过程中，有时需要连续使用几条DOS命令，有时又要重复使用若干条DOS命令，有时还需要有选择地使用某些DOS命令，为了满足这些要求，DOS提供了一些特殊文件(后缀为.bat的文件)，该文件允许用户组织键盘命令语言程序，一次建立，多次执行。</li></ol><h2 id="DOS基本知识"><a href="#DOS基本知识" class="headerlink" title="DOS基本知识"></a>DOS基本知识</h2><h3 id="盘符"><a href="#盘符" class="headerlink" title="盘符"></a>盘符</h3><p>盘符，就是硬盘分区在DOS状态下的一个字母提示符。<br><img src="https://i.postimg.cc/wByXtRzv/Snipaste-2020-02-24-15-20-58.png" alt=""></p><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul><li>在硬盘里，目录和文件夹都是一个树形结构。在DOS下，最底层的目录，是根目录。</li><li>DOS下目录的表示符号(分隔符)是“\”，通常将根目录定义为“\”,\txt\doc的意思就是从根目录起，第一级子目录为txt,第二级子目录为doc</li></ul><h2 id="DOS基本命令"><a href="#DOS基本命令" class="headerlink" title="DOS基本命令"></a>DOS基本命令</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol><li><font color="#fb8c00">cd &lt;/font&gt; 返回根目录</li><li><font color="#fb8c00">cd ..</font>返回到上一级目录</li><li><font color="#fb8c00">echo</font> 输出，如果大于符号指向文本，表示将内容写入到文本的意思</li></ol><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token string">"hello world"</span> <span class="token operator">></span> test.txt</code></pre><ol start="4"><li><font color="#fb8c00">exit</font> 退出DOS</li><li><font color="#fb8c00">type 文件名.扩展名</font> 显示文件内容</li><li><font color="#fb8c00">cls</font> 当前命令清空</li><li><font color="#fb8c00">rd . /s/q</font>删除文件夹和文件夹里的所有文件和文件夹</li><li><font color="#fb8c00">del 文件名.扩展名</font> 删除文件</li><li><font color="#fb8c00">dir /a</font> 显示所有文件，包括隐藏文件</li></ol><pre class=" language-bash"><code class="language-bash">del *.txt     <span class="token comment" spellcheck="true">#删除所有以.txt结尾的文件</span>del *.*       <span class="token comment" spellcheck="true">#删除所有文件</span>注： *为通配符，代表任何字符，任意长度</code></pre><ol start="10"><li><font color="#fb8c00">md 文件夹名</font> 创建文件夹</li><li><font color="#fb8c00">dir</font>显示文件夹内容</li><li><font color="#fb8c00">ren 原文件名 新文件名</font> 重命名(文件、文件夹均可)</li></ol><h3 id="特殊命令"><a href="#特殊命令" class="headerlink" title="特殊命令"></a>特殊命令</h3><p>以下命令博主测试只适用于WIN XP系统。</p><ol><li><p>创建一个超大的空文件</p><pre class=" language-bash"><code class="language-bash">fsutil <span class="token function">file</span> createnew c:\system.ini 409600000    <span class="token comment" spellcheck="true">#最后一个参数为文件大小，单位为字节 </span></code></pre></li><li><p>改变超大空文件的属性</p><pre class=" language-bash"><code class="language-bash">attrib +s +a +h +r system.ini</code></pre></li></ol><ul><li><font color="#fb8c00">+s</font> 为文件增加系统文件属性</li><li><font color="#fb8c00">+a</font> 为文件增加存档文件属性</li><li><font color="#fb8c00">+r</font> 为文件增加只读属性</li><li><font color="#fb8c00">+h</font> 为文件增加隐藏属性</li></ul><blockquote><p>注：隐藏的系统文件需要在文件夹选项里修改“隐藏系统文件”选项即可查看，或使用dir /a命令查看所有文件(包含隐藏文件)<br>3. 改变文件关联性</p></blockquote><pre class=" language-bash"><code class="language-bash">assoc .txt<span class="token operator">=</span>exefile    将txt文件当成可执行文件执行assoc .txt<span class="token operator">=</span>txtfile    将txt文件当成txt文件执行</code></pre><blockquote><p>注：单独使用assoc可查看此电脑所有文件关联性</p></blockquote><ol start="4"><li>定时<pre class=" language-bash"><code class="language-bash"><span class="token function">shutdown</span> -s -t 100</code></pre></li></ol><ul><li><font color="#fb8c00">-s</font> 关机</li><li><font color="#fb8c00">-r</font> 重启</li><li><font color="#fb8c00">-l</font> 注销</li><li><font color="#fb8c00">-f</font> 强制(此条命令可以强制关机、重启)</li><li><font color="#fb8c00">-t</font> 设置关机时间</li><li><font color="#fb8c00">100</font> 在100s后关机</li></ul><blockquote><p>注：此命令产生的效果只能用shutdown -a解除，且在Windows其他系统中均适用。</p></blockquote><h3 id="重定向符号"><a href="#重定向符号" class="headerlink" title="重定向符号"></a>重定向符号</h3><ol><li><font color="#fb8c00">&gt;</font>  覆盖，把前面的内容输入到后边的文件中，会清除文件原有文件</li><li><font color="#fb8c00">&gt;&gt;</font> 追加，将前面的内容加在文件原有内容的后面</li><li><font color="#fb8c00">2&gt;</font>错误重定向，把错误信息输入到后边的文件中，会删除文件原有内容。</li></ol><h2 id="批处理的编写"><a href="#批处理的编写" class="headerlink" title="批处理的编写"></a>批处理的编写</h2><h3 id="批处理的作用"><a href="#批处理的作用" class="headerlink" title="批处理的作用"></a>批处理的作用</h3><p>自上而下成批的处理每一条命令，直到执行到最后一条。即使其中一条命令错误，也会继续向下执行。Windows下的批处理文件对应Linux下的Shell 脚本。</p><blockquote><p>注：批处理文件的运行方式为打开cmd窗口运行.bat文件中的命令，执行完毕后立即关闭cmd窗口，使用pause命令可以暂停命令的执行，按下回车键又继续执行。</p></blockquote><h3 id="如何创建批处理"><a href="#如何创建批处理" class="headerlink" title="如何创建批处理"></a>如何创建批处理</h3><p>扩展名：<font color="#fb8c00">.bat</font><br>创建方法：新建一个记事本文件，然后将扩展名改为.bat<br>编辑方式：右键点击文件选择编辑，一行一条命令</p><h3 id="批处理命令"><a href="#批处理命令" class="headerlink" title="批处理命令"></a>批处理命令</h3><h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><ol><li><font color="#fb8c00">pause</font> 暂停批处理运行，按下回车继续执行(只在批处理中有意义)</li><li><font color="#fb8c00">@echo off</font> 关闭回显，屏蔽过程，只输出结果，建议放在首行</li><li><font color="#fb8c00">color 颜色代码</font> 改变字体颜色</li><li><font color="#fb8c00">title 内容</font> 修改cmd框的主题内容 </li><li><font color="#fb8c00">echo.</font> 空一行(只在批处理中有意义</li></ol><h4 id="死循环"><a href="#死循环" class="headerlink" title="死循环"></a>死循环</h4><p>执行以下命令会给计算机造成命令死循环，会导致计算机崩溃。(低版本Windows可执行)</p><pre class=" language-bash"><code class="language-bash">copy test.bat 开始启动程序地址:dstartgoto d</code></pre><ul><li><font color="#fb8c00">copy test.bat 开始启动程序地址</font> 开机执行</li><li><font color="#fb8c00">:d</font> 告诉计算机这是一个分区</li><li><font color="#fb8c00">start</font> 后可跟参数或网址，用于启动可执行程序或网页，若没有参数默认为启动cmd</li><li><font color="#fb8c00">goto d</font> 转回d分区执行   </li></ul><blockquote><p>注：开始启动程序的地址查找方式：打开开始菜单中的运行-&gt;输入shell:startup ，然后所展示的文件夹即为开始启动程序。针对不同的计算机用户名也不同的问题，可以使用C盘中的一个userprofile变量，此变量为当前用户的家目录路径。 则管理员文件夹之前的路径及管理员文件夹可以用%userprofile% \ 变量代替。</p></blockquote><h4 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h4><pre class=" language-bash"><code class="language-bash">@echo off:menu<span class="token keyword">echo</span> <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token keyword">echo</span> 1.关机<span class="token keyword">echo</span> 2.退出<span class="token keyword">echo</span> <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token keyword">set</span> /p num<span class="token operator">=</span>你的选择：echo.<span class="token keyword">if</span> %num% <span class="token operator">==</span> 1 goto 1<span class="token keyword">if</span> %num% <span class="token operator">==</span> 2 goto 2:1<span class="token keyword">set</span> /p a<span class="token operator">=</span>请输入关机时间<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:    <span class="token comment" spellcheck="true">#/p的意义在于指定a的值由用户输入</span><span class="token function">shutdown</span> -s -f -t %a%     <span class="token comment" spellcheck="true">#%a%的意思是变量</span>goto menu:2<span class="token keyword">exit</span></code></pre><blockquote><p>注：颜色代码通过DOS命令color ?进行查看</p></blockquote><h4 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h4><pre class=" language-bash"><code class="language-bash">ntsd -c -q -pn winlogon.exe   <span class="token comment" spellcheck="true">#杀死系统的登录进程，使计算机蓝屏</span></code></pre><blockquote><p>注：此命令只对Windows2003或XP管用</p></blockquote><h4 id="杀死指定进程"><a href="#杀死指定进程" class="headerlink" title="杀死指定进程"></a>杀死指定进程</h4><p>可用taskkill命令杀死进程(危险命令，谨慎使用)</p><pre class=" language-bash"><code class="language-bash">@echo off<span class="token keyword">echo</span> 0a    <span class="token comment" spellcheck="true">#字体显示为亮绿色</span>taskkill /im explorer.exe /f   <span class="token comment" spellcheck="true">#/im指定进程名 /f表示强制执行</span><span class="token function">ping</span> -n 10 127.0.0.1 1<span class="token operator">></span>nul 2<span class="token operator">></span>nul  <span class="token comment" spellcheck="true">#造成中间时间间隔,1>nul 2>nul将结果屏蔽</span>start c:\windows\explorer.exe   <span class="token comment" spellcheck="true">#重启进程，进程所在路径</span></code></pre>]]></content>
+        <content type="html"><![CDATA[<h2 id="DOS"><a href="#DOS" class="headerlink" title="DOS"></a>DOS</h2><p>DOS(Disk Operating System,磁盘操作系统)，是一个基于磁盘管理的、单用户单任务的操作系统。</p><h3 id="DOS命令分类"><a href="#DOS命令分类" class="headerlink" title="DOS命令分类"></a>DOS命令分类</h3><ol><li>内部命令：是DOS命令中常驻内存的一部分，它是在当系统冷、热启动时由磁盘上的系统文件装入内存的，用户使用时仅仅时调用内存中系统区的某一个程序段来执行。</li><li>外部命令：以可执行的程序文件形式(后缀通常为.exe或.com)存在磁盘上，也就是说该命令文件必须记录在磁盘或已插入驱动器的软盘上，否则DOS是找不到命令的。</li><li>批处理命令：在使用磁盘命令过程中，有时需要连续使用几条DOS命令，有时又要重复使用若干条DOS命令，有时还需要有选择地使用某些DOS命令，为了满足这些要求，DOS提供了一些特殊文件(后缀为.bat的文件)，该文件允许用户组织键盘命令语言程序，一次建立，多次执行。</li></ol><h2 id="DOS基本知识"><a href="#DOS基本知识" class="headerlink" title="DOS基本知识"></a>DOS基本知识</h2><h3 id="盘符"><a href="#盘符" class="headerlink" title="盘符"></a>盘符</h3><p>盘符，就是硬盘分区在DOS状态下的一个字母提示符。<br><img src="https://i.postimg.cc/wByXtRzv/Snipaste-2020-02-24-15-20-58.png" alt=""></p><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul><li>在硬盘里，目录和文件夹都是一个树形结构。在DOS下，最底层的目录，是根目录。</li><li>DOS下目录的表示符号(分隔符)是“\”，通常将根目录定义为“\”,\txt\doc的意思就是从根目录起，第一级子目录为txt,第二级子目录为doc</li></ul><h2 id="DOS基本命令"><a href="#DOS基本命令" class="headerlink" title="DOS基本命令"></a>DOS基本命令</h2><h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><ol><li><font color="#fb8c00">cd \ </font> 返回根目录</li><li><font color="#fb8c00">cd ..</font>返回到上一级目录</li><li><font color="#fb8c00">echo</font> 输出，如果大于符号指向文本，表示将内容写入到文本的意思</li></ol><pre class=" language-bash"><code class="language-bash"><span class="token keyword">echo</span> <span class="token string">"hello world"</span> <span class="token operator">></span> test.txt</code></pre><ol start="4"><li><font color="#fb8c00">exit</font> 退出DOS</li><li><font color="#fb8c00">type 文件名.扩展名</font> 显示文件内容</li><li><font color="#fb8c00">cls</font> 当前命令清空</li><li><font color="#fb8c00">rd . /s/q</font>删除文件夹和文件夹里的所有文件和文件夹</li><li><font color="#fb8c00">del 文件名.扩展名</font> 删除文件</li><li><font color="#fb8c00">dir /a</font> 显示所有文件，包括隐藏文件</li></ol><pre class=" language-bash"><code class="language-bash">del *.txt     <span class="token comment" spellcheck="true">#删除所有以.txt结尾的文件</span>del *.*       <span class="token comment" spellcheck="true">#删除所有文件</span>注： *为通配符，代表任何字符，任意长度</code></pre><ol start="10"><li><font color="#fb8c00">md 文件夹名</font> 创建文件夹</li><li><font color="#fb8c00">dir</font>显示文件夹内容</li><li><font color="#fb8c00">ren 原文件名 新文件名</font> 重命名(文件、文件夹均可)</li></ol><h3 id="特殊命令"><a href="#特殊命令" class="headerlink" title="特殊命令"></a>特殊命令</h3><p>以下命令博主测试只适用于WIN XP系统。</p><ol><li><p>创建一个超大的空文件</p><pre class=" language-bash"><code class="language-bash">fsutil <span class="token function">file</span> createnew c:\system.ini 409600000    <span class="token comment" spellcheck="true">#最后一个参数为文件大小，单位为字节 </span></code></pre></li><li><p>改变超大空文件的属性</p><pre class=" language-bash"><code class="language-bash">attrib +s +a +h +r system.ini</code></pre></li></ol><ul><li><font color="#fb8c00">+s</font> 为文件增加系统文件属性</li><li><font color="#fb8c00">+a</font> 为文件增加存档文件属性</li><li><font color="#fb8c00">+r</font> 为文件增加只读属性</li><li><font color="#fb8c00">+h</font> 为文件增加隐藏属性</li></ul><blockquote><p>注：隐藏的系统文件需要在文件夹选项里修改“隐藏系统文件”选项即可查看，或使用dir /a命令查看所有文件(包含隐藏文件)<br>3. 改变文件关联性</p></blockquote><pre class=" language-bash"><code class="language-bash">assoc .txt<span class="token operator">=</span>exefile    将txt文件当成可执行文件执行assoc .txt<span class="token operator">=</span>txtfile    将txt文件当成txt文件执行</code></pre><blockquote><p>注：单独使用assoc可查看此电脑所有文件关联性</p></blockquote><ol start="4"><li>定时<pre class=" language-bash"><code class="language-bash"><span class="token function">shutdown</span> -s -t 100</code></pre></li></ol><ul><li><font color="#fb8c00">-s</font> 关机</li><li><font color="#fb8c00">-r</font> 重启</li><li><font color="#fb8c00">-l</font> 注销</li><li><font color="#fb8c00">-f</font> 强制(此条命令可以强制关机、重启)</li><li><font color="#fb8c00">-t</font> 设置关机时间</li><li><font color="#fb8c00">100</font> 在100s后关机</li></ul><blockquote><p>注：此命令产生的效果只能用shutdown -a解除，且在Windows其他系统中均适用。</p></blockquote><h3 id="重定向符号"><a href="#重定向符号" class="headerlink" title="重定向符号"></a>重定向符号</h3><ol><li><font color="#fb8c00">&gt;</font>  覆盖，把前面的内容输入到后边的文件中，会清除文件原有文件</li><li><font color="#fb8c00">&gt;&gt;</font> 追加，将前面的内容加在文件原有内容的后面</li><li><font color="#fb8c00">2&gt;</font>错误重定向，把错误信息输入到后边的文件中，会删除文件原有内容。</li></ol><h2 id="批处理的编写"><a href="#批处理的编写" class="headerlink" title="批处理的编写"></a>批处理的编写</h2><h3 id="批处理的作用"><a href="#批处理的作用" class="headerlink" title="批处理的作用"></a>批处理的作用</h3><p>自上而下成批的处理每一条命令，直到执行到最后一条。即使其中一条命令错误，也会继续向下执行。Windows下的批处理文件对应Linux下的Shell 脚本。</p><blockquote><p>注：批处理文件的运行方式为打开cmd窗口运行.bat文件中的命令，执行完毕后立即关闭cmd窗口，使用pause命令可以暂停命令的执行，按下回车键又继续执行。</p></blockquote><h3 id="如何创建批处理"><a href="#如何创建批处理" class="headerlink" title="如何创建批处理"></a>如何创建批处理</h3><p>扩展名：<font color="#fb8c00">.bat</font><br>创建方法：新建一个记事本文件，然后将扩展名改为.bat<br>编辑方式：右键点击文件选择编辑，一行一条命令</p><h3 id="批处理命令"><a href="#批处理命令" class="headerlink" title="批处理命令"></a>批处理命令</h3><h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><ol><li><font color="#fb8c00">pause</font> 暂停批处理运行，按下回车继续执行(只在批处理中有意义)</li><li><font color="#fb8c00">@echo off</font> 关闭回显，屏蔽过程，只输出结果，建议放在首行</li><li><font color="#fb8c00">color 颜色代码</font> 改变字体颜色</li><li><font color="#fb8c00">title 内容</font> 修改cmd框的主题内容 </li><li><font color="#fb8c00">echo.</font> 空一行(只在批处理中有意义</li></ol><h4 id="死循环"><a href="#死循环" class="headerlink" title="死循环"></a>死循环</h4><p>执行以下命令会给计算机造成命令死循环，会导致计算机崩溃。(低版本Windows可执行)</p><pre class=" language-bash"><code class="language-bash">copy test.bat 开始启动程序地址:dstartgoto d</code></pre><ul><li><font color="#fb8c00">copy test.bat 开始启动程序地址</font> 开机执行</li><li><font color="#fb8c00">:d</font> 告诉计算机这是一个分区</li><li><font color="#fb8c00">start</font> 后可跟参数或网址，用于启动可执行程序或网页，若没有参数默认为启动cmd</li><li><font color="#fb8c00">goto d</font> 转回d分区执行   </li></ul><blockquote><p>注：开始启动程序的地址查找方式：打开开始菜单中的运行-&gt;输入shell:startup ，然后所展示的文件夹即为开始启动程序。针对不同的计算机用户名也不同的问题，可以使用C盘中的一个userprofile变量，此变量为当前用户的家目录路径。 则管理员文件夹之前的路径及管理员文件夹可以用%userprofile% \ 变量代替。</p></blockquote><h4 id="条件循环"><a href="#条件循环" class="headerlink" title="条件循环"></a>条件循环</h4><pre class=" language-bash"><code class="language-bash">@echo off:menu<span class="token keyword">echo</span> <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token keyword">echo</span> 1.关机<span class="token keyword">echo</span> 2.退出<span class="token keyword">echo</span> <span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token keyword">set</span> /p num<span class="token operator">=</span>你的选择：echo.<span class="token keyword">if</span> %num% <span class="token operator">==</span> 1 goto 1<span class="token keyword">if</span> %num% <span class="token operator">==</span> 2 goto 2:1<span class="token keyword">set</span> /p a<span class="token operator">=</span>请输入关机时间<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:    <span class="token comment" spellcheck="true">#/p的意义在于指定a的值由用户输入</span><span class="token function">shutdown</span> -s -f -t %a%     <span class="token comment" spellcheck="true">#%a%的意思是变量</span>goto menu:2<span class="token keyword">exit</span></code></pre><blockquote><p>注：颜色代码通过DOS命令color ?进行查看</p></blockquote><h4 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h4><pre class=" language-bash"><code class="language-bash">ntsd -c -q -pn winlogon.exe   <span class="token comment" spellcheck="true">#杀死系统的登录进程，使计算机蓝屏</span></code></pre><blockquote><p>注：此命令只对Windows2003或XP管用</p></blockquote><h4 id="杀死指定进程"><a href="#杀死指定进程" class="headerlink" title="杀死指定进程"></a>杀死指定进程</h4><p>可用taskkill命令杀死进程(危险命令，谨慎使用)</p><pre class=" language-bash"><code class="language-bash">@echo off<span class="token keyword">echo</span> 0a    <span class="token comment" spellcheck="true">#字体显示为亮绿色</span>taskkill /im explorer.exe /f   <span class="token comment" spellcheck="true">#/im指定进程名 /f表示强制执行</span><span class="token function">ping</span> -n 10 127.0.0.1 1<span class="token operator">></span>nul 2<span class="token operator">></span>nul  <span class="token comment" spellcheck="true">#造成中间时间间隔,1>nul 2>nul将结果屏蔽</span>start c:\windows\explorer.exe   <span class="token comment" spellcheck="true">#重启进程，进程所在路径</span></code></pre>]]></content>
       
       
       <categories>
@@ -419,9 +421,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -450,9 +452,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -481,9 +483,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -512,9 +514,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -543,9 +545,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -574,9 +576,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -601,9 +603,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -628,9 +630,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -655,9 +657,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 数据库 </tag>
             
@@ -684,9 +686,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -711,9 +713,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -765,9 +767,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -817,9 +819,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -869,11 +871,11 @@
       
         <tags>
             
-            <tag> Burp Suite </tag>
+            <tag> 安全 </tag>
             
             <tag> Web </tag>
             
-            <tag> 安全 </tag>
+            <tag> Burp Suite </tag>
             
         </tags>
       
@@ -892,9 +894,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -919,9 +921,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> OWASP </tag>
             
@@ -948,9 +950,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 计算机网络 </tag>
             
@@ -977,9 +979,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1331,11 +1333,11 @@
       
         <tags>
             
+            <tag> 计算机网络 </tag>
+            
             <tag> Qt </tag>
             
             <tag> socket </tag>
-            
-            <tag> 计算机网络 </tag>
             
         </tags>
       
@@ -1593,11 +1595,11 @@
             
             <tag> C </tag>
             
+            <tag> 计算机网络 </tag>
+            
             <tag> 操作系统 </tag>
             
             <tag> socket </tag>
-            
-            <tag> 计算机网络 </tag>
             
         </tags>
       
