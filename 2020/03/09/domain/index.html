@@ -497,7 +497,7 @@
 <h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>客户机：Win 7、Win XP<br>服务器：Windows Server 2008<br>服务器需要关闭防火墙，所有计算机桥接网络到VMnet3</p>
 <h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
 <li>为服务器配置静态IP地址10.1.1.1/24：此处选择IPv4</li>
-<li>开始-&gt;运行(快捷键Win+R)-&gt;输入<font color="#fb8c00">dcpromo</font>命令安装活动目录(此命令也可卸载活动目录)-&gt;下一步-&gt;下一步(要勾上安装DNS服务器)</li>
+<li>开始-&gt;运行(快捷键Win+R)-&gt;输入<font color="#fb8c00">dcpromo</font>命令安装活动目录(此命令也可卸载活动目录，卸载目录还需在服务器管理器中选择删除角色)-&gt;下一步-&gt;下一步(要勾上安装DNS服务器)</li>
 <li>在新林中新建域(林的解释参考下方)-&gt;下一步</li>
 <li>填写新建域的完全域名(此域名不能重名)</li>
 <li>设置林功能<br><img src="https://i.postimg.cc/j5WHF51s/4.png" alt=""></li>
@@ -757,7 +757,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Web服务器/FTP服务器
+                            IIS服务器
                         
                     </div>
                     <div class="publish-info">
@@ -779,16 +779,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
-                        <span class="chip bg-color">安全</span>
-                    </a>
-                    
                     <a href="/tags/Web/" target="_blank">
                         <span class="chip bg-color">Web</span>
                     </a>
                     
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
                     <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
                         <span class="chip bg-color">服务器</span>
+                    </a>
+                    
+                    <a href="/tags/PKI/" target="_blank">
+                        <span class="chip bg-color">PKI</span>
                     </a>
                     
                     <a href="/tags/IIS/" target="_blank">
@@ -953,7 +957,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">176.2k</span>
+                <span class="white-color">177.2k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
