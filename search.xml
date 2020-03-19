@@ -199,6 +199,31 @@
     
     
     <entry>
+      <title>用户和组管理</title>
+      <link href="/2020/02/28/user/"/>
+      <url>/2020/02/28/user/</url>
+      
+        <content type="html"><![CDATA[<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="用户概述"><a href="#用户概述" class="headerlink" title="用户概述"></a>用户概述</h3><ol><li>每个用户登录后，拥有不同的操作权限</li><li>每个账户有自己唯一的SID(安全标识符)</li><li>不同的账户拥有不同的权限，为不同的账户赋权限就是给不同的账户的SID赋权限。</li><li>查看本机用户SID的命令：<font color="#fb8c00">whoami /user</font></li></ol><p>用户SID：S-1-5-21-426206823-2579496042-14852678-500<br>系统SID：S-1-5-21-426206823-2579496042-14852678</p><ul><li>用户UID：500</li><li>windows系统管理员administrator的UID是500，Linux管理员root的UID是0</li><li>普通用户的UID是从1000开始的</li></ul><ol start="5"><li>账户密码存储位置：<font color="#fb8c00">c:\windows\system32\config\SAM</font>  </li></ol><blockquote><p>注：密码采用HASH算法加密(不可逆)，渗透测试中可以采用暴力破解或撞库进行攻击，服务器系统的默认密码最长有效期为42天</p></blockquote><h3 id="内置账户"><a href="#内置账户" class="headerlink" title="内置账户"></a>内置账户</h3><ol><li>给人使用的账户：</li></ol><ul><li>administrator 管理员账户</li><li>guest 来宾账户</li></ul><ol start="2"><li>计算机服务组件相关的系统账户：</li></ol><ul><li>system 系统账户，最高权限</li><li>local services 本地服务账户，权限等同于普通用户</li><li>network services 网络服务账户，权限等同于普通用户</li></ul><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>每个用户都有自己的配置文件(家文件)，在用户第一次登陆时自动产生。</p><pre class=" language-bash"><code class="language-bash">win7/win2008 c:\用户\xp/win2003 c:\Documents and Settings\</code></pre><h2 id="用户相关DOS命令"><a href="#用户相关DOS命令" class="headerlink" title="用户相关DOS命令"></a>用户相关DOS命令</h2><ol><li><p>显示当前计算机的所有账户</p><pre class=" language-bash"><code class="language-bash">net user</code></pre></li><li><p>查看特定账户的信息</p><pre class=" language-bash"><code class="language-bash">net user 账户名</code></pre></li><li><p>修改账户密码(只有管理员可以使用)</p><pre class=" language-bash"><code class="language-bash">net user 账户名 新密码</code></pre></li><li><p>新建一个用户(不适用于Win7及以上版本)</p><pre class=" language-bash"><code class="language-bash">net user 账户名 密码 /add</code></pre></li><li><p>删除一个用户(不适用于Win7及以上版本)</p><pre class=" language-bash"><code class="language-bash">net user 账户名 /del</code></pre></li></ol><h2 id="组管理"><a href="#组管理" class="headerlink" title="组管理"></a>组管理</h2><h3 id="组概述"><a href="#组概述" class="headerlink" title="组概述"></a>组概述</h3><ol><li>组的作用：简化权限的赋予，相同权限的账户为同一个组</li><li>赋权限的方式：</li></ol><ul><li>用户–组–赋权限</li><li>用户–赋权限</li></ul><h3 id="内置组"><a href="#内置组" class="headerlink" title="内置组"></a>内置组</h3><p>内置组的权限已经默认被系统赋予：</p><ul><li>administrators(管理员组)</li><li>guests(来宾组)</li><li>users(普通用户组)</li><li>network(网络配置组)</li><li>print(打印机组)</li><li>Remote Desktop(远程桌面组)</li></ul><h3 id="组管理命令"><a href="#组管理命令" class="headerlink" title="组管理命令"></a>组管理命令</h3><ol><li><p>查看计算机所有本地组</p><pre class=" language-bash"><code class="language-bash">net localgroup</code></pre></li><li><p>查看特定组的所有成员</p><pre class=" language-bash"><code class="language-bash">net localgroup 组名</code></pre></li><li><p>向特定组中增加新的成员(不适用于Win7及以上版本)</p><pre class=" language-bash"><code class="language-bash">net localgroup 组名 用户名 /add</code></pre></li><li><p>增加新的组(不适用于Win7及以上版本)</p><pre class=" language-bash"><code class="language-bash">net localgroup 组名 /add</code></pre></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 安全 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>虚拟化架构以及系统部署</title>
       <link href="/2020/02/22/vitrue/"/>
       <url>/2020/02/22/vitrue/</url>
