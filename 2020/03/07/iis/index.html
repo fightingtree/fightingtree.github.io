@@ -426,14 +426,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.3k
+                        1.6k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        5 分
                     </div>
                     
                 
@@ -529,7 +529,23 @@
 </li>
 <li><p>打开证书颁发机构可看到挂起的申请-&gt;右键点击下图框起来的部分-&gt;颁发<br><img src="https://i.postimg.cc/7ZHf5GxQ/11.png" alt=""></p>
 </li>
+<li><p>重新访问第4步中的CA网站-&gt;查看挂起的证书申请的状态-&gt;选择申请的证书-&gt;下载证书-&gt;保存(此时证书中有CA的签名以及IIS服务器的公钥)</p>
+</li>
+<li><p>开始-&gt;管理工具-&gt;IIS:<br><img src="https://i.postimg.cc/XqsSMkht/12.png" alt=""><br><img src="https://i.postimg.cc/ZqLhFmHT/13.png" alt=""></p>
+</li>
 </ol>
+<h4 id="网站提供HTTPS服务"><a href="#网站提供HTTPS服务" class="headerlink" title="网站提供HTTPS服务"></a>网站提供HTTPS服务</h4><ol>
+<li><p>在IIS中右键点击需要提供HTTPS服务的网站-&gt;编辑绑定：<br><img src="https://i.postimg.cc/NGDSNbRx/14.png" alt=""><br><img src="https://i.postimg.cc/MZnG7sch/15.png" alt=""></p>
+</li>
+<li><p>设置SSL<br><img src="https://i.postimg.cc/JzDgKk37/16.png" alt=""></p>
+</li>
+</ol>
+<p>点击进入后勾选要求SSL</p>
+<h4 id="客户机访问网站"><a href="#客户机访问网站" class="headerlink" title="客户机访问网站"></a>客户机访问网站</h4><p>在浏览器搜索栏上输入网址：<font color="#fb8c00">https://网站域名</font> 进行访问,访问后会出现提示该网站的安全证书有问题(原因是我们的计算机默认不信任被访问网站的证书)，选择继续访问即可。</p>
+<ul>
+<li>可以用https直接访问而不会出现提示该网站安全证书有问题的原因是，该网站使用的CA是中国公认的CA，我们的浏览器内置信任该CA</li>
+</ul>
+<h5 id="查看浏览器默认信任的CA"><a href="#查看浏览器默认信任的CA" class="headerlink" title="查看浏览器默认信任的CA"></a>查看浏览器默认信任的CA</h5><p>网页-&gt;工具-&gt;Internet选项-&gt;内容-&gt;证书-&gt;受信任的根证书颁发机构：此页面显示的CA都是国际公认信任的CA</p>
 
             </div>
             <hr/>
@@ -727,12 +743,12 @@
                         <span class="chip bg-color">安全</span>
                     </a>
                     
-                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
-                        <span class="chip bg-color">计算机网络</span>
-                    </a>
-                    
                     <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
                         <span class="chip bg-color">服务器</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                        <span class="chip bg-color">计算机网络</span>
                     </a>
                     
                 </div>
@@ -893,7 +909,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">177.8k</span>
+                <span class="white-color">178.8k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

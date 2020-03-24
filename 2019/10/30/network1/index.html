@@ -650,11 +650,11 @@
 <li>主机向本地域名服务器查询一般是采用递归查询。</li>
 <li>本地域名服务器向根域名服务器的查询通常是采用迭代查询。<br><img src="https://ae01.alicdn.com/kf/Hc51af157a30e453496a2c86a4adf6d143.jpg" alt=""></li>
 </ul>
-<h2 id="文件传送协议"><a href="#文件传送协议" class="headerlink" title="文件传送协议"></a>文件传送协议</h2><h3 id="FTP的概述"><a href="#FTP的概述" class="headerlink" title="FTP的概述"></a>FTP的概述</h3><ul>
+<h3 id="文件传送协议"><a href="#文件传送协议" class="headerlink" title="文件传送协议"></a>文件传送协议</h3><h4 id="FTP的概述"><a href="#FTP的概述" class="headerlink" title="FTP的概述"></a>FTP的概述</h4><ul>
 <li>文件传送协议FTP(File Transfer Protocol)是因特网上使用最广泛的文件传送协议</li>
 <li>FTP提供交互式的访问，允许客户指明文件的类型与格式，并允许文件具有存取权限。</li>
 </ul>
-<h4 id="FTP的基本工作原理"><a href="#FTP的基本工作原理" class="headerlink" title="FTP的基本工作原理"></a>FTP的基本工作原理</h4><ol>
+<h5 id="FTP的基本工作原理"><a href="#FTP的基本工作原理" class="headerlink" title="FTP的基本工作原理"></a>FTP的基本工作原理</h5><ol>
 <li>FTP的特点</li>
 </ol>
 <ul>
@@ -669,42 +669,42 @@
 <li>控制连接：用来控制进程。在整个会话期间一直保持打开，FTP客户发出的传送请求通过控制连接发送给服务器端的控制进程，控制连接不用来传送文件。(端口号21)</li>
 <li>数据连接：用来传输文件(端口号20)</li>
 </ul>
-<h3 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h3><ul>
+<h4 id="NFS"><a href="#NFS" class="headerlink" title="NFS"></a>NFS</h4><ul>
 <li>NFS采用另一种思路，它允许应用程序打开一个远程文件，并能在该文件的某一个特定位置上开始读写数据。</li>
 <li>NFS可使用户只复制一个文件中的一个很小的片断，而不需要复制整个大文件</li>
 <li>在网络上传送的只是少量的修改数据</li>
 </ul>
-<h3 id="TFTP"><a href="#TFTP" class="headerlink" title="TFTP"></a>TFTP</h3><p>简单文件传送协议TFTP(Trivial File Transfer Protocol):</p>
+<h4 id="TFTP"><a href="#TFTP" class="headerlink" title="TFTP"></a>TFTP</h4><p>简单文件传送协议TFTP(Trivial File Transfer Protocol):</p>
 <ul>
 <li>TFTP使用客户-服务器方式。并使用UDP数据报。</li>
 <li>TFTP只支持文件传输而不支持交互</li>
 <li>支持ASCII码或二进制传送</li>
 </ul>
-<h2 id="远程终端协议TELNET"><a href="#远程终端协议TELNET" class="headerlink" title="远程终端协议TELNET"></a>远程终端协议TELNET</h2><ul>
+<h3 id="远程终端协议TELNET"><a href="#远程终端协议TELNET" class="headerlink" title="远程终端协议TELNET"></a>远程终端协议TELNET</h3><ul>
 <li>TELNET是一个简单的远程终端协议，也是因特网的正式标准</li>
 <li>用户用TELNET就可在所在地通过TCP连接注册(登录)到远程的另一个主机上(使用主机名或IP地址)</li>
 <li>TELNET能够将用户的击键传到远程主机，同时也能将远程主机的输出通过TCP连接返回到用户屏幕。</li>
 <li>TELNET使用客户-服务器方式</li>
 </ul>
-<h3 id="网络虚拟终端NVT"><a href="#网络虚拟终端NVT" class="headerlink" title="网络虚拟终端NVT"></a>网络虚拟终端NVT</h3><p>网络虚拟终端（NVT）是一种虚拟的终端设备，它被客户和服务器所采用，用来建立数据表示和解释的一致性。</p>
+<h4 id="网络虚拟终端NVT"><a href="#网络虚拟终端NVT" class="headerlink" title="网络虚拟终端NVT"></a>网络虚拟终端NVT</h4><p>网络虚拟终端（NVT）是一种虚拟的终端设备，它被客户和服务器所采用，用来建立数据表示和解释的一致性。</p>
 <p>TELNET使用网络虚拟终端NVT格式</p>
 <ul>
 <li>客户软件把用户的击键的和命令转换成NVT格式并交给服务器</li>
 <li>服务器软件把收到的数据和命令，从NVT格式转换成远程系统所需要的格式</li>
 <li>向用户返回数据时，服务器把远程系统的格式转换为NVT，本地客户再从NVT格式转换到本地系统所需的格式</li>
 </ul>
-<h2 id="万维网WWW"><a href="#万维网WWW" class="headerlink" title="万维网WWW"></a>万维网WWW</h2><ul>
+<h3 id="万维网WWW"><a href="#万维网WWW" class="headerlink" title="万维网WWW"></a>万维网WWW</h3><ul>
 <li>万维网WWW(World Wide Web)并非某种特殊的计算机网络</li>
 <li>万维网是一个大规模的、联机式的信息储藏所</li>
 <li>万维网用链接的方法能非常方便地从因特网上的一个站点访问另一个站点，这种方式被称为”链接”</li>
 </ul>
-<h3 id="万维网提供分布式服务"><a href="#万维网提供分布式服务" class="headerlink" title="万维网提供分布式服务"></a>万维网提供分布式服务</h3><p><img src="https://ae01.alicdn.com/kf/He55e6d822da541f58c2ec5728ae23c54H.jpg" alt=""></p>
-<h4 id="超媒体和超文本"><a href="#超媒体和超文本" class="headerlink" title="超媒体和超文本"></a>超媒体和超文本</h4><p>万维网是分布式超媒体(hypermedia)系统，它是超文本(hypertext)系统的扩充</p>
+<h4 id="万维网提供分布式服务"><a href="#万维网提供分布式服务" class="headerlink" title="万维网提供分布式服务"></a>万维网提供分布式服务</h4><p><img src="https://ae01.alicdn.com/kf/He55e6d822da541f58c2ec5728ae23c54H.jpg" alt=""></p>
+<h5 id="超媒体和超文本"><a href="#超媒体和超文本" class="headerlink" title="超媒体和超文本"></a>超媒体和超文本</h5><p>万维网是分布式超媒体(hypermedia)系统，它是超文本(hypertext)系统的扩充</p>
 <ul>
 <li>超文本：一个超文本由多个信息源链接成，利用一个链接可使用户找到另一个文档，这些文档可以位于世界上任何一个接在因特网上的超文本系统中，超文本是万维网的基础</li>
 <li>超媒体：超媒体与超文本的区别是文档内容不同。超文本文档仅包含文本信息，而超媒体文档还包含其他表示方式的信息，如图形、视频、声音等。</li>
 </ul>
-<h3 id="万维网的工作方式"><a href="#万维网的工作方式" class="headerlink" title="万维网的工作方式"></a>万维网的工作方式</h3><ul>
+<h4 id="万维网的工作方式"><a href="#万维网的工作方式" class="headerlink" title="万维网的工作方式"></a>万维网的工作方式</h4><ul>
 <li>万维网以客户-服务器方式工作</li>
 <li>浏览器就是用户计算机上的万维网客户程序，万维网文档所驻留的计算机则运行服务器程序，因此这个计算机也被称为万维网服务器</li>
 <li>客户程序向服务器程序发出请求，服务器程序向客户程序送回客户所要的万维网文档</li>
@@ -907,7 +907,7 @@ fightingtree@neu.org.cn</code></pre>
 <li>网络在发送分组时不需要先建立连接，每一个分组(IP数据报)独立发送，与其前后分组无关</li>
 <li>网络层不提供服务质量的承诺，即所传送的分组可能出错、丢失、重复、乱序到达，当然也不保证分组传送的时限。</li>
 </ul>
-<h2 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h2><p>网络互相连接起来要使用一些中间设备，中间设备又称为中间系统或中继(relay)系统：</p>
+<h3 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h3><p>网络互相连接起来要使用一些中间设备，中间设备又称为中间系统或中继(relay)系统：</p>
 <ul>
 <li>物理层中继系统：转发器(repeater)</li>
 <li>数据链路层中继系统：网桥或桥接器(bridge)</li>
@@ -916,10 +916,10 @@ fightingtree@neu.org.cn</code></pre>
 <li>网络层以上的中继系统：网关(gateway)</li>
 </ul>
 <p>分组在互联网中的传送如图所示：<br><img src="https://ae01.alicdn.com/kf/H27ffef8f9ef94c10bf62a0a5c6af1390p.jpg" alt=""></p>
-<h3 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h3><p>我们把整个因特网看成一个单一的、抽象的网络，IP地址就是给每个连接在因特网上的主机(或路由器)分配一个在全世界范围内唯一的32位标识符。</p>
-<h4 id="地址格式"><a href="#地址格式" class="headerlink" title="地址格式"></a>地址格式</h4><p>每一类地址都由两个固定长度的字段组成。其中一个字段是net-id,另一个字段是主机号host-id,它标志该主机(或路由器)。<br>IP地址中的网络号字段和主机号字段如下图所示：<br><img src="https://ae01.alicdn.com/kf/Hbf407c8274d8495aafffe7b33a4dd7a6C.jpg" alt=""></p>
+<h4 id="分类的IP地址"><a href="#分类的IP地址" class="headerlink" title="分类的IP地址"></a>分类的IP地址</h4><p>我们把整个因特网看成一个单一的、抽象的网络，IP地址就是给每个连接在因特网上的主机(或路由器)分配一个在全世界范围内唯一的32位标识符。</p>
+<h5 id="地址格式"><a href="#地址格式" class="headerlink" title="地址格式"></a>地址格式</h5><p>每一类地址都由两个固定长度的字段组成。其中一个字段是net-id,另一个字段是主机号host-id,它标志该主机(或路由器)。<br>IP地址中的网络号字段和主机号字段如下图所示：<br><img src="https://ae01.alicdn.com/kf/Hbf407c8274d8495aafffe7b33a4dd7a6C.jpg" alt=""></p>
 <h5 id="点分十进制记法"><a href="#点分十进制记法" class="headerlink" title="点分十进制记法"></a>点分十进制记法</h5><p><img src="https://pic2.superbed.cn/item/5de4ac80119afd7d7ec4e70d.jpg" alt=""></p>
-<h4 id="IP地址的特点"><a href="#IP地址的特点" class="headerlink" title="IP地址的特点"></a>IP地址的特点</h4><ol>
+<h5 id="IP地址的特点"><a href="#IP地址的特点" class="headerlink" title="IP地址的特点"></a>IP地址的特点</h5><ol>
 <li>IP地址是一种分等级的地址结构：</li>
 </ol>
 <ul>
@@ -1393,7 +1393,7 @@ fightingtree@neu.org.cn</code></pre>
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">177.8k</span>
+                <span class="white-color">178.8k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
