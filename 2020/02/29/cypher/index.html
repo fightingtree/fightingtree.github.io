@@ -435,9 +435,9 @@
                 <h2 id="利用系统漏洞破解密码"><a href="#利用系统漏洞破解密码" class="headerlink" title="利用系统漏洞破解密码"></a>利用系统漏洞破解密码</h2><h3 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h3><p>在不知道Win7系统密码的情况下破解密码</p>
 <h3 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>Win7系统下5次shift键可调用一个粘滞键，粘滞键的可执行文件存在于c:\windows\system32\sethc.exe,即可以在账户未登录的情况下调用内部程序，我们的目的在于把此程序换掉包成cmd程序，进而进行密码破解。(未登录时执行cmd是以system权限打开的)</p>
 <h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
-<li><p>启动Windows 7的修复模式(在开机的过程中强制关机即可触发该模式)。<br><img src="https://i.postimg.cc/gcS84ZxZ/Snipaste-2020-03-03-13-58-21.png" alt=""><br><img src="https://i.postimg.cc/gjTSDN70/Snipaste-2020-03-03-14-01-38.png" alt=""></p>
+<li><p>启动Windows 7的修复模式(在开机的过程中强制关机即可触发该模式)。<br><img src="https://pic.downk.cc/item/5e8addc3504f4bcb04f30027.png" alt=""><br><img src="https://pic.downk.cc/item/5e8addd8504f4bcb04f31395.png" alt=""></p>
 </li>
-<li><p>利用反馈问题的链接打开内部文件<br><img src="https://i.postimg.cc/qBthR1GZ/Snipaste-2020-03-03-14-12-50.png" alt=""><br><img src="https://i.postimg.cc/qBthR1GZ/Snipaste-2020-03-03-14-12-50.png" alt=""><br><img src="https://i.postimg.cc/kgM7V4mX/Snipaste-2020-03-03-14-15-56.png" alt=""></p>
+<li><p>利用反馈问题的链接打开内部文件<br><img src="https://pic.downk.cc/item/5e8adde9504f4bcb04f321f4.png" alt=""><br><img src="https://pic.downk.cc/item/5e8addfd504f4bcb04f33387.png" alt=""><br><img src="https://pic.downk.cc/item/5e8ade0d504f4bcb04f3417f.png" alt=""></p>
 </li>
 <li><p>找到windows文件夹所在的磁盘(注意要显示所有文件)，找到粘滞键的可执行文件，重命名。复制cmd的执行文件，重命名cmd副本为sethc(粘滞键可执行文件名称)。</p>
 </li>

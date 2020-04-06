@@ -457,17 +457,17 @@ DHCP优点减少工作量">
 <p>注：Windows/Linux/三层交换机/路由器均可用来做DHCP服务器</p>
 </blockquote>
 <h3 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h3><ol>
-<li><p>设置客户机及服务器的网络适配器改在同一个网络下(空),此时客户机的本地链接状态为无效IP<br><img src="https://i.postimg.cc/52bnZhJ0/1.png" alt=""><br><img src="https://i.postimg.cc/ZRt9QSks/2.png" alt=""></p>
+<li><p>设置客户机及服务器的网络适配器改在同一个网络下(空),此时客户机的本地链接状态为无效IP<br><img src="https://pic.downk.cc/item/5e8ad502504f4bcb04eae332.png" alt=""><br><img src="https://pic.downk.cc/item/5e8ad51e504f4bcb04eafdef.png" alt=""></p>
 </li>
-<li><p>为服务器设置静态IP地址：<br>①点击打开本地连接属性<br>②点击Telnet协议<br><img src="https://i.postimg.cc/ZnM8MQJf/3.png" alt=""><br>③手动配置静态IP<br><img src="https://i.postimg.cc/nhY21pX2/Snipaste-2020-03-05-15-18-49.png" alt=""><br>上图手动配置的IP意思：该网段为10.1.1.0，服务器IP地址为10.1.1.1，默认客户机IP地址从10.1.1.2开始分配</p>
+<li><p>为服务器设置静态IP地址：<br>①点击打开本地连接属性<br>②点击Telnet协议<br><img src="https://pic.downk.cc/item/5e8ad52e504f4bcb04eb0f05.png" alt=""><br>③手动配置静态IP<br><img src="https://pic.downk.cc/item/5e8ad552504f4bcb04eb30d7.png" alt=""><br>上图手动配置的IP意思：该网段为10.1.1.0，服务器IP地址为10.1.1.1，默认客户机IP地址从10.1.1.2开始分配</p>
 </li>
-<li><p>在服务器中安装DHCP组件：<br>①点击我的电脑<br>②点击光驱(可移动设备)<br>③选择安装可选的Windows组件<br>④点击网络服务<br>⑤点击DHCP<br><img src="https://i.postimg.cc/VkmfhWNw/5.png" alt=""><br>⑥确定</p>
+<li><p>在服务器中安装DHCP组件：<br>①点击我的电脑<br>②点击光驱(可移动设备)<br>③选择安装可选的Windows组件<br>④点击网络服务<br>⑤点击DHCP<br><img src="https://pic.downk.cc/item/5e8ad562504f4bcb04eb4514.png" alt=""><br>⑥确定</p>
 </li>
-<li><p>使用<font color="#fb8c00">netstat -an</font>查看所有和服务器建立连接的IP.DHCP服务器使用UDP67端口作为源端口，使用UDP68端口作为目的端口来广播信息<br><img src="https://i.postimg.cc/C5bNRgDW/6.png" alt=""></p>
+<li><p>使用<font color="#fb8c00">netstat -an</font>查看所有和服务器建立连接的IP.DHCP服务器使用UDP67端口作为源端口，使用UDP68端口作为目的端口来广播信息<br><img src="https://pic.downk.cc/item/5e8ad686504f4bcb04ec6d78.png" alt=""></p>
 </li>
-<li><p>创建作用域(地址池)：<br>①点击-&gt;开始-&gt;管理工具-&gt;DHCP<br>②新建作用域<br><img src="https://i.postimg.cc/5NdHgvd5/7.png" alt=""><br>③配置作用域-&gt;添加排除(可选)-&gt;设置租约期限-&gt;设置DHCP选项(DHCP选项指网关及DNS，可选)-&gt;指定网关(要与真实网关一样)-&gt;添加服务器IP地址-&gt;WINS服务器(已被淘汰，忽略)-&gt;激活作用域<br><img src="https://i.postimg.cc/43q4dkXv/8.png" alt=""></p>
+<li><p>创建作用域(地址池)：<br>①点击-&gt;开始-&gt;管理工具-&gt;DHCP<br>②新建作用域<br><img src="https://pic.downk.cc/item/5e8ad69a504f4bcb04ec82d2.png" alt=""><br>③配置作用域-&gt;添加排除(可选)-&gt;设置租约期限-&gt;设置DHCP选项(DHCP选项指网关及DNS，可选)-&gt;指定网关(要与真实网关一样)-&gt;添加服务器IP地址-&gt;WINS服务器(已被淘汰，忽略)-&gt;激活作用域<br><img src="https://pic.downk.cc/item/5e8ad6ab504f4bcb04ec963c.png" alt=""></p>
 </li>
-<li><p>客户机连接服务器获得IP地址：<br>①右键点击本地连接选择启用<br><img src="https://i.postimg.cc/VvLDJTfg/9.png" alt=""></p>
+<li><p>客户机连接服务器获得IP地址：<br>①右键点击本地连接选择启用<br><img src="https://pic.downk.cc/item/5e8ad725504f4bcb04ed122b.png" alt=""></p>
 </li>
 </ol>
 <blockquote>
@@ -476,9 +476,9 @@ DHCP优点减少工作量">
 <h3 id="DHCP命令"><a href="#DHCP命令" class="headerlink" title="DHCP命令"></a>DHCP命令</h3><h4 id="查看MAC地址"><a href="#查看MAC地址" class="headerlink" title="查看MAC地址"></a>查看MAC地址</h4><ol>
 <li><p>客户机：</p>
 <pre class=" language-bash"><code class="language-bash">ipconfig /all</code></pre>
-<p><img src="https://i.postimg.cc/ydyz4kYG/11.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5e8ad743504f4bcb04ed2e72.png" alt=""></p>
 </li>
-<li><p>客户端：<br><img src="https://i.postimg.cc/rpphFsJb/12.png" alt=""></p>
+<li><p>客户端：<br><img src="https://pic.downk.cc/item/5e8ad770504f4bcb04ed5964.png" alt=""></p>
 </li>
 </ol>
 <h4 id="释放IP地址"><a href="#释放IP地址" class="headerlink" title="释放IP地址"></a>释放IP地址</h4><p>正常关机不会释放IP地址</p>

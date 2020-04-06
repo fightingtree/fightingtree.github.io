@@ -468,10 +468,10 @@
 <h3 id="部署Web服务器"><a href="#部署Web服务器" class="headerlink" title="部署Web服务器"></a>部署Web服务器</h3><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><p>客户机：Windows XP<br>服务器：Windows Server 2003<br>客户机与服务器需处于同一局域网，此实验的前提是客户机需要使用Win 2003服务器提供的网络服务，即客户机需将Win 2003服务器手动配置为DHCP服务器(详情请参考DHCP篇)</p>
 <h4 id="部署步骤"><a href="#部署步骤" class="headerlink" title="部署步骤"></a>部署步骤</h4><ol>
 <li>配置静态地址</li>
-<li>安装IIS-Web/FTP插件(同DHCP服务器搭建，详情请参考DHCP服务部署步骤(博客DHCP篇))：<br><img src="https://i.postimg.cc/t4WZ29rd/Snipaste-2020-03-07-21-40-10.png" alt=""></li>
+<li>安装IIS-Web/FTP插件(同DHCP服务器搭建，详情请参考DHCP服务部署步骤(博客DHCP篇))：<br><img src="https://pic.downk.cc/item/5e8adb42504f4bcb04f0d6e9.png" alt=""></li>
 <li>打开IIS服务器：开始-&gt;管理工具-&gt;IIS</li>
-<li>使用<font color="#fb8c00">netstat -an</font>命令查看Web/FTP(21)服务是否打开,HTTPS的443端口无法轻易打开<br><img src="https://i.postimg.cc/qvwLjcDx/2.png" alt=""></li>
-<li>使用客户机浏览器访问10.1.1.1,查看客户机是否连接上服务器，出现如下界面则表示成功连接：<br><img src="https://i.postimg.cc/Nfn33Rj6/3.png" alt=""></li>
+<li>使用<font color="#fb8c00">netstat -an</font>命令查看Web/FTP(21)服务是否打开,HTTPS的443端口无法轻易打开<br><img src="https://pic.downk.cc/item/5e8adb4e504f4bcb04f0e430.png" alt=""></li>
+<li>使用客户机浏览器访问10.1.1.1,查看客户机是否连接上服务器，出现如下界面则表示成功连接：<br><img src="https://pic.downk.cc/item/5e8adb5d504f4bcb04f0f1f2.png" alt=""></li>
 </ol>
 <blockquote>
 <p>注：要想网页正常显示必须添加默认文档，并且配置DNS，让客户机正常解析网址</p>
@@ -500,11 +500,11 @@
 <h2 id="部署HTTPS服务器-SSL服务器"><a href="#部署HTTPS服务器-SSL服务器" class="headerlink" title="部署HTTPS服务器(SSL服务器)"></a>部署HTTPS服务器(SSL服务器)</h2><p>IIS的Web服务器默认提供HTTP服务(80),现在要升级成HTTPS服务(443),即服务器不仅为HTTP服务器，也为CA服务器。建议观看此节之前先阅读PKI篇了解原理。</p>
 <h3 id="实验环境-1"><a href="#实验环境-1" class="headerlink" title="实验环境"></a>实验环境</h3><p>客户机：Windows 7<br>服务器：Windows Server 2008<br>确保服务器和客户机在同一局域网，且客户机DNS服务器指向服务器(详情请参考DNS篇)</p>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="搭建Web服务器"><a href="#搭建Web服务器" class="headerlink" title="搭建Web服务器"></a>搭建Web服务器</h4><ol>
-<li><p>组件安装：<br>①打开服务器的服务器管理器-&gt;角色-&gt;添加角色-&gt;下一步-&gt;勾选Web服务器(IIS)-&gt;下一步<br><img src="https://i.postimg.cc/4469hkcY/4.png" alt=""><br>②安装</p>
+<li><p>组件安装：<br>①打开服务器的服务器管理器-&gt;角色-&gt;添加角色-&gt;下一步-&gt;勾选Web服务器(IIS)-&gt;下一步<br><img src="https://pic.downk.cc/item/5e8adb75504f4bcb04f10a07.png" alt=""><br>②安装</p>
 </li>
 <li><p>开始-&gt;管理工具-&gt;Internet(IIS)管理器-&gt;网站(默认网站)：在搭建HTTPS服务器时不能停止默认站点，因此CA自带的网站站点会直接放入默认站点路径(C:\Inetpub\wwwroot )里，利用默认站点路径发布CA。</p>
 </li>
-<li><p>右键点击网站图标-&gt;新建站点：如果此处文件放在C盘(受NTFS保护)，则客户机进行访问会出现401错误<br><img src="https://i.postimg.cc/NfBh4Tzg/5.png" alt=""></p>
+<li><p>右键点击网站图标-&gt;新建站点：如果此处文件放在C盘(受NTFS保护)，则客户机进行访问会出现401错误<br><img src="https://pic.downk.cc/item/5e8adb85504f4bcb04f11abd.png" alt=""></p>
 </li>
 <li><p>点击新建网站图标-&gt;右边框中寻找默认文档并双击-&gt;点击右上方添加(默认文档)-&gt;输入要展示的html文件名(xx.html)：如果没有配置该文件则客户机访问时会出现403错误</p>
 </li>
@@ -519,28 +519,27 @@
 </li>
 <li><p>开始-&gt;管理工具-&gt;证书颁发机构(Certification Authority)</p>
 </li>
-<li><p>在IIS管理器里申请证书(此证书是采用base64编码的)：<br><img src="https://i.postimg.cc/cHrsWd4C/6.png" alt=""><br><img src="https://i.postimg.cc/nhXbM3fS/7.png" alt=""><br>后面只需一路下一步</p>
+<li><p>在IIS管理器里申请证书(此证书是采用base64编码的)：<br><img src="https://pic.downk.cc/item/5e8adb96504f4bcb04f129b7.png" alt=""><br><img src="https://pic.downk.cc/item/5e8adba7504f4bcb04f136bf.png" alt=""><br>后面只需一路下一步</p>
 </li>
 <li><p>将证书提交给CA：通过IE浏览器输入网址：<font color="#fb8c00">本机IP/certsrv</font> 访问默认CA网站。</p>
 </li>
-<li><p>点击申请证书-&gt;<br><img src="https://i.postimg.cc/TwhwCrzK/8.png" alt=""><br><img src="https://i.postimg.cc/JtCzrSGX/9.png" alt=""></p>
+<li><p>点击申请证书-&gt;<br><img src="https://pic.downk.cc/item/5e8adbc0504f4bcb04f14a1c.png" alt=""><br><img src="https://pic.downk.cc/item/5e8adbcf504f4bcb04f15512.png" alt=""></p>
 </li>
-<li><p>将第三步中申请的证书的内容复制粘贴到下图框中-&gt;点击提交<br><img src="https://i.postimg.cc/0QTsD37y/10.png" alt=""></p>
+<li><p>将第三步中申请的证书的内容复制粘贴到下图框中-&gt;点击提交<br><img src="https://pic.downk.cc/item/5e8adbe3504f4bcb04f16425.png" alt=""></p>
 </li>
-<li><p>打开证书颁发机构可看到挂起的申请-&gt;右键点击下图框起来的部分-&gt;颁发<br><img src="https://i.postimg.cc/7ZHf5GxQ/11.png" alt=""></p>
+<li><p>打开证书颁发机构可看到挂起的申请-&gt;右键点击下图框起来的部分-&gt;颁发<br><img src="https://pic.downk.cc/item/5e8adbf1504f4bcb04f172cd.png" alt=""></p>
 </li>
 <li><p>重新访问第4步中的CA网站-&gt;查看挂起的证书申请的状态-&gt;选择申请的证书-&gt;下载证书-&gt;保存(此时证书中有CA的签名以及IIS服务器的公钥)</p>
 </li>
-<li><p>开始-&gt;管理工具-&gt;IIS:<br><img src="https://i.postimg.cc/XqsSMkht/12.png" alt=""><br><img src="https://i.postimg.cc/ZqLhFmHT/13.png" alt=""></p>
+<li><p>开始-&gt;管理工具-&gt;IIS:<br><img src="https://pic.downk.cc/item/5e8adc01504f4bcb04f18586.png" alt=""><br><img src="https://pic.downk.cc/item/5e8adc13504f4bcb04f196ed.png" alt=""></p>
 </li>
 </ol>
 <h4 id="网站提供HTTPS服务"><a href="#网站提供HTTPS服务" class="headerlink" title="网站提供HTTPS服务"></a>网站提供HTTPS服务</h4><ol>
-<li><p>在IIS中右键点击需要提供HTTPS服务的网站-&gt;编辑绑定：<br><img src="https://i.postimg.cc/NGDSNbRx/14.png" alt=""><br><img src="https://i.postimg.cc/MZnG7sch/15.png" alt=""></p>
+<li><p>在IIS中右键点击需要提供HTTPS服务的网站-&gt;编辑绑定：<br><img src="https://pic.downk.cc/item/5e8adc36504f4bcb04f1b004.png" alt=""><br><img src="https://pic.downk.cc/item/5e8adc45504f4bcb04f1bb71.png" alt=""></p>
 </li>
-<li><p>设置SSL<br><img src="https://i.postimg.cc/JzDgKk37/16.png" alt=""></p>
+<li><p>设置SSL<br><img src="https://pic.downk.cc/item/5e8adc55504f4bcb04f1ca9f.png" alt=""><br><img src="https://pic.downk.cc/item/5e8adc9b504f4bcb04f1fed4.png" alt=""><br>点击进入后勾选要求SSL</p>
 </li>
 </ol>
-<p>点击进入后勾选要求SSL</p>
 <h4 id="客户机访问网站"><a href="#客户机访问网站" class="headerlink" title="客户机访问网站"></a>客户机访问网站</h4><p>在浏览器搜索栏上输入网址：<font color="#fb8c00">https://网站域名</font> 进行访问,访问后会出现提示该网站的安全证书有问题(原因是我们的计算机默认不信任被访问网站的证书)，选择继续访问即可。</p>
 <ul>
 <li>可以用https直接访问而不会出现提示该网站安全证书有问题的原因是，该网站使用的CA是中国公认的CA，我们的浏览器内置信任该CA</li>

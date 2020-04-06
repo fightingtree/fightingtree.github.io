@@ -10,18 +10,9 @@
 工作组：默认模式
 
 
-查看方式：开始-&amp;gt;系统：
+查看方式：开始-&amp;gt;系统：![]https://pic.downk.cc/item/5e8ad8e7504f4bcb04eedea2.png)
 
-特点：人人平等(一台计算机不能控制另一台计算机)，不方便管理
-
-
-
-域
-
-
-特点：人人不平等，可以集中管理、统一管理
-
-">
+特点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -460,7 +451,7 @@
 <li>工作组：默认模式</li>
 </ol>
 <ul>
-<li><p>查看方式：开始-&gt;系统：<br><img src="https://i.postimg.cc/VsZ0LQvC/1.png" alt=""></p>
+<li><p>查看方式：开始-&gt;系统：<br>![]<a href="https://pic.downk.cc/item/5e8ad8e7504f4bcb04eedea2.png" target="_blank" rel="noopener">https://pic.downk.cc/item/5e8ad8e7504f4bcb04eedea2.png</a>)</p>
 </li>
 <li><p>特点：人人平等(一台计算机不能控制另一台计算机)，不方便管理</p>
 </li>
@@ -477,7 +468,7 @@
 </ol>
 <h3 id="域的结构"><a href="#域的结构" class="headerlink" title="域的结构"></a>域的结构</h3><ul>
 <li>在域里DNS和DC配合工作，计算机加入域的瞬间，DNS会自动在生产解析记录。</li>
-<li>在DC上有一张活动目录AD(Active Directory)，表里存放着整个域的公共资源，包括域账号(活动目录的特点：集中管理/统一管理)<br><img src="https://i.postimg.cc/tgJ99TYL/2.png" alt=""></li>
+<li>在DC上有一张活动目录AD(Active Directory)，表里存放着整个域的公共资源，包括域账号(活动目录的特点：集中管理/统一管理)<br><img src="https://pic.downk.cc/item/5e8ad8f9504f4bcb04eef05e.png" alt=""></li>
 </ul>
 <h4 id="例子-使用域账号登录域中电脑"><a href="#例子-使用域账号登录域中电脑" class="headerlink" title="例子(使用域账号登录域中电脑)"></a>例子(使用域账号登录域中电脑)</h4><ul>
 <li>假如在DC的活动目录上创建一个域账号A，密码为1。</li>
@@ -500,13 +491,13 @@
 <li>开始-&gt;运行(快捷键Win+R)-&gt;输入<font color="#fb8c00">dcpromo</font>命令安装活动目录(此命令也可卸载活动目录，卸载目录还需在服务器管理器中选择删除角色)-&gt;下一步-&gt;下一步(要勾上安装DNS服务器)</li>
 <li>在新林中新建域(林的解释参考下方)-&gt;下一步</li>
 <li>填写新建域的完全域名(此域名不能重名)</li>
-<li>设置林功能<br><img src="https://i.postimg.cc/j5WHF51s/4.png" alt=""></li>
+<li>设置林功能<br><img src="https://pic.downk.cc/item/5e8ad90f504f4bcb04ef0619.png" alt=""></li>
 <li>设置域功能(域功能作用与林功能类似)-&gt;下一步-&gt;报错点击是-&gt;文件夹路径不能更改点击下一步</li>
 <li>设置活动目录登录密码(用于对活动目录进行操作的身份验证，此密码绝对不能泄露！！！)-&gt;下一步</li>
 <li>登录域Zby\Administrator</li>
-<li>查看计算机域设置：计算机-&gt;属性<br><img src="https://i.postimg.cc/fb5GzH5H/5.png" alt=""></li>
-<li>查看DNS服务器:开始-&gt;管理工具-&gt;DNS，计算机将会自动生成域管理器的域名解析记录，如果未出现下图界面则证明域管理器部署失败<br><img src="https://i.postimg.cc/90zR8Ngs/6.png" alt=""></li>
-<li>打开活动目录：开始-&gt;管理工具-&gt;Active Directory用户和计算机(真正的AD)<br><img src="https://i.postimg.cc/PrSpshn9/7.png" alt=""></li>
+<li>查看计算机域设置：计算机-&gt;属性<br><img src="https://pic.downk.cc/item/5e8ad925504f4bcb04ef1b94.png" alt=""></li>
+<li>查看DNS服务器:开始-&gt;管理工具-&gt;DNS，计算机将会自动生成域管理器的域名解析记录，如果未出现下图界面则证明域管理器部署失败<br><img src="https://pic.downk.cc/item/5e8ad936504f4bcb04ef28db.png" alt=""></li>
+<li>打开活动目录：开始-&gt;管理工具-&gt;Active Directory用户和计算机(真正的AD)<br><img src="https://pic.downk.cc/item/5e8ad946504f4bcb04ef34f4.png" alt=""></li>
 </ol>
 <blockquote>
 <p>注：WindowsServer2008部署完域后，已经称为域控制器DC,则此计算机不再拥有本地账户和组，本地账户自动迁移到活动目录的表里，即本地管理员升级变成了域管理员,所有本地组也升级为域组。域中的成员机域账号和本地账号，如果要使用域资源必须使用域账号登录，但是DC没有本地账号，只能登录域。</p>
@@ -517,7 +508,7 @@
 <li>分公司与总部用不同的域(域树)：总部使用主域(父域)，分公司使用子域，父域与子域共同构成域树</li>
 <li>域林：比如公司的一个事业群使用一个域树，最后公司的所有事业群的域树构成域林</li>
 </ul>
-<p><img src="https://i.postimg.cc/6qn5SLc9/3.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5e8ad955504f4bcb04ef3f68.png" alt=""></p>
 <blockquote>
 <p>注：现在大多数公司还是采用域树</p>
 </blockquote>
@@ -529,14 +520,14 @@
 <li>DNS服务器地址要指向Windows Server 2008的静态IP地址</li>
 </ul>
 <ol start="2">
-<li>右键点击我的电脑-&gt;选择属性-&gt;计算机名-&gt;更改<br><img src="https://i.postimg.cc/Jz1Njmbz/8.png" alt=""><br><img src="https://i.postimg.cc/HkDytmXy/9.png" alt=""></li>
-<li>以域管理员的身份登录(用户名必须为域名\administrator)<br><img src="https://i.postimg.cc/wv8qCxxX/10.png" alt=""></li>
-<li>登录成功<br><img src="https://i.postimg.cc/xdPp2tn6/11.png" alt=""></li>
+<li>右键点击我的电脑-&gt;选择属性-&gt;计算机名-&gt;更改<br><img src="https://pic.downk.cc/item/5e8ad966504f4bcb04ef4bd1.png" alt=""><br><img src="https://pic.downk.cc/item/5e8ad976504f4bcb04ef56a8.png" alt=""></li>
+<li>以域管理员的身份登录(用户名必须为域名\administrator)<br><img src="https://pic.downk.cc/item/5e8ad986504f4bcb04ef6249.png" alt=""></li>
+<li>登录成功<br><img src="https://pic.downk.cc/item/5e8ad999504f4bcb04ef7089.png" alt=""></li>
 </ol>
 <h3 id="Win7加入域"><a href="#Win7加入域" class="headerlink" title="Win7加入域"></a>Win7加入域</h3><p>Win7加入域的步骤与WinXP一致。</p>
-<h3 id="服务器查看"><a href="#服务器查看" class="headerlink" title="服务器查看"></a>服务器查看</h3><p><img src="https://i.postimg.cc/vBFPfkX8/12.png" alt=""></p>
-<h2 id="使用域功能"><a href="#使用域功能" class="headerlink" title="使用域功能"></a>使用域功能</h2><h3 id="新建普通域用户"><a href="#新建普通域用户" class="headerlink" title="新建普通域用户"></a>新建普通域用户</h3><p>AD界面-&gt;右键点击Users-&gt;新建-&gt;用户-&gt;填写信息(用户登录名是域账号，只能使用英文字符）<br><img src="https://i.postimg.cc/bY2m3z4y/13.png" alt=""></p>
-<h3 id="登录域用户"><a href="#登录域用户" class="headerlink" title="登录域用户"></a>登录域用户</h3><h4 id="WinXP"><a href="#WinXP" class="headerlink" title="WinXP"></a>WinXP</h4><p>此用户名只能为XX@域名<br><img src="https://i.postimg.cc/153cbsjV/14.png" alt=""></p>
+<h3 id="服务器查看"><a href="#服务器查看" class="headerlink" title="服务器查看"></a>服务器查看</h3><p><img src="https://pic.downk.cc/item/5e8ad9a8504f4bcb04ef7bb9.png" alt=""></p>
+<h2 id="使用域功能"><a href="#使用域功能" class="headerlink" title="使用域功能"></a>使用域功能</h2><h3 id="新建普通域用户"><a href="#新建普通域用户" class="headerlink" title="新建普通域用户"></a>新建普通域用户</h3><p>AD界面-&gt;右键点击Users-&gt;新建-&gt;用户-&gt;填写信息(用户登录名是域账号，只能使用英文字符）<br><img src="https://pic.downk.cc/item/5e8ad9ba504f4bcb04ef8d88.png" alt=""></p>
+<h3 id="登录域用户"><a href="#登录域用户" class="headerlink" title="登录域用户"></a>登录域用户</h3><h4 id="WinXP"><a href="#WinXP" class="headerlink" title="WinXP"></a>WinXP</h4><p>此用户名只能为XX@域名<br><img src="https://pic.downk.cc/item/5e8ada3c504f4bcb04f000ba.png" alt=""></p>
 <h4 id="Win7"><a href="#Win7" class="headerlink" title="Win7"></a>Win7</h4><p>在登录界面点击切换用户,输入域账号和密码。</p>
 <h2 id="OU组织单位"><a href="#OU组织单位" class="headerlink" title="OU组织单位"></a>OU组织单位</h2><p>OU(Organization Unit,组织单位)，作用：用于归类域资源(域用户、域计算机、域组)</p>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>公司安全部的域账号放到一个专属于安全部的OU内。</p>
@@ -546,7 +537,7 @@
 <li>OU：为不同的域账号下发组策略GPO</li>
 </ul>
 <h3 id="创建OU"><a href="#创建OU" class="headerlink" title="创建OU"></a>创建OU</h3><ol>
-<li>创建组织单位：<br><img src="https://i.postimg.cc/y6f6qZ1X/15.png" alt=""></li>
+<li>创建组织单位：<br><img src="https://pic.downk.cc/item/5e8ada4b504f4bcb04f00b4e.png" alt=""></li>
 </ol>
 <h3 id="移动域用户到不同OU"><a href="#移动域用户到不同OU" class="headerlink" title="移动域用户到不同OU"></a>移动域用户到不同OU</h3><p>右键点击要移动的用户-&gt;所有任务-&gt;移动</p>
 <blockquote>
@@ -561,16 +552,16 @@
 </ul>
 <h3 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h3><p>计算机B使用域账号登录后，会向DC询问具体要求，DC查阅活动目录，发现计算机B所属的XX部有一个组策略表，DC就会将这张组策略表发给计算机B，计算机B就会读取这张表的具体要求并执行。</p>
 <h3 id="创建组策略"><a href="#创建组策略" class="headerlink" title="创建组策略"></a>创建组策略</h3><ol>
-<li>开始-&gt;管理-&gt;组策略管理:<br><img src="https://i.postimg.cc/NFk3G7ZP/16.png" alt=""></li>
-<li>右键点击想要创建组策略的域-&gt;选择在这个域中创建GPO并在此链接-&gt;自定义名称<br><img src="https://i.postimg.cc/RFX1MWXL/17.png" alt=""></li>
+<li>开始-&gt;管理-&gt;组策略管理:<br><img src="https://pic.downk.cc/item/5e8ada5d504f4bcb04f01780.png" alt=""></li>
+<li>右键点击想要创建组策略的域-&gt;选择在这个域中创建GPO并在此链接-&gt;自定义名称<br><img src="https://pic.downk.cc/item/5e8ada6c504f4bcb04f020fb.png" alt=""></li>
 </ol>
 <h3 id="对组策略进行编辑"><a href="#对组策略进行编辑" class="headerlink" title="对组策略进行编辑"></a>对组策略进行编辑</h3><p>这里的例子是要求IT部域中所有账户桌面为同一个桌面：</p>
 <ol>
-<li><p>在WindowsServer2008中新建一个文件夹，并设置共享、安全性：<br>①右键点击文件夹-&gt;共享-&gt;高级共享<br><img src="https://i.postimg.cc/15VcD5vJ/19.png" alt=""><br>②右键点击文件夹-&gt;安全-&gt;添加域用户<br><img src="https://i.postimg.cc/PxmPQJLn/20.png" alt=""></p>
+<li><p>在WindowsServer2008中新建一个文件夹，并设置共享、安全性：<br>①右键点击文件夹-&gt;共享-&gt;高级共享<br><img src="https://pic.downk.cc/item/5e8ada91504f4bcb04f03a7b.png" alt=""><br>②右键点击文件夹-&gt;安全-&gt;添加域用户<br><img src="https://pic.downk.cc/item/5e8adaa5504f4bcb04f04f9b.png" alt=""></p>
 </li>
-<li><p>右键点击要编辑的组策略-&gt;编辑:<br><img src="https://i.postimg.cc/K8j8VRMy/18.png" alt=""></p>
+<li><p>右键点击要编辑的组策略-&gt;编辑:<br><img src="https://pic.downk.cc/item/5e8ada7c504f4bcb04f02bac.png" alt=""></p>
 </li>
-<li><p>右键点击桌面壁纸-&gt;属性<br><img src="https://i.postimg.cc/DfS2h8fv/21.png" alt=""></p>
+<li><p>右键点击桌面壁纸-&gt;属性<br><img src="https://pic.downk.cc/item/5e8adabb504f4bcb04f0640b.png" alt=""></p>
 </li>
 <li><p>注销域账户重新登录即可使用组策略统一桌面</p>
 </li>
@@ -578,7 +569,7 @@
 <blockquote>
 <p>注：由于虚拟机的限制性，桌面更换过程可能过慢，此时可以采用在域账户计算机桌面空白处点击右键选择个性化或属性查看当前壁纸</p>
 </blockquote>
-<h3 id="查看组策略"><a href="#查看组策略" class="headerlink" title="查看组策略"></a>查看组策略</h3><p>打开组策略管理<br><img src="https://i.postimg.cc/C14j7mtN/22.png" alt=""></p>
+<h3 id="查看组策略"><a href="#查看组策略" class="headerlink" title="查看组策略"></a>查看组策略</h3><p>打开组策略管理<br><img src="https://pic.downk.cc/item/5e8adaef504f4bcb04f096fc.png" alt=""></p>
 <h3 id="强制实施组策略"><a href="#强制实施组策略" class="headerlink" title="强制实施组策略"></a>强制实施组策略</h3><p>强制的意思是说组策略应用顺序应用到此组策略时即停止，不会再往下应用其他组策略<br>右键点击组策略-&gt;强制</p>
 <h3 id="阻止继承"><a href="#阻止继承" class="headerlink" title="阻止继承"></a>阻止继承</h3><p>不再应用该OU之前的组策略(即不再运行LSD组策略)<br>右键点击OU文件夹-&gt;阻止继承</p>
 <blockquote>

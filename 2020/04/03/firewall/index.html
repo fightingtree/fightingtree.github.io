@@ -475,14 +475,14 @@ ACL在路由器上配置，也可以在防火墙上配置(一般称为策略">
 <li>IP地址分为公网IP和私网IP，公网IP只能在公网使用，私网IP只能在内网使用，公网上不允许出现私有IP地址。</li>
 <li>私网IP可以重复在内网使用(一个IP地址可以在不同的内网中使用)</li>
 </ul>
-<p><img src="https://i.postimg.cc/rF6gs6Bq/1.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5e8ade2f504f4bcb04f35ee1.png" alt=""></p>
 <h3 id="私有IP地址范围"><a href="#私有IP地址范围" class="headerlink" title="私有IP地址范围"></a>私有IP地址范围</h3><p>从IPV4 ABC类地址中抽出一部分作为私有IP地址：</p>
 <ul>
 <li>A类：<font color="#fb8c00">10.0.0.0/8</font>  10开头的</li>
 <li>B类：<font color="#fb8c00">172.16.0.0/16-172.31.0.0/16</font> 172.16开头一直到172.31开头的</li>
 <li>C类：<font color="#fb8c00">192.168.0.0/16</font> 192.168开头的<br>除上述以外的ABC类地址都是公网IP地址，需花钱购买(公网IP地址可以在搜索引擎上查询该IP属于哪个国家地区)</li>
 </ul>
-<h3 id="NAT分类"><a href="#NAT分类" class="headerlink" title="NAT分类"></a>NAT分类</h3><p><img src="https://i.postimg.cc/gkJPCCGD/2.png" alt=""><br>地址转换原则：数据由内网发送到外网：转换源IP，从外网发送到内网：转换目标IP</p>
+<h3 id="NAT分类"><a href="#NAT分类" class="headerlink" title="NAT分类"></a>NAT分类</h3><p><img src="https://pic.downk.cc/item/5e8ade44504f4bcb04f36ff4.png" alt=""><br>地址转换原则：数据由内网发送到外网：转换源IP，从外网发送到内网：转换目标IP</p>
 <ul>
 <li>静态NAT:在上图黄色路由器上有一张NAT地址转换表 (192.1-100.1)，一个公网IP地址一次只能对应一个私网IP地址，此地址转换表由工程师手动配置，内外网端口。此技术可以用于外网访问内网服务器时使用</li>
 <li>动态NAT：NAT地址转换表动态生成，有内部地址池和外部地址池，将内网网段放入内部地址池，将购买的公网IP地址放入外部地址池，然后在两个池子之间做一个动态NAT映射，一个公网IP地址一次也只能对应一个私网IP地址</li>
@@ -510,7 +510,7 @@ ACL在路由器上配置，也可以在防火墙上配置(一般称为策略">
 <li>VPN服务器需要对VPN客户端进行身份验证</li>
 <li>VPN服务器需要给VPN客户端下发权限和IP地址</li>
 </ul>
-<h3 id="VPN搭建实验"><a href="#VPN搭建实验" class="headerlink" title="VPN搭建实验"></a>VPN搭建实验</h3><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><p>实验对象：WindowsXP、Win Server 2003、Win Server 2008<br>实验说明：2003充当VPN服务器，2003的一个网卡与XP在同一网段，另一网卡与2008在同一网段，借助2003VPN服务器，XP与2008实现通信(为了突出实验结果，可在2008IIS服务器里放一个网页(详见IIS篇)供其他计算机访问)<br>实验拓扑图：<br><img src="https://i.postimg.cc/y6mm5znx/3.png" alt=""></p>
+<h3 id="VPN搭建实验"><a href="#VPN搭建实验" class="headerlink" title="VPN搭建实验"></a>VPN搭建实验</h3><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><p>实验对象：WindowsXP、Win Server 2003、Win Server 2008<br>实验说明：2003充当VPN服务器，2003的一个网卡与XP在同一网段，另一网卡与2008在同一网段，借助2003VPN服务器，XP与2008实现通信(为了突出实验结果，可在2008IIS服务器里放一个网页(详见IIS篇)供其他计算机访问)<br>实验拓扑图：<br><img src="https://pic.downk.cc/item/5e8ade57504f4bcb04f38006.png" alt=""></p>
 <h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><h5 id="设置网段"><a href="#设置网段" class="headerlink" title="设置网段"></a>设置网段</h5><ol>
 <li>2003作为VPN服务器需要两个网卡，在虚拟机设置中选择添加-&gt;网络适配器，在网络连接里需要区分两个连接对应的网段(可以使用断开连接的方式查看本连接对应的网段)，一个网卡接vmnet1,一个网卡接vmnet2</li>
 <li>设置XP接vmnet1,2008接vmnet2</li>

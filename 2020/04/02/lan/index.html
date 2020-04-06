@@ -468,8 +468,8 @@
 <li>中继端口：也称为trunk端口，一般用于连接其他交换机，属于公共端口，允许所有vlan数据通过</li>
 </ul>
 <h2 id="内部网络规划"><a href="#内部网络规划" class="headerlink" title="内部网络规划"></a>内部网络规划</h2><p>中大型企业内部网络结构：核心交换机(三层交换机)-&gt;二层交换机，网关在三层交换机里</p>
-<h3 id="三层网络"><a href="#三层网络" class="headerlink" title="三层网络"></a>三层网络</h3><p>上万台PC端联网：<br><img src="https://i.postimg.cc/hjZJFZBF/1.png" alt=""></p>
-<h3 id="HSRP协议-VRRP协议"><a href="#HSRP协议-VRRP协议" class="headerlink" title="HSRP协议/VRRP协议"></a>HSRP协议/VRRP协议</h3><p>HSRP(Hot Standby Route Protocol,热备份路由协议）,私有协议，用于备份网关，分配路由器。VRRP协议原理与HSRP协议相同，但是属于公有协议。<br><img src="https://i.postimg.cc/4xdcLWxV/2.png" alt=""></p>
+<h3 id="三层网络"><a href="#三层网络" class="headerlink" title="三层网络"></a>三层网络</h3><p>上万台PC端联网：<br><img src="https://pic.downk.cc/item/5e8add80504f4bcb04f2c4bd.png" alt=""></p>
+<h3 id="HSRP协议-VRRP协议"><a href="#HSRP协议-VRRP协议" class="headerlink" title="HSRP协议/VRRP协议"></a>HSRP协议/VRRP协议</h3><p>HSRP(Hot Standby Route Protocol,热备份路由协议）,私有协议，用于备份网关，分配路由器。VRRP协议原理与HSRP协议相同，但是属于公有协议。<br><img src="https://pic.downk.cc/item/5e8add91504f4bcb04f2d214.png" alt=""></p>
 <ul>
 <li>进行热备份必须保证两个网关在同一个热备份组里(组ID范围为1-255)，没有大小之分。</li>
 <li>组里必须有一个虚拟路由器，拥有一个虚拟IP地址。(在热备份组里拥有最高地位，由它指定活跃路由器/备份路由器)</li>
