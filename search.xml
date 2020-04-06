@@ -8,7 +8,7 @@
       <link href="/2020/04/03/firewall/"/>
       <url>/2020/04/03/firewall/</url>
       
-        <content type="html"><![CDATA[<h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>ACL(Access Control List,访问控制列表)</p><ul><li>ACL是一种包过滤技术</li><li>ACL基于IP包头地址、四层TCP/UDP头部的端口号、五层数据，基于三层四层数据过滤</li><li>ACL在路由器上配置，也可以在防火墙上配置(一般称为策略)，防火墙主要过滤三层四层数据包(过滤网络流量)，对于应用层数据包没有限制(IPS可以过滤应用层数据包)</li></ul><h3 id="ACL分类"><a href="#ACL分类" class="headerlink" title="ACL分类"></a>ACL分类</h3><ul><li>标准ACL：表号1-99，只能基于源IP对数据包进行过滤</li><li>扩展ACL：</li></ul><h3 id="ACL原理"><a href="#ACL原理" class="headerlink" title="ACL原理"></a>ACL原理</h3><ul><li>ACL表必须应用到接口的进/出方向才能生效</li><li>一个接口的一个方向只能应用一张表</li><li>进还是出方向应用取决于流量控制总方向</li><li>ACL表是严格自上而下检查每一条，所以要注意书写顺序</li><li>每一条由条件和动作组成，该条件只对指定对象起作用，当某流量没有满足条件时，继续往下检查(如ACL表中第一条显示应用层数据包不让过，网络层数据包到达时，不满足第一条，继续往下寻找条件)</li><li>标准ACL尽量写在靠近目标的地方</li></ul><h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>NAT(Network Address Translation,网络地址转换)，主要实现公网私网的IP地址转换，一般在路由器或防火墙上配置，不建议在三层交换机上配置。</p><ul><li>产生的原因：IPV4地址严重不够用(ABC类可以使用，D类组播，E类科研)</li><li>IP地址分为公网IP和私网IP，公网IP只能在公网使用，私网IP只能在内网使用，公网上不允许出现私有IP地址。</li><li>私网IP可以重复在内网使用(一个IP地址可以在不同的内网中使用)</li></ul><p><img src="" alt=""></p><h3 id="私有IP地址范围"><a href="#私有IP地址范围" class="headerlink" title="私有IP地址范围"></a>私有IP地址范围</h3><p>从IPV4 ABC类地址中抽出一部分作为私有IP地址：</p><ul><li>A类：<font color="#fb8c00">10.0.0.0/8</font>  10开头的</li><li>B类：<font color="#fb8c00">172.16.0.0/16-172.31.0.0/16</font> 172.16开头一直到172.31开头的</li><li>C类：<font color="#fb8c00">192.168.0.0/16</font> 192.168开头的<br>除上述以外的ABC类地址都是公网IP地址，需花钱购买(公网IP地址可以在搜索引擎上查询该IP属于哪个国家地区)</li></ul><h3 id="NAT分类"><a href="#NAT分类" class="headerlink" title="NAT分类"></a>NAT分类</h3><ul><li>静态NAT</li><li>动态NAT</li><li>PAT</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h2><p>ACL(Access Control List,访问控制列表)</p><ul><li>ACL是一种包过滤技术</li><li>ACL基于IP包头地址、四层TCP/UDP头部的端口号、五层数据，基于三层四层数据过滤</li><li>ACL在路由器上配置，也可以在防火墙上配置(一般称为策略)，防火墙主要过滤三层四层数据包(过滤网络流量)，对于应用层数据包没有限制(IPS可以过滤应用层数据包)</li></ul><h3 id="ACL分类"><a href="#ACL分类" class="headerlink" title="ACL分类"></a>ACL分类</h3><ul><li>标准ACL：表号1-99，只能基于源IP对数据包进行过滤</li><li>扩展ACL：</li></ul><h3 id="ACL原理"><a href="#ACL原理" class="headerlink" title="ACL原理"></a>ACL原理</h3><ul><li>ACL表必须应用到接口的进/出方向才能生效</li><li>一个接口的一个方向只能应用一张表</li><li>进还是出方向应用取决于流量控制总方向</li><li>ACL表是严格自上而下检查每一条，所以要注意书写顺序</li><li>每一条由条件和动作组成，该条件只对指定对象起作用，当某流量没有满足条件时，继续往下检查(如ACL表中第一条显示应用层数据包不让过，网络层数据包到达时，不满足第一条，继续往下寻找条件)</li><li>标准ACL尽量写在靠近目标的地方</li></ul><h2 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h2><p>NAT(Network Address Translation,网络地址转换)，主要实现公网私网的IP地址转换，一般在路由器或防火墙上配置，不建议在三层交换机上配置。</p><ul><li>产生的原因：IPV4地址严重不够用(ABC类可以使用，D类组播，E类科研)</li><li>IP地址分为公网IP和私网IP，公网IP只能在公网使用，私网IP只能在内网使用，公网上不允许出现私有IP地址。</li><li>私网IP可以重复在内网使用(一个IP地址可以在不同的内网中使用)</li></ul><p><img src="https://i.postimg.cc/rF6gs6Bq/1.png" alt=""></p><h3 id="私有IP地址范围"><a href="#私有IP地址范围" class="headerlink" title="私有IP地址范围"></a>私有IP地址范围</h3><p>从IPV4 ABC类地址中抽出一部分作为私有IP地址：</p><ul><li>A类：<font color="#fb8c00">10.0.0.0/8</font>  10开头的</li><li>B类：<font color="#fb8c00">172.16.0.0/16-172.31.0.0/16</font> 172.16开头一直到172.31开头的</li><li>C类：<font color="#fb8c00">192.168.0.0/16</font> 192.168开头的<br>除上述以外的ABC类地址都是公网IP地址，需花钱购买(公网IP地址可以在搜索引擎上查询该IP属于哪个国家地区)</li></ul><h3 id="NAT分类"><a href="#NAT分类" class="headerlink" title="NAT分类"></a>NAT分类</h3><p><img src="https://i.postimg.cc/gkJPCCGD/2.png" alt=""><br>地址转换原则：数据由内网发送到外网：转换源IP，从外网发送到内网：转换目标IP</p><ul><li>静态NAT:在上图黄色路由器上有一张NAT地址转换表 (192.1-100.1)，一个公网IP地址一次只能对应一个私网IP地址，此地址转换表由工程师手动配置，内外网端口。此技术可以用于外网访问内网服务器时使用</li><li>动态NAT：NAT地址转换表动态生成，有内部地址池和外部地址池，将内网网段放入内部地址池，将购买的公网IP地址放入外部地址池，然后在两个池子之间做一个动态NAT映射，一个公网IP地址一次也只能对应一个私网IP地址</li><li>PAT(端口地址转换)：也称端口复用技术，在动态NAT的基础上加上overload(复用)，如果内网访问外网，会在黄色路由器的部分将源IP地址和源端口进行转换，并生成NAT转换表(只有内网访问外网时才会自动生成NAT转换表)。当数据包从外网回内网时，通过端口识别不同的IP地址，实现了一个公网IP地址可以同时对应多个私网IP地址。当一个私网IP地址不访问外网后，NAT转换表会自动删除</li></ul><h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p>VPN(Virtual Private Network),虚拟专用网。VPN可以实现在不安全的网络上，安全的传输数据，就像一个专网。VPN只是一个技术，使用PKI技术，来保证数据安全三要素。(机密性、完整性、身份验证)</p><h3 id="VPN的类型"><a href="#VPN的类型" class="headerlink" title="VPN的类型"></a>VPN的类型</h3><ul><li>远程访问VPN：一般用在个人到安全连接企业内部，出差办公/在家办公，安全连接内网时使用。一般公司部署VPN服务器，员工在外拨号连接VPN即可。(SSL VPN/PPTP VPN/L2TP VPN)</li><li>点到点VPN：一般用在企业到企业安全连接，需要在两个企业总出口设备之间建立VPN通道。合并两家企业内网(IPsecVPN)</li></ul><h3 id="VPN隧道技术"><a href="#VPN隧道技术" class="headerlink" title="VPN隧道技术"></a>VPN隧道技术</h3><p>VPN隧道技术：重新封装技术+加密认证技术</p><ul><li>传输模式：只加密上层数据，不加密私有IP包头，速度快</li><li>隧道模式：加密整个私有IP数据包，包括IP数据包头，更安全，速度慢</li></ul><h3 id="IPsecVPN"><a href="#IPsecVPN" class="headerlink" title="IPsecVPN"></a>IPsecVPN</h3><p>IPsecVPN分为两大阶段：管理连接、数据连接</p><h4 id="管理连接"><a href="#管理连接" class="headerlink" title="管理连接"></a>管理连接</h4><ul><li>目的：通信双方设备通过非对称加密算法加密对称加密算法所使用的对称密钥</li></ul><h4 id="数据连接"><a href="#数据连接" class="headerlink" title="数据连接"></a>数据连接</h4><ul><li>目的：通过对称加密算法加密实际所要传输的私网数据。</li></ul><h3 id="远程访问VPN"><a href="#远程访问VPN" class="headerlink" title="远程访问VPN"></a>远程访问VPN</h3><ul><li>搭建VPN服务器</li><li>VPN服务器需要对VPN客户端进行身份验证</li><li>VPN服务器需要给VPN客户端下发权限和IP地址</li></ul><h3 id="VPN搭建实验"><a href="#VPN搭建实验" class="headerlink" title="VPN搭建实验"></a>VPN搭建实验</h3><h4 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h4><p>实验对象：WindowsXP、Win Server 2003、Win Server 2008<br>实验说明：2003充当VPN服务器，2003的一个网卡与XP在同一网段，另一网卡与2008在同一网段，借助2003VPN服务器，XP与2008实现通信(为了突出实验结果，可在2008IIS服务器里放一个网页(详见IIS篇)供其他计算机访问)<br>实验拓扑图：<br><img src="https://i.postimg.cc/y6mm5znx/3.png" alt=""></p><h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><h5 id="设置网段"><a href="#设置网段" class="headerlink" title="设置网段"></a>设置网段</h5><ol><li>2003作为VPN服务器需要两个网卡，在虚拟机设置中选择添加-&gt;网络适配器，在网络连接里需要区分两个连接对应的网段(可以使用断开连接的方式查看本连接对应的网段)，一个网卡接vmnet1,一个网卡接vmnet2</li><li>设置XP接vmnet1,2008接vmnet2</li></ol><h5 id="配置IP地址"><a href="#配置IP地址" class="headerlink" title="配置IP地址"></a>配置IP地址</h5><ol><li>XP：100.1.1.2 </li><li>2003net1:100.1.1.1 net2:200.1.1.1</li><li>2008:200.1.1.2<br>此时XP访问不了2008的网页，2003可以访问</li></ol><h5 id="安装VPN服务软件"><a href="#安装VPN服务软件" class="headerlink" title="安装VPN服务软件"></a>安装VPN服务软件</h5><ol><li>windows/linux服务器都自带了VPN服务器软件：开始-&gt;管理工具-&gt;路由和远程访问<br><img src="https://pic.downk.cc/item/5e8984c5504f4bcb04cbb840.png" alt=""></li><li>自定义配置-&gt;下一步-&gt;勾选VPN访问、拨号访问、NAT和基本防火墙-&gt;下一步完成</li><li>使用<font color="#fb8c00">netstat -an</font>查看服务是否开启(PPTP/L2TP VPN的服务端口号为tcp 1723)</li></ol><h5 id="新建用户"><a href="#新建用户" class="headerlink" title="新建用户"></a>新建用户</h5><p>因为客户端拨号需要使用服务器用户，所以2003需要新建一个普通用户用于拨号。<br><img src="https://pic.downk.cc/item/5e898751504f4bcb04ce571e.png" alt=""></p><h5 id="VPN服务器分发IP地址"><a href="#VPN服务器分发IP地址" class="headerlink" title="VPN服务器分发IP地址"></a>VPN服务器分发IP地址</h5><p><img src="https://pic.downk.cc/item/5e898832504f4bcb04cf358e.png" alt=""></p><h5 id="开启NAT服务"><a href="#开启NAT服务" class="headerlink" title="开启NAT服务"></a>开启NAT服务</h5><p>将vmnet1的IP地址转换为vmnet2的IP地址<br><img src="https://pic.downk.cc/item/5e8989aa504f4bcb04d04f9e.png" alt=""><br>选择共用接口链接到Internet-&gt;在此接口上启用NAT-&gt;确定</p><h5 id="客户端拨号"><a href="#客户端拨号" class="headerlink" title="客户端拨号"></a>客户端拨号</h5><p><img src="https://pic.downk.cc/item/5e898bef504f4bcb04d27bde.png" alt=""><br>虚拟专用网络连接-&gt;下一步-&gt;VPN服务器写上100.1.1.1-&gt;完成-&gt;拨号输入服务器注册的拨号用户的用户名和密码<br>现在在XP网页中输入200.1.1.2,可以看见2008网页</p><h4 id="查看电脑路由表"><a href="#查看电脑路由表" class="headerlink" title="查看电脑路由表"></a>查看电脑路由表</h4><p>使用以下终端命令：</p><pre class=" language-bash"><code class="language-bash">route print</code></pre><p><img src="https://pic.downk.cc/item/5e89922e504f4bcb04d8ce1c.png" alt=""></p><h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>防火墙：是具备安全防护功能的网络设备(基于IP和端口号隔离，三四层隔离)</p><ul><li>隔离网络：将需要保护的网络与不可信任的网络进行隔离，隐藏信息并进行安全防护</li><li>防火墙策略：默认所有数据包都不能通过，在策略上写能放行的记录</li></ul><h3 id="防火墙的功能"><a href="#防火墙的功能" class="headerlink" title="防火墙的功能"></a>防火墙的功能</h3><ul><li>访问控制(策略)</li><li>攻击防护(主要用于三四层攻击)</li><li>冗余设计</li><li>路由、交换</li><li>日志记录</li><li>虚拟专网VPN</li><li>NAT</li></ul><blockquote><p>注：防火墙比路由器多出来的功能是前两个功能</p></blockquote><h3 id="防火墙的原理"><a href="#防火墙的原理" class="headerlink" title="防火墙的原理"></a>防火墙的原理</h3><h4 id="区域隔离"><a href="#区域隔离" class="headerlink" title="区域隔离"></a>区域隔离</h4><p>防火墙区域概念：</p><ul><li>内部区域</li><li>DMZ区域：隔离区，也称“非军事化区/停火区”，外部区域可以有限访问的区域，内网服务器需要对外发布的部分(网页/邮箱等)</li><li>外部区域</li></ul><h3 id="防火墙的分类"><a href="#防火墙的分类" class="headerlink" title="防火墙的分类"></a>防火墙的分类</h3><h4 id="按防火墙的形态"><a href="#按防火墙的形态" class="headerlink" title="按防火墙的形态"></a>按防火墙的形态</h4><ul><li>软件防火墙</li><li>硬件防火墙</li></ul><h4 id="按技术实现"><a href="#按技术实现" class="headerlink" title="按技术实现"></a>按技术实现</h4><ul><li>包过滤防火墙</li><li>状态检测包过滤防火墙</li><li>应用(代理)防火墙</li><li>WAF(Web Application FireWall,Web应用防火墙)</li><li>应用层防火墙</li></ul>]]></content>
       
       
       <categories>
@@ -25,6 +25,10 @@
             <tag> ACL </tag>
             
             <tag> NAT </tag>
+            
+            <tag> VPN </tag>
+            
+            <tag> 防火墙 </tag>
             
         </tags>
       
@@ -56,19 +60,6 @@
             <tag> VLAN </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>reverse3</title>
-      <link href="/2020/03/28/reverse3/"/>
-      <url>/2020/03/28/reverse3/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
       
     </entry>
     
@@ -205,9 +196,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 服务器 </tag>
             
@@ -392,9 +383,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -577,9 +568,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -608,9 +599,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -639,9 +630,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -670,9 +661,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -701,9 +692,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 渗透测试 </tag>
             
@@ -732,9 +723,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -759,9 +750,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -786,9 +777,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -813,9 +804,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 数据库 </tag>
             
@@ -842,9 +833,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -869,9 +860,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -923,9 +914,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -975,9 +966,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1027,11 +1018,11 @@
       
         <tags>
             
-            <tag> Burp Suite </tag>
+            <tag> 安全 </tag>
             
             <tag> Web </tag>
             
-            <tag> 安全 </tag>
+            <tag> Burp Suite </tag>
             
         </tags>
       
@@ -1050,9 +1041,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
@@ -1077,9 +1068,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> OWASP </tag>
             
@@ -1106,9 +1097,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
             <tag> 计算机网络 </tag>
             
@@ -1135,9 +1126,9 @@
       
         <tags>
             
-            <tag> Web </tag>
-            
             <tag> 安全 </tag>
+            
+            <tag> Web </tag>
             
         </tags>
       
