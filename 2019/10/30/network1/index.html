@@ -896,7 +896,7 @@ fightingtree@neu.org.cn</code></pre>
 <li>运行在计算机中的进程使用进程标识符来标识的。</li>
 <li>由于不同的操作系统使用不同格式的进程标识符，为了能够使不同操作系统的计算机的应用进程能够相互通信，就必须使用统一的方法对TCP/IP体系的应用进程进行标志</li>
 </ul>
-<p>解决上述问题的办法就是在运输层使用协议端口号：</p>
+<p>解决上述问题的办法就是在运输层使用协议端口号(只有应用层协议有端口号)：</p>
 <ul>
 <li>端口用一个16位端口号进行标志</li>
 <li>端口号只具有本地意义，即端口号只是为了标志本计算机应用层中的各进程，在因特网中不同的计算机的相同端口号是没有联系的。</li>
@@ -961,9 +961,10 @@ fightingtree@neu.org.cn</code></pre>
 <h5 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h5><p>因特网的地址分配策略叫做无类别域间路由选择(Classless InterDomain Routing,CIDR)。CIDR将子网寻址的概念一般化了， 因为对于子网寻址，32比特的IP地址被划分为两部分，并且也具有点分十进制数的形式a.b.c.d/x，其中x指示了地址的第一部分中的比特数。地址的x最高比特构成了IP地址的网络部分，并且经常被称为该地址的前缀(prefix)，一个组织经常被分配一块连续的地址，即具有相同前缀的一段地址。</p>
 <h5 id="构成超网"><a href="#构成超网" class="headerlink" title="构成超网"></a>构成超网</h5><p>前缀长度不超过23位的CIDR地址块都包含了多个C类地址，这些C类地址合起来就构成了超网。</p>
 <h3 id="国际控制报文协议ICMP"><a href="#国际控制报文协议ICMP" class="headerlink" title="国际控制报文协议ICMP"></a>国际控制报文协议ICMP</h3><ul>
-<li>ICMP允许主机或路由器报告差错情况和提供有关异常情况的报告</li>
+<li>作用：网络探测/路由跟踪/错误反馈</li>
 <li>ICMP不是高层协议，而是IP层协议</li>
 <li>ICMP报文作为IP层数据报的数据，加上数据报的首部，组成IP数据报发送出去</li>
+<li>使用ping命令发送的就是ICMP数据包(ICMP字段：8 ping请求/0 ping应答/3 目标主机不可达)</li>
 </ul>
 <h4 id="ICMP报文的种类"><a href="#ICMP报文的种类" class="headerlink" title="ICMP报文的种类"></a>ICMP报文的种类</h4><p>ICMP报文的种类有两种，即ICMP差错报告报文和ICMP询问报文</p>
 <h3 id="虚拟专用网VPN和网络地址转换NAT"><a href="#虚拟专用网VPN和网络地址转换NAT" class="headerlink" title="虚拟专用网VPN和网络地址转换NAT"></a>虚拟专用网VPN和网络地址转换NAT</h3><h4 id="虚拟专用网VPN"><a href="#虚拟专用网VPN" class="headerlink" title="虚拟专用网VPN"></a>虚拟专用网VPN</h4><ul>
@@ -1174,12 +1175,12 @@ fightingtree@neu.org.cn</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
-                        <span class="chip bg-color">安全</span>
-                    </a>
-                    
                     <a href="/tags/Web/" target="_blank">
                         <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
                     </a>
                     
                 </div>
@@ -1227,12 +1228,12 @@ fightingtree@neu.org.cn</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
-                        <span class="chip bg-color">安全</span>
-                    </a>
-                    
                     <a href="/tags/Web/" target="_blank">
                         <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
                     </a>
                     
                 </div>
@@ -1393,7 +1394,7 @@ fightingtree@neu.org.cn</code></pre>
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">178.8k</span>
+                <span class="white-color">183.3k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

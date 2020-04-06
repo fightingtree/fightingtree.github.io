@@ -7,7 +7,7 @@
     <meta name="keywords" content="渗透测试实战(1), FightingTree">
     <meta name="description" content="实验环境客户机：Windows XP服务器(靶机)：Windows Server 2003两台计算机须处于同一网段，并能互相通信
 实验目的使用Windows XP对Windows Server 2003进行渗透测试
-实验步骤测试服务器开放的">
+IPC$IPC$(Int">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -414,14 +414,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        188
+                        748
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -439,15 +439,39 @@
             <div id="articleContent">
                 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>客户机：Windows XP<br>服务器(靶机)：Windows Server 2003<br>两台计算机须处于同一网段，并能互相通信</p>
 <h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><p>使用Windows XP对Windows Server 2003进行渗透测试</p>
+<h2 id="IPC"><a href="#IPC" class="headerlink" title="IPC$"></a>IPC$</h2><p>IPC$(Internet Process Connection)是共享”命名管道”的资源，它是为了让进程间通信而开放的命名管道，通过提供可信任的用户名和口令，连接双方可以建立安全的通道并以此通道进行加密数据的交换，从而实现对远程计算机的访问，如果成功连接IPC$，则客户机可对靶机进行任何操作。</p>
 <h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="测试服务器开放的端口号"><a href="#测试服务器开放的端口号" class="headerlink" title="测试服务器开放的端口号"></a>测试服务器开放的端口号</h3><p>测试服务器是否开放端口号的方法：</p>
 <ol>
 <li>用nmap进行端口扫描</li>
-<li>如果靶机开启了telnet服务(打开计算机管理-&gt;服务和应用程序-&gt;服务-&gt;telnet查看)，可以使用telnet指令进行开放端口的测试：</li>
+<li>手动探测：如果靶机开启了telnet服务(打开计算机管理-&gt;服务和应用程序-&gt;服务-&gt;telnet查看)，可以使用telnet指令进行开放端口的测试：</li>
 </ol>
 <ul>
 <li>在终端输入 <font color="#fb8c00">telnet 靶机IP</font> 命令可判断靶机是否开启telnet服务</li>
 <li>在终端输入 <font color="#fb8c00">telnet 靶机IP 端口号</font> 命令可判断靶机是否开启对应端口</li>
 </ul>
+<h3 id="445漏洞利用之IPC"><a href="#445漏洞利用之IPC" class="headerlink" title="445漏洞利用之IPC$"></a>445漏洞利用之IPC$</h3><h4 id="拓展使用"><a href="#拓展使用" class="headerlink" title="拓展使用"></a>拓展使用</h4><h5 id="服务器-靶机"><a href="#服务器-靶机" class="headerlink" title="服务器(靶机)"></a>服务器(靶机)</h5><p>在靶机新分区的磁盘(E盘)下新建一个文件夹share，将此文件夹改为共享文件，权限改为完全控制。</p>
+<h5 id="客户机"><a href="#客户机" class="headerlink" title="客户机"></a>客户机</h5><p>使用以下命令，建立文件映射</p>
+<pre class=" language-bash"><code class="language-bash">net use f: \\靶机IP\share 靶机登录密码 /user:dministrator</code></pre>
+<ul>
+<li><font color="#fb8c00">f: \靶机IP\share</font> 把共享文件夹映射到本地，映射为F盘(客户机上不存在F盘)</li>
+<li><font color="#fb8c00">靶机登录密码 /user:dministrator</font>：以对方管理员的身份运行</li>
+</ul>
+<p>此时在客户机终端对F盘进行操作相当于对服务器进行操作，在客户机中进入F盘后输入以下命令：</p>
+<pre class=" language-bash"><code class="language-bash">md by</code></pre>
+<p>此时在服务器share文件夹下会出现名为by文件夹,以上操作相当于客户机(WIN XP)在服务器建立了一个远程分区。</p>
+<p>也可使用<font color="#fb8c00">c$</font>参数：</p>
+<pre class=" language-bash"><code class="language-bash">net use f: \\10.1.1.1\c$ 密码 /user:administrator</code></pre>
+<p>以上命令若链接成功，则客户机可以对服务器C盘进行操作</p>
+<h4 id="实验操作"><a href="#实验操作" class="headerlink" title="实验操作"></a>实验操作</h4><p>在操作之前要断开客户机所有映射：</p>
+<pre class=" language-bash"><code class="language-bash">net use * /del</code></pre>
+<blockquote>
+<p>注：使用上述命令后还要重新建立文件映射</p>
+</blockquote>
+<p>使用IPC$在客户机和服务器之间建立一条空链接，此命令用于在服务器端执行：</p>
+<pre class=" language-bash"><code class="language-bash">net use \\10.1.1.1\ipc$ 密码 /user:administrator</code></pre>
+<p>但是我们进行攻击时并不知道靶机的密码，所以要对其进行系统密码暴破(NTscan专用于445端口爆破，为了避免被杀软杀掉，可将其放入成iso文件夹中)。</p>
+<p>连接成功后，即可在客户机上输入DOS命令对服务器(靶机)进行操作。比如查看靶机C盘：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">dir</span> \\10.1.1.1\c$</code></pre>
 
             </div>
             <hr/>
@@ -811,7 +835,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">178.8k</span>
+                <span class="white-color">183.3k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
