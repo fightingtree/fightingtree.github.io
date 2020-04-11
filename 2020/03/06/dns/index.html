@@ -382,12 +382,12 @@
                                 <span class="chip bg-color">安全</span>
                             </a>
                         
-                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
-                                <span class="chip bg-color">服务器</span>
-                            </a>
-                        
                             <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
                                 <span class="chip bg-color">计算机网络</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
+                                <span class="chip bg-color">服务器</span>
                             </a>
                         
                     </div>
@@ -487,19 +487,19 @@
 <p>注：以上两个步骤除与DHCP搭建过程相同，在最后一步将DHCP改为DHS即可，详情请参考博主的另一篇文章DHCP。</p>
 </blockquote>
 <ol start="3">
-<li>运行<font color="#fb8c00">netstat -an</font>查看端口运行情况，DNS端口：TCP/UDP都是53<br><img src="https://i.postimg.cc/SNZvZqdB/1.png" alt=""></li>
+<li>运行<font color="#fb8c00">netstat -an</font>查看端口运行情况，DNS端口：TCP/UDP都是53<br><img src="https://pic.downk.cc/item/5e8ad7a8504f4bcb04ed9269.png" alt=""></li>
 </ol>
 <h4 id="正向查找"><a href="#正向查找" class="headerlink" title="正向查找"></a>正向查找</h4><ol start="4">
-<li><p>新建区域<br>①开始-&gt;管理工具-&gt;打开DNS-&gt;右键点击正向查找区域：<br><img src="https://i.postimg.cc/wM9sRCs2/2.png" alt=""><br>②点击新建区域-&gt;下一步-&gt;主要区域-&gt;填入域名名称(如baidu.com)-&gt;下一步-&gt;下一步-&gt;完成</p>
+<li><p>新建区域<br>①开始-&gt;管理工具-&gt;打开DNS-&gt;右键点击正向查找区域：<br><img src="https://pic.downk.cc/item/5e8ad7bb504f4bcb04eda6e5.png" alt=""><br>②点击新建区域-&gt;下一步-&gt;主要区域-&gt;填入域名名称(如baidu.com)-&gt;下一步-&gt;下一步-&gt;完成</p>
 </li>
-<li><p>上述操作后，在正向查找区域目录下多了一个baidu.com的文件夹，解析记录都在右侧空白处创建：<br><img src="https://i.postimg.cc/g2gYdnpN/3.png" alt=""></p>
+<li><p>上述操作后，在正向查找区域目录下多了一个baidu.com的文件夹，解析记录都在右侧空白处创建：<br><img src="https://pic.downk.cc/item/5e8ad7ce504f4bcb04edba59.png" alt=""></p>
 </li>
-<li><p>创建新的域名解析：<br>①在右侧空白区右键点击-&gt;新建主机(A记录，A记录即为标准正向解析记录)<br><img src="https://i.postimg.cc/J4mDzHwL/4.png" alt=""><br>所填的IP可以ping不通，因为此服务器只负责解析，并不负责通信<br>②此时在右侧空白区会出现一条www的解析记录，此后<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的解析IP地址为1.1.1.1</p>
+<li><p>创建新的域名解析：<br>①在右侧空白区右键点击-&gt;新建主机(A记录，A记录即为标准正向解析记录)<br><img src="https://pic.downk.cc/item/5e8ad7de504f4bcb04edca4a.png" alt=""><br>所填的IP可以ping不通，因为此服务器只负责解析，并不负责通信<br>②此时在右侧空白区会出现一条www的解析记录，此后<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的解析IP地址为1.1.1.1</p>
 </li>
-<li><p>客户机测试：因为1.1.1.1并不是 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的真实IP地址，所以我们不应该从网址输入解析DNS，而要用命令行进行测试。<br>①此步骤中，因为命令行默认将<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的解析工作交给之前的服务器，在实验中我们要把域名送给我们的Win 2003服务器解析：<br><img src="https://i.postimg.cc/65yST0ks/5.png" alt=""></p>
+<li><p>客户机测试：因为1.1.1.1并不是 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的真实IP地址，所以我们不应该从网址输入解析DNS，而要用命令行进行测试。<br>①此步骤中，因为命令行默认将<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 的解析工作交给之前的服务器，在实验中我们要把域名送给我们的Win 2003服务器解析：<br><img src="https://pic.downk.cc/item/5e8ad7f3504f4bcb04eddfc1.png" alt=""></p>
 </li>
 </ol>
-<p>②使用<font color="#fb8c00">nslookup <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> </font>解析域名,也可以使用<font color="#fb8c00">ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></font>获取IP地址<br><img src="https://i.postimg.cc/wvtzHpcP/6.png" alt=""></p>
+<p>②使用<font color="#fb8c00">nslookup <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> </font>解析域名,也可以使用<font color="#fb8c00">ping <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></font>获取IP地址<br><img src="https://pic.downk.cc/item/5e8ad805504f4bcb04edf257.png" alt=""></p>
 <blockquote>
 <p>注：如果计算机没有联网，且对应的域名没有搭建服务器，则ping命令是无法解析IP地址的。</p>
 </blockquote>
@@ -509,13 +509,13 @@
 <h4 id="反向查找"><a href="#反向查找" class="headerlink" title="反向查找"></a>反向查找</h4><ol start="4">
 <li><p>新建一个正向解析记录。(这里为dns1.baidu.com:10.1.1.1)</p>
 </li>
-<li><p>新建区域:<br>①打开DNS-&gt;右键点击反向查找区域-&gt;下一步-&gt;主要区域-&gt;输入网络ID前24位：<br><img src="https://i.postimg.cc/tghBMMRw/8.png" alt=""><br>②一路默认选项点到最后-&gt;完成</p>
+<li><p>新建区域:<br>①打开DNS-&gt;右键点击反向查找区域-&gt;下一步-&gt;主要区域-&gt;输入网络ID前24位：<br><img src="https://pic.downk.cc/item/5e8ad827504f4bcb04ee1392.png" alt=""><br>②一路默认选项点到最后-&gt;完成</p>
 </li>
 <li><p>上述操作后，在反向查找区域目录下多了一个baidu.com的文件夹，解析记录都在右侧空白处创建</p>
 </li>
-<li><p>创建新的IP解析：<br>①在右侧空白区右键点击-&gt;新建指针(PTR,PTR即为标准反向解析记录)：<br><img src="https://i.postimg.cc/kg7N5g71/9.png" alt=""></p>
+<li><p>创建新的IP解析：<br>①在右侧空白区右键点击-&gt;新建指针(PTR,PTR即为标准反向解析记录)：<br><img src="https://pic.downk.cc/item/5e8ad83c504f4bcb04ee28bb.png" alt=""></p>
 </li>
-<li><p>在客户机上使用<font color="#fb8c00">nslookup <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> </font>解析域名：<br><img src="https://i.postimg.cc/CKY2Sg2S/10.png" alt=""></p>
+<li><p>在客户机上使用<font color="#fb8c00">nslookup <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> </font>解析域名：<br><img src="https://pic.downk.cc/item/5e8ad84e504f4bcb04ee39f5.png" alt=""></p>
 </li>
 </ol>
 <h5 id="显示缓存DNS服务器"><a href="#显示缓存DNS服务器" class="headerlink" title="显示缓存DNS服务器"></a>显示缓存DNS服务器</h5><pre class=" language-bash"><code class="language-bash">ipconfig /displaydns</code></pre>
@@ -655,12 +655,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
-                        <span class="chip bg-color">安全</span>
-                    </a>
-                    
                     <a href="/tags/Web/" target="_blank">
                         <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
                     </a>
                     
                     <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
@@ -720,12 +720,12 @@
                         <span class="chip bg-color">安全</span>
                     </a>
                     
-                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
-                        <span class="chip bg-color">服务器</span>
-                    </a>
-                    
                     <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
                         <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" target="_blank">
+                        <span class="chip bg-color">服务器</span>
                     </a>
                     
                 </div>
@@ -886,7 +886,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">185.2k</span>
+                <span class="white-color">185.7k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

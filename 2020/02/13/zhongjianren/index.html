@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ARP攻击, FightingTree">
+    <meta name="keywords" content="中间人攻击, FightingTree">
     <meta name="description" content="ARP协议的定义ARP协议(Address Resolution Protocol，地址解析协议)。在局域网中，网络中实际传输的是帧，帧里面有目标主机的MAC地址，在以太网中，一个主机要和另一个主机进行直接通信，必须知道目标主机的MAC地址">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ARP攻击 | FightingTree</title>
+    <title>中间人攻击 | FightingTree</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +260,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        ARP攻击
+                        中间人攻击
                     </div>
                 </div>
             </div>
@@ -377,12 +377,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
-                                <span class="chip bg-color">安全</span>
-                            </a>
-                        
                             <a href="/tags/Web/" target="_blank">
                                 <span class="chip bg-color">Web</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
                             </a>
                         
                     </div>
@@ -412,14 +412,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        1.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        4 分
                     </div>
                     
                 
@@ -481,6 +481,12 @@ arpspoof [ -i interface ] [ -c own | host | both ] [ -t target ] [ -r ] host</co
 </ol>
 <h3 id="ARP防火墙"><a href="#ARP防火墙" class="headerlink" title="ARP防火墙"></a>ARP防火墙</h3><p>使用ARP防火墙可以有效防御ARP攻击</p>
 <h3 id="VLAN和交换机端口绑定"><a href="#VLAN和交换机端口绑定" class="headerlink" title="VLAN和交换机端口绑定"></a>VLAN和交换机端口绑定</h3><p>通过划分VLAN和交换机端口绑定，以图防范ARP。划分VLAN，减小广播域的范围，使ARP在小范围内起作用，而不至于发送大面积影响。</p>
+<h2 id="DNS欺骗"><a href="#DNS欺骗" class="headerlink" title="DNS欺骗"></a>DNS欺骗</h2><h3 id="实验拓扑图"><a href="#实验拓扑图" class="headerlink" title="实验拓扑图"></a>实验拓扑图</h3><p><img src="https://pic.downk.cc/item/5e8eb5f0504f4bcb040b1240.png" alt=""><br>三台计算机需要互相ping通，kali修改IP地址后需要修改DNS服务器指向2003才能ping:</p>
+<pre class=" language-bash"><code class="language-bash">vim /etc/resolv.conf
+<span class="token function">service</span> networking restart</code></pre>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用中间人攻击的原理，kali将自己伪装成DNS服务器，诱导客户机指向自己解析域名，从而实现欺骗。</p>
+<h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><h5 id="网页拷贝"><a href="#网页拷贝" class="headerlink" title="网页拷贝"></a>网页拷贝</h5><p>利用kali内置的httrack工具拷贝网页(详见渗透测试知识点2)</p>
+<h5 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h5><p>把2003当作网站的官方发布服务器，即需要在2003上搭建IIS/DNS(详情请参阅IIS篇/DNS篇)。</p>
 
             </div>
             <hr/>
@@ -515,9 +521,9 @@ arpspoof [ -i interface ] [ -c own | host | both ] [ -t target ] [ -r ] host</co
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《ARP攻击》
+                    《中间人攻击》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/13/arp/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/13/zhongjianren/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -828,7 +834,7 @@ arpspoof [ -i interface ] [ -c own | host | both ] [ -t target ] [ -r ] host</co
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">185.2k</span>
+                <span class="white-color">185.7k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

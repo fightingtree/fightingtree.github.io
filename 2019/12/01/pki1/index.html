@@ -424,14 +424,14 @@ IPsecVPN
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4.1k
+                        4.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        14 分
+                        15 分
                     </div>
                     
                 
@@ -588,7 +588,24 @@ IPsecVPN
 <ul>
 <li>端口不同：Http与Http使用不同的连接方式，用的端口也不一样，前者是80，后者是443；</li>
 <li>资源消耗：和HTTP通信相比，Https通信会由于加减密处理消耗更多的CPU和内存资源；</li>
-<li>开销：Https通信需要证书，而证书一般需要向认证机构购买； 
+<li>开销：Https通信需要证书，而证书一般需要向认证机构购买；<br><img src="https://pic.downk.cc/item/5e8eccc1504f4bcb0421a19c.jpg" alt=""></li>
+</ul>
+<h4 id="https传输过程"><a href="#https传输过程" class="headerlink" title="https传输过程"></a>https传输过程</h4><ol>
+<li>浏览器将自己支持的一套加密规则发送给网站。 </li>
+<li>网站从中选出一组加密算法与HASH算法，并将自己的身份信息以证书的形式发回给浏览器。证书里面包含了网站地址，加密公钥，以及证书的颁发机构等信息。 </li>
+<li>浏览器获得网站证书之后浏览器要做以下工作： </li>
+</ol>
+<ul>
+<li>验证证书的合法性（颁发证书的机构是否合法，证书中包含的网站地址是否与正在访问的地址一致等），如果证书受信任，则浏览器栏里面会显示一个小锁头，否则会给出证书不受信的提示。 </li>
+<li>如果证书受信任，或者是用户接受了不受信的证书，浏览器会生成一串随机数的密码，并用证书中提供的公钥加密。 </li>
+<li>用约定好的HASH算法计算握手消息，并使用生成的随机数对消息进行加密，最后将之前生成的所有信息发送给网站。 </li>
+</ul>
+<ol start="4">
+<li>网站接收浏览器发来的数据之后要做以下的操作： </li>
+</ol>
+<ul>
+<li>使用自己的私钥将信息解密取出密码，使用密码解密浏览器发来的握手消息，并验证HASH是否与浏览器发来的一致。 </li>
+<li>使用密码加密一段握手消息，发送给浏览器。 
 　 </li>
 </ul>
 <h5 id="SSL的位置"><a href="#SSL的位置" class="headerlink" title="SSL的位置"></a>SSL的位置</h5><p><img src="https://pic3.superbed.cn/item/5de4adf7119afd7d7ec55a48.jpg" alt=""></p>
@@ -1002,7 +1019,7 @@ IPsecVPN
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">185.2k</span>
+                <span class="white-color">185.7k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

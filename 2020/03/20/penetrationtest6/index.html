@@ -451,7 +451,7 @@ IPC$IPC$(Int">
 </ul>
 <h3 id="445漏洞利用之IPC"><a href="#445漏洞利用之IPC" class="headerlink" title="445漏洞利用之IPC$"></a>445漏洞利用之IPC$</h3><h4 id="拓展使用"><a href="#拓展使用" class="headerlink" title="拓展使用"></a>拓展使用</h4><h5 id="服务器-靶机"><a href="#服务器-靶机" class="headerlink" title="服务器(靶机)"></a>服务器(靶机)</h5><p>在靶机新分区的磁盘(E盘)下新建一个文件夹share，将此文件夹改为共享文件，权限改为完全控制。</p>
 <h5 id="客户机"><a href="#客户机" class="headerlink" title="客户机"></a>客户机</h5><p>使用以下命令，建立文件映射</p>
-<pre class=" language-bash"><code class="language-bash">net use f: \\靶机IP\share 靶机登录密码 /user:dministrator</code></pre>
+<pre class=" language-bash"><code class="language-bash">net use f: \\靶机IP\share 靶机登录密码 /user:administrator</code></pre>
 <ul>
 <li><font color="#fb8c00">f: \靶机IP\share</font> 把共享文件夹映射到本地，映射为F盘(客户机上不存在F盘)</li>
 <li><font color="#fb8c00">靶机登录密码 /user:dministrator</font>：以对方管理员的身份运行</li>
@@ -835,7 +835,7 @@ IPC$IPC$(Int">
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">185.2k</span>
+                <span class="white-color">185.7k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
