@@ -6,9 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="分布式爬虫, FightingTree">
     <meta name="description" content="Redisredis是一种支持分布式的nosql数据库，他的数据是保存在内存中的，同时redis可以定时把内存数据同步到磁盘，即可以将数据持久化。
-使用场景
-登录会话机制：存储在redis中，数据不会丢失
-排行榜/计数器：实时热搜榜，文章阅">
+分布式爬虫架构
+核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -388,6 +387,10 @@
                                 <span class="chip bg-color">Scrapy</span>
                             </a>
                         
+                            <a href="/tags/Redis/" target="_blank">
+                                <span class="chip bg-color">Redis</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -406,14 +409,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.3k
+                        3.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        9 分
+                        12 分
                     </div>
                     
                 
@@ -430,6 +433,12 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><p>redis是一种支持分布式的nosql数据库，他的数据是保存在内存中的，同时redis可以定时把内存数据同步到磁盘，即可以将数据持久化。</p>
+<h3 id="分布式爬虫架构"><a href="#分布式爬虫架构" class="headerlink" title="分布式爬虫架构"></a>分布式爬虫架构</h3><ol>
+<li>核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数据都保存在此主机中</li>
+<li>跑爬虫程序的机器：多个slave(叶子节点)，用于爬取数据</li>
+</ol>
+<p>我们在Master上搭建一个Redis数据库(此数据库只用作url的存储)，并对每个需要爬取的网站类型都开辟一个单独的列表字段，通过设置slave上的scrapy-redis获取Url的地址为master地址，这样的结果就是：尽管有多个slave，然而大家获取url的地方只有一个，那就是服务器master上的redis数据库。</p>
+<p>并且，由于scrapy-redis自身的队列机制，slave获取的链接不会相互冲突，这样各个slave在完成抓取任务后，再把获取的结果汇总到服务器上</p>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
 <li>登录会话机制：存储在redis中，数据不会丢失</li>
 <li>排行榜/计数器：实时热搜榜，文章阅读量</li>
@@ -450,30 +459,10 @@
 <li>分布式爬虫是好几台机器在同时运行，如何保证在不同的机器爬取页面时不会出现重复爬取的问题</li>
 <li>分布爬虫在不同的机器上运行，在把数据爬完后如何保证保存在同一个地方</li>
 </ul>
-<h3 id="分布式爬虫架构"><a href="#分布式爬虫架构" class="headerlink" title="分布式爬虫架构"></a>分布式爬虫架构</h3><ul>
+<h3 id="分布式爬虫架构-1"><a href="#分布式爬虫架构-1" class="headerlink" title="分布式爬虫架构"></a>分布式爬虫架构</h3><ul>
 <li>Redis服务器：不运行爬虫代码，作用是管理爬虫服务器请求的URL并去重，存储爬虫服务器爬下来的数据(存在内存里)</li>
 <li>爬虫服务器：从Redis获取请求，把爬取下来的数据送给Redis服务器</li>
 </ul>
-<h2 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h2><h3 id="winodws"><a href="#winodws" class="headerlink" title="winodws"></a>winodws</h3><h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><p>redis默认只支持Linux,如果要在windows里安装需要去github里进行下载：<a href="http://www.github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">www.github.com/MicrosoftArchive/redis/releases</a><br>安装之后打开cmd，进入到redis安装的上一级文件夹下执行以下命令，打开redis服务器</p>
-<pre class=" language-bash"><code class="language-bash">redis-server.exe redis.windows.conf</code></pre>
-<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><h5 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h5><p>重新打开一个cmd进入redis安装的上一级文件夹，连接redis服务器：</p>
-<pre class=" language-bash"><code class="language-bash">redis-cli</code></pre>
-<p><img src="https://pic.downk.cc/item/5ebf9078c2a9a83be5cf1c68.png" alt=""></p>
-<h5 id="图形界面"><a href="#图形界面" class="headerlink" title="图形界面"></a>图形界面</h5><p>下载一个RedisDesktopManager<br><img src="https://pic.downk.cc/item/5ebf9154c2a9a83be5d03c5b.png" alt=""></p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><ol>
-<li><p>安装：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> redis-server</code></pre>
-</li>
-<li><p>卸载：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> purge --auto-remove redis-server</code></pre>
-</li>
-<li><p>启动：redis安装后，默认会自动启动，可以通过以下命令查看</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> servcie redis-server start</code></pre>
-</li>
-<li><p>停止：</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> redis-server stop</code></pre>
-</li>
-</ol>
 <h2 id="其他机器访问本机Redis服务器"><a href="#其他机器访问本机Redis服务器" class="headerlink" title="其他机器访问本机Redis服务器"></a>其他机器访问本机Redis服务器</h2><p>想要让其他机器访问本机的Redis服务器，要么修改redis.conf的配置文件，将bind[本机ip地址/0.0.0.0]，其他机器才能访问</p>
 <blockquote>
 <p>注：bind绑定的是本机网卡的ip地址，而不是想让其他机器连接的ip地址。如果有多块网卡，那么可以绑定多个网卡的ip地址，如果绑定的ip地址是0.0.0.0，那么意味着其他机器可以同通过本机所有的ip地址进行访问。</p>
@@ -651,12 +640,87 @@ sunion team1 team2</code></pre>
 </li>
 </ol>
 <pre><code>
-#### 部署为分布式爬虫
-将项目部署到linux中：
-1. 首先查看该项目依赖的包，并在linux中安装。打开anaconda prompt,进入到该项目的文件夹，运行以下命令：
+## 实战
+### 分布式爬虫架构
+1. 核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数据都保存在此主机中
+2. 跑爬虫程序的机器：多个slave(叶子节点)，用于爬取数据
+
+### 实现
+1. 使用三台机器，一台win10,两台kali linux，分别在两台Linux上进行分布式抓取
+2. win10的ip地址为192.168.1.152，用来作为redis的master端，linux机器作为slave
+3. master的爬虫运行时会把提取到的Url封装成request放到redis数据库：&quot;dmoz:requests&quot;，并且从该数据库中提取request后下载网页，再把网页的内容放到redis的另一个数据库中&quot;dmoz:items&quot;
+4. slave从master的redis去除待抓取的request，下载完网页后就把网页的内容送回master的redis
+5. 重复上面的3和4，直到master的redis中的&quot;dmoz:dupfilter&quot;是用来存储抓取过的url的指纹(使用哈希函数将url运算后的结果)，是防止重复抓取的
+
+### linux环境搭建
+1. 安装python环境:kali默认安装python3 
+2. 安装scrapy-redis：
+在终端输入以下命令：
 ```bash
-pip freeze &gt; requirements.txt</code></pre><ol start="2">
-<li>在linux中安装对应的包：<pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> -r requirements.txt</code></pre>
+pip install scrapy-redis</code></pre><ol start="3">
+<li>克隆以上虚拟机</li>
+</ol>
+<h3 id="winodws"><a href="#winodws" class="headerlink" title="winodws"></a>winodws</h3><h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><p>redis默认只支持Linux,如果要在windows里安装需要去github里进行下载：<a href="http://www.github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">www.github.com/MicrosoftArchive/redis/releases</a><br>安装之后打开cmd，进入到redis安装的上一级文件夹下执行以下命令，打开redis服务器,或者直接点击redis-server.exe</p>
+<pre class=" language-bash"><code class="language-bash">redis-server.exe redis.windows.conf</code></pre>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><h5 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h5><p>直接点击redis-cli.exe,或者重新打开一个cmd进入redis安装的上一级文件夹，连接redis服务器：</p>
+<pre class=" language-bash"><code class="language-bash">redis-cli</code></pre>
+<p><img src="https://pic.downk.cc/item/5ebf9078c2a9a83be5cf1c68.png" alt=""></p>
+<h3 id="分布式爬虫部署"><a href="#分布式爬虫部署" class="headerlink" title="分布式爬虫部署"></a>分布式爬虫部署</h3><p>要将一个scrapy项目变成一个scrapy-redis 项目只需修改以下三点：</p>
+<ol>
+<li>将爬虫的类从scrapy.Spider变成scrapy_redis.spider.RedisSpider或者从scrapy.CrawlSpider变成scrapy_redis.spiders.RdiesCrwalSpider(见下文spider.py)</li>
+<li>将爬虫中的start_urls删掉，增加一个redis_key=”xxx”,这个redis_key是为了以后在redis中控制爬虫启动的。爬虫的第一个url，就是在redis中通过这个发送出去的。</li>
+<li>在settings.py文件中增加配置(见下文settings.py)</li>
+</ol>
+<h4 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h4><p>修改robot/user-agent/item_pipelines</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#确保request存储在redis中</span>
+SCHEDULER <span class="token operator">=</span> <span class="token string">"scrapy_redis.sheduler.Scheduler"</span>
+<span class="token comment" spellcheck="true">#确保所有爬虫共享相同的去重指纹</span>
+DUPEFILTER_CLASS <span class="token operator">=</span> <span class="token string">"scrapy_redis.dupefilter.REPDupeFilter"</span>
+<span class="token comment" spellcheck="true">#设置redis为item pipelins</span>
+ITEM_PIPELINES <span class="token operator">=</span><span class="token punctuation">{</span>
+    <span class="token string">'scrapy_redis.pipelines.RedisPipeline'</span>:300
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">#在redis中保持scrapy-redis用到的队列，不会清理redis中的队列，从而可以实现暂停和恢复的功能</span>
+SCHEDULER_PERSIST <span class="token operator">=</span> True
+<span class="token comment" spellcheck="true">#设置连接redis信息</span>
+REDIS_HOST <span class="token operator">=</span> <span class="token string">'redis服务器所在主机的ip地址'</span>
+REDIS_PORT <span class="token operator">=</span> 6379</code></pre>
+<h4 id="spider-py"><a href="#spider-py" class="headerlink" title="spider.py"></a>spider.py</h4><pre class=" language-bash"><code class="language-bash">from scrapy_redis.spiders <span class="token function">import</span> RedisCrawlSpider
+class A2345SpiderSpider<span class="token punctuation">(</span>RedisCrawlSpider<span class="token punctuation">)</span>:
+    name <span class="token operator">=</span> <span class="token string">'2345_spider'</span>
+    allowed_domains <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ruanjian.2345.cc'</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true">#start_urls = ['http://ruanjian.2345.cc/list/0_0_2_1.html']</span>
+    redis_key <span class="token operator">=</span> <span class="token string">'t2345:start_urls'</span></code></pre>
+<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><ol>
+<li><p>打开redis服务器</p>
+</li>
+<li><p>在爬虫服务器上，进入爬虫文件所在的路径，然后输入命令：</p>
+<pre class=" language-bash"><code class="language-bash">scrapy runspider <span class="token punctuation">[</span>爬虫名<span class="token punctuation">]</span></code></pre>
+<p>出现以下字样则表示连接成功<br><img src="https://pic.downk.cc/item/5eca3606c2a9a83be5e07288.png" alt=""></p>
+</li>
+<li><p>在redis数据库(通过redis-cli)中推入一个url链接:</p>
+<pre class=" language-bash"><code class="language-bash">lpush test:start_urls 开始爬取的url</code></pre>
+</li>
+<li><p>通过图形化界面查看redis数据库<br><img src="https://pic.downk.cc/item/5eca4446c2a9a83be5edf7f1.png" alt=""></p>
+</li>
+</ol>
+<h2 id="数据导入到mongoDB中"><a href="#数据导入到mongoDB中" class="headerlink" title="数据导入到mongoDB中"></a>数据导入到mongoDB中</h2><ol>
+<li><p>等爬虫结束后，如果要把数据存储到mongoDB中，就应该新建一个process_items.py文件(命名任意)：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> redis
+<span class="token function">import</span> json
+<span class="token function">import</span> pymongo
+redis_clinet <span class="token operator">=</span> redis.Redis<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'localhost'</span>,port<span class="token operator">=</span>6379,db<span class="token operator">=</span>0<span class="token punctuation">)</span>
+mongo_client <span class="token operator">=</span> pymongo.MongoClient<span class="token punctuation">(</span><span class="token punctuation">)</span>
+collection <span class="token operator">=</span> mongo_client.t2345.softInfo
+<span class="token keyword">while</span> True:  <span class="token comment" spellcheck="true">#实时取出数据，数据取出后redis数据库中对应数据删除</span>
+ key,data<span class="token operator">=</span>redis_clinet.blpop<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'2345_spider:items'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#爬虫名称</span>
+ print<span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+ d <span class="token operator">=</span> json.loads<span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+ collection.insert_one<span class="token punctuation">(</span>d<span class="token punctuation">)</span></code></pre>
+</li>
+<li><p>打开mongoDB服务器</p>
+</li>
+<li><p>查看mongoDB数据库<br><img src="https://pic.downk.cc/item/5ecb4109c2a9a83be5f6184c.png" alt=""></p>
 </li>
 </ol>
 
@@ -757,30 +821,37 @@ pip freeze &gt; requirements.txt</code></pre><ol start="2">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/15/scrapy2/">
+                <a href="/2020/05/23/mongodb/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5266.jpg" class="responsive-img" alt="分布式爬虫">
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4762.jpg" class="responsive-img" alt="MongoDB">
                         
-                        <span class="card-title">分布式爬虫</span>
+                        <span class="card-title">MongoDB</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Scrapy-Redis分布
+                            MongoDBMongoDB是一个高性能、开源、无模式的文档类型数据库。
+MongoDB的性能
+对数据库高并发请求
+对海量数据的高效率存储和访问需求
+对数据库的高可扩展性
+
+NoSQL特点
+可以处理超大量的数据
+可以运行在PC服务器集群上P
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-user fa-fw"></i>
@@ -789,12 +860,15 @@ pip freeze &gt; requirements.txt</code></pre><ol start="2">
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/Python/" target="_blank">
                         <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/MongoDB/" target="_blank">
+                        <span class="chip bg-color">MongoDB</span>
                     </a>
                     
                     <a href="/tags/Scrapy/" target="_blank">
@@ -1008,7 +1082,7 @@ pip freeze &gt; requirements.txt</code></pre><ol start="2">
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">192.7k</span>
+                <span class="white-color">196.1k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
