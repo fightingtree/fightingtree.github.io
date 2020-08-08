@@ -409,14 +409,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        531
+                        1.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        4 分
                     </div>
                     
                 
@@ -458,6 +458,87 @@
 <h3 id="步骤-1"><a href="#步骤-1" class="headerlink" title="步骤"></a>步骤</h3><ol>
 <li>插入U盘进入BOIS模式</li>
 <li>选择破解密码</li>
+</ol>
+<h2 id="在kali中搭建DVWA"><a href="#在kali中搭建DVWA" class="headerlink" title="在kali中搭建DVWA"></a>在kali中搭建DVWA</h2><ol>
+<li><p>下载dvwa：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/ethicalhack3r/DVWA</code></pre>
+</li>
+<li><p>下载完成后可直接在/var/www/html找到DVWA文件夹(若找不到则将DVWA直接移到该文件夹下)</p>
+</li>
+<li><p>进入到/var/www/html中，并修改权限</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">chmod</span> 777 -R DVWA/</code></pre>
+</li>
+<li><p>启动mysql/apache服务</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">service</span> mysql start
+<span class="token function">service</span> apache2 start</code></pre>
+</li>
+<li><p>查看服务是否开启</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">netstat</span> -anpt <span class="token operator">|</span> <span class="token function">grep</span> 80  <span class="token comment" spellcheck="true">#apache</span>
+<span class="token function">netstat</span> -anpt <span class="token operator">|</span> <span class="token function">grep</span> 3306 <span class="token comment" spellcheck="true">#mysql</span></code></pre>
+</li>
+<li><p>登录myslq进行授权</p>
+<pre class=" language-bash"><code class="language-bash">mysql -u root
+<span class="token operator">></span>create database dvwa<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">#一定要有引号</span>
+<span class="token operator">></span>show databases<span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">#查看数据库</span>
+<span class="token operator">></span>grant all privileges on *.* to dvwa@127.0.0.1 identified by <span class="token string">"123"</span></code></pre>
+</li>
+</ol>
+<ul>
+<li>all :所有权限</li>
+<li>. :给所有数据库all的权限</li>
+<li>dvwa: 用户名</li>
+<li>127.0.0.1:dvwa搭建的地址</li>
+<li>123:密码，可自行设置</li>
+</ul>
+<ol start="7">
+<li><p>进入到dvwa的目录,并执行以下命令</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> config
+<span class="token function">cp</span> config.inc.php.dist config.inc.php 
+vim config.inc.php</code></pre>
+</li>
+<li><p>修改config.inc.php的内容,修改为刚刚设置的内容</p>
+<pre class=" language-bash"><code class="language-bash">DVWA<span class="token punctuation">[</span><span class="token string">'db_user'</span><span class="token punctuation">]</span> <span class="token operator">=</span> dvwa
+DVWA<span class="token punctuation">[</span><span class="token string">'db_password'</span><span class="token punctuation">]</span> <span class="token operator">=</span> 123 </code></pre>
+</li>
+<li><p>通过浏览器输入127.0.0.1/DVWA来进行访问，默认用户名密码是admin@password</p>
+</li>
+</ol>
+<h2 id="利用BurpSuite进行爆破"><a href="#利用BurpSuite进行爆破" class="headerlink" title="利用BurpSuite进行爆破"></a>利用BurpSuite进行爆破</h2><p>使用burp suite对本机DVWA进行密码爆破</p>
+<h3 id="浏览器设置代理"><a href="#浏览器设置代理" class="headerlink" title="浏览器设置代理"></a>浏览器设置代理</h3><p><img src="https://pic.downk.cc/item/5ed5ea5fc2a9a83be54b8afb.png" alt=""><br>在搜索栏搜索proxy,打开Network Proxy：<br><img src="https://pic.downk.cc/item/5ed5eb22c2a9a83be54c80ef.png" alt=""></p>
+<h3 id="拦截测试"><a href="#拦截测试" class="headerlink" title="拦截测试"></a>拦截测试</h3><ol>
+<li><p>设置target<br><img src="https://pic.downk.cc/item/5ed6075cc2a9a83be57135ea.png" alt=""></p>
+</li>
+<li><p>开启BP的proxy模块<br><img src="https://pic.downk.cc/item/5ed5eba9c2a9a83be54d3e58.png" alt=""></p>
+</li>
+<li><p>打开火狐浏览器的本地代理设置，在浏览器搜索栏输入：</p>
+<pre class=" language-bash"><code class="language-bash">about:config
+搜索：network.proxy.allow_hijacking_localhost 将其布尔值改为True</code></pre>
+</li>
+<li><p>在DVWA网页中随意输入用户名密码进行测试,发现BP中拦截到如下图所示http请求<br><img src="https://pic.downk.cc/item/5ed5fb09c2a9a83be562d2e9.png" alt=""></p>
+</li>
+</ol>
+<h3 id="开始爆破"><a href="#开始爆破" class="headerlink" title="开始爆破"></a>开始爆破</h3><ol>
+<li><p>选择BP拦截到的有用户名和密码的一行，右键点击该行，选择send to intruder<br><img src="https://pic.downk.cc/item/5ed5fdfbc2a9a83be56696ad.png" alt=""></p>
+</li>
+<li><p>选择intruder-&gt;position进行设置，选择clean清除所有payload,选择要进行爆破的地方点击add<br><img src="https://pic.downk.cc/item/5ed602f5c2a9a83be56cbc38.png" alt=""></p>
+</li>
+<li><p>选择payload3,进行登录操作<br><img src="https://pic.downk.cc/item/5ed6044ec2a9a83be56e3677.png" alt=""></p>
+</li>
+<li><p>设置payload1,点击load,加载kali默认的用户名字典：/usr/share/wordlists/metasploit,选择任意一个文件加进去。</p>
+</li>
+<li><p>设置payload2,点击load,加载kali默认的用户名字典：/usr/share/wordlists/metasploit,选择任意一个文件加进去(名字中带有pass的)。</p>
+</li>
+<li><p>设置选项，避免出问题<br><img src="https://pic.downk.cc/item/5ed608d0c2a9a83be5731486.png" alt=""></p>
+</li>
+<li><p>选择右上角start attack<br><img src="https://pic.downk.cc/item/5ed613c4c2a9a83be57d97cf.png" alt=""></p>
+</li>
+</ol>
+<h3 id="绕过验证码"><a href="#绕过验证码" class="headerlink" title="绕过验证码"></a>绕过验证码</h3><h4 id="安装reCAPTCHA"><a href="#安装reCAPTCHA" class="headerlink" title="安装reCAPTCHA"></a>安装reCAPTCHA</h4><ol>
+<li><p>在kali中输入以下命令:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/bit4woo/reCAPTCHA.git</code></pre>
+</li>
+<li><p>在BP中装入插件<br><img src="https://pic.downk.cc/item/5ed67258c2a9a83be500e818.png" alt=""></p>
+</li>
 </ol>
 
             </div>
@@ -810,7 +891,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">196.1k</span>
+                <span class="white-color">215.1k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

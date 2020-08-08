@@ -402,6 +402,15 @@ NoSQL特点
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                项目开发
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -470,7 +479,8 @@ NoSQL特点
 <li>右键点击此电脑-&gt;属性-&gt;高级系统设置-&gt;高级-&gt;环境变量-&gt;编辑用户的变量path-&gt;将上面的路径添加进去</li>
 </ul>
 <ol start="3">
-<li>在C盘根目录新建一个文件夹data，在data中新建一个文件夹db</li>
+<li>在安装MomgoDB文件夹的根目录新建一个文件夹data，在data中新建一个文件夹db,进入到mongoDB/bin的目录下，执行以下命令：<pre class=" language-bash"><code class="language-bash">mongod --dbpath E:\ data\ db</code></pre>
+</li>
 <li>启动mongoDB,此窗口为mongoDB服务器，cmd输入： mongod  （出现waiting for connecting port xx即表示成功开启服务）</li>
 <li>重新开启一个cmd窗口，此窗口为mongoDB客户端，cmd输入：mongo 进行连接，当此窗口出现”&gt;”，进行简单操作验证是否成功<br><img src="https://pic.downk.cc/item/5ec66089c2a9a83be5cd4cb6.png" alt=""></li>
 </ol>
@@ -797,6 +807,9 @@ class MongodbPipeline<span class="token punctuation">(</span>object<span class="
 </li>
 </ol>
 <h3 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h3><p>改robots/item_pipelines/user-agent</p>
+<pre class=" language-bash"><code class="language-bash">ITEM_PIPELINES <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token string">'xx.pipelines.MongodbPipeline'</span><span class="token keyword">:</span> 300,
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -1136,7 +1149,7 @@ class MongodbPipeline<span class="token punctuation">(</span>object<span class="
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">196.1k</span>
+                <span class="white-color">215.1k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

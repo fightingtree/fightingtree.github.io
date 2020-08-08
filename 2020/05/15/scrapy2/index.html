@@ -409,14 +409,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        3.1k
+                        3.2k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        12 分
+                        13 分
                     </div>
                     
                 
@@ -640,7 +640,9 @@ sunion team1 team2</code></pre>
 </li>
 </ol>
 <pre><code>
-## 实战
+
+
+## 部署
 ### 分布式爬虫架构
 1. 核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数据都保存在此主机中
 2. 跑爬虫程序的机器：多个slave(叶子节点)，用于爬取数据
@@ -685,12 +687,29 @@ SCHEDULER_PERSIST <span class="token operator">=</span> True
 <span class="token comment" spellcheck="true">#设置连接redis信息</span>
 REDIS_HOST <span class="token operator">=</span> <span class="token string">'redis服务器所在主机的ip地址'</span>
 REDIS_PORT <span class="token operator">=</span> 6379</code></pre>
-<h4 id="spider-py"><a href="#spider-py" class="headerlink" title="spider.py"></a>spider.py</h4><pre class=" language-bash"><code class="language-bash">from scrapy_redis.spiders <span class="token function">import</span> RedisCrawlSpider
+<h4 id="spider-py"><a href="#spider-py" class="headerlink" title="spider.py"></a>spider.py</h4><pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token function">import</span> scrapy
+from scrapy.linkextractors <span class="token function">import</span> LinkExtractor
+from scrapy.spiders <span class="token function">import</span> CrawlSpider, Rule
+from scrapy_redis.spiders <span class="token function">import</span> RedisCrawlSpider
 class A2345SpiderSpider<span class="token punctuation">(</span>RedisCrawlSpider<span class="token punctuation">)</span>:
     name <span class="token operator">=</span> <span class="token string">'2345_spider'</span>
     allowed_domains <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'ruanjian.2345.cc'</span><span class="token punctuation">]</span>
     <span class="token comment" spellcheck="true">#start_urls = ['http://ruanjian.2345.cc/list/0_0_2_1.html']</span>
-    redis_key <span class="token operator">=</span> <span class="token string">'t2345:start_urls'</span></code></pre>
+    redis_key <span class="token operator">=</span> <span class="token string">'t2345:start_urls'</span>
+    rules <span class="token operator">=</span> <span class="token punctuation">(</span>
+        Rule<span class="token punctuation">(</span>LinkExtractor<span class="token punctuation">(</span>allow<span class="token operator">=</span>r<span class="token string">'/list/.+\.html'</span><span class="token punctuation">)</span>, callback<span class="token operator">=</span><span class="token string">'parse_item'</span>, follow<span class="token operator">=</span>False<span class="token punctuation">)</span>, <span class="token comment" spellcheck="true">#跟进全部选择true</span>
+    <span class="token punctuation">)</span>
+    def parse_item<span class="token punctuation">(</span>self, response<span class="token punctuation">)</span>:
+        download_url <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='cont']//ul//a[@class='btn-b']/@href"</span><span class="token punctuation">)</span>.extract_first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        name <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='cont']//ul//em/text()"</span><span class="token punctuation">)</span>.extract_first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        update_time <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='cont']//ul//span[@class='ml10']/text()"</span><span class="token punctuation">)</span>.extract_first<span class="token punctuation">(</span><span class="token punctuation">)</span>
+       <span class="token comment" spellcheck="true"># print(update_times)</span>
+        yield <span class="token punctuation">{</span>
+            <span class="token string">"download_url"</span>:download_url,
+            <span class="token string">"name"</span>:name,
+            <span class="token string">"update_time"</span>:update_time
+        <span class="token punctuation">}</span></code></pre>
 <h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><ol>
 <li><p>打开redis服务器</p>
 </li>
@@ -837,15 +856,7 @@ collection <span class="token operator">=</span> mongo_client.t2345.softInfo
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            MongoDBMongoDB是一个高性能、开源、无模式的文档类型数据库。
-MongoDB的性能
-对数据库高并发请求
-对海量数据的高效率存储和访问需求
-对数据库的高可扩展性
-
-NoSQL特点
-可以处理超大量的数据
-可以运行在PC服务器集群上P
+                            MongoDB与python的交互
                         
                     </div>
                     <div class="publish-info">
@@ -854,8 +865,12 @@ NoSQL特点
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            fightingtree
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
+                                    项目开发
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1082,7 +1097,7 @@ NoSQL特点
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">196.1k</span>
+                <span class="white-color">215.1k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

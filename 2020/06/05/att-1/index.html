@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="threadSpider, FightingTree">
-    <meta name="description" content="threadSpider | FightingTree">
+    <meta name="keywords" content="ATT, FightingTree">
+    <meta name="description" content="1 说在前面本文为《MITRE ATT&amp;amp;CK设计与理念》的读书笔记
+2 MITRE ATT&amp;amp;CKMITRE ATT&amp;amp;CK知识库描述网络入侵者行为，提供攻防两方的通用分类体系，已成为横跨多个网络安全学科的有效工具，涵盖">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>threadSpider | FightingTree</title>
+    <title>ATT | FightingTree</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -260,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f5c.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4c.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        threadSpider
+                        ATT
                     </div>
                 </div>
             </div>
@@ -375,12 +376,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ATT-CK/" target="_blank">
+                                <span class="chip bg-color">ATT&amp;CK</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -388,21 +402,21 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-25
+                    2020-06-05
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        0
+                        1.5k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        5 分
                     </div>
                     
                 
@@ -418,7 +432,29 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="1-说在前面"><a href="#1-说在前面" class="headerlink" title="1 说在前面"></a>1 说在前面</h2><p>本文为《MITRE ATT&amp;CK设计与理念》的读书笔记</p>
+<h2 id="2-MITRE-ATT-amp-CK"><a href="#2-MITRE-ATT-amp-CK" class="headerlink" title="2 MITRE ATT&amp;CK"></a>2 MITRE ATT&amp;CK</h2><p>MITRE ATT&amp;CK知识库描述网络入侵者行为，提供攻防两方的通用分类体系，已成为横跨多个网络安全学科的有效工具，涵盖威胁情报、红队测试或入侵者模拟、网络及系统入侵防御能力提升等领域。MITRE的ATT&amp;CK创建流程和新内容管理理念是此项工作的<br>关键部分，有助于创建其他类似的入侵者模型及信息资料库。</p>
+<h3 id="2-1-ATT-amp-CK的含义"><a href="#2-1-ATT-amp-CK的含义" class="headerlink" title="2.1 ATT&amp;CK的含义"></a>2.1 ATT&amp;CK的含义</h3><p>MITRE精心策划的“入侵者战术、技术与共有的知识”框架 (ATT&amp;CK: AdversarialTactics, Techniques, and Common Knowledge)：</p>
+<ul>
+<li>反映入侵者攻击生命周期的各个阶段</li>
+<li>揭示其意欲攻击的目标平台</li>
+<li>是针对网络入侵者行为的知识库与模型。</li>
+</ul>
+<p>ATT&amp;CK脱胎于一个列举和分类Microsoft Windows™系统入侵后攻击战术、技术与流程 (TTP) 的项目。该项目的目的是提升恶意行为检测率。此项目后来还纳入了Linux™和MacOS™，并持续扩展至涵盖入侵前战术与技术，以及移动设备等技术焦点型领域。概括讲，ATT&amp;CK是由下列核<br>心组件构成的行为模型：<br>• 战术，指攻击过程中的短期战术性目标（各列）；<br>• 技术，表示入侵者达成战术目标所用的方法（各单元格）；<br>• 入侵者使用技术及其他元数据的记录（链接至技术）。</p>
+<h3 id="2-2-历史背景"><a href="#2-2-历史背景" class="headerlink" title="2.2 历史背景"></a>2.2 历史背景</h3><p>ATT&amp;CK是应系统性分类入侵者行为的需求而诞生的。</p>
+<h3 id="2-3-ATT-amp-CK用例"><a href="#2-3-ATT-amp-CK用例" class="headerlink" title="2.3 ATT&amp;CK用例"></a>2.3 ATT&amp;CK用例</h3><h4 id="2-3-1-入侵者模拟"><a href="#2-3-1-入侵者模拟" class="headerlink" title="2.3.1 入侵者模拟"></a>2.3.1 入侵者模拟</h4><p>基于针对相关入侵者和其攻击手法的网络威胁情报来做模拟攻击，从而评估技术领域安全性的过程。入侵者模拟专注组织在威胁生命周期所有适用点上验证检测和/或缓解入侵者攻击行为的能力。<br>ATT&amp;CK可用作创建入侵者模拟场景的工具，基于此测试验证安全防护系统应对常见入侵者技术的防御能力。</p>
+<h4 id="2-3-2-红队"><a href="#2-3-2-红队" class="headerlink" title="2.3.2 红队"></a>2.3.2 红队</h4><p>在不使用已知威胁情报的情况下应用入侵者思维执行演练。红队专注秘密达成入侵者行动的最终目标，借此显示成功入侵的目标及其对运营的影响。<br>ATT&amp;CK可用作创建红队计划和和组织行动的工具，规避网络中特定的防御措施，也可以用作新的攻击方法的路线图，规避防御检测</p>
+<h4 id="2-3-3-行为分析开发"><a href="#2-3-3-行为分析开发" class="headerlink" title="2.3.3 行为分析开发"></a>2.3.3 行为分析开发</h4><p>行为检测分析超越了传统失陷标志(IoC)或恶意行为特征码，可用于识<br>别系统或网络中不依赖于已知入侵者工具及指标的潜在恶意活动。这是一种分析入侵者与特定平台互动方式的方法，可以识别和关联独立于所用特定工具的可疑活动。</p>
+<h4 id="2-3-4-防御缺口评估"><a href="#2-3-4-防御缺口评估" class="headerlink" title="2.3.4 防御缺口评估"></a>2.3.4 防御缺口评估</h4><p>通过防御缺口评估，公司企业可确定自身哪些部分缺乏防护和/或可见性。这些缺口代表着防御上的盲点，入侵者可经由这些潜在通道秘密或彻底侵入网络。</p>
+<h4 id="2-3-5-SOC成熟度评估"><a href="#2-3-5-SOC成熟度评估" class="headerlink" title="2.3.5 SOC成熟度评估"></a>2.3.5 SOC成熟度评估</h4><p>安全运营中心 (SOC) 是很多中大型企业网络持续监视活跃网络威胁<br>的关键部分。确定SOC有效性，重点在于了解其成熟度。</p>
+<h4 id="2-3-6-网络威胁情报丰富化"><a href="#2-3-6-网络威胁情报丰富化" class="headerlink" title="2.3.6 网络威胁情报丰富化"></a>2.3.6 网络威胁情报丰富化</h4><p>网络威胁情报覆盖影响网络安全的网络威胁及威胁组织的知识，包含有关恶意软件、工具、TTP、谍报技术、行为和其他威胁相关指标的信息</p>
+<h2 id="3-ATT-amp-CK模型"><a href="#3-ATT-amp-CK模型" class="headerlink" title="3 ATT&amp;CK模型"></a>3 ATT&amp;CK模型</h2><p>入侵者达成目标需进行各种各样的操作，ATT&amp;CK的基础便是体现这些操作的技术集合。模型中的战术类别，代表了入侵者的各个目标。这一相对简单的表现形式，在技术层面上的充足技术细节，与战术层面上入侵者操作为什么会出现的上下文之间，取得了有效平衡</p>
+<h3 id="3-1-ATT-amp-CK-Matrix"><a href="#3-1-ATT-amp-CK-Matrix" class="headerlink" title="3.1 ATT&amp;CK Matrix"></a>3.1 ATT&amp;CK Matrix</h3><p>战术与技术间的关系可在ATT&amp;CK矩阵中可视化呈现。比如说，驻留 (Persistence)战术下(入侵者的目的就是在目标环境中持续存在)就有AppInit_DLLs注册表键用户进程注<br>入 (AppInit DLLs)、安装新服务 (New Service) 和计划任务(Scheduled Task) 等一系列技<br>术。其中每一个都是入侵者为达成驻留目的可能会用的单项技术。</p>
+<h3 id="3-2-技术领域"><a href="#3-2-技术领域" class="headerlink" title="3.2 技术领域"></a>3.2 技术领域</h3><p>ATT&amp;CK 分为一系列“技术领域”——入侵者在其中运作的生态体系，ᨀ供入侵者达成目标所需规避或利用的约束集。MITRE目前定义有两个技术领域，分别是Enterprise（代表传统企业网络）和Mobile（适用移动通信设备）。平台可以是操作系统或应用程序（如Microsoft Windows）,下表是当前ATT&amp;CK技术领域界定的平台。</p>
+<p>-|-<br>技术领域 | 界定平台<br>Enterprise | Linux/MacOS/Winodws<br>Mobile | Android/iOS</p>
+<h3 id="3-3-战术"><a href="#3-3-战术" class="headerlink" title="3.3 战术"></a>3.3 战术</h3><p>战术代表着ATTCK技术的“为什么”，是入侵者的战术性目标：执行某攻击的原因。作为各项技术的有效上下文相关分类，战术阐释了入侵者在行动中会做的事，比如驻留、查找信息、横向移动、执行文件和渗漏数据。</p>
+<h3 id="3-4-技术"><a href="#3-4-技术" class="headerlink" title="3.4 技术"></a>3.4 技术</h3><p>技术表现出入侵者是“怎么”通过执行操作达成战术目标的。例<br>如对发现 (Discovery)战术而言，里面罗列的技术强调了入侵者的特定动作追寻的是哪些类<br>型的信息。达成战术目标的途径或技术可能会有很多，所以每个战术类别下都有多种技术。</p>
+
             </div>
             <hr/>
 
@@ -452,9 +488,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《threadSpider》
+                    《ATT》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/05/25/threadspider/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/06/05/att-1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -495,7 +531,7 @@
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2020-05-25T15-31-03',
+        id: '2020-06-05T20-35-57',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -516,39 +552,53 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/25/threadspider/">
+                <a href="/2020/06/09/rabbitmq/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f5c.jpg" class="responsive-img" alt="threadSpider">
+                        <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e5570.jpg" class="responsive-img" alt="RabbitMQ">
                         
-                        <span class="card-title">threadSpider</span>
+                        <span class="card-title">RabbitMQ</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Python&Rabbit运用
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-25
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-09
+                        </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            fightingtree
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" class="post-category" target="_blank">
+                                    编程思想
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/RabbitMQ/" target="_blank">
+                        <span class="chip bg-color">RabbitMQ</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -559,32 +609,48 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/25/awvs/">
+                <a href="/2020/05/27/ekl/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f69.jpg" class="responsive-img" alt="awvs">
+                        <img src="https://pic.superbed.cn/item/5db3fa6e8b58bc7bf71e5580.jpg" class="responsive-img" alt="ELK">
                         
-                        <span class="card-title">awvs</span>
+                        <span class="card-title">ELK</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            大数据框架ELK(grafana)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-25
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-27
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            fightingtree
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    框架使用
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ELK/" target="_blank">
+                        <span class="chip bg-color">ELK</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" target="_blank">
+                        <span class="chip bg-color">大数据</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -743,7 +809,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">196.1k</span>
+                <span class="white-color">215.1k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
