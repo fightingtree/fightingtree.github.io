@@ -411,14 +411,14 @@ Vue是一个Javascript框架
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4.6k
+                        5.4k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        22 分
+                        25 分
                     </div>
                     
                 
@@ -595,7 +595,7 @@ Vue是一个Javascript框架
          &lt;img v-bind:src=&quot;imgSrc&quot;&gt;
          &lt;img v-bind:class=&quot;{active:isActive}&quot;&gt;  
          &lt;!-- active类是否生效取决于isActive --&gt;
-&lt;/div&gt;</code></pre><h3 id="列表循环，表单元素绑定"><a href="#列表循环，表单元素绑定" class="headerlink" title="列表循环，表单元素绑定"></a>列表循环，表单元素绑定</h3><h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>根据数据生成列表结构,把作为模板的标签根据数据的个数，拷贝若干份。</p>
+&lt;/div&gt;</code></pre><h3 id="列表循环，表单元素绑定"><a href="#列表循环，表单元素绑定" class="headerlink" title="列表循环，表单元素绑定"></a>列表循环，表单元素绑定</h3><h4 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h4><p>递归渲染若不加限制，会发生栈溢出。根据数据生成列表结构,把作为模板的标签根据数据的个数，拷贝若干份。</p>
 <h5 id="数字型"><a href="#数字型" class="headerlink" title="数字型"></a>数字型</h5><p>js:</p>
 <pre><code>&lt;script type=&quot;text/javascript&quot;&gt;
         var app = new Vue({
@@ -623,7 +623,7 @@ Vue是一个Javascript框架
 &lt;/script&gt;</code></pre><p>html:</p>
 <pre><code>&lt;div id=&quot;app&quot;&gt;
           &lt;ul&gt;
-              &lt;li v-for=&quot;(item,index) in objArray&quot;&gt;
+              &lt;li v-for=&quot;(item,index) in objArray&quot; :key=&quot;index&quot; :name=&quot;index&quot;&gt;
               {{item.name}}&lt;/li&gt;
               &lt;!-- index为索引值，若不想获取索引值可按数字型的写法进行渲染 --&gt;
           &lt;/ul&gt;
@@ -759,7 +759,7 @@ Vue是一个Javascript框架
                     &lt;cpn1&gt;&lt;/cpn1&gt; 
                 &lt;/div&gt;`,
                 components:{
-                    cpn1:cpnC1,  //组件1放到组件2进行注册，组件1只能在组件2中使用
+                    cpn1,  //组件1放到组件2进行注册，组件1只能在组件2中使用
                 }
             })
             //2.注册组件(可以把此组件当作根组件)
@@ -818,20 +818,7 @@ Vue是一个Javascript框架
                     title1:&quot;world&quot;,
                 },
             })
-        &lt;/script&gt;</code></pre><h3 id="组件模板的抽离写法"><a href="#组件模板的抽离写法" class="headerlink" title="组件模板的抽离写法"></a>组件模板的抽离写法</h3><pre><code>&lt;template id=&quot;tem&quot;&gt;
-&lt;div&gt;
-   &lt;h2&gt;hello&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/template&gt;
-&lt;script&gt;
-    Vue.component(&#39;cpn&#39;,{
-    template:&quot;#tem&quot;
-    });
-    var app = new Vue({
-    el:&quot;app&quot;,
-    data:{}
-    })
-&lt;/script&gt;</code></pre><h2 id="组件的数据交互"><a href="#组件的数据交互" class="headerlink" title="组件的数据交互"></a>组件的数据交互</h2><h3 id="父组件向子组件传值"><a href="#父组件向子组件传值" class="headerlink" title="父组件向子组件传值"></a>父组件向子组件传值</h3><p>在子组件不能修改props数据，应该触发事件让父组件处理</p>
+        &lt;/script&gt;</code></pre><h2 id="组件的数据交互"><a href="#组件的数据交互" class="headerlink" title="组件的数据交互"></a>组件的数据交互</h2><h3 id="父组件向子组件传值"><a href="#父组件向子组件传值" class="headerlink" title="父组件向子组件传值"></a>父组件向子组件传值</h3><p>在子组件不能修改props数据，应该触发事件让父组件处理</p>
 <ol>
 <li>组件内部使用props接收传递过来的值</li>
 </ol>
@@ -1029,7 +1016,91 @@ Vue.config.productionTip = false
 var vm = new Vue({
   el:&quot;#app&quot;,
   render: h =&gt; h(App)
-}).$mount(&#39;#app&#39;)</code></pre><h2 id="Vue路由"><a href="#Vue路由" class="headerlink" title="Vue路由"></a>Vue路由</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>路由的本质是对应关系，在开发中，路由分为：</p>
+}).$mount(&#39;#app&#39;)</code></pre><h3 id="vue单文件组件注册局部组件"><a href="#vue单文件组件注册局部组件" class="headerlink" title="vue单文件组件注册局部组件"></a>vue单文件组件注册局部组件</h3><h5 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h5><p>son.vue</p>
+<pre><code>&lt;template&gt;
+   //子组件模板
+&lt;/template&gt;
+&lt;script&gt;
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><h5 id="父组件"><a href="#父组件" class="headerlink" title="父组件"></a>父组件</h5><p>father.vue:</p>
+<pre><code>&lt;template&gt;
+&lt;son&gt;&lt;/son&gt;    //引用子组件
+&lt;/template&gt;
+&lt;script&gt;
+import son from &#39;../son.vue&#39;  //子组件路径
+  export default {
+  components:{
+    son,  //注册子组件
+  }}
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><h3 id="Vue单文件组件通信"><a href="#Vue单文件组件通信" class="headerlink" title="Vue单文件组件通信"></a>Vue单文件组件通信</h3><h4 id="父组件传给子组件"><a href="#父组件传给子组件" class="headerlink" title="父组件传给子组件"></a>父组件传给子组件</h4><h5 id="静态传值"><a href="#静态传值" class="headerlink" title="静态传值"></a>静态传值</h5><p>静态传值即属性值不变,将name_fa传给子组件</p>
+<p>father.vue</p>
+<pre><code>&lt;template&gt;
+&lt;son :name=&quot;name_fa&quot;&gt;&lt;/son&gt;    //引用子组件,并向父组件传值
+&lt;/template&gt;
+&lt;script&gt;
+import son from &#39;../son.vue&#39;  //子组件路径
+  export default {
+  components:{
+    son,  //注册子组件
+  }，
+  data:{
+  return{
+    name_fa:&quot;父组件的值&quot;
+  }
+  }}
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><p>son.vue</p>
+<pre><code>&lt;template&gt;
+   &lt;div&gt;{{name}}&lt;/div&gt; 
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+    props:[&#39;name&#39;],    
+    }
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><blockquote>
+<p>注：在此种情况下ye’ke</p>
+</blockquote>
+<h5 id="动态传值"><a href="#动态传值" class="headerlink" title="动态传值"></a>动态传值</h5><p>属性值经过计算会发生改变，将count传给子组件</p>
+<p>father.vue</p>
+<pre><code>&lt;template&gt;
+&lt;son ：flag=&quot;count&quot;&gt;&lt;/son&gt;    //引用子组件
+&lt;/template&gt;
+&lt;script&gt;
+import son from &#39;../son.vue&#39;  //子组件路径
+  export default {
+  components:{
+    son,  //注册子组件
+  }，
+  data:{
+  return{
+    count:0,  //flag初始值为0，但会在methods对flag的值进行重新赋值 
+  }
+  }}
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><p>son.vue</p>
+<pre><code>&lt;template&gt;
+&lt;/template&gt;
+&lt;script&gt;
+export default {
+    props:[&#39;flag&#39;], 
+    data:{
+      return{
+         count_son:0, //子组件属性，用来接收父组件的动态属性
+      }
+    },
+    watch:{
+          flag:function(newData,oldData){
+            this.count_son = newData;  //子组件可通过this.count_son调用父组件的count属性
+          },
+    }
+&lt;/script&gt;
+&lt;style&gt;&lt;/style&gt;</code></pre><blockquote>
+<p>watch是vue提供的监听属性，用来观察和响应 Vue 实例上的数据变动，即Vue实例上的数据一旦发生变动，就触发该属性中的函数。</p>
+</blockquote>
+<h3 id="update"><a href="#update" class="headerlink" title="update"></a>update</h3><p>update方法被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候，所以想要获得渲染后的DOM节点，可以通过在update中进行操作</p>
+<h2 id="Vue路由"><a href="#Vue路由" class="headerlink" title="Vue路由"></a>Vue路由</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>路由的本质是对应关系，在开发中，路由分为：</p>
 <ul>
 <li>前端路由</li>
 <li>后端路由</li>
@@ -1047,7 +1118,9 @@ var vm = new Vue({
 <pre><code>//监听window的 onhashchange() 事件，根据获取到的最新的hash值，切换要显示的组件的名称 
 window.onhashchange = function(){
     //通过location.hash 获取最新的hash值
-}</code></pre><h3 id="VueRouter"><a href="#VueRouter" class="headerlink" title="VueRouter"></a>VueRouter</h3><p>Vue Router(<a href="https://router.vuejs.org/zh)，官方提供的路由管理器。" target="_blank" rel="noopener">https://router.vuejs.org/zh)，官方提供的路由管理器。</a></p>
+}</code></pre><h3 id="VueRouter"><a href="#VueRouter" class="headerlink" title="VueRouter"></a>VueRouter</h3><p>此处参考链接(<a href="https://juejin.im/post/6844903608534695943" target="_blank" rel="noopener">https://juejin.im/post/6844903608534695943</a>)</p>
+<p>Vue Router(<a href="https://router.vuejs.org/zh)，官方提供的路由管理器,也就是SPA(单页应用)的路径管理器。vue的单页面应用基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。**路由模块的本质" target="_blank" rel="noopener">https://router.vuejs.org/zh)，官方提供的路由管理器,也就是SPA(单页应用)的路径管理器。vue的单页面应用基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，是用一些超链接来实现页面切换和跳转的。在vue-router单页面应用中，则是路径之间的切换，也就是组件的切换。**路由模块的本质</a> 就是建立起url和页面之间的映射关系**。</p>
+<p>至于我们为啥不能用a标签，这是因为用Vue做的都是单页应用（<strong>当你的项目准备打包时，运行<code>npm run build</code>时，就会生成dist文件夹，这里面只有静态资源和一个index.html页面</strong>），所以你写的标签是不起作用的，你必须使用vue-router来进行管理。</p>
 <h4 id="Vue-router的基本使用"><a href="#Vue-router的基本使用" class="headerlink" title="Vue-router的基本使用"></a>Vue-router的基本使用</h4><h5 id="1-引入相关的库文件"><a href="#1-引入相关的库文件" class="headerlink" title="1.引入相关的库文件"></a>1.引入相关的库文件</h5><p>先导入vue.js 再导入vue-router.js，文件需下载</p>
 <pre><code>&lt;script src=&quot;vue.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;vue-router.js&quot;&gt;&lt;/script&gt;</code></pre><h5 id="2-添加路由链接"><a href="#2-添加路由链接" class="headerlink" title="2. 添加路由链接"></a>2. 添加路由链接</h5><pre><code>&lt;!--m router-link是vue中提供的标签，默认会被渲染成a标签 --&gt;
@@ -1067,7 +1140,8 @@ template:&#39;&lt;div&gt;User&lt;/div&gt;&#39;
 })</code></pre><h5 id="6-把路由挂载到Vue的根实例中"><a href="#6-把路由挂载到Vue的根实例中" class="headerlink" title="6.把路由挂载到Vue的根实例中"></a>6.把路由挂载到Vue的根实例中</h5><pre><code>new Vue({
   el:&quot;#app&quot;,
   router
-});</code></pre><h2 id="在Vue中引入外部文件"><a href="#在Vue中引入外部文件" class="headerlink" title="在Vue中引入外部文件"></a>在Vue中引入外部文件</h2><h3 id="引入bootstrap"><a href="#引入bootstrap" class="headerlink" title="引入bootstrap"></a>引入bootstrap</h3><p>进入到项目的目录中，执行以下命令：</p>
+});</code></pre><h3 id="路由的简单实现"><a href="#路由的简单实现" class="headerlink" title="路由的简单实现"></a>路由的简单实现</h3><p>(<a href="https://juejin.im/post/6844903834670596109" target="_blank" rel="noopener">https://juejin.im/post/6844903834670596109</a>)</p>
+<h2 id="在Vue中引入外部文件"><a href="#在Vue中引入外部文件" class="headerlink" title="在Vue中引入外部文件"></a>在Vue中引入外部文件</h2><h3 id="引入bootstrap"><a href="#引入bootstrap" class="headerlink" title="引入bootstrap"></a>引入bootstrap</h3><p>进入到项目的目录中，执行以下命令：</p>
 <pre><code> npm install jquery --save-dev
   npm install zico -D
   npm install bootstrap -D
@@ -1470,7 +1544,7 @@ new Vue({
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">214.6k</span>
+                <span class="white-color">215.5k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

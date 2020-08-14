@@ -415,7 +415,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        555
+                        697
                     </div>
                     
 
@@ -486,7 +486,31 @@
 <li><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> push origin master</code></pre>
 </li>
 </ol>
-
+<h2 id="提交代码至远端并合并"><a href="#提交代码至远端并合并" class="headerlink" title="提交代码至远端并合并"></a>提交代码至远端并合并</h2><ol>
+<li><p>在本地新建一个分支dev</p>
+<pre><code>git branch dev</code></pre></li>
+<li><p>查看分支</p>
+</li>
+</ol>
+<pre><code>git branch </code></pre><ol start="3">
+<li>切换到本地分支进行文件上传</li>
+</ol>
+<pre><code>git checkout dev  //切换到dev分支
+git add .  //上传文件夹内的所有文件到dev分支里
+git commit -m &#39;注释&#39;</code></pre><ol start="4">
+<li>切换到远程分支master并进行操作</li>
+</ol>
+<pre><code>git checkout master
+git pull //拉取远程分支Master中的最新带卡</code></pre><ol start="5">
+<li>切换回本地分支合并代码</li>
+</ol>
+<pre><code>git checkout dev
+git rebase master</code></pre><ol start="6">
+<li>在远程分支中推送代码</li>
+</ol>
+<pre><code>git checkout master
+git merge dev
+git push</code></pre>
             </div>
             <hr/>
 
@@ -833,7 +857,7 @@
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">214.6k</span>
+                <span class="white-color">215.5k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
