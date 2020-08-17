@@ -424,7 +424,7 @@ IPsecVPN
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        4.5k
+                        4.6k
                     </div>
                     
 
@@ -605,9 +605,12 @@ IPsecVPN
 </ol>
 <ul>
 <li>使用自己的私钥将信息解密取出密码，使用密码解密浏览器发来的握手消息，并验证HASH是否与浏览器发来的一致。 </li>
-<li>使用密码加密一段握手消息，发送给浏览器。 
-　 </li>
+<li>使用浏览器生成的随机数密码加密一段握手消息，发送给浏览器，浏览器使用随机数密码进行解密</li>
 </ul>
+<blockquote>
+<p>注：上述过程中设计两次请求，包括对称加密、非对称加密 
+　 </p>
+</blockquote>
 <h5 id="SSL的位置"><a href="#SSL的位置" class="headerlink" title="SSL的位置"></a>SSL的位置</h5><p><img src="https://pic3.superbed.cn/item/5de4adf7119afd7d7ec55a48.jpg" alt=""></p>
 <ul>
 <li>在发送方，SSL接收应用层的数据(HTTP报文或IMAP报文)，对数据进行加密，然后把加密的数据送往TCP套接字</li>
@@ -1019,7 +1022,7 @@ IPsecVPN
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.5k</span>
+                <span class="white-color">215.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

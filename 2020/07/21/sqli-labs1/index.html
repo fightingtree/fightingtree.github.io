@@ -5,8 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="sqli-labs, FightingTree">
-    <meta name="description" content="POST注入post就是数据从客户端提交 到服务器端，例如我们在登录过程中，输入用户名和密码，用户名和密码以表单的形式提交， 提交到服务器后服务器再进行验证
-1. 基于提示的post注入此种注入需要搭配BP使用，显示位有效位等通过抓包查看h">
+    <meta name="description" content="sql注入思路
+POST注入post就是数据从客户端提交 到服务器端，例如我们在登录过程中，输入用户名和密码，用户名和密码以表单的形式提交， 提交到服务器后服务器再进行验证
+1. 基于提示的post注入此种注入需要搭配BP使用，显示位有效位">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -409,7 +410,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        916
+                        921
                     </div>
                     
 
@@ -432,7 +433,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h2><p>post就是数据从客户端提交 到服务器端，例如我们在登录过程中，输入用户名和密码，用户名和密码以表单的形式提交， 提交到服务器后服务器再进行验证</p>
+                <h2 id="sql注入思路"><a href="#sql注入思路" class="headerlink" title="sql注入思路"></a>sql注入思路</h2><p><img src="https://pic.downk.cc/item/5f1a437d14195aa594bb64b7.png" alt=""></p>
+<h2 id="POST注入"><a href="#POST注入" class="headerlink" title="POST注入"></a>POST注入</h2><p>post就是数据从客户端提交 到服务器端，例如我们在登录过程中，输入用户名和密码，用户名和密码以表单的形式提交， 提交到服务器后服务器再进行验证</p>
 <h2 id="1-基于提示的post注入"><a href="#1-基于提示的post注入" class="headerlink" title="1. 基于提示的post注入"></a>1. 基于提示的post注入</h2><p>此种注入需要搭配BP使用，显示位有效位等通过抓包查看http消息主体</p>
 <h3 id="1-1-Less-11-回显-错误提示"><a href="#1-1-Less-11-回显-错误提示" class="headerlink" title="1.1 Less-11(回显/错误提示)"></a>1.1 Less-11(回显/错误提示)</h3><h4 id="1-1-1-找注入点"><a href="#1-1-1-找注入点" class="headerlink" title="1.1.1 找注入点"></a>1.1.1 找注入点</h4><p>输入万能密码：</p>
 <pre><code>admin&#39; //出错
@@ -466,7 +468,6 @@ admin&quot; //出错</code></pre><p><img src="https://pic.downk.cc/item/5f16a6ca
         echo &quot;&lt;br&gt;&quot;;
         echo &quot;&lt;br&gt;&quot;;
         echo &#39;&lt;img src=&quot;../images/flag.jpg&quot;   /&gt;&#39;;    
-
           echo &quot;&lt;/font&gt;&quot;;
       }
     else  
@@ -855,7 +856,7 @@ mysql_query($insert);</code></pre><p>于是此处可采用修改User-Agent的方
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.5k</span>
+                <span class="white-color">215.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

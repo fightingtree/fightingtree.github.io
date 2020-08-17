@@ -418,7 +418,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        3.2k
+                        3.3k
                     </div>
                     
 
@@ -644,31 +644,25 @@ sunion team1 team2</code></pre>
      next_url <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='page']/a[@class='next']/@href"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
      <span class="token keyword">if</span> next_url:
          yield scrapy.Request<span class="token punctuation">(</span>url<span class="token operator">=</span>response.urljin<span class="token punctuation">(</span>next_url<span class="token punctuation">)</span>,callback<span class="token operator">=</span>self.parse_newhouse<span class="token punctuation">(</span><span class="token punctuation">)</span>,
-                              meta<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"info"</span>:<span class="token punctuation">(</span>province,city<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#请求下一页的url同样调用新房函数处理，并传递省份城市的参数</span>
-</code></pre>
+                              meta<span class="token operator">=</span><span class="token punctuation">{</span><span class="token string">"info"</span>:<span class="token punctuation">(</span>province,city<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#请求下一页的url同样调用新房函数处理，并传递省份城市的参数</span></code></pre>
 </li>
 </ol>
-<pre><code>
-
-
-## 部署
-### 分布式爬虫架构
-1. 核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数据都保存在此主机中
-2. 跑爬虫程序的机器：多个slave(叶子节点)，用于爬取数据
-
-### 实现
-1. 使用三台机器，一台win10,两台kali linux，分别在两台Linux上进行分布式抓取
-2. win10的ip地址为192.168.1.152，用来作为redis的master端，linux机器作为slave
-3. master的爬虫运行时会把提取到的Url封装成request放到redis数据库：&quot;dmoz:requests&quot;，并且从该数据库中提取request后下载网页，再把网页的内容放到redis的另一个数据库中&quot;dmoz:items&quot;
-4. slave从master的redis去除待抓取的request，下载完网页后就把网页的内容送回master的redis
-5. 重复上面的3和4，直到master的redis中的&quot;dmoz:dupfilter&quot;是用来存储抓取过的url的指纹(使用哈希函数将url运算后的结果)，是防止重复抓取的
-
-### linux环境搭建
-1. 安装python环境:kali默认安装python3 
-2. 安装scrapy-redis：
-在终端输入以下命令：
-```bash
-pip install scrapy-redis</code></pre><ol start="3">
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><h3 id="分布式爬虫架构-2"><a href="#分布式爬虫架构-2" class="headerlink" title="分布式爬虫架构"></a>分布式爬虫架构</h3><ol>
+<li>核心服务器：一台master，用于启动爬虫，爬虫开始的url以及爬虫爬取的数据都保存在此主机中</li>
+<li>跑爬虫程序的机器：多个slave(叶子节点)，用于爬取数据</li>
+</ol>
+<p>在master服务器上搭建一个redis数据库，并将要抓取的url存放到redis数据库中，所有的slave爬虫服务器在抓取的时候从redis数据库中去链接，由于scrapy_redis自身的队列机制，slave获取的url不会相互冲突，然后抓取的结果最后都存储到数据库中。master的redis数据库中还会将抓取过的url的指纹存储起来，用来去重。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
+<li>使用三台机器，一台win10,两台kali linux，分别在两台Linux上进行分布式抓取</li>
+<li>win10的ip地址为192.168.1.152，用来作为redis的master端，linux机器作为slave</li>
+<li>master的爬虫运行时会把提取到的Url封装成request放到redis数据库：”dmoz:requests”，并且从该数据库中提取request后下载网页，再把网页的内容放到redis的另一个数据库中”dmoz:items”</li>
+<li>slave从master的redis去除待抓取的request，下载完网页后就把网页的内容送回master的redis</li>
+<li>重复上面的3和4，直到master的redis中的”dmoz:dupfilter”是用来存储抓取过的url的指纹(使用哈希函数将url运算后的结果)，是防止重复抓取的</li>
+</ol>
+<h3 id="linux环境搭建"><a href="#linux环境搭建" class="headerlink" title="linux环境搭建"></a>linux环境搭建</h3><ol>
+<li>安装python环境:kali默认安装python3 </li>
+<li>安装scrapy-redis：<br>在终端输入以下命令：<pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> scrapy-redis</code></pre>
+</li>
 <li>克隆以上虚拟机</li>
 </ol>
 <h3 id="winodws"><a href="#winodws" class="headerlink" title="winodws"></a>winodws</h3><h4 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h4><p>redis默认只支持Linux,如果要在windows里安装需要去github里进行下载：<a href="http://www.github.com/MicrosoftArchive/redis/releases" target="_blank" rel="noopener">www.github.com/MicrosoftArchive/redis/releases</a><br>安装之后打开cmd，进入到redis安装的上一级文件夹下执行以下命令，打开redis服务器,或者直接点击redis-server.exe</p>
@@ -1110,7 +1104,7 @@ collection <span class="token operator">=</span> mongo_client.t2345.softInfo
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.5k</span>
+                <span class="white-color">215.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
