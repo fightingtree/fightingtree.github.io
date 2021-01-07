@@ -415,7 +415,7 @@ QWidgetQt实现选项卡式界面此部分参考链接
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        648
+                        723
                     </div>
                     
 
@@ -662,6 +662,27 @@ void MainWindow::choose<span class="token punctuation">(</span><span class="toke
 <blockquote>
 <p>注：currentIndex()对应comboBox里的值的顺序</p>
 </blockquote>
+<hr>
+<h2 id="QSS"><a href="#QSS" class="headerlink" title="QSS"></a>QSS</h2><p>Qt自己的CSS简称QSS</p>
+<h2 id="在QT中的应用"><a href="#在QT中的应用" class="headerlink" title="在QT中的应用"></a>在QT中的应用</h2><ol>
+<li>在QT所在的build文件中放入.css文件</li>
+<li>在main.cpp文件中加入以下内容</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash">int main<span class="token punctuation">(</span>int argc, char *argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    QApplication a<span class="token punctuation">(</span>argc, argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    MainWindow w<span class="token punctuation">;</span>
+    QFile qssFile<span class="token punctuation">(</span><span class="token string">"qt.css"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    qssFile.open<span class="token punctuation">(</span>QFile::ReadOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    if<span class="token punctuation">(</span>qssFile.isOpen<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
+        QString qss <span class="token operator">=</span> QLatin1String<span class="token punctuation">(</span>qssFile.readAll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+        qApp-<span class="token operator">></span>setStyleSheet<span class="token punctuation">(</span>qss<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        qssFile.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    w.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> a.exec<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -817,31 +838,31 @@ void MainWindow::choose<span class="token punctuation">(</span><span class="toke
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/08/27/qt1/">
+                <a href="/2019/08/25/c-7/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg" class="responsive-img" alt="Qt(进阶1)">
+                        <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e556c.jpg" class="responsive-img" alt="C语言笔记（一）">
                         
-                        <span class="card-title">Qt(进阶1)</span>
+                        <span class="card-title">C语言笔记（一）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在Qt开发中使用CSS文件
+                            C语言各种数据类型转换(更新ing)
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                    项目开发
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
                                 </a>
                             
                             
@@ -851,12 +872,8 @@ void MainWindow::choose<span class="token punctuation">(</span><span class="toke
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Qt/" target="_blank">
-                        <span class="chip bg-color">Qt</span>
-                    </a>
-                    
-                    <a href="/tags/CSS/" target="_blank">
-                        <span class="chip bg-color">CSS</span>
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
                     </a>
                     
                 </div>
@@ -1017,7 +1034,7 @@ void MainWindow::choose<span class="token punctuation">(</span><span class="toke
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.6k</span>
+                <span class="white-color">221.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

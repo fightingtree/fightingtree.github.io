@@ -444,7 +444,7 @@ $a;
 <li>php是一种脚本语言</li>
 </ul>
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>php变量格式：<font color="#fb8c00">$变量名</font>  </p>
-<pre class=" language-bash"><code class="language-bash"><span class="token variable">$a</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$a</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>注：变量中不能包含空格</p>
 </blockquote>
@@ -459,14 +459,14 @@ $a;
 <p>注：Resource类型经常由处理外部应用程序文件或文件的函数返回。</p>
 </blockquote>
 <h3 id="settype-改变类型"><a href="#settype-改变类型" class="headerlink" title="settype()改变类型"></a>settype()改变类型</h3><p><font color="#fb8c00">settype(变量名，新的类型)</font></p>
-<pre class=" language-bash"><code class="language-bash"><span class="token variable">$undecided</span> <span class="token operator">=</span> 3.14<span class="token punctuation">;</span>
-settype<span class="token punctuation">(</span><span class="token variable">$undecided</span>,<span class="token string">'string'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //将undecided<span class="token punctuation">(</span>float<span class="token punctuation">)</span>转为string类型</code></pre>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$undecided</span> <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span>
+<span class="token function">settype</span><span class="token punctuation">(</span><span class="token variable">$undecided</span><span class="token punctuation">,</span><span class="token string">'string'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//将undecided(float)转为string类型</span></code></pre>
 <blockquote>
 <p>注：任何非0的数字转换为布尔值时都会变为true</p>
 </blockquote>
 <h3 id="通过类型转换改变类型"><a href="#通过类型转换改变类型" class="headerlink" title="通过类型转换改变类型"></a>通过类型转换改变类型</h3><p>此类转换与settype()相比，类型转换会产生一个拷贝，而保持原来的变量不变。<br><font color="#fb8c00">$newVar = (integer) $originalVar</font></p>
-<pre class=" language-bash"><code class="language-bash"><span class="token variable">$undecided</span> <span class="token operator">=</span> 3.14<span class="token punctuation">;</span>
-<span class="token variable">$holder</span> <span class="token operator">=</span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span> <span class="token variable">$undecided</span><span class="token punctuation">;</span>  //产生了一个新变量holder，undecided并没有改变</code></pre>
+<pre class=" language-php"><code class="language-php"><span class="token variable">$undecided</span> <span class="token operator">=</span> <span class="token number">3.14</span><span class="token punctuation">;</span>
+<span class="token variable">$holder</span> <span class="token operator">=</span> <span class="token punctuation">(</span>string<span class="token punctuation">)</span> <span class="token variable">$undecided</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//产生了一个新变量holder，undecided并没有改变</span></code></pre>
 <blockquote>
 <p>注：测试数据类型可用is_*(eg: is_bool)</p>
 </blockquote>
@@ -817,7 +817,7 @@ settype<span class="token punctuation">(</span><span class="token variable">$und
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.6k</span>
+                <span class="white-color">221.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

@@ -438,19 +438,19 @@ printf(&#34;%d\n&#34;,i);//">
             <div id="articleContent">
                 <h2 id="输出printf"><a href="#输出printf" class="headerlink" title="输出printf()"></a>输出printf()</h2><h3 id="输出形式"><a href="#输出形式" class="headerlink" title="输出形式"></a>输出形式</h3><p>将变量的内容输出到显示器上</p>
 <ul>
-<li>printf(“字符串”);<pre class=" language-bash"><code class="language-bash">printf<span class="token punctuation">(</span><span class="token string">"你好\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//\n表示换行</code></pre>
+<li>printf(“字符串”);<pre class=" language-c"><code class="language-c"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"你好\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//\n表示换行</span></code></pre>
 </li>
-<li>printf(“输出控制符”，输出参数);<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span> 10<span class="token punctuation">;</span>
-printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,i<span class="token punctuation">)</span><span class="token punctuation">;</span>//将i以十进制的方式输出</code></pre>
+<li>printf(“输出控制符”，输出参数);<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将i以十进制的方式输出</span></code></pre>
 </li>
-<li>printf(“输出控制符1 输出控制符2..”，输出参数1，输出参数2，….)<pre class=" language-bash"><code class="language-bash">int j <span class="token operator">=</span> 3<span class="token punctuation">;</span>
-int k <span class="token operator">=</span> 4<span class="token punctuation">;</span>
-printf<span class="token punctuation">(</span><span class="token string">"%d %d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span>//OK
-printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span>//error,输出控制符与参数个数不匹配</code></pre>
+<li>printf(“输出控制符1 输出控制符2..”，输出参数1，输出参数2，….)<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d %d\n"</span><span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//OK</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d\n"</span><span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//error,输出控制符与参数个数不匹配</span></code></pre>
 </li>
-<li>printf(“输出控制符 非输出控制符”，输出参数);<br> 输出控制符包含： %d, %ld, %f, %lf, %C, %x,%s…<pre class=" language-bash"><code class="language-bash">int j <span class="token operator">=</span> 3<span class="token punctuation">;</span>
-int k <span class="token operator">=</span> 4<span class="token punctuation">;</span>
-printf<span class="token punctuation">(</span><span class="token string">"j = %d, k= %d\n"</span>,j,k<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<li>printf(“输出控制符 非输出控制符”，输出参数);<br> 输出控制符包含： %d, %ld, %f, %lf, %C, %x,%s…<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"j = %d, k= %d\n"</span><span class="token punctuation">,</span>j<span class="token punctuation">,</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <blockquote>
 <p>注：float只能用%f输出不能用%d</p>
 </blockquote>
@@ -462,21 +462,21 @@ printf<span class="token punctuation">(</span><span class="token string">"j = %d
 </ul>
 <h2 id="输入scanf"><a href="#输入scanf" class="headerlink" title="输入scanf()"></a>输入scanf()</h2><p>通过键盘将数据放置到变量中</p>
 <h3 id="输入形式"><a href="#输入形式" class="headerlink" title="输入形式"></a>输入形式</h3><ul>
-<li>scanf(“输入控制符”，输入参数);<br>功能： 将键盘输入的字符转化为输入控制符所规定的格式的数据，然后存入以输入参数的值为地址的变量中。<pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
-scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,<span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>//<span class="token operator">&amp;</span>表示取地址,将键盘输入的字符转换为int类型再赋值给i</code></pre>
+<li>scanf(“输入控制符”，输入参数);<br>功能： 将键盘输入的字符转化为输入控制符所规定的格式的数据，然后存入以输入参数的值为地址的变量中。<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//&amp;表示取地址,将键盘输入的字符转换为int类型再赋值给i</span></code></pre>
 </li>
-<li>scanf(“非输入控制符输入控制符”，输入参数)；<pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
-scanf<span class="token punctuation">(</span><span class="token string">"m%d"</span>,<span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入123，m123均为合法输入</code></pre>
+<li>scanf(“非输入控制符输入控制符”，输入参数)；<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"m%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//输入123，m123均为合法输入</span></code></pre>
 </li>
-<li>scanf(“输入控制符1 输入控制符2…”,输入参数1,输入参数2…);<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
-scanf<span class="token punctuation">(</span><span class="token string">"%d %d"</span>,<span class="token operator">&amp;</span>i,<span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入应为1空格2，12被视为一个数字</code></pre>
-<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
-scanf<span class="token punctuation">(</span><span class="token string">"%d,%d"</span>,<span class="token operator">&amp;</span>i,<span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>//输入应为1逗号2，若为1空格2只读取1，2置为填充字</code></pre>
+<li>scanf(“输入控制符1 输入控制符2…”,输入参数1,输入参数2…);<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d %d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>i<span class="token punctuation">,</span><span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//输入应为1空格2，12被视为一个数字</span></code></pre>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d,%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>i<span class="token punctuation">,</span><span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//输入应为1逗号2，若为1空格2只读取1，2置为填充字</span></code></pre>
 </li>
 </ul>
 <p>###对用户非法输入的处理<br>在连续输入的两个scanf函数之间加入代码</p>
-<pre class=" language-bash"><code class="language-bash">char ch<span class="token punctuation">;</span>
-<span class="token keyword">while</span><span class="token variable"><span class="token punctuation">((</span>ch.getchar<span class="token punctuation">(</span><span class="token punctuation">))</span></span> <span class="token operator">!=</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">char</span> ch<span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>ch<span class="token punctuation">.</span><span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">continue</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
@@ -830,7 +830,7 @@ scanf<span class="token punctuation">(</span><span class="token string">"%d,%d"<
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.6k</span>
+                <span class="white-color">221.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

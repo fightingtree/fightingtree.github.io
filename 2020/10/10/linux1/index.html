@@ -4,15 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Qt(进阶1), FightingTree">
-    <meta name="description" content="QSSQt自己的CSS简称QSS
-在QT中的应用
-在QT所在的build文件中放入.css文件
+    <meta name="keywords" content="linux(1), FightingTree">
+    <meta name="description" content="1. 什么是Linux1.1 Linux系统内部结构Linux可划分为以下四部分：
 
-在main.cpp文件中加入以下内容
-int main(int argc, char *argv[])
-{
- QApplication a(a">
+Linux内核
+GNU工具组件
+图形化桌面环境
+应用软件
+
+下图是linux系统的基本结构框图，说明了各个部分是如何协作起来构成整个linux系统的
+
+1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +22,7 @@ int main(int argc, char *argv[])
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Qt(进阶1) | FightingTree</title>
+    <title>linux(1) | FightingTree</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -267,13 +269,13 @@ int main(int argc, char *argv[])
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f72.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Qt(进阶1)
+                        linux(1)
                     </div>
                 </div>
             </div>
@@ -384,12 +386,8 @@ int main(int argc, char *argv[])
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Qt/" target="_blank">
-                                <span class="chip bg-color">Qt</span>
-                            </a>
-                        
-                            <a href="/tags/CSS/" target="_blank">
-                                <span class="chip bg-color">CSS</span>
+                            <a href="/tags/Linux/" target="_blank">
+                                <span class="chip bg-color">Linux</span>
                             </a>
                         
                     </div>
@@ -400,8 +398,8 @@ int main(int argc, char *argv[])
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/" class="post-category" target="_blank">
-                                项目开发
+                            <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-category" target="_blank">
+                                知识点总结
                             </a>
                         
                     </div>
@@ -412,21 +410,21 @@ int main(int argc, char *argv[])
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-08-27
+                    2020-10-10
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        75
+                        703
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        1 分
+                        2 分
                     </div>
                     
                 
@@ -442,28 +440,40 @@ int main(int argc, char *argv[])
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="QSS"><a href="#QSS" class="headerlink" title="QSS"></a>QSS</h2><p>Qt自己的CSS简称QSS</p>
-<h2 id="在QT中的应用"><a href="#在QT中的应用" class="headerlink" title="在QT中的应用"></a>在QT中的应用</h2><ol>
-<li><p>在QT所在的build文件中放入.css文件</p>
-</li>
-<li><p>在main.cpp文件中加入以下内容</p>
-<pre class=" language-bash"><code class="language-bash">int main<span class="token punctuation">(</span>int argc, char *argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
- QApplication a<span class="token punctuation">(</span>argc, argv<span class="token punctuation">)</span><span class="token punctuation">;</span>
- MainWindow w<span class="token punctuation">;</span>
- QFile qssFile<span class="token punctuation">(</span><span class="token string">"qt.css"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- qssFile.open<span class="token punctuation">(</span>QFile::ReadOnly<span class="token punctuation">)</span><span class="token punctuation">;</span>
- if<span class="token punctuation">(</span>qssFile.isOpen<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">{</span>
-     QString qss <span class="token operator">=</span> QLatin1String<span class="token punctuation">(</span>qssFile.readAll<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
-     qApp-<span class="token operator">></span>setStyleSheet<span class="token punctuation">(</span>qss<span class="token punctuation">)</span><span class="token punctuation">;</span>
-     qssFile.close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span>
- w.show<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
- <span class="token keyword">return</span> a.exec<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-</li>
-</ol>
+                <h2 id="1-什么是Linux"><a href="#1-什么是Linux" class="headerlink" title="1. 什么是Linux"></a>1. 什么是Linux</h2><h3 id="1-1-Linux系统内部结构"><a href="#1-1-Linux系统内部结构" class="headerlink" title="1.1 Linux系统内部结构"></a>1.1 Linux系统内部结构</h3><p>Linux可划分为以下四部分：</p>
+<ul>
+<li>Linux内核</li>
+<li>GNU工具组件</li>
+<li>图形化桌面环境</li>
+<li>应用软件</li>
+</ul>
+<p>下图是linux系统的基本结构框图，说明了各个部分是如何协作起来构成整个linux系统的</p>
+<p><img src="https://pic.downk.cc/item/5f8161e41cd1bbb86beee9d3.jpg" alt=""></p>
+<h4 id="1-1-1-linux内核"><a href="#1-1-1-linux内核" class="headerlink" title="1.1.1 linux内核"></a>1.1.1 linux内核</h4><p>linux系统的核心是内核。内核控制着计算机系统上的所有硬件和软件。内核基本负责以下四项基本功能：</p>
+<ul>
+<li>系统内存管理</li>
+<li>软件程序管理</li>
+<li>硬件设备管理</li>
+<li>文件系统管理</li>
+</ul>
+<h5 id="1-1-1-1-系统内存管理"><a href="#1-1-1-1-系统内存管理" class="headerlink" title="1.1.1.1 系统内存管理"></a>1.1.1.1 系统内存管理</h5><p>内核管理服务器上的可用物理内存，还可以创建和管理虚拟内存。</p>
+<ul>
+<li>交换空间(swap space):内核通过硬盘上的存储空间来实现虚拟内存，这块区域被称为交换空间。</li>
+<li>虚拟内存：内核不断地在交换空间和物理内存之间反复交换虚拟内存存储单元中的内容</li>
+<li>页面：内存存储单元会被按组分成很多块，这些块被称作页面。内核会将每个内存页面放在物理内存或交换空间。然后，内核会维护一个内存页面表，来指明哪些页面位于物理内存内，哪些页面被换到磁盘上。</li>
+</ul>
+<p>内核会记录哪些内存页面正在使用中，并自动把一段时间未访问的内存页面复制到交换空间区域(换出，swapping out)——即使物理内存还有可用内存。当程序要访问一个已被换出的内存页面时，内核必须从物理内存换出另外一个内存页面来给它让出空间，然后从交换空间换入(swapping in)请求的内存页面。</p>
+<blockquote>
+<p>只要linux系统在运行，为运行中的程序换出内存页面的过程就不会停歇</p>
+</blockquote>
+<p>查看/proc/meminfo 文件可以观察linux系统上虚拟内存的当前状态</p>
+<pre><code>cat /proc/meminfo</code></pre><p><img src="https://pic.downk.cc/item/5f816e571cd1bbb86bfd24f5.png" alt=""></p>
+<p><strong>共享内存</strong></p>
+<p>默认情况下，运行在Lnux系统上的每个进程都有各自的内存页面，进程不能访问其他进程正在使用的内存页面。内核维护着它自己的内存区域。出于安全考虑，用户进程不能访问内核进程使用的内存。</p>
+<ul>
+<li>共享内存页面：为了方便共享数据，可以创建一些共享内存页面。多个进程可在同一块共用内存区域进行读取和写入操作。内核负责维护和管理这块共用内存区域并控制每个进程访问这块共享区域。</li>
+</ul>
+<p>可使用以下命令查看系统上的当前共享内存页面</p>
 
             </div>
             <hr/>
@@ -498,9 +508,9 @@ int main(int argc, char *argv[])
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Qt(进阶1)》
+                    《linux(1)》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/27/qt1/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/10/10/linux1/" property="cc:attributionName"
                rel="cc:attributionURL">
                 fightingtree
             </a> 采用
@@ -541,7 +551,7 @@ int main(int argc, char *argv[])
         repo: 'fightingtree.github.io',
         owner: 'fightingtree',
         admin: "fightingtree",
-        id: '2019-08-27T20-16-40',
+        id: '2020-10-10T14-58-51',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -566,25 +576,78 @@ int main(int argc, char *argv[])
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/08/27/qt2/">
+                <a href="/2020/12/15/fuzzing1/">
                     <div class="card-image">
                         
                         
-                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f75.jpg" class="responsive-img" alt="Qt(基础1)">
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c38.jpg" class="responsive-img" alt="fuzzing1">
                         
-                        <span class="card-title">Qt(基础1)</span>
+                        <span class="card-title">fuzzing1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Qt基础操作(菜单、widget、combobox)
+                            模糊测试的基础知识
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-27
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-15
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/Fuzzing/" target="_blank">
+                        <span class="chip bg-color">Fuzzing</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/09/03/android2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f72.jpg" class="responsive-img" alt="android开发与基础">
+                        
+                        <span class="card-title">android开发与基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            安卓基础知识
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-09-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -600,57 +663,8 @@ int main(int argc, char *argv[])
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Qt/" target="_blank">
-                        <span class="chip bg-color">Qt</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/08/25/c-7/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e556c.jpg" class="responsive-img" alt="C语言笔记（一）">
-                        
-                        <span class="card-title">C语言笔记（一）</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            C语言各种数据类型转换(更新ing)
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-25
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
-                                    编程语言
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/C/" target="_blank">
-                        <span class="chip bg-color">C</span>
+                    <a href="/tags/%E5%AE%89%E5%8D%93/" target="_blank">
+                        <span class="chip bg-color">安卓</span>
                     </a>
                     
                 </div>
@@ -811,7 +825,7 @@ int main(int argc, char *argv[])
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.6k</span>
+                <span class="white-color">221.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">

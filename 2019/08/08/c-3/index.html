@@ -438,14 +438,14 @@ ifif最简单的用法if(表达式){
                 <h2 id="什么是流程控制"><a href="#什么是流程控制" class="headerlink" title="什么是流程控制"></a>什么是流程控制</h2><p>定义：程序代码执行的顺序</p>
 <h2 id="流程控制的分类"><a href="#流程控制的分类" class="headerlink" title="流程控制的分类"></a>流程控制的分类</h2><h3 id="顺序执行"><a href="#顺序执行" class="headerlink" title="顺序执行"></a>顺序执行</h3><p>按照代码顺序执行</p>
 <h3 id="选择执行"><a href="#选择执行" class="headerlink" title="选择执行"></a>选择执行</h3><p>定义：某些代码可能执行，也可能不执行，有选择的执行某些代码</p>
-<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><h5 id="if最简单的用法"><a href="#if最简单的用法" class="headerlink" title="if最简单的用法"></a>if最简单的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
-   语句<span class="token punctuation">;</span>  //若表达式为真则执行语句，否则不执行
+<h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><h5 id="if最简单的用法"><a href="#if最简单的用法" class="headerlink" title="if最简单的用法"></a>if最简单的用法</h5><pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   语句<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//若表达式为真则执行语句，否则不执行</span>
 <span class="token punctuation">}</span></code></pre>
-<h5 id="if的范围问题"><a href="#if的范围问题" class="headerlink" title="if的范围问题"></a>if的范围问题</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
+<h5 id="if的范围问题"><a href="#if的范围问题" class="headerlink" title="if的范围问题"></a>if的范围问题</h5><pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
    语句A；
    语句B；</code></pre>
 <p><font color="#fb8c00">if</font>默认只控制语句A的执行与不执行，不控制语句B，即B一定会被执行</p>
-<pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
     语句A；
     语句B；
 <span class="token punctuation">}</span></code></pre>
@@ -453,32 +453,32 @@ ifif最简单的用法if(表达式){
 <blockquote>
 <p>注：if默认只控制一个语句的执行</p>
 </blockquote>
-<h5 id="if-else的用法"><a href="#if-else的用法" class="headerlink" title="if else的用法"></a>if else的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    语句A；//若表达式为真执行A；
+<h5 id="if-else的用法"><a href="#if-else的用法" class="headerlink" title="if else的用法"></a>if else的用法</h5><pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    语句A；<span class="token comment" spellcheck="true">//若表达式为真执行A；</span>
 <span class="token punctuation">}</span>
-else<span class="token punctuation">{</span>
-    语句B；//若表达式为假执行B；
+<span class="token keyword">else</span><span class="token punctuation">{</span>
+    语句B；<span class="token comment" spellcheck="true">//若表达式为假执行B；</span>
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>注：else默认只控制一个语句的执行<br>      else后不跟表达式</p>
 </blockquote>
-<h5 id="if…else-if…else的用法"><a href="#if…else-if…else的用法" class="headerlink" title="if…else if…else的用法"></a>if…else if…else的用法</h5><pre class=" language-bash"><code class="language-bash">if<span class="token punctuation">(</span>表达式1<span class="token punctuation">)</span>
-     语句A；//若1成立执行A
-<span class="token keyword">else</span> if<span class="token punctuation">(</span>表达式2<span class="token punctuation">)</span>
-    语句B；//若1不成立2成立执行B
-<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>表达式3<span class="token punctuation">)</span>
-    语句C；//若12不成立3成立执行C
+<h5 id="if…else-if…else的用法"><a href="#if…else-if…else的用法" class="headerlink" title="if…else if…else的用法"></a>if…else if…else的用法</h5><pre class=" language-c"><code class="language-c"><span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token number">1</span><span class="token punctuation">)</span>
+     语句A；<span class="token comment" spellcheck="true">//若1成立执行A</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>表达式<span class="token number">2</span><span class="token punctuation">)</span>
+    语句B；<span class="token comment" spellcheck="true">//若1不成立2成立执行B</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>表达式<span class="token number">3</span><span class="token punctuation">)</span>
+    语句C；<span class="token comment" spellcheck="true">//若12不成立3成立执行C</span>
 <span class="token keyword">else</span> 
-    语句D；//若123不成立则执行D</code></pre>
-<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
-switch<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">case</span> 1:
+    语句D；<span class="token comment" spellcheck="true">//若123不成立则执行D</span></code></pre>
+<h4 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token keyword">switch</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
         语句A<span class="token punctuation">;</span>
         <span class="token keyword">break</span><span class="token punctuation">;</span>
-    <span class="token keyword">case</span> 2:
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token punctuation">:</span>
         语句B<span class="token punctuation">;</span>
         <span class="token keyword">break</span><span class="token punctuation">;</span>
-    default:
+    <span class="token keyword">default</span><span class="token punctuation">:</span>
         语句C<span class="token punctuation">;</span>
         <span class="token keyword">break</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
@@ -486,24 +486,24 @@ switch<span class="token punctuation">(</span>i<span class="token punctuation">)
 <p>注：没有break则按顺序执行，case是程序入口，一旦找到入口程序将从入口按顺序执行，不再进行判断(switch只进行一次判断)，break是程序出口。</p>
 </blockquote>
 <h3 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h3><p>定义：某些代码会被重复执行</p>
-<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>int i<span class="token operator">=</span>1<span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>4<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">4</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     语句A；
 <span class="token punctuation">}</span></code></pre>
 <p><font color="#fb8c00">for</font>语句执行顺序：先执行int i=1,再判断i&lt;=4,若i&lt;=4为真，则执行语句A，最后执行i++,再对i&lt;=4进行判断</p>
 <blockquote>
 <p>注：i++与++i的区别<br>a = i++ 相当于a=i, i=i+1,即先赋值再计算;<br>a = ++i 相当于i=i+1,a=i，即先计算再赋值;</p>
 </blockquote>
-<h5 id="嵌套for循环"><a href="#嵌套for循环" class="headerlink" title="嵌套for循环"></a>嵌套for循环</h5><pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>1<span class="token punctuation">;</span>2<span class="token punctuation">;</span>3<span class="token punctuation">)</span>
-   for<span class="token punctuation">(</span>4<span class="token punctuation">;</span>5<span class="token punctuation">;</span>6<span class="token punctuation">)</span>
+<h5 id="嵌套for循环"><a href="#嵌套for循环" class="headerlink" title="嵌套for循环"></a>嵌套for循环</h5><pre class=" language-c"><code class="language-c"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token number">3</span><span class="token punctuation">)</span>
+   <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">;</span><span class="token number">5</span><span class="token punctuation">;</span><span class="token number">6</span><span class="token punctuation">)</span>
       A<span class="token punctuation">;</span>
       B<span class="token punctuation">;</span></code></pre>
 <p>上述表达式执行顺序(循环一次)：1-2-4-5-A-6-5-3-2-B</p>
-<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><pre class=" language-bash"><code class="language-bash">while<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">while</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>
    语句A；</code></pre>
 <h4 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do while循环"></a>do while循环</h4><p>主要用于人机交互</p>
-<pre class=" language-bash"><code class="language-bash">do<span class="token punctuation">{</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">do</span><span class="token punctuation">{</span>
 
-<span class="token punctuation">}</span>while<span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>；</code></pre>
+<span class="token punctuation">}</span><span class="token keyword">while</span><span class="token punctuation">(</span>表达式<span class="token punctuation">)</span>；</code></pre>
 <blockquote>
 <p>注： while和for可能一次都不会执行，但是do while至少执行一次。</p>
 </blockquote>
@@ -512,36 +512,36 @@ switch<span class="token punctuation">(</span>i<span class="token punctuation">)
 <li>break如果用于switch，用于终止switch(程序出口)</li>
 <li>break不能直接用于if，除非if属于循环内部的一个子句</li>
 </ul>
-<h4 id="break用于for循环"><a href="#break用于for循环" class="headerlink" title="break用于for循环"></a>break用于for循环</h4><pre class=" language-bash"><code class="language-bash">int i<span class="token punctuation">;</span>
-for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>3<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    if<span class="token punctuation">(</span>3<span class="token operator">></span>2<span class="token punctuation">)</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>//OK,用于终止外部for循环
+<h4 id="break用于for循环"><a href="#break用于for循环" class="headerlink" title="break用于for循环"></a>break用于for循环</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token operator">></span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//OK,用于终止外部for循环</span>
 <span class="token punctuation">}</span></code></pre>
-<pre class=" language-bash"><code class="language-bash">int i,j<span class="token punctuation">;</span>
-for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>3<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    for<span class="token punctuation">(</span>j<span class="token operator">=</span>1<span class="token punctuation">;</span>j<span class="token operator">&lt;</span>4<span class="token punctuation">;</span>j++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>j<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span><span class="token number">4</span><span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         语句A<span class="token punctuation">;</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>//OK,终止第二个for循环
+        <span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//OK,终止第二个for循环</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<h4 id="break用于switch"><a href="#break用于switch" class="headerlink" title="break用于switch"></a>break用于switch</h4><pre class=" language-bash"><code class="language-bash">int x,y<span class="token punctuation">;</span>
-switch<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span> //第一个switch
-    <span class="token keyword">case</span> 1:
-        switch<span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>  //第二个switch
-           <span class="token keyword">case</span> 0:
+<h4 id="break用于switch"><a href="#break用于switch" class="headerlink" title="break用于switch"></a>break用于switch</h4><pre class=" language-c"><code class="language-c"><span class="token keyword">int</span> x<span class="token punctuation">,</span>y<span class="token punctuation">;</span>
+<span class="token keyword">switch</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//第一个switch</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">switch</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//第二个switch</span>
+           <span class="token keyword">case</span> <span class="token number">0</span><span class="token punctuation">:</span>
                语句A；
-               <span class="token keyword">break</span><span class="token punctuation">;</span>//终止的是第二个switch
+               <span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//终止的是第二个switch</span>
         <span class="token punctuation">}</span>
-        <span class="token keyword">break</span><span class="token punctuation">;</span>//终止的是第一个switch
+        <span class="token keyword">break</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//终止的是第一个switch</span>
 <span class="token punctuation">}</span></code></pre>
 <blockquote>
 <p>注:在多层for循环中，break只能终止距离它最近的循环；<br>    在多层switch嵌套中，break只能终止距离它最近的switch;</p>
 </blockquote>
 <h3 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h3><h4 id="用途-1"><a href="#用途-1" class="headerlink" title="用途"></a>用途</h4><p>用于跳过本次循环余下的语句，转去判断是否需要执行下次循环</p>
-<pre class=" language-bash"><code class="language-bash">for<span class="token punctuation">(</span>1<span class="token punctuation">;</span>2<span class="token punctuation">;</span>3<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre class=" language-c"><code class="language-c"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     语句A<span class="token punctuation">;</span>
     语句B<span class="token punctuation">;</span>
-    <span class="token keyword">continue</span><span class="token punctuation">;</span>//若执行该语句，则执行完AB后直接执行表达式3，不执行语句C
+    <span class="token keyword">continue</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//若执行该语句，则执行完AB后直接执行表达式3，不执行语句C</span>
     语句C<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
 
@@ -903,7 +903,7 @@ switch<span class="token punctuation">(</span>x<span class="token punctuation">)
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">215.6k</span>
+                <span class="white-color">221.6k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
