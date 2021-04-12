@@ -412,14 +412,14 @@ npm config set ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.8k
+                        2.3k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        7 分
+                        9 分
                     </div>
                     
                 
@@ -589,6 +589,7 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <h5 id="5-在根组件中放路由占位符"><a href="#5-在根组件中放路由占位符" class="headerlink" title="5. 在根组件中放路由占位符"></a>5. 在根组件中放路由占位符</h5><p>在App.vue文件中添加占位符</p>
 <pre class=" language-vue"><code class="language-vue"><template>
     <router-view></router-view> <!--通过路由匹配到的组件都会被渲染到此处-->
+
 </template>
 
 <script>
@@ -659,16 +660,71 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-form</span> <span class="token attr-name">ref</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ruleForm<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-form</span><span class="token punctuation">></span></span>  <span class="token comment" spellcheck="true">&lt;!--ref属性值为表单的引用--></span></code></pre>
 <p>为登录按钮绑定事件</p>
 <pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-button</span>  <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>login<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-button</span><span class="token punctuation">></span></span></code></pre>
-<p>登录事件的函数处理()</p>
-<pre class=" language-js"><code class="language-js"><span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-<span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>ruleForm<span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>valid<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
-<span class="token comment" spellcheck="true">//若ruleForm对应的表单数据验证不通过则validate函数返回false</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>valid<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//测试 </span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-<span class="token punctuation">}</span></code></pre>
-<h3 id="利用axios发起登录请求"><a href="#利用axios发起登录请求" class="headerlink" title="利用axios发起登录请求"></a>利用axios发起登录请求</h3><h4 id="配置axios"><a href="#配置axios" class="headerlink" title="配置axios"></a>配置axios</h4><h5 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h5><pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
-axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>baseURL <span class="token operator">=</span> <span class="token string">'http://localhost:3000'</span> <span class="token comment" spellcheck="true">//配置请求的根路径,此处使用json-server</span>
+<h3 id="利用axios发起登录请求"><a href="#利用axios发起登录请求" class="headerlink" title="利用axios发起登录请求"></a>利用axios发起登录请求</h3><h4 id="配置axios"><a href="#配置axios" class="headerlink" title="配置axios"></a>配置axios</h4><h5 id="main-js"><a href="#main-js" class="headerlink" title="main.js"></a>main.js</h5><p>全局配置</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">'axios'</span>
+axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>baseURL <span class="token operator">=</span> <span class="token string">'http://localhost:3000'</span> <span class="token comment" spellcheck="true">//配置请求的根路径</span>
 Vue<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>$http <span class="token operator">=</span> axios  <span class="token comment" spellcheck="true">//每一个vue组件都可以通过this.$http发起请求</span></code></pre>
+<h5 id="登录事件的函数处理"><a href="#登录事件的函数处理" class="headerlink" title="登录事件的函数处理()"></a>登录事件的函数处理()</h5><pre class=" language-js"><code class="language-js">  <span class="token function">login</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>ruleForm<span class="token punctuation">.</span><span class="token function">validate</span><span class="token punctuation">(</span><span class="token keyword">async</span> valid <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+              <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>valid<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+             <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token function">post</span><span class="token punctuation">(</span><span class="token string">'ip'</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>ruleForm<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//first为请求地址，this.ruleForm为表单绑定数据(username,password)，请求参数可直接写json也可使用对象</span>
+             console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span></code></pre>
+<h5 id="存储token"><a href="#存储token" class="headerlink" title="存储token"></a>存储token</h5><pre class=" language-js"><code class="language-js"> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"token"</span><span class="token punctuation">,</span><span class="token keyword">this</span><span class="token punctuation">.</span>token<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//存储token</span></code></pre>
+<p>存储的token可在浏览器控制台application-&gt;sessionStorage查看</p>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h3 id="组件之间跳转"><a href="#组件之间跳转" class="headerlink" title="组件之间跳转"></a>组件之间跳转</h3><h3 id="router-link渲染"><a href="#router-link渲染" class="headerlink" title="router-link渲染"></a>router-link渲染</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">:to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{path: <span class="token punctuation">'</span>/login<span class="token punctuation">'</span>}<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span>  <span class="token comment" spellcheck="true">&lt;!--router-link默认渲染为带有正确链接的a标签，此处为渲染到/login路由所指向的组件--></span></code></pre>
+<h3 id="点击事件触发-带参数"><a href="#点击事件触发-带参数" class="headerlink" title="点击事件触发(带参数)"></a>点击事件触发(带参数)</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>goLogin<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>登录<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">export</span> <span class="token keyword">default</span><span class="token punctuation">{</span>
+        methods<span class="token punctuation">:</span><span class="token punctuation">{</span>
+            goLogin<span class="token punctuation">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>path<span class="token punctuation">:</span> <span class="token string">'/login'</span><span class="token punctuation">,</span>query<span class="token punctuation">:</span><span class="token punctuation">{</span>id<span class="token punctuation">:</span>id<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//跳转到/login路由所指的路由,query传递参数,会暴露在url中</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></code></pre>
+<h5 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h5><pre class=" language-js"><code class="language-js"><span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>id</code></pre>
+<h3 id="路由导航守卫控制访问权限"><a href="#路由导航守卫控制访问权限" class="headerlink" title="路由导航守卫控制访问权限"></a>路由导航守卫控制访问权限</h3><p>如果用户没有登录，但是直接通过url访问特定页面，需要重新导航到登录页面。</p>
+<p><strong>router/index.js</strong></p>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//挂载路由导航守卫</span>
+router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">,</span><span class="token keyword">from</span><span class="token punctuation">,</span>next<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//to表示将要访问的路径</span>
+    <span class="token comment" spellcheck="true">//from 代表从哪个路径跳转而来</span>
+    <span class="token comment" spellcheck="true">//next 是一个函数，表示放行</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">==</span> <span class="token string">'/login'</span><span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">==</span> <span class="token string">'/'</span><span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">==</span> <span class="token string">'/test'</span><span class="token punctuation">)</span><span class="token operator">||</span><span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">==</span><span class="token string">'/customer'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>  <span class="token comment" spellcheck="true">//如果访问login /直接放行</span>
+        <span class="token keyword">else</span><span class="token punctuation">{</span>
+            <span class="token keyword">const</span> tokenStr <span class="token operator">=</span> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//获取token</span>
+            <span class="token comment" spellcheck="true">// console.log("token",tokenStr);</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>tokenStr<span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token string">'/login'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//强制跳转/login页</span>
+            <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+                <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="退出"><a href="#退出" class="headerlink" title="退出"></a>退出</h3><p>退出只需销毁本地的token即可</p>
+<pre class=" language-js"><code class="language-js">window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//清空token</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>path<span class="token punctuation">:</span><span class="token string">'/login'</span><span class="token punctuation">}</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">//回到登录页</span></code></pre>
+<h2 id="登录后获取数据"><a href="#登录后获取数据" class="headerlink" title="登录后获取数据"></a>登录后获取数据</h2><p>后端设计所有请求头必须使用 <font color=orange>Authorization</font> 字段提供的 <font color=orange>token</font> 令牌</p>
+<h3 id="通过接口获取数据"><a href="#通过接口获取数据" class="headerlink" title="通过接口获取数据"></a>通过接口获取数据</h3><p>通过axios请求拦截器添加token，保证拥有获取数据的权限。</p>
+<h4 id="main-js-1"><a href="#main-js-1" class="headerlink" title="main.js"></a>main.js</h4><pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//config为请求对象</span>
+axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>config<span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">{</span>
+    config<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>Authorization <span class="token operator">=</span> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> config  <span class="token comment" spellcheck="true">//固定写法</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+<h3 id="请求数据"><a href="#请求数据" class="headerlink" title="请求数据"></a>请求数据</h3><p>在axios配置为$http的情况下（参考上文）</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">async</span> <span class="token function">logout</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$http<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'logout'</span><span class="token punctuation">,</span><span class="token punctuation">{</span>username<span class="token punctuation">:</span><span class="token string">'zby'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//(路由,消息体)</span></code></pre>
+<h5 id="后端获取数据"><a href="#后端获取数据" class="headerlink" title="后端获取数据"></a>后端获取数据</h5><p>python</p>
+<pre class=" language-python"><code class="language-python">body <span class="token operator">=</span> str<span class="token punctuation">(</span>request<span class="token punctuation">.</span>body<span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+bodyJson <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>body<span class="token punctuation">)</span>  <span class="token operator">//</span>要对body进行非空处理，否则会出错
+username <span class="token operator">=</span> bodyJson<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span></code></pre>
 
             </div>
             <hr/>
@@ -1020,7 +1076,7 @@ Vue<span class="token punctuation">.</span>prototype<span class="token punctuati
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">222k</span>
+                <span class="white-color">233.5k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
