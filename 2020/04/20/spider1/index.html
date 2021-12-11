@@ -1,0 +1,1090 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="网络爬虫(1)s, FightingTree">
+    <meta name="description" content="网络爬虫爬虫是一个模拟人类请求网站的行为的程序，可以自动请求网页，并将数据抓取下来，然后使用一定规则提取有价值的数据。(摘自百度百科)
+通用爬虫和聚焦爬虫
+通用爬虫：是搜索引擎抓取系统的重要组成部分，主要是将网页下载到本地，形成一个互联网内">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>网络爬虫(1)s | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f69.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        网络爬虫(1)s
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Python/" target="_blank">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%88%AC%E8%99%AB/" target="_blank">
+                                <span class="chip bg-color">爬虫</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank">
+                                <span class="chip bg-color">正则表达式</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-04-20
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        8 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="网络爬虫"><a href="#网络爬虫" class="headerlink" title="网络爬虫"></a>网络爬虫</h2><p>爬虫是一个模拟人类请求网站的行为的程序，可以自动请求网页，并将数据抓取下来，然后使用一定规则提取有价值的数据。(摘自百度百科)</p>
+<h3 id="通用爬虫和聚焦爬虫"><a href="#通用爬虫和聚焦爬虫" class="headerlink" title="通用爬虫和聚焦爬虫"></a>通用爬虫和聚焦爬虫</h3><ul>
+<li>通用爬虫：是搜索引擎抓取系统的重要组成部分，主要是将网页下载到本地，形成一个互联网内容的备份</li>
+<li>聚焦爬虫：是面向特定需求的一种网络爬虫程序，与通用爬虫的区别在于，聚焦爬虫在实施网页抓取的同时会对内容进行筛选和处理，尽量保证只抓取与需求相关的网页信息。</li>
+</ul>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符，及这些特定字符的组合，组成一个规则字符串，这个规则字符串用来表达对字符串的一种过滤逻辑.</p>
+<h3 id="re模块"><a href="#re模块" class="headerlink" title="re模块"></a>re模块</h3><p>re模块是专门用来实现正则表达式的模块</p>
+<h3 id="正则表达式函数"><a href="#正则表达式函数" class="headerlink" title="正则表达式函数"></a>正则表达式函数</h3><ul>
+<li>search 若匹配，输出匹配字符的索引位置并输出匹配字符(match)</li>
+<li>findall 若匹配，输出匹配字符</li>
+<li>match 从头开始匹配</li>
+<li>全局匹配 re.compile(正则表达式).findall(字符串)</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"p.*y"</span>,<span class="token string">"poyphuiy"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出第一个满足此正则表达式的子串 poy</span>
+re.compile<span class="token punctuation">(</span><span class="token string">"p.*y"</span><span class="token punctuation">)</span>.findall<span class="token punctuation">(</span><span class="token string">"poyphuiy"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出所有满足正则表达式的子串 poy phuiy</span></code></pre>
+<h3 id="原子"><a href="#原子" class="headerlink" title="原子"></a>原子</h3><p>原子是正则表达式中最基本的组成单位，每个正则表达式中至少要包含一个原子，常见的原子类型有：</p>
+<ul>
+<li>普通字符作为原子</li>
+<li>非打印字符作为原子</li>
+<li>通用字符作为原子</li>
+<li>原子</li>
+</ul>
+<h4 id="普通字符作为原子"><a href="#普通字符作为原子" class="headerlink" title="普通字符作为原子"></a>普通字符作为原子</h4><pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"and"</span>,<span class="token string">"you and me"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#match and</span></code></pre>
+<h4 id="非打印字符作为原子"><a href="#非打印字符作为原子" class="headerlink" title="非打印字符作为原子"></a>非打印字符作为原子</h4><p>\n 换行符 \t制表符</p>
+<pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"\n"</span>,<span class="token string">"hello
+    world"</span><span class="token punctuation">)</span>            <span class="token comment" spellcheck="true">#match \n</span></code></pre>
+<h4 id="通用字符作为原子"><a href="#通用字符作为原子" class="headerlink" title="通用字符作为原子"></a>通用字符作为原子</h4><ul>
+<li>\w 匹配字母、数字、下划线</li>
+<li>\W 除字母、数字、下划线</li>
+<li>\d 十进制数字</li>
+<li>\D 除十进制数字</li>
+<li>\s 空白字符</li>
+<li>\S 除空白字符<pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"\d\d"</span>,<span class="token string">"hello17world"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#match 17</span>
+re.search<span class="token punctuation">(</span><span class="token string">"\d\d\w"</span>,<span class="token string">"hello17world"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#match 17w</span></code></pre>
+</li>
+</ul>
+<h4 id="原子表作为原子"><a href="#原子表作为原子" class="headerlink" title="原子表作为原子"></a>原子表作为原子</h4><p>从原子表中选一个字符进行匹配</p>
+<pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"hel[jkl]o"</span>,<span class="token string">"hello17world"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#match hello</span>
+re.search<span class="token punctuation">(</span><span class="token string">"hel[lo]"</span>,<span class="token string">"hello17world"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#match hell</span></code></pre>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><ul>
+<li>. 除换行外任意一个字符</li>
+<li>^ 开始字符</li>
+<li>$ 结束位置</li>
+<li><ul>
+<li>0/1/多次</li>
+</ul>
+</li>
+<li>? 0/1次</li>
+<li><ul>
+<li>1/多次</li>
+</ul>
+</li>
+</ul>
+<h4 id="单个字符匹配"><a href="#单个字符匹配" class="headerlink" title="单个字符匹配"></a>单个字符匹配</h4><p><font color="#fb8c00">. 点</font> 匹配单个任意字符</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> re
+re.findall<span class="token punctuation">(</span><span class="token string">".ood"</span>,<span class="token string">"I say good and food"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出为good food</span></code></pre>
+<p><font color="#fb8c00">[]</font> 中括号中的内容会被逐一匹配</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"[gf]ood"</span>,<span class="token string">"I say good and food"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出为good food</span></code></pre>
+<p><font color="#fb8c00">\d</font> 匹配单个数字</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"\d"</span>,<span class="token string">"I am 40"</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#输出为4 0</span>
+re.findall<span class="token punctuation">(</span><span class="token string">"\d\d"</span>,<span class="token string">"I am 40"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出为40</span></code></pre>
+<p><font color="#fb8c00">\w</font> 匹配的是0-9，a-z,A-Z，_ 的单个字符</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"\w"</span>,<span class="token string">"a b!1_"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出为a b 1 _</span></code></pre>
+<p><font color="#fb8c00">\s</font> 匹配空白字符，包含tab键</p>
+<h4 id="匹配一组字符"><a href="#匹配一组字符" class="headerlink" title="匹配一组字符"></a>匹配一组字符</h4><ul>
+<li><p>直接匹配</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"good"</span>,<span class="token string">"I say good and food"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出为good</span></code></pre>
+</li>
+<li><p>使用分隔符，匹配两个不同的字符串</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"good|food"</span>,<span class="token string">"I say good and food"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#输出为good food</span></code></pre>
+</li>
+<li><p><font color="#fb8c00"> * </font>号 匹配左邻字符出现0次或多次</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"go*gle"</span>,<span class="token string">"I like google not ggle goooogle and gogle"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#*左邻为o,即o出现0次或多次，输出为 google ggle goooogle gogle</span></code></pre>
+</li>
+<li><p><font color="#fb8c00">+ </font>号 匹配左邻字符出现一次或多次</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"go+gle"</span>,<span class="token string">"I like google not ggle goooogle and gogle"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#*左邻为o,即o出现1次或多次，输出为 google goooogle gogle</span></code></pre>
+</li>
+<li><p><font color="#fb8c00">? </font>号 匹配左邻字符出现0次或1次</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"go?gle"</span>,<span class="token string">"I like google not ggle goooogle and gogle"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#*左邻为o,即o出现0次或1次，输出为 ggle gogle</span></code></pre>
+</li>
+<li><p><font color="#fb8c00">{}</font> 定义左邻字符出现的个数</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"go{2，3}gle"</span>,<span class="token string">"I like google not ggle goooogle and gogle"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#*左邻为o,即o出现2-3次，输出为 google</span></code></pre>
+</li>
+<li><p><font color="#fb8c00">^</font> 匹配是否以某个字符开头</p>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"^I like"</span>,<span class="token string">"I like blue"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#输出为I like</span></code></pre>
+</li>
+<li><p><font color="#fb8c00">$</font> 匹配是否以某个字符结尾</p>
+</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">re.findall<span class="token punctuation">(</span><span class="token string">"blue&amp;"</span>,<span class="token string">"I like blue"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#输出为blue</span></code></pre>
+<h3 id="模式修正符"><a href="#模式修正符" class="headerlink" title="模式修正符"></a>模式修正符</h3><ul>
+<li>I 匹配时忽略大小写</li>
+<li>M 多行匹配</li>
+<li>L 本地化识别匹配</li>
+<li>U unicode</li>
+<li>S 让.匹配包括换行符</li>
+</ul>
+<pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"pyt"</span>,<span class="token string">"Python"</span>,re.I<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#忽略大小写，Pyt</span></code></pre>
+<h3 id="贪婪模式和懒惰模式"><a href="#贪婪模式和懒惰模式" class="headerlink" title="贪婪模式和懒惰模式"></a>贪婪模式和懒惰模式</h3><ul>
+<li>贪婪模式的核心就是尽可能多地匹配</li>
+<li>懒惰模式的核心就是尽可能少地匹配</li>
+</ul>
+<h4 id="贪婪模式"><a href="#贪婪模式" class="headerlink" title="贪婪模式"></a>贪婪模式</h4><pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"p.*y"</span>,<span class="token string">"pythony"</span>,re.I<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#一直匹配到最后一个y，为pythony</span></code></pre>
+<h4 id="懒惰模式"><a href="#懒惰模式" class="headerlink" title="懒惰模式"></a>懒惰模式</h4><pre class=" language-bash"><code class="language-bash">re.search<span class="token punctuation">(</span><span class="token string">"p.*?y"</span>,<span class="token string">"pythony"</span>,re.I<span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#匹配第一个y，py</span></code></pre>
+<h3 id="正则表达式匹配实例"><a href="#正则表达式匹配实例" class="headerlink" title="正则表达式匹配实例"></a>正则表达式匹配实例</h3><h4 id="匹配-com-cn网站"><a href="#匹配-com-cn网站" class="headerlink" title="匹配.com/.cn网站"></a>匹配.com/.cn网站</h4><pre class=" language-bash"><code class="language-bash">http://www.baidu.com
+<span class="token punctuation">[</span>a-zA-Z<span class="token punctuation">]</span>+://<span class="token punctuation">[</span>^\s<span class="token punctuation">]</span>*<span class="token punctuation">[</span>.com<span class="token operator">|</span>.cn<span class="token punctuation">]</span></code></pre>
+<h2 id="urllib库"><a href="#urllib库" class="headerlink" title="urllib库"></a>urllib库</h2><p>urllib库是Python中一个最基本的网络请求库，可以模拟浏览器的行为，向指定的服务器发送一个请求，并可以保存服务器返回的数据。</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="urlopen"><a href="#urlopen" class="headerlink" title="urlopen"></a>urlopen</h4><h5 id="设置代理服务器"><a href="#设置代理服务器" class="headerlink" title="设置代理服务器"></a>设置代理服务器</h5><p>使用urllib库需开启代理，否则屏蔽爬虫的浏览器无法获取信息：<br><img src="https://pic.downk.cc/item/5e9e7b5fc2a9a83be547b719.png" alt=""><br><img src="https://pic.downk.cc/item/5e9e7b71c2a9a83be547beae.png" alt=""></p>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h5><p>在python3中urllib库中，所有和网络请求相关的方法，都集成到urllib.request模块下，下面是urlopen函数的基本使用</p>
+<pre class=" language-bash"><code class="language-bash">from urllib <span class="token function">import</span> request
+resp <span class="token operator">=</span> request.urlopen<span class="token punctuation">(</span><span class="token string">'https://graph.baidu.com'</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#返回该请求的响应</span>
+print<span class="token punctuation">(</span>resp.read<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<h4 id="urlretrieve"><a href="#urlretrieve" class="headerlink" title="urlretrieve"></a>urlretrieve</h4><p><font color="#fb8c00">urlretreive(网址，本地文件存储路径)</font>  直接下载网页到本地(只下载静态内容)</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+urllib.request.urlretrieve<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span>,<span class="token string">"C:\\Users\\zby\\Desktop\\baidu.html"</span><span class="token punctuation">)</span></code></pre>
+<h4 id="urlcleanup"><a href="#urlcleanup" class="headerlink" title="urlcleanup"></a>urlcleanup</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+urllib.request.urlcleanup   <span class="token comment" spellcheck="true">#清除缓存</span></code></pre>
+<h4 id="info"><a href="#info" class="headerlink" title="info"></a>info</h4><p>用来以固定格式打印响应消息主体。该方法的对象为response(object)，而不是response返回的内容(string)。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+<span class="token function">file</span> <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>file.info<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<h4 id="getcode"><a href="#getcode" class="headerlink" title="getcode"></a>getcode</h4><p>返回http请求状态码</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+<span class="token function">file</span> <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>file.getcode<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<h4 id="geturl"><a href="#geturl" class="headerlink" title="geturl"></a>geturl</h4><p>获取当前访问网页的url</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+<span class="token function">file</span> <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>file.geturl<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<h3 id="超时设置"><a href="#超时设置" class="headerlink" title="超时设置"></a>超时设置</h3><p>由于网络速度或对方服务器的问题，我们爬取一个网页的时候，都需要时间。我们访问一个网页，如果该网页长时间未响应，那么我们的系统就会判断该网页超时，无法打开该网页。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+<span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>0,10<span class="token punctuation">)</span>:
+        <span class="token function">file</span> <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span><span class="token string">"http://www.baidu.com"</span>,timeout<span class="token operator">=</span>1<span class="token punctuation">)</span>
+        try:
+            print<span class="token punctuation">(</span>file.read<span class="token punctuation">(</span><span class="token punctuation">)</span>.decode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">))</span>
+        except Exception as err:
+            print<span class="token punctuation">(</span><span class="token string">"出现异常"</span><span class="token punctuation">)</span>
+            <span class="token keyword">break</span></code></pre>
+<h2 id="简单爬虫"><a href="#简单爬虫" class="headerlink" title="简单爬虫"></a>简单爬虫</h2><h3 id="获取网页所有的html代码"><a href="#获取网页所有的html代码" class="headerlink" title="获取网页所有的html代码"></a>获取网页所有的html代码</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+class GetHtml<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    def __init__<span class="token punctuation">(</span>self,URL<span class="token punctuation">)</span>:
+        self.url <span class="token operator">=</span> URL
+        self.res <span class="token operator">=</span> None
+    def response<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:    <span class="token comment" spellcheck="true">#获取html页面的代码</span>
+        self.res <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span>self.url<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self.res.read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+html <span class="token operator">=</span> GetHtml<span class="token punctuation">(</span><span class="token string">'http://graph.baidu.com'</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>html.response<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<p>以上代码发出的请求在服务器端显示的User-Agent为python，我们需要修改User-Agent为我们的正常浏览器信息。</p>
+<h4 id="查看本地浏览器的信息"><a href="#查看本地浏览器的信息" class="headerlink" title="查看本地浏览器的信息"></a>查看本地浏览器的信息</h4><p>在浏览器中点F12打开调试平台：<br><img src="https://pic.downk.cc/item/5e9e9231c2a9a83be5564097.png" alt=""></p>
+<h4 id="修改代码"><a href="#修改代码" class="headerlink" title="修改代码"></a>修改代码</h4><pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+class GetHtml<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    def __init__<span class="token punctuation">(</span>self,URL,HEAD<span class="token punctuation">)</span>:
+        self.url <span class="token operator">=</span> URL
+        self.response <span class="token operator">=</span> None     <span class="token comment" spellcheck="true">#响应</span>
+        self.head <span class="token operator">=</span> HEAD
+        self.request <span class="token operator">=</span> None   <span class="token comment" spellcheck="true">#请求</span>
+    def getContent<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#修改请求头</span>
+        self.request <span class="token operator">=</span> urllib.request.Request<span class="token punctuation">(</span>self.url<span class="token punctuation">)</span>
+        self.request.add_header<span class="token punctuation">(</span><span class="token string">"user-agent"</span>,self.head<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#读取响应</span>
+        self.response <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span>self.request<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self.response.read<span class="token punctuation">(</span><span class="token punctuation">)</span>.decode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">#进行编码，否则在提取时会出现错误</span>
+html <span class="token operator">=</span> GetHtml<span class="token punctuation">(</span><span class="token string">"https://graph.baidu.com"</span>,<span class="token string">"user-agent消息头"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>html.getContent<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<h2 id="爬虫实例"><a href="#爬虫实例" class="headerlink" title="爬虫实例"></a>爬虫实例</h2><h3 id="爬取CSDN提取QQ群"><a href="#爬取CSDN提取QQ群" class="headerlink" title="爬取CSDN提取QQ群"></a>爬取CSDN提取QQ群</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> urllib.request
+<span class="token function">import</span> re
+class GetHtml:
+    def __init__<span class="token punctuation">(</span>self,URL,HEAD<span class="token punctuation">)</span>:
+        self.url <span class="token operator">=</span> URL
+        self.request <span class="token operator">=</span> None
+        self.response <span class="token operator">=</span> None
+        self.header <span class="token operator">=</span> HEAD
+    <span class="token comment" spellcheck="true">#获取响应</span>
+    def getContent<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        <span class="token comment" spellcheck="true">#获取请求</span>
+        self.request <span class="token operator">=</span> urllib.request.Request<span class="token punctuation">(</span>self.url<span class="token punctuation">)</span>
+        self.request.add_header<span class="token punctuation">(</span><span class="token string">"user-agent"</span>,self.header<span class="token punctuation">)</span>
+        <span class="token comment" spellcheck="true">#发送请求</span>
+        self.response <span class="token operator">=</span> urllib.request.urlopen<span class="token punctuation">(</span>self.request<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> self.response.read<span class="token punctuation">(</span><span class="token punctuation">)</span>.decode<span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#进行转码，否则会发送错误</span>
+    <span class="token comment" spellcheck="true">#获取QQ群信息</span>
+    def getQQ<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        qq <span class="token operator">=</span> re.compile<span class="token punctuation">(</span><span class="token string">"&lt;p>(\d*?)&lt;/p>"</span><span class="token punctuation">)</span>.findall<span class="token punctuation">(</span>self.getContent<span class="token punctuation">(</span><span class="token punctuation">))</span>
+        <span class="token keyword">return</span> qq
+html <span class="token operator">=</span> GetHtml<span class="token punctuation">(</span><span class="token string">"https://edu.csdn.net/huiyiCourse/detail/253"</span>,<span class="token string">"浏览器user-agent"</span><span class="token punctuation">)</span>
+print<span class="token punctuation">(</span>html.getQQ<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<p>此例中正则表达式的书写要查看该页面的html源码，根据html书写规律构造正则表达式<br><img src="https://pic.downk.cc/item/5ea12b6ac2a9a83be5a8137e.png" alt=""></p>
+<h3 id="提取豆瓣出版社信息"><a href="#提取豆瓣出版社信息" class="headerlink" title="提取豆瓣出版社信息"></a>提取豆瓣出版社信息</h3><p>豆瓣网址(<a href="https://read.douban.com/provider/all" target="_blank" rel="noopener">https://read.douban.com/provider/all</a>) ，代码结构如上，只需将正则表达式改为：</p>
+<pre class=" language-bash"><code class="language-bash">douban <span class="token operator">=</span> re.compile<span class="token punctuation">(</span><span class="token string">"&lt;div class=\"name\">(.*?)&lt;/div>"</span><span class="token punctuation">)</span>.findall<span class="token punctuation">(</span>self.getContent<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《网络爬虫(1)s》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/04/20/spider1/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2020-04-20T15-56-06',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/05/15/scrapy1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4758.jpg" class="responsive-img" alt="scrapy(1)">
+                        
+                        <span class="card-title">scrapy(1)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            爬虫框架Scrapy的简单使用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    框架使用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Scrapy/" target="_blank">
+                        <span class="chip bg-color">Scrapy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/03/firewall/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4c.jpg" class="responsive-img" alt="外网规划">
+                        
+                        <span class="card-title">外网规划</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            外部网络规划策略
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-category" target="_blank">
+                                    知识点总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

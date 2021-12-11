@@ -1,0 +1,1052 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="RabbitMQ, FightingTree">
+    <meta name="description" content="说在前面在参阅本篇博文之前建议先对队列进行学习。
+消息队列MQ全称为Message Queue消息队列(MQ),是一种应用程序对应用程序的通信方法，MQ是消费-生产者模型的一个典型代表，一端往消息队列中不断写入消息，而另一端可以读取队列中的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>RabbitMQ | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa6d8b58bc7bf71e5570.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        RabbitMQ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Python/" target="_blank">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/RabbitMQ/" target="_blank">
+                                <span class="chip bg-color">RabbitMQ</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                框架使用
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-06-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        8 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h2><p>在参阅本篇博文之前建议先对队列进行学习。</p>
+<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>MQ全称为Message Queue消息队列(MQ),是一种应用程序对应用程序的通信方法，MQ是消费-生产者模型的一个典型代表，一端往消息队列中不断写入消息，而另一端可以读取队列中的消息，这样发布者和使用者都不知道对方的存在。</p>
+<p>生产者消费者模式是通过一个容器来解决生产者消费者的强耦合问题，生产者和消费者彼此之间不直接通讯，而通过阻塞队列来进行通讯，所以生产者生产完数据之后不用等待消费者处理，直接扔给阻塞队列，消费者不用找生产者要数据，而是直接从阻塞队列中取。阻塞队列就相当于一个缓冲区，平衡了生产者和消费者的处理能力。</p>
+<h3 id="同步处理"><a href="#同步处理" class="headerlink" title="同步处理"></a>同步处理</h3><p><img src="https://pic.downk.cc/item/5edf53c8c2a9a83be5d7759b.png" alt=""></p>
+<h3 id="异步处理"><a href="#异步处理" class="headerlink" title="异步处理"></a>异步处理</h3><p><img src="https://pic.downk.cc/item/5edf540cc2a9a83be5d7d845.png" alt=""></p>
+<h3 id="为什么要用消息队列"><a href="#为什么要用消息队列" class="headerlink" title="为什么要用消息队列"></a>为什么要用消息队列</h3><p>消息队列中间件是分布式系统中的重要组件，主要解决应用解耦，异步消息，流量削峰等问题。</p>
+<h3 id="消息队列的优点"><a href="#消息队列的优点" class="headerlink" title="消息队列的优点"></a>消息队列的优点</h3><h4 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h4><p>允许独立的扩展或修改两边的处理过程，只要确保它们遵守同样的接口约束</p>
+<h4 id="可恢复性"><a href="#可恢复性" class="headerlink" title="可恢复性"></a>可恢复性</h4><p>系统的一部分组件失效时，不会影响到整个系统，消息队列降低了进程间的耦合度，所以即使一个处理消息的进程挂掉，加入队列中的消息仍然可以在系统恢复后被处理</p>
+<h4 id="缓冲"><a href="#缓冲" class="headerlink" title="缓冲"></a>缓冲</h4><p>有助于控制和优化数据流经过系统的速度，解决生产消息和消费消息的处理速度不一致的情况。</p>
+<h4 id="灵活性-峰值处理能力-削峰"><a href="#灵活性-峰值处理能力-削峰" class="headerlink" title="灵活性/峰值处理能力(削峰)"></a>灵活性/峰值处理能力(削峰)</h4><p>在访问量剧增的情况下，应用仍需发挥作用，但是这样的突发流量并不常见，如果以处理这类峰值访问为标准来投入资源随时待命无疑会是巨大的浪费。使用消息队列能够使关键组件顶住突发的访问压力，而不会因为突发的超负荷请求而完全崩溃</p>
+<h4 id="异步通信"><a href="#异步通信" class="headerlink" title="异步通信"></a>异步通信</h4><p>很多时候，用户不想也不需要立即处理消息，消息队列提供了异步处理机制，允许用户把第一个消息放入队列，但不立即处理它，想向队列中放入多少消息就放多少，然后在需要的时候去处理它。</p>
+<h3 id="消息队列的两种模式"><a href="#消息队列的两种模式" class="headerlink" title="消息队列的两种模式"></a>消息队列的两种模式</h3><h4 id="点对点模式-一对一"><a href="#点对点模式-一对一" class="headerlink" title="点对点模式(一对一)"></a>点对点模式(一对一)</h4><p>一对一，消费者主动拉取数据，收到消息后会将队列中的消息清除。<br>消费生产者生产消息发送到队列以后，消费者从队列中取出消息并消费它，消息消费以后，队列中不再有存储，所以消费者不可能消费到已经被消费的消息。队列支持存在多个消费者，但对一个消息而言，只会有一个消费者可以消费</p>
+<h4 id="发布-订阅模式-一对多"><a href="#发布-订阅模式-一对多" class="headerlink" title="发布/订阅模式(一对多)"></a>发布/订阅模式(一对多)</h4><p>一对多，消费者消费数据后不会清除消息，消息生产者将消息发布到topic中，同时有多个消息消费者消费该消息。生产者发布到topic的消息会被所有订阅者消费。<br>消费可以分为消费者主动从队列获取消息，也可以为队列主动推送给消费者消息进行消费(比如公众号)</p>
+<h2 id="RabbitMQ模式"><a href="#RabbitMQ模式" class="headerlink" title="RabbitMQ模式"></a>RabbitMQ模式</h2><p>RabbitMQ分为简单模式和交换机模式</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>建议安装在linux系统下，windows系统配置容易出错</p>
+<h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>在anaconda环境下输入以下命令：</p>
+<pre class=" language-bash"><code class="language-bash">pip <span class="token function">install</span> pika</code></pre>
+<h3 id="简单模式"><a href="#简单模式" class="headerlink" title="简单模式"></a>简单模式</h3><p>生产者要向RabbitMQ队列中插入数据，消费者监听队列，当RabbitMQ中有消息时取出消费。</p>
+<h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><ol>
+<li>连接RabbitMQ</li>
+<li>在RabbitMQ中创建一个队列对象</li>
+<li>向指定的队列中插入数据<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+<span class="token comment" spellcheck="true">#1、连接RabbitMQ</span>
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>     <span class="token comment" spellcheck="true">#连接RabbitMQ</span>
+channel <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment" spellcheck="true">#获取RabbitMQ对象,通过channel对RabbitMQ进行操作</span>
+<span class="token comment" spellcheck="true"># 2、在RabbitMQ中创建一个队列对象</span>
+channel.queue_declare<span class="token punctuation">(</span>queue<span class="token operator">=</span><span class="token string">'hello'</span><span class="token punctuation">)</span>  
+<span class="token comment" spellcheck="true">#3、向指定队列插入数据</span>
+channel.basic_publish<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">''</span>, <span class="token comment" spellcheck="true">#简单模式</span>
+                  routing_key <span class="token operator">=</span> <span class="token string">'hello'</span>, <span class="token comment" spellcheck="true">#指定队列</span>
+                  body <span class="token operator">=</span> <span class="token string">'hello world'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#指定数据</span></code></pre>
+</li>
+</ol>
+<h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><ol>
+<li>连接RabbitMQ</li>
+<li>监听模式</li>
+<li>确定回调函数</li>
+</ol>
+<h5 id="默认应答"><a href="#默认应答" class="headerlink" title="默认应答"></a>默认应答</h5><pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>
+connection <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment" spellcheck="true">#创建队列</span>
+channel.queue_declare<span class="token punctuation">(</span>queue<span class="token operator">=</span><span class="token string">'hello'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#如果已存在hello队列则没有作用，如果不存在hello队列则新建一个队列</span>
+def callback<span class="token punctuation">(</span>ch,method,properties,body<span class="token punctuation">)</span>: <span class="token comment" spellcheck="true">#body是从队列中取出的数据</span>
+    pass
+<span class="token comment" spellcheck="true">#确定监听队列</span>
+channel.basic_consume<span class="token punctuation">(</span>queue<span class="token operator">=</span><span class="token string">'hello'</span>,
+                      auto_ack<span class="token operator">=</span>True,  <span class="token comment" spellcheck="true">#默认应答，数据从队列中取走之后，不论消费者是否处理成功，该数据就不存在队列中。如果为手动应答，该项置为False，数据被取走后会在队列中进行拷贝，等消费者返回处理成功信号才删除数据</span>
+                       on_message_callback<span class="token operator">=</span>callback<span class="token punctuation">)</span>
+
+channel.start_consuming<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#开始监听，队列有数据时调用回调函数，没有数据时进行监听</span></code></pre>
+<h5 id="手动应答"><a href="#手动应答" class="headerlink" title="手动应答"></a>手动应答</h5><pre class=" language-bash"><code class="language-bash">def callback<span class="token punctuation">(</span>ch,method,properties,body<span class="token punctuation">)</span>:
+    ch.basic_ack<span class="token punctuation">(</span>delivery_tag <span class="token operator">=</span>method.delivery_tag<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#应答信息</span>
+channel.basic_consume<span class="token punctuation">(</span>queue<span class="token operator">=</span><span class="token string">'hello'</span>,
+                      auto_ack<span class="token operator">=</span>False,
+                       on_message_callback<span class="token operator">=</span>callback<span class="token punctuation">)</span></code></pre>
+<h3 id="持久化参数"><a href="#持久化参数" class="headerlink" title="持久化参数"></a>持久化参数</h3><p>用于处理RabbitMQ服务器崩溃造成的数据丢失问题。创建队列的语句参数durable:(消费者/生产者端均需要设置)</p>
+<pre class=" language-bash"><code class="language-bash">channel.queue_declare<span class="token punctuation">(</span>queue<span class="token operator">=</span><span class="token string">'hello'</span>,durable<span class="token operator">=</span>True<span class="token punctuation">)</span></code></pre>
+<p>对于插入的数据是否持久化，要自己设置(生产者端)：</p>
+<pre class=" language-bash"><code class="language-bash">channel.basic_publish<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">''</span>, <span class="token comment" spellcheck="true">#简单模式</span>
+                     routing_key <span class="token operator">=</span> <span class="token string">'hello'</span>, <span class="token comment" spellcheck="true">#指定队列</span>
+                     body <span class="token operator">=</span> <span class="token string">'hello world'</span>
+                     properties<span class="token operator">=</span>pika.BasicProperties<span class="token punctuation">(</span>delivery_mode<span class="token operator">=</span>2  <span class="token comment" spellcheck="true">#数据持久化保存</span>
+                     <span class="token punctuation">)</span>,<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#指定数据</span></code></pre>
+<h3 id="分发参数"><a href="#分发参数" class="headerlink" title="分发参数"></a>分发参数</h3><p>分发默认的机制是轮询机制(一个消费者一条消息的分发,每个消费者都要收到队列中的所有)</p>
+<h3 id="交换机模式"><a href="#交换机模式" class="headerlink" title="交换机模式"></a>交换机模式</h3><h4 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h4><p><img src="https://pic.downk.cc/item/5ef9c75e14195aa5942b810a.png" alt=""></p>
+<h5 id="消费者-1"><a href="#消费者-1" class="headerlink" title="消费者"></a>消费者</h5><p>要先运行消费者创建消息队列</p>
+<ol>
+<li>连接rabbitMQ</li>
+<li>声明交换机(有就，没有)</li>
+<li>创建消息队列</li>
+<li>绑定交换机</li>
+<li>回调函数(后续步骤与简单模式相同)</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+<span class="token comment" spellcheck="true">#1. 连接rabbitMQ</span>
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>
+connection <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#2.声明一个名为logs类型为fanout的交换机(要与生产者一致)</span>
+channel.exchange_declare<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                          exchange_type<span class="token operator">=</span><span class="token string">'fanout'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#fanout是发布订阅模式参数</span>
+<span class="token comment" spellcheck="true">#3. 创建队列</span>
+result <span class="token operator">=</span> channel.queue_declare<span class="token punctuation">(</span><span class="token string">""</span>,exclusive<span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#让rabbitNQ随机分配队列名</span>
+queue_name <span class="token operator">=</span> result.method.queue <span class="token comment" spellcheck="true">#获取队列名</span>
+<span class="token comment" spellcheck="true">#4.将指定队列绑定到交换机上</span>
+channel.queue_bind<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                    queue<span class="token operator">=</span>queue_name<span class="token punctuation">)</span>
+
+def callback<span class="token punctuation">(</span>ch,method,properties,body<span class="token punctuation">)</span>: <span class="token comment" spellcheck="true">#body是从队列中取出的数据</span>
+    pass
+<span class="token comment" spellcheck="true">#确定监听队列</span>
+channel.basic_consume<span class="token punctuation">(</span>queue<span class="token operator">=</span>queue_name,
+                      auto_ack<span class="token operator">=</span>True,  <span class="token comment" spellcheck="true">#默认应答，数据从队列中取走之后，不论消费者是否处理成功，该数据就不存在队列中。如果为手动应答，该项置为False，数据被取走后会在队列中进行拷贝，等消费者返回处理成功信号才删除数据</span>
+                       on_message_callback<span class="token operator">=</span>callback<span class="token punctuation">)</span>
+
+channel.start_consuming<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#</span></code></pre>
+<p>因为订阅模式有多个消费者，所以运行时要启动多个consumer.py，在pycharm中需要在edit Configuration中设置allow parallel run</p>
+<h5 id="生产者-1"><a href="#生产者-1" class="headerlink" title="生产者"></a>生产者</h5><ol>
+<li>连接rabbitMQ</li>
+<li>创建交换机</li>
+<li>往交换机里生产数据</li>
+</ol>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+<span class="token comment" spellcheck="true">#1. 连接rabbitMQ</span>
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>
+connection <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#2.声明一个名为logs类型为fanout的交换机</span>
+channel.exchange_declare<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                          exchange_type<span class="token operator">=</span><span class="token string">'fanout'</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#fanout是发布订阅模式参数</span>
+<span class="token comment" spellcheck="true">#3. 向交换机中插入数据</span>
+data <span class="token operator">=</span> <span class="token string">"hello world"</span>
+channel.basic_publish<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                      routing_key<span class="token operator">=</span><span class="token string">''</span>,
+                      body<span class="token operator">=</span>message<span class="token punctuation">)</span>
+connection.close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h4 id="关键字模式"><a href="#关键字模式" class="headerlink" title="关键字模式"></a>关键字模式</h4><p>在发布订阅模式的基础上进行增强，交换机的消息绑定特定的消息队列实现不同的消息传给不同的消费者。</p>
+<h5 id="消费者-2"><a href="#消费者-2" class="headerlink" title="消费者"></a>消费者</h5><p>要先运行消费者生成消息队列</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+<span class="token comment" spellcheck="true">#1. 连接rabbitMQ</span>
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>
+channel <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#2.声明一个名为logs类型为fanout的交换机(要与生产者一致)</span>
+channel.exchange_declare<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                          exchange_type<span class="token operator">=</span><span class="token string">'direct'</span>,
+                          durable<span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#fanout是发布订阅模式参数</span>
+<span class="token comment" spellcheck="true">#3. 创建队列</span>
+result <span class="token operator">=</span> channel.queue_declare<span class="token punctuation">(</span><span class="token string">""</span>,exclusive<span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#让rabbitNQ随机分配队列名,如果要使用持久化需要自己命名</span>
+queue_name <span class="token operator">=</span> result.method.queue <span class="token comment" spellcheck="true">#获取队列名</span>
+<span class="token comment" spellcheck="true">#4.将指定队列绑定到交换机上</span>
+channel.queue_bind<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                    queue<span class="token operator">=</span>queue_name,
+                    routing_key<span class="token operator">=</span><span class="token string">'keyword1'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#关键字，可以绑定多个</span>
+channel.queue_bind<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                    queue<span class="token operator">=</span>queue_name,
+                    routing_key<span class="token operator">=</span><span class="token string">'keyword2'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#绑定第二个关键字</span>
+
+def callback<span class="token punctuation">(</span>ch,method,properties,body<span class="token punctuation">)</span>: <span class="token comment" spellcheck="true">#body是从队列中取出的数据</span>
+    ch.basic_ack<span class="token punctuation">(</span>delivery_tag<span class="token operator">=</span>method.delivery_tag<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#确定监听队列</span>
+channel.basic_consume<span class="token punctuation">(</span>queue<span class="token operator">=</span>queue_name,
+                      auto_ack<span class="token operator">=</span>True,  <span class="token comment" spellcheck="true">#默认应答，数据从队列中取走之后，不论消费者是否处理成功，该数据就不存在队列中。如果为手动应答，该项置为False，数据被取走后会在队列中进行拷贝，等消费者返回处理成功信号才删除数据</span>
+                       on_message_callback<span class="token operator">=</span>callback<span class="token punctuation">)</span>
+
+channel.start_consuming<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#</span></code></pre>
+<h5 id="生产者-2"><a href="#生产者-2" class="headerlink" title="生产者"></a>生产者</h5><p>与订阅模式相比，需要修改exchange_type,</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> pika
+<span class="token comment" spellcheck="true">#1. 连接rabbitMQ</span>
+connection <span class="token operator">=</span> pika.BlockingConnection<span class="token punctuation">(</span>pika.ConnectionParameters<span class="token punctuation">(</span><span class="token string">'localhost'</span><span class="token punctuation">))</span>
+connection <span class="token operator">=</span> connection.channel<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">#2.声明一个名为logs类型为fanout的交换机</span>
+channel.exchange_declare<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                          exchange_type<span class="token operator">=</span><span class="token string">'direct'</span>,
+                          durable<span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#fanout是发布订阅模式参数</span>
+<span class="token comment" spellcheck="true">#3. 向交换机中插入数据</span>
+data <span class="token operator">=</span> <span class="token string">"hello world"</span>
+
+channel.basic_publish<span class="token punctuation">(</span>exchange<span class="token operator">=</span><span class="token string">'logs'</span>,
+                      routing_key<span class="token operator">=</span><span class="token string">'keyword1'</span>, <span class="token comment" spellcheck="true">#要与消费者一致</span>
+                      body<span class="token operator">=</span>message，
+                      properties<span class="token operator">=</span>pika.BasicProperties<span class="token punctuation">(</span>delivery_mode<span class="token operator">=</span>2<span class="token punctuation">)</span>,<span class="token punctuation">)</span>
+connection.close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<h4 id="模糊匹配模式"><a href="#模糊匹配模式" class="headerlink" title="模糊匹配模式"></a>模糊匹配模式</h4>
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《RabbitMQ》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/06/09/rabbitmq/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2020-06-09T16-04-45',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/06/10/testing/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f61.jpg" class="responsive-img" alt="接口性能测试">
+                        
+                        <span class="card-title">接口性能测试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Jmeter使用
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Jmeter/" target="_blank">
+                        <span class="chip bg-color">Jmeter</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/06/05/att-1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg" class="responsive-img" alt="ATT&CK">
+                        
+                        <span class="card-title">ATT&CK</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            威胁情报分析
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-06-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ATT-CK/" target="_blank">
+                        <span class="chip bg-color">ATT&amp;CK</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1057 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="C语言(五), FightingTree">
+    <meta name="description" content="指针的概念指针就是内存中的地址，地址是内存单元的编号
+int * p;//p是变量的名字，int *表示p变量存放的是int类型变量的地址(int *是p变量的数据类型)
+int i =3;
+p = &amp;amp;i;//p保存的是i的地址，因">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>C语言(五) | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5266.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        C语言(五)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/" target="_blank">
+                                <span class="chip bg-color">C</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                编程语言
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-08-09
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.7k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        7 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="指针的概念"><a href="#指针的概念" class="headerlink" title="指针的概念"></a>指针的概念</h2><p>指针就是内存中的地址，地址是内存单元的编号</p>
+<pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>//p是变量的名字，int *表示p变量存放的是int类型变量的地址<span class="token punctuation">(</span>int *是p变量的数据类型<span class="token punctuation">)</span>
+int i <span class="token operator">=</span>3<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>//p保存的是i的地址，因此p指向i，p的值与i的值互不影响</code></pre>
+<blockquote>
+<p>注：如果一个指针变量指向了某个普通变量，则* 指针变量就完全等同于普通变量</p>
+</blockquote>
+<pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i <span class="token operator">=</span>3<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+j <span class="token operator">=</span> *p<span class="token punctuation">;</span>//*p相当于i,所以j<span class="token operator">=</span>i
+//结果为 j <span class="token operator">=</span>3
+//*p就是以p的内容为地址的变量</code></pre>
+<h2 id="指针和指针变量"><a href="#指针和指针变量" class="headerlink" title="指针和指针变量"></a>指针和指针变量</h2><p>指针是地址，指针变量是存放地址的变量，指针和指针变量是两个不同的概念，但是叙述时会把指针变量简称为指针，实际它们含义不一样。</p>
+<h3 id="一个指针变量占几个字节"><a href="#一个指针变量占几个字节" class="headerlink" title="一个指针变量占几个字节"></a>一个指针变量占几个字节</h3><p><font color="#fb8c00">sizeof(数据类型)</font>：返回值是该数据类型所占的字节数<br><font color="#fb8c00">sizeof(变量名)</font>：返回值是该变量所占的字节数</p>
+<pre class=" language-bash"><code class="language-bash">sizeof<span class="token punctuation">(</span>int<span class="token punctuation">)</span><span class="token operator">=</span>4   sizeof<span class="token punctuation">(</span>char<span class="token punctuation">)</span><span class="token operator">=</span>1 sizeof<span class="token punctuation">(</span>double<span class="token punctuation">)</span><span class="token operator">=</span>8</code></pre>
+<ul>
+<li>假设p指向char类型的变量(1个字节)</li>
+<li>假设q指向int类型的变量(4个字节)</li>
+<li>假设r指向double类型的变量(8个字节)</li>
+<li>pqr大小均为4个字节(pqr只存地址的第一个字节，但CPU与内存间有32根地址线，地址表示位有32位)</li>
+</ul>
+<blockquote>
+<p>注：一个指针变量，无论它指向的变量占几个字节，该指针变量本身只占四个字节</p>
+</blockquote>
+<h2 id="多级指针"><a href="#多级指针" class="headerlink" title="多级指针"></a>多级指针</h2><pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>10<span class="token punctuation">;</span>
+int * p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+int ** q <span class="token operator">=</span> <span class="token operator">&amp;</span>p<span class="token punctuation">;</span>//q是存放int*类型变量的地址的指针
+int *** r <span class="token operator">=</span> <span class="token operator">&amp;</span>q<span class="token punctuation">;</span>//r是存放int**类型变量的地址的指针
+
+r <span class="token operator">=</span> <span class="token operator">&amp;</span>p<span class="token punctuation">;</span>//error,r只能存放int**类型的变量的地址</code></pre>
+<h2 id="指针的分类"><a href="#指针的分类" class="headerlink" title="指针的分类"></a>指针的分类</h2><h3 id="基本类型指针"><a href="#基本类型指针" class="headerlink" title="基本类型指针"></a>基本类型指针</h3><pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i<span class="token operator">=</span>5<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>注：在C语言中NULL指针定义为0</p>
+</blockquote>
+<h4 id="基本类型指针的常见错误分析"><a href="#基本类型指针的常见错误分析" class="headerlink" title="基本类型指针的常见错误分析"></a>基本类型指针的常见错误分析</h4><pre class=" language-bash"><code class="language-bash">int * p<span class="token punctuation">;</span>
+int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+* p <span class="token operator">=</span>i<span class="token punctuation">;</span>//error,相当于将p指针指向的int变量赋值成i，但p指针指向的int变量的控制权限并没有分配给本程序</code></pre>
+<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+int * p<span class="token punctuation">;</span>
+int * q<span class="token punctuation">;</span>
+p <span class="token operator">=</span><span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+//* q <span class="token operator">=</span>p<span class="token punctuation">;</span>//error,*q为int类型，而p为int*类型
+//* q <span class="token operator">=</span> *p<span class="token punctuation">;</span>//error</code></pre>
+<blockquote>
+<p>注：q的空间是属于本程序的，所以本程序可以读写q的内容，但如果q的内部是垃圾值，则本程序不能读写* q的内容，因为* q所代表的内存单元的控制权限并没有分配给本程序</p>
+</blockquote>
+<h3 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h3><h4 id="指针和一维数组"><a href="#指针和一维数组" class="headerlink" title="指针和一维数组"></a>指针和一维数组</h4><h5 id="数组名"><a href="#数组名" class="headerlink" title="数组名"></a>数组名</h5><p>一维数组名是一个指针常量，存放的是第一个元素的地址</p>
+<h5 id="下标和指针的关系"><a href="#下标和指针的关系" class="headerlink" title="下标和指针的关系"></a>下标和指针的关系</h5><p>如果p是个指针变量，则p[i]永远等价于* （p+i）</p>
+<pre class=" language-bash"><code class="language-bash">//通过函数输出数组的内容
+void pArr<span class="token punctuation">(</span>int * p,int len<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    //p为数组名，len为数组大小
+    //a<span class="token punctuation">[</span>0<span class="token punctuation">]</span><span class="token operator">=</span>*<span class="token punctuation">(</span>a+0<span class="token punctuation">)</span>,a<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token operator">=</span>*<span class="token punctuation">(</span>a+2<span class="token punctuation">)</span>
+    for<span class="token punctuation">(</span>int i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        printf<span class="token punctuation">(</span><span class="token string">"%d"</span>,*<span class="token punctuation">(</span>p+i<span class="token punctuation">))</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    printf<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    a<span class="token punctuation">[</span>4<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,3,4<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    b<span class="token punctuation">[</span>6<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,3,4,5,6<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    c<span class="token punctuation">[</span>100<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">{</span>1,2,34<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>a,4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>b,6<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pArr<span class="token punctuation">(</span>c,100<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h5 id="指针变量的运算"><a href="#指针变量的运算" class="headerlink" title="指针变量的运算"></a>指针变量的运算</h5><ul>
+<li>指针变量不能相加，不能相乘，不能相除</li>
+<li>如果两个指针变量指向的是同一块连续空间中的不同存储单元，则这两个指针变量可以相减<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span>5<span class="token punctuation">;</span>
+int j <span class="token operator">=</span>10<span class="token punctuation">;</span>
+int * p <span class="token operator">=</span><span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+int * q <span class="token operator">=</span><span class="token operator">&amp;</span>j<span class="token punctuation">;</span>
+p-q<span class="token punctuation">;</span>//没有实际意义</code></pre>
+<pre class=" language-bash"><code class="language-bash">int a<span class="token punctuation">[</span>5<span class="token punctuation">]</span><span class="token punctuation">;</span>
+int * p<span class="token punctuation">;</span>
+int * q<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>2<span class="token punctuation">]</span><span class="token punctuation">;</span>
+q <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span>4<span class="token punctuation">]</span><span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"p和q所指向单元相隔%d个单元\n"</span>,p-q<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
+<h4 id="指针和二维数组"><a href="#指针和二维数组" class="headerlink" title="指针和二维数组"></a>指针和二维数组</h4><h3 id="指针和函数"><a href="#指针和函数" class="headerlink" title="指针和函数"></a>指针和函数</h3><h4 id="通过被调函数修改主调函数普通变量的值"><a href="#通过被调函数修改主调函数普通变量的值" class="headerlink" title="通过被调函数修改主调函数普通变量的值"></a>通过被调函数修改主调函数普通变量的值</h4><pre class=" language-bash"><code class="language-bash">int g<span class="token punctuation">(</span>int * i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    *i <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    int a <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+    g<span class="token punctuation">(</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,a<span class="token punctuation">)</span><span class="token punctuation">;</span>//最终输出为1
+    <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h4 id="指针使函数返回一个以上值"><a href="#指针使函数返回一个以上值" class="headerlink" title="指针使函数返回一个以上值"></a>指针使函数返回一个以上值</h4><pre class=" language-bash"><code class="language-bash">int g<span class="token punctuation">(</span>int * p,int * q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    *p <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+    *q <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   int a<span class="token operator">=</span>3,b<span class="token operator">=</span>4<span class="token punctuation">;</span>
+   g<span class="token punctuation">(</span><span class="token operator">&amp;</span>a,<span class="token operator">&amp;</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   printf<span class="token punctuation">(</span><span class="token string">"%d/n"</span>,a,b<span class="token punctuation">)</span><span class="token punctuation">;</span>//a<span class="token operator">=</span>1,b<span class="token operator">=</span>2
+   <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<h3 id="指针和结构体"><a href="#指针和结构体" class="headerlink" title="指针和结构体"></a>指针和结构体</h3><h2 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h2><h3 id="传统数组的缺点-静态数组"><a href="#传统数组的缺点-静态数组" class="headerlink" title="传统数组的缺点(静态数组)"></a>传统数组的缺点(静态数组)</h3><ul>
+<li>数组长度必须事先指定，且只能是常熟，不能是变量</li>
+<li>传统形式定义的数组内存无法手动释放，只能在函数运行完毕时由系统自动释放</li>
+<li>数组的长度不能在函数运行的过程中动态的扩充或缩小</li>
+<li>A函数定义的数组，在A函数运行期间可以被其他函数使用，但A函数运行完毕后，A函数中的数组将无法再被其他函数使用(不能跨函数使用)</li>
+</ul>
+<h3 id="为什么需要动态分配内存"><a href="#为什么需要动态分配内存" class="headerlink" title="为什么需要动态分配内存"></a>为什么需要动态分配内存</h3><p>动态数组很好的解决了传统数组的4个缺陷</p>
+<p>###　动态内存分配举例(动态数组的构造)</p>
+<h4 id="malloc函数的使用"><a href="#malloc函数的使用" class="headerlink" title="malloc函数的使用"></a>malloc函数的使用</h4><p>malloc 是memory allocate(内存分配)的缩写</p>
+<pre class=" language-bash"><code class="language-bash">int i <span class="token operator">=</span> 5<span class="token punctuation">;</span>//静态分配4个字节
+int * p <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>4<span class="token punctuation">)</span><span class="token punctuation">;</span>//4表示请求系统为本程序分配4个字节
+//一个分配了8个字节，p占用4个字节，p所指向的内存也占4个字节
+//p本身所占的内存是静态分配的，p所指向的内存是动态分配的
+
+* p <span class="token operator">=</span>5<span class="token punctuation">;</span>
+free<span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>//表示把p所指向的内存释放掉，p本身的内存是静态的，只能在p变量所在函数运行终止时由系统自动释放</code></pre>
+<blockquote>
+<p>注：1.使用malloc函数必须加上malloc.h头文件<br>      2.malloc函数只能返回第一个字节的地址<br>      3.malloc函数只有一个形参，并且形参是整形</p>
+</blockquote>
+<h4 id="动态构建一维数组"><a href="#动态构建一维数组" class="headerlink" title="动态构建一维数组"></a>动态构建一维数组</h4><pre class=" language-bash"><code class="language-bash">int * pArr<span class="token punctuation">;</span>
+int len<span class="token punctuation">;</span>
+int i<span class="token punctuation">;</span>
+printf<span class="token punctuation">(</span><span class="token string">"请输入数组元素个数："</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,<span class="token operator">&amp;</span>len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pArr <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>4*len<span class="token punctuation">)</span><span class="token punctuation">;</span>//每4个字节代表一个元素<span class="token punctuation">(</span>int为4个字节<span class="token punctuation">)</span>
+
+//对动态一维数组进行赋值
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  scanf<span class="token punctuation">(</span><span class="token string">"%d"</span>,pArr+i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+//对动态一维数组进行输出
+for<span class="token punctuation">(</span>i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>len<span class="token punctuation">;</span>i++<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*<span class="token punctuation">(</span>pArr+i<span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+realloc<span class="token punctuation">(</span>pArr,100<span class="token punctuation">)</span><span class="token punctuation">;</span>//把pArr指针所指向的内存扩大到100个字节
+
+free<span class="token punctuation">(</span>pArr<span class="token punctuation">)</span><span class="token punctuation">;</span>//释放pArr所指向的内存</code></pre>
+<h3 id="静态内存和动态内存的比较"><a href="#静态内存和动态内存的比较" class="headerlink" title="静态内存和动态内存的比较"></a>静态内存和动态内存的比较</h3><h4 id="静态内存"><a href="#静态内存" class="headerlink" title="静态内存"></a>静态内存</h4><ul>
+<li>静态内存是由系统自动分配的，由系统自动释放</li>
+<li>静态内存是在栈中分配的</li>
+</ul>
+<h4 id="动态内存"><a href="#动态内存" class="headerlink" title="动态内存"></a>动态内存</h4><ul>
+<li>动态内存手动分配，手动释放</li>
+<li>动态内存是在堆中分配的</li>
+</ul>
+<h3 id="跨函数使用内存的问题"><a href="#跨函数使用内存的问题" class="headerlink" title="跨函数使用内存的问题"></a>跨函数使用内存的问题</h3><pre class=" language-bash"><code class="language-bash">void f<span class="token punctuation">(</span>int ** q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    int i <span class="token operator">=</span> 5<span class="token punctuation">;</span>
+    *q <span class="token operator">=</span> <span class="token operator">&amp;</span>i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  int * p<span class="token punctuation">;</span>
+  f<span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*p<span class="token punctuation">)</span><span class="token punctuation">;</span>//error,语法无错误，但是i变量的内存在f<span class="token punctuation">(</span><span class="token punctuation">)</span>函数执行完毕后已经被释放<span class="token punctuation">(</span>i已经不存在<span class="token punctuation">)</span>，此时*p指向的并不是i
+  <span class="token keyword">return</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">void f<span class="token punctuation">(</span>int ** q<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  * q <span class="token operator">=</span> <span class="token punctuation">(</span>int *<span class="token punctuation">)</span>malloc<span class="token punctuation">(</span>sizeof<span class="token punctuation">(</span>int<span class="token punctuation">))</span><span class="token punctuation">;</span>
+  ** q <span class="token operator">=</span> 5<span class="token punctuation">;</span>//等价于*p<span class="token operator">=</span>5
+<span class="token punctuation">}</span>
+int main<span class="token punctuation">(</span>void<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   int * p<span class="token punctuation">;</span>
+   f<span class="token punctuation">(</span><span class="token operator">&amp;</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   printf<span class="token punctuation">(</span><span class="token string">"%d\n"</span>,*p<span class="token punctuation">)</span><span class="token punctuation">;</span>//OK,动态分配的内存是手动释放，f<span class="token punctuation">(</span><span class="token punctuation">)</span>中的** q在函数执行完毕后依然存在
+<span class="token punctuation">}</span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《C语言(五)》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/08/09/c-5/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-08-09T16-01-25',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/08/13/c-6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4762.jpg" class="responsive-img" alt="C语言(六)">
+                        
+                        <span class="card-title">C语言(六)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C语言文件操作
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/08/09/c-4/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5268.jpg" class="responsive-img" alt="C语言(四)">
+                        
+                        <span class="card-title">C语言(四)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            C语言编程基础知识(函数)
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-08-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/" target="_blank">
+                        <span class="chip bg-color">C</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

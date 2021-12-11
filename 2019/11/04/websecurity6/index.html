@@ -1,0 +1,1071 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Web安全(6), FightingTree">
+    <meta name="description" content="会话管理机制
+在绝大多数的Web应用程序中，会话管理机制是一个基本的安全组件。它帮助应用程序从大量的不同请求中确认用户，并处理它收集的关于用户与应用程序交互状态的数据。
+如果攻击这能够破坏应用程序的会话管理，他就能轻易避开其实施的验证机制，">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Web安全(6) | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4a.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        Web安全(6)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Web/" target="_blank">
+                                <span class="chip bg-color">Web</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-04
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        6.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        22 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="会话管理机制"><a href="#会话管理机制" class="headerlink" title="会话管理机制"></a>会话管理机制</h2><ul>
+<li>在绝大多数的Web应用程序中，会话管理机制是一个基本的安全组件。它帮助应用程序从大量的不同请求中确认用户，并处理它收集的关于用户与应用程序交互状态的数据。</li>
+<li>如果攻击这能够破坏应用程序的会话管理，他就能轻易避开其实施的验证机制，不需要用户证书即可伪装成其他应用程序的用户。<br>如果攻击者以这种方式攻破管理用户，那么他就能控制整个应用程序</li>
+</ul>
+<h2 id="状态要求"><a href="#状态要求" class="headerlink" title="状态要求"></a>状态要求</h2><ul>
+<li>从本质上讲，HTTP没有状态，它是一种基于简单的请求-响应模型，其中每对消息代表一个独立的事务。协议本身并无将某位用户提出的各种请求联系起来的机制，并将它们与Web服务器收到的所有其他请求区分开来。</li>
+<li>绝大多数的Web“站点”实际为Web应用程序，它们允许用户注册和登录，帮助用户购买及销售产品。它们能够在用户下次访问时记住他的喜好。它们可根据用户的单击和输入，通过动态建立的内容提供丰富、多媒体形式的使用体验，为执行这些功能，应用程序就要使用会话。</li>
+<li>支持登录是会话在应用程序中最主要的用途。输入用户名和密码以后，可以用输入的证书所属的用户身份使用应用程序，直到退出会话或由于会话处于非活动状态而终止。用户不希望在每个应用程序页面重复输入密码，因此，用户一旦通过验证，应用程序就会为他建立一个会话，把所有属于这个会话的请求当做该用户提出的请求处理</li>
+<li>不具备登录功能的应用程序通常也需要使用会话。许多出售商品的站点并不要求客户建立账户，但是，它们允许用户浏览目录、往购物篮中添加商品。在这种情况下，就没必要验证用户的身份，但是，为了和用户进行交易，应用程序需要直到它收到的哪些请求来自同一名用户。</li>
+<li>执行会话最简单、最常见的方法就是向每名用户发布一个唯一的会话令牌或标识符。用户在随后向应用程序提出的每一个请求中提交这个令牌，帮助应用程序在当前的请求与前面提出的请求之间建立关联。</li>
+<li>绝大多数情况下，应用程序使用HTTP cookie作为在服务器和客户端件传送这些会话令牌的传输机制。服务器对新客户端的第一个响应中包含以下HTTP消息头：<font color="#fb8c00">Set-Cookie: ASP.NET_SessionId=mza2ji454s04cwbgwb2ttj55</font> 客户端随后提出的请求中包含以下信息头：<br><font color="#fb8c00">Cookie: ASP.NET_SessionId=mza2ji454s04cwbgwb2ttj55</font></li>
+<li>会话管理机制中存在的漏洞主要分为两类：</li>
+</ul>
+<ol>
+<li>会话令牌生成过程中的薄弱环节</li>
+<li>在整个生命周期过程中处理会话令牌的薄弱环节</li>
+</ol>
+<h3 id="会话替代方案"><a href="#会话替代方案" class="headerlink" title="会话替代方案"></a>会话替代方案</h3><p>并非每一种Web应用程序都使用会话，一些具备验证机制、功能复杂的安全性至关重要的应用程序选择使用其他技术管理状态。常见的会话替代方案有两种:</p>
+<h4 id="HTTP验证"><a href="#HTTP验证" class="headerlink" title="HTTP验证"></a>HTTP验证</h4><p>使用各种基于HTTP验证技术(基本、摘要、NTML验证等)的应用程序有时避免使用会话。</p>
+<ul>
+<li>在HTTP验证中，客户端组件使用HTTP消息头通过浏览器直接与验证机制交互</li>
+<li>一旦用户在浏览器对话框中输入他的证书，浏览器将会在随后向同一服务器提出的每个请求中重复提交这些证书(或重复执行任何有必要的握手)。这种做法等同于应用程序使用基于HTML表单的验证，并且在每个应用程序页面插入一个登录表单，要求用户通过他们执行的每一项操作重复验证自己的身份</li>
+</ul>
+<h4 id="无会话状态机制"><a href="#无会话状态机制" class="headerlink" title="无会话状态机制"></a>无会话状态机制</h4><p>一些应用程序并不发布会话令牌管理用户与应用程序的交互状态，而是传送所有必要数据(一般保存在cookie或隐藏表单字段中)，由客户端管理状态。</p>
+<ul>
+<li>这种机制以类似于ASP.NET ViewState的方式使用无会话状态。</li>
+<li>为保证这种机制的安全，必须对通过客户端传送的数据进行保护。这通常要求建立一个包含所有状态信息的二进制巨对象，并使用一种公认的算法对这些数据进行加密或签名。</li>
+<li>还必须在数据中包含足够的上下文，以防止攻击者将在应用程序某个位置收集到的状态对象提交到另一个位置造成意外行为</li>
+</ul>
+<h2 id="会话令牌生成过程中的薄弱环节"><a href="#会话令牌生成过程中的薄弱环节" class="headerlink" title="会话令牌生成过程中的薄弱环节"></a>会话令牌生成过程中的薄弱环节</h2><p>许多时候，应用程序的安全取决于它所生产的令牌的不可预测性，以下是一些示例：</p>
+<ul>
+<li>发送到用户注册的电子邮箱的密码恢复令牌</li>
+<li>隐藏表单字段中用于防止跨站点请求伪造攻击的令牌(请参阅Web安全(10))</li>
+<li>用于一次性访问受保护的资源的令牌</li>
+<li>“记住我”功能使用的永久令牌</li>
+</ul>
+<h3 id="令牌有一定含义"><a href="#令牌有一定含义" class="headerlink" title="令牌有一定含义"></a>令牌有一定含义</h3><p>一些会话令牌通过用户的用户名或者是电子邮件地址转换过来，或者使用与其相关的其他信息创建。这些信息可以以某种方式进行编码或模糊处理，也可与其他数据结合在一起<br>例如，初看起来，下面的令牌由一长串随机字符组成：<br> <font color="#fb8c00">757365723d6461663b6170703d61646d696e3b64617453d30312f31322f3131</font><br> 但是，仔细分析后，其中仅包含十六进制字符，猜想这是一个经过十六进制编制的ASCII字符串，我们使用解码器对其解码，发现它实际是：<br>  <font color="#fb8c00">user=daf;app=admin;date=10/09/11</font></p>
+<ul>
+<li>攻击者可以利用这个会话令牌的含义猜测其他应用程序用户当前的会话。使用一组枚举出的用户名或常见用户名，就能够迅速生成大量可能有效的令牌，并进行测试以确定它们是否有效</li>
+<li>包含有含义数据的令牌通过表现出某种结构，它们以几种成分组成，通常以分隔符隔开，攻击者可分别提取并分析这些成分，以了解它们的功能与生成方法。结构化令牌的组成成分包括以下几项：</li>
+</ul>
+<ol>
+<li>账户用户名</li>
+<li>应用程序用来区分账户的数字标识符</li>
+<li>用户姓名中的名/姓</li>
+<li>用户的电子邮件地址</li>
+<li>用户在应用程序中所属的组或扮演的角色</li>
+<li>日期/时间戳</li>
+<li>一个递增或可预测的数字</li>
+<li>客户端的IP地址<br>为特意对其内容进行模糊处理，或者是为了确保二进制数据能通过HTTP安全传输，应用程序会对结构化令牌中的不同成分或整个令牌以不同的方式进行编码，常用的编码方案包括XOR、Base64和使用ASCII字符的十六进制表示法。未将其恢复到原始状态，可能有必要对结构化令牌的每一个成分使用各种不同的解码方法。</li>
+</ol>
+<h3 id="令牌可预测"><a href="#令牌可预测" class="headerlink" title="令牌可预测"></a>令牌可预测</h3><p>一些会话令牌并不包含与某个特定用户有关的任何有意义的数据，但由于它们包含某种顺序或模式，允许攻击者通过几个令牌样本即可推断出应用程序最近发布的其他有效令牌，因此具有可预测性。</p>
+<ul>
+<li>与定制应用程序相比，会话管理的商业应用（如Web服务器或Web应用程序平台)中的令牌可预测漏洞更容易发现。</li>
+<li>可预测的会话令牌通常来自3个方面：</li>
+</ul>
+<ol>
+<li>隐含序列</li>
+<li>时间依赖</li>
+<li>生成的数字随机性不强</li>
+</ol>
+<h4 id="隐含序列"><a href="#隐含序列" class="headerlink" title="隐含序列"></a>隐含序列</h4><p>对会话令牌进行适当解码或解译就可以揭示其中包含的序列</p>
+<h4 id="时间依赖"><a href="#时间依赖" class="headerlink" title="时间依赖"></a>时间依赖</h4><p>一些Web服务器和应用程序使用时间作为令牌值的输入，通过某种算法生成会话令牌。</p>
+<h4 id="生成的数字随机性不强"><a href="#生成的数字随机性不强" class="headerlink" title="生成的数字随机性不强"></a>生成的数字随机性不强</h4><p>计算机中的数据极少完全随机，因此，如果由于某种原因需要随机数据，一般通过软件使用各种技巧生成伪随机数字。</p>
+<h4 id="测试随机性强度"><a href="#测试随机性强度" class="headerlink" title="测试随机性强度"></a>测试随机性强度</h4><p>可以使用Burp Suite的Sequencer测试Web应用程序令牌随机性(请参考博客Burp Suite)。</p>
+<h3 id="加密令牌"><a href="#加密令牌" class="headerlink" title="加密令牌"></a>加密令牌</h3><p>一些应用程序使用包含用户有意义信息的令牌，并通过在向用户发布令牌之前对令牌进行加密来避免问题。</p>
+<h4 id="ECB密码"><a href="#ECB密码" class="headerlink" title="ECB密码"></a>ECB密码</h4><p>采用加密令牌的应用程序采用对称加密算法，用于解密用户返回的令牌，恢复令牌中有意义的内容。一些对称加密算法使用“电子密码本”(ECB)密码。</p>
+<ul>
+<li>这种密码在加密时将明文分为同等大小的分组(如每组8字节)，然后使用密钥加密每个分组。</li>
+<li>在解密时，再使用相同的密钥对每个密文分组进行解密</li>
+<li>特点：如果明文分组存在某种模式，这可能导致密文分组也存在某种模式，因为明文分组与加密后的密文分组完全相同。对于某些类型的数据(如位图图像)而言，这意味着可以从密文中判断明文中的有意义信息。</li>
+</ul>
+<h4 id="CBC密码-密码快链密码"><a href="#CBC密码-密码快链密码" class="headerlink" title="CBC密码(密码快链密码)"></a>CBC密码(密码快链密码)</h4><p>使用CBC密码时，在加密每个明文分组前，将它与前一个密文分组进行异或运算,这样，同一个明文分组就不会被加密成同一个密文分组。解密时逆向执行XOR运算，每个解密的分组将与前一个密文分组进行XOR运算，以恢复原始的明文。<br><img src="https://i.postimg.cc/6pzpmz0S/cbc.png" alt=""></p>
+<h2 id="会话令牌处理中的薄弱环节"><a href="#会话令牌处理中的薄弱环节" class="headerlink" title="会话令牌处理中的薄弱环节"></a>会话令牌处理中的薄弱环节</h2><h3 id="在网络上泄露令牌"><a href="#在网络上泄露令牌" class="headerlink" title="在网络上泄露令牌"></a>在网络上泄露令牌</h3><ul>
+<li>一些应用程序在登录阶段选择使用HTTPS保护用户证书的安全，但在用户会话的其他阶段转而使用HTTP。在这种情况下，窃听者无法拦截用户的证书，但仍然可以截获会话令牌。Firefox的插件Firesheep工具会使这一过程变得轻而易举。</li>
+<li>一些应用程序在站点预先通过验证的区域(如站点首页)使用HTTP，但从登录页面开始转换成HTTPS。许多时候，应用程序在访问第一个页面时就给他发布一个会话令牌，并且用户在登录时也不会修改这个令牌。最初未通过验证的用户会话在登录后却被升级为通过验证的会话。在这种情况下，窃听者就可以在登录前拦截用户的令牌，等待用户转换到HTTPS进行通信(表示用户正在登录)然后尝试使用那个令牌访问一个受保护的页面(如“我的账户”)</li>
+<li>即使应用程序在用户成功登录后发布一个新的令牌，并从登录页面开始使用HTTPS，但是，如果用户通过单击验证区域中的一个链接、使用“后退”按钮或者直接输入URL，重新访问一个预先验证的页面(如“帮助”或“关于”页面)，用户用于验证的会话令牌仍然可能会泄露。</li>
+<li>与前面的情况不同，应用程序可能在用户单击登录链接后转换到HTTPS。然而，如果用户对URL进行相应的修改，应用程序仍然接受通过HTTP进行登录。这时，处在适当位置的攻击者就可以修改站点预先通过验证的区域返回的页面，使登录链接指向一个HTTP页面，即使应用程序在用户成功登录后发布一个新令牌，如果攻击者已成功将用户的链接降级为HTTP，他仍然能够拦截这个令牌</li>
+<li>一些应用程序对应用程序中全部静态内容(如图像、脚本、样式表和页面模板)使用HTTP，如果出现这种行为，用户的浏览器将显示一条警告信息，如下图。当浏览器显示此警告时，它已经通过HTTP获取了相关数据项，因此已经传送了会话令牌，浏览器显示警告是为了让用户拒绝处理已通过HTTP接收到并因此可能受到污染的响应数据。如上所述，攻击者可以在此过程中拦截会话令牌。<br><img src="https://i.postimg.cc/6qsWvPW7/security.jpg" alt=""></li>
+<li>即使应用程序在每一个页面(包括站点中未通过验证的区域和静态内容)都使用HTTPS，有些情况下，用户的令牌仍然通过HTTP传送。如果攻击者能够以某种方式诱使用户通过HTTP提出一个请求(或者是请求相同服务器上运行的HTTP服务，或者是访问<font color="#fb8c00"><a href="http://server:443/" target="_blank" rel="noopener">http://server:443/</a>)</font>，那么用户就可能在这个过程中提交令牌。这时，攻击者可以采用的攻击手段包括在一封电子邮件或即时消息中给用户发送一个URL，在他控制的一个Web站点中插入一个自动加载的链接，或者使用可单击的横幅广告。</li>
+</ul>
+<h3 id="在日志中泄露令牌"><a href="#在日志中泄露令牌" class="headerlink" title="在日志中泄露令牌"></a>在日志中泄露令牌</h3><p>许多应用程序为管理员和其他支持人员提供监控和控制应用程序运行时的状态(包括用户会话功能)。例如，帮助用户解决疑难的服务台工作人员可能会要求用户提供用户名、通过列表或搜索功能定位他们当前的会话，并查看与会话有关的细节。或者管理员在调查一起违反安全事件的过程中查询最近会话的日志记录。通常，这种监控和控制功能会泄露每个会话的令牌。<br>会话令牌出现在系统日志中的另一个主要原因是应用程序使用URL查询字符串，而不是使用HTTP cookie或POST请求主体作为令牌传输机制。如果应用程序以这种方式传送会话令牌，它们的会话令牌就可能出现在各种未授权用户能够访问的系统日志中，如：</p>
+<ul>
+<li>用户浏览器日志</li>
+<li>Web服务器日志</li>
+<li>企业或ISP代理服务器日志</li>
+<li>任何在应用程序主机环境中采用反向代理的日志</li>
+<li>应用程序用户通过单击站外链接访问的任何服务器Referer日志(当会话令牌出现在URL中，只要用户点击站外链接或浏览器加载站外资源，会话令牌就会在Referer消息头中传送)</li>
+</ul>
+<h3 id="令牌-会话映射易受攻击"><a href="#令牌-会话映射易受攻击" class="headerlink" title="令牌-会话映射易受攻击"></a>令牌-会话映射易受攻击</h3><p>会话管理机制的常见漏洞：</p>
+<ul>
+<li>运行给同一个用户同时分配几个有效的令牌。在几乎每一个应用程序中，任何用户都没有正当理由在任何指定的时间拥有多个会话。如果一个用户明显同时在使用两个不同的会话，这通常表示出现了安全问题：要么是因为用户将证书泄露给了第三方，要么是攻击者通过某种途径获得了用户的证书。不论是哪一种，都不应允许并行会话，因为它允许用户持续执行任何非法操作，同时允许攻击者使用截获的证书，却不存在被检测出来的风险。</li>
+<li>应用程序使用“静态”令牌，这些令牌看似会话令牌，最初表现的功能与会话令牌一样，但实际并非如此。在这些应用程序中，每名用户都分配有一个令牌，并且用户每次登录，都会收到相同的令牌。无论用户是否已经登录并获取令牌，应用程序都将该令牌视为有效令牌。(大多数情况下这种机制都是为了实现“记住我”功能)</li>
+</ul>
+<h3 id="会话终止易受攻击"><a href="#会话终止易受攻击" class="headerlink" title="会话终止易受攻击"></a>会话终止易受攻击</h3><p>正确终止会话非常重要，其原因有两个方面：</p>
+<ol>
+<li>尽可能缩短一个会话的寿命可降低攻击者截获、猜测或滥用有效会话令牌的可能性。</li>
+<li>在某种程度上确保共享计算环境中会话的安全<br>一些应用程序并不提供有效的退出功能：</li>
+</ol>
+<ul>
+<li>有些时候，应用程序根本不执行退出功能，用户无法要求应用程序终止会话</li>
+<li>有些时候，退出功能实际上并不能帮助服务器终止会话，即使服务器从用户的浏览器中删除令牌(例如，通过发布一个清空令牌的Set-Cookie指令)。然而，如果用户继续提交这个令牌，服务器仍然接收</li>
+<li>最糟糕的情况下，当用户单击“退出”按钮时，应用程序并不与服务器通信，因此服务器不采取任何行动。相反，应用程序执行一段客户端脚本清空用户的cookie，在随后的请求中将用户返回到登录页面。访问这个cookie的攻击者就能使用会话，好像用户从未退出一样。</li>
+</ul>
+<h3 id="客户端暴露在令牌劫持风险之中"><a href="#客户端暴露在令牌劫持风险之中" class="headerlink" title="客户端暴露在令牌劫持风险之中"></a>客户端暴露在令牌劫持风险之中</h3><p>攻击者可以采用各种方法向应用程序的其他用户发起攻击，试图截获或滥用他们的会话令牌</p>
+<ul>
+<li>攻击者可以通过跨站点脚本攻击查询用户的cookie，获得他们的会话令牌，然后将其传送至自己控制的任意服务器。(请参阅Web安全(10))</li>
+<li>会话固定攻击：攻击者向一名用户发送一个已知的会话令牌，等待他登录，然后劫持他的会话</li>
+<li>跨站点请求伪造攻击：攻击者从他控制的一个Web站点向应用程序提出一个专门设计的请求，由于用户的浏览器会随同这个请求一起自动提交用户当前的cookie，攻击者会因此获得用户的cookie。(请参阅Web安全(10))</li>
+</ul>
+<h3 id="宽泛的cookie范围"><a href="#宽泛的cookie范围" class="headerlink" title="宽泛的cookie范围"></a>宽泛的cookie范围</h3><p>cookie的工作机制可简单概括如下：</p>
+<ul>
+<li>服务器使用HTTP响应消息头Set-Cookie发布一个cookie，然后浏览器在随后的请求中使用Cookie消息头向同一台服务器重新提交这个cookie。</li>
+<li>cookie机制允许服务器指定将每个cookie重新提交到哪个域和哪个URL路径。为完成这一任务，它在Set-Cookie指令中使用domain和path属性</li>
+</ul>
+<h4 id="cookie域限制"><a href="#cookie域限制" class="headerlink" title="cookie域限制"></a>cookie域限制</h4><ul>
+<li>位于foo.wahh-app.com的应用程序在建立一个cookie后，浏览器会默认在随后的所有请求中将cookie重新提交到foo.wahh-app.com及任何子域（如admin.foo.wahh-app.com）。它不会将cookie提交给其他任何域，包括父域wahh-app.com和父域的其他任何子域(如bar.wahh-app.com)</li>
+<li>服务器可以在Set-Cookie指令中插入一个domain属性，以改变这种默认行为。假设位于foo.wahh-app.com的应用程序返回下列HTTP消息头：<pre class=" language-bash"><code class="language-bash">Set-Cookie: sessionId<span class="token operator">=</span>19284701<span class="token punctuation">;</span>domain<span class="token operator">=</span>wahh-app.com</code></pre>
+浏览器会将这个cookie重新提交给wahh-app.com的所有子域，包括bar.wahh-app.com</li>
+</ul>
+<blockquote>
+<p>注：服务器不能使用domain随意指定域。首先，指定的域要么必须是应用程序在其上运行的域，要么是它的父域(或为直接父域，或有一定间隔）。其次，指定的域不能为.com或.co.uk之类的顶级域，因为这样做会允许恶意服务器在其他任何域上建立任意cookie。如果浏览器违反以上任何一条规定，浏览器将完全忽略Set-Cookie指令</p>
+</blockquote>
+<h5 id="cookie范围设定过广"><a href="#cookie范围设定过广" class="headerlink" title="cookie范围设定过广"></a>cookie范围设定过广</h5><p>如果应用程序将cookie范围设定得过于宽泛，也可能会使应用程序出现各种安全漏洞:</p>
+<ol>
+<li>以一个允许用户注册、登录、写博客、阅读他人博客应用程序为例。</li>
+</ol>
+<ul>
+<li>它的主应用程序位于域wahh-blogs.com上，当用户登录这个应用程序时，他会从一个以wahh-blogs.com这个域为范围的cookie中收到会话令牌。每名用户都可以创建自己的博客，通过以用户名为前缀的一个新的子域进行访问，如：<br><font color="#fb8c00">fightingtree.wahh-blogs.com</font><br><font color="#fb8c00">hero.wahh-blogs.com</font></li>
+<li>因为cookie被自动重新提交到这个范围内的每一个子域，当一名已经登录的用户浏览其他用户的博客时，他的会话令牌与其请求一起提交。</li>
+<li>如果允许博客作者在他们自己的博客中插入任意JavaScript脚本，那么一个恶意博客作者就能够以和保存型跨站点脚本攻击一样的方式窃取其他用户的会话令牌。</li>
+</ul>
+<ol start="2">
+<li>之所以会出现这样的问题，是因为用户创作的博客是处理验证和会话管理的主应用程序的子域。HTTP cookie并没有能力帮助应用程序防止主域发布的cookie被重新提交给它的子域。</li>
+<li>要解决这个问题，主应用程序可以使用一个不同的域名(如www. wahh-blogs.com），并以这个完全合格的域名作为它的会话令牌cookie的域范围。这样，如果登录用户浏览其他用户的博客，会话cookie就不会被提交。</li>
+</ol>
+<h5 id="cookie指定父域为cookie域范围"><a href="#cookie指定父域为cookie域范围" class="headerlink" title="cookie指定父域为cookie域范围"></a>cookie指定父域为cookie域范围</h5><p>如果一个应用程序明确以一个父域作为它的cookie域范围，就会出现漏洞。<br>假设一个安全性至关重要的应用程序位于域sensitiveapp.wahh-organization.com上，当它建立cookie时，它自由设置的域范围如下：<br><font color="#fb8c00">Set-Cookie: sessionId=12df098ad809a5219; domain=wahh-organization.com</font><br>这样造成的后果是：当用户访问wahh-organization.com使用的每一个子域时，机密应用程序的会话令牌cookie都被提交，这些子域包括：<br><font color="#fb8c00">www. wahh-organization.com</font><br><font color="#fb8c00">testapp.wah-organization.com</font><br>由于以下原因，不应将敏感应用程序的cookie提交给其他应用程序</p>
+<ul>
+<li>负责其他应用程序的人员与负责机密应用程序的人员的信任级别不同</li>
+<li>与前面的博客应用程序一样，其他应用程序的功能可能会将提交给应用程序的cookie值泄露给第三方</li>
+<li>其他应用程序可能并不安全，但外部攻击者可以利用一个不安全的应用程序截获由机密应用程序创建的会话令牌。</li>
+</ul>
+<h4 id="cookie路径限制"><a href="#cookie路径限制" class="headerlink" title="cookie路径限制"></a>cookie路径限制</h4><p>位于/apps/secure/foo-app/index.jsp的应用程序建立一个cookie后，浏览器会默认在随后的所有请求中将cookie重新提交到路径/apps/secure/foo-app/及任何子目录。它不会将cookie提交到父目录或服务器上的任何目录路径。服务器可以在Set-Cookie指令中插入一个path属性，改变这种默认行为。例如，如果应用程序返回以下HTTP消息头：</p>
+<pre class=" language-bash"><code class="language-bash">Set-Cookie: sessionId<span class="token operator">=</span>187ab023e09c00a881a<span class="token punctuation">;</span> path<span class="token operator">=</span>/apps/<span class="token punctuation">;</span></code></pre>
+<p>那么浏览器会将这个cookie重新返回到/apps/路径的所有子目录中</p>
+<h2 id="保障会话管理的安全"><a href="#保障会话管理的安全" class="headerlink" title="保障会话管理的安全"></a>保障会话管理的安全</h2><h3 id="生成强大的令牌"><a href="#生成强大的令牌" class="headerlink" title="生成强大的令牌"></a>生成强大的令牌</h3><p>最有效的令牌生成机制应具备以下两点：</p>
+<ul>
+<li>使用数量及其庞大的一组可能值</li>
+<li>包含强大的随机源，确保令牌以无法预测的方式平均分布在其可能值范围内</li>
+</ul>
+<h3 id="在整个生命周期保障令牌的安全"><a href="#在整个生命周期保障令牌的安全" class="headerlink" title="在整个生命周期保障令牌的安全"></a>在整个生命周期保障令牌的安全</h3><ul>
+<li>令牌只能通过HTTPS传送</li>
+<li>绝不能在URL中传送会话令牌</li>
+<li>应总是执行退出功能</li>
+<li>防止并行登录</li>
+<li>尽可能限制cookie的域和路径范围</li>
+<li>不应接受用户提交、但服务器不认可的任意令牌</li>
+<li>在执行转账之类的重要操作之前，要求进行两步确认或重新验证可有效防御跨站点请求伪造或其他会话攻击</li>
+<li>不完全依赖HTTP cookie传送会话令牌可防御跨站点请求伪造攻击</li>
+<li>成功验证后应总是建立一个新的会话，以避免会话固定攻击的影响。</li>
+</ul>
+<h4 id="每页面令牌"><a href="#每页面令牌" class="headerlink" title="每页面令牌"></a>每页面令牌</h4><ul>
+<li>应在会话令牌的基础上使用每页面令牌。</li>
+<li>使用每页面令牌时，每次用户请求一个应用程序页面（例如，不是图像),应用程序都会建立一个新的页面令牌，并通过cookie或HTML表单隐藏字段将其传送给客户端。</li>
+<li>用户每次都提出一个请求，除通过主会话令牌进行正常确认外，页面令牌还根据最后发布的令牌值进行再次检验。</li>
+<li>如果出现不匹配的情况，整个会话将被终止</li>
+</ul>
+<h3 id="日志、监控与警报"><a href="#日志、监控与警报" class="headerlink" title="日志、监控与警报"></a>日志、监控与警报</h3><ul>
+<li>应用程序应监控包含无效令牌的请求</li>
+<li>很难完全阻止针对会话令牌的蛮力攻击，因为我们无法禁用特殊用户账户或会话来终止这种攻击</li>
+</ul>
+<h4 id="反应性会话终止"><a href="#反应性会话终止" class="headerlink" title="反应性会话终止"></a>反应性会话终止</h4><p>如果收到用户提交的反常请求，那么一些安全性至关重要(如电子银行)会极其迅速地终止用户的会话</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《Web安全(6)》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/04/websecurity6/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-11-04T20-46-48',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/11/05/websecurity7/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5271.jpg" class="responsive-img" alt="Web安全(7)">
+                        
+                        <span class="card-title">Web安全(7)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            攻击访问控制
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-05
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/" target="_blank">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/04/phpstudy1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4758.jpg" class="responsive-img" alt="phpStudy1">
+                        
+                        <span class="card-title">phpStudy1</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            使用phpStudy搭建网站
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-04
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    工具使用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/" target="_blank">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/phpStudy/" target="_blank">
+                        <span class="chip bg-color">phpStudy</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

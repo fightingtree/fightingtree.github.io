@@ -1,0 +1,1171 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="javascript(2), FightingTree">
+    <meta name="description" content="定义和调用函数函数定义//方法一：函数表达式
+//函数也是值，可以把函数类型值赋给变量，cube相当于函数名
+var cube = function(x){
+    return x*x*x);
+};
+//方法二：函数声明
+function">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>javascript(2) | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c38.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        javascript(2)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/javascript/" target="_blank">
+                                <span class="chip bg-color">javascript</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                编程语言
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-10-11
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        8 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="定义和调用函数"><a href="#定义和调用函数" class="headerlink" title="定义和调用函数"></a>定义和调用函数</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><pre class=" language-bash"><code class="language-bash">//方法一：函数表达式
+//函数也是值，可以把函数类型值赋给变量，cube相当于函数名
+var cube <span class="token operator">=</span> function<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x*x*x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//方法二：函数声明
+<span class="token keyword">function</span> cube<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> x*x*x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//调用
+alert<span class="token punctuation">(</span>cube<span class="token punctuation">(</span>2<span class="token punctuation">))</span><span class="token punctuation">;</span>  //方法一方法二的函数均可用此方式调用</code></pre>
+<p>函数声明方式可以在定义之前被调用，函数表达式则不行</p>
+<blockquote>
+<p>注：如果一个函数完成了其主体的执行，却没有执行任何return语句，它会返回undefined。</p>
+</blockquote>
+<h3 id="将对象引用作为参数传递"><a href="#将对象引用作为参数传递" class="headerlink" title="将对象引用作为参数传递"></a>将对象引用作为参数传递</h3><h4 id="无返回值-方法"><a href="#无返回值-方法" class="headerlink" title="无返回值(方法)"></a>无返回值(方法)</h4><pre class=" language-bash"><code class="language-bash">var upperCase <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    for<span class="token punctuation">(</span>var i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a.length<span class="token punctuation">;</span>i +<span class="token operator">=</span> 1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        a<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//测试结果
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  //undefined
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">""</span>,<span class="token string">"world"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   //undefined
+
+var dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span>dog<span class="token punctuation">)</span>   //undefined
+dog              //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span></code></pre>
+<p>根据上述代码可知，upperCase没有返回值，但是，它修改了传递给它的对象的属性</p>
+<h4 id="有返回值-函数"><a href="#有返回值-函数" class="headerlink" title="有返回值(函数)"></a>有返回值(函数)</h4><pre class=" language-bash"><code class="language-bash">var upperCase <span class="token operator">=</span> function<span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    var result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    for<span class="token punctuation">(</span>var i<span class="token operator">=</span>0<span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a.length<span class="token punctuation">;</span>i+<span class="token operator">=</span>1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        result.push<span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span>.toUpperCase<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>   
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//测试结果
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  //<span class="token punctuation">[</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">""</span>,<span class="token string">"world"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>   //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">""</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span>
+
+var dog <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span>
+upperCase<span class="token punctuation">(</span>dog<span class="token punctuation">)</span>   //<span class="token punctuation">[</span><span class="token string">"HELLO"</span>,<span class="token string">"WORLD"</span><span class="token punctuation">]</span>
+dog   //<span class="token punctuation">[</span><span class="token string">"hello"</span>,<span class="token string">"world"</span><span class="token punctuation">]</span></code></pre>
+<h3 id="自调用函数"><a href="#自调用函数" class="headerlink" title="自调用函数"></a>自调用函数</h3><p>如果表达式后紧跟()，则会自动调用。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token punctuation">(</span>function <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    var x <span class="token operator">=</span> <span class="token string">"Hello!!"</span><span class="token punctuation">;</span>      // 我将调用自己
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> //最外层的括号说明它是一个表达式</code></pre>
+<blockquote>
+<p>注：不能调用声明的函数</p>
+</blockquote>
+<h2 id="作为对象的函数"><a href="#作为对象的函数" class="headerlink" title="作为对象的函数"></a>作为对象的函数</h2><h3 id="函数的属性"><a href="#函数的属性" class="headerlink" title="函数的属性"></a>函数的属性</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> plus1<span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>plus1.invocations <span class="token operator">==</span> undefined<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        plus1.invocations <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    plus1.invocations++<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> value + 1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p>上例中invocation代表函数被调用的次数，相当于面向对象程序设计中的静态属性。</p>
+<h4 id="函数的prototype属性"><a href="#函数的prototype属性" class="headerlink" title="函数的prototype属性"></a>函数的prototype属性</h4><p>每个对象都有prototype属性，prototype属性用于向类的构造器中加入新的属性</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.area <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.width*this.height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.description<span class="token operator">=</span><span class="token string">"hello"</span><span class="token punctuation">;</span></code></pre>
+<h3 id="作为属性的函数"><a href="#作为属性的函数" class="headerlink" title="作为属性的函数"></a>作为属性的函数</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> operson <span class="token operator">=</span> <span class="token punctuation">{</span>
+  firstName: <span class="token string">"John"</span>,
+  lastName <span class="token keyword">:</span> <span class="token string">"Doe"</span>,
+  <span class="token function">id</span>       <span class="token keyword">:</span> 5566,
+  fullName <span class="token keyword">:</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.firstName + <span class="token string">" "</span> + this.lastName<span class="token punctuation">;</span>  ////this指的是当前对象，即o
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+<blockquote>
+<p>注：使用this表达式的函数属性称为方法，上例中fullName就是operson的方法</p>
+</blockquote>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>count: 0<span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.increment<span class="token operator">=</span>function<span class="token punctuation">(</span>amount<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    if<span class="token punctuation">(</span>amount<span class="token operator">==</span>undefined<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        amount<span class="token operator">=</span>1<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    this.count+<span class="token operator">=</span>amount<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> this.count<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+//Method invocation:
+o.increment<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>//returns 1
+o.increment<span class="token punctuation">(</span>3<span class="token punctuation">)</span><span class="token punctuation">;</span>//returns 4</code></pre>
+<h4 id="this"><a href="#this" class="headerlink" title="this"></a>this</h4><p>方法中的this指向当前对象，方法之外的this指全局变量。(不建议在方法外使用this)</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>oldProp: <span class="token string">'this is an old property'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.aMethod <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.newProp <span class="token operator">=</span> <span class="token string">"this is a new property"</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Object.keys<span class="token punctuation">(</span>this<span class="token punctuation">)</span><span class="token punctuation">;</span> // will contain <span class="token string">'newProp'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+o.aMethod<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> // will <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token string">'oldProp'</span>,<span class="token string">'aMethod'</span>,<span class="token string">'newProp'</span><span class="token punctuation">]</span></code></pre>
+<h3 id="构造器-类"><a href="#构造器-类" class="headerlink" title="构造器(类)"></a>构造器(类)</h3><pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+    this.area <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> this.width*this.height<span class="token punctuation">;</span> <span class="token punctuation">}</span>  //此种定义方式有严重缺陷
+<span class="token punctuation">}</span>
+var r <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span>26, 14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+r.constructor.name <span class="token operator">==</span> <span class="token string">'Rectangle'</span>
+console.log<span class="token punctuation">(</span>r<span class="token punctuation">)</span></code></pre>
+<p>在构造器里出现的函数叫做构造函数，上例中area()是Rectangle的构造函数，但是此种定义方式有严重缺陷，在每创建一个Rectangle对象时，也创建了计算面积的方法，会浪费大量内存来保存面积的冗余副本，此问题在javascript可以用prototype解决</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width,height<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype.area <span class="token operator">=</span> function<span class="token punctuation">(</span>width,height<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> this.width * this.height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var r <span class="token operator">=</span> new Rectangle<span class="token punctuation">(</span>26, 14<span class="token punctuation">)</span><span class="token punctuation">;</span>
+r.constructor.name <span class="token operator">==</span> <span class="token string">'Rectangle'</span>
+console.log<span class="token punctuation">(</span>r<span class="token punctuation">)</span></code></pre>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>通过prototype属性继承</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token keyword">function</span> Shape<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">{</span>    this.str<span class="token operator">=</span>str<span class="token punctuation">;</span>  <span class="token punctuation">}</span>
+Shape.prototype.sdescription<span class="token operator">=</span><span class="token string">"Shape"</span>
+<span class="token keyword">function</span> Rectangle<span class="token punctuation">(</span>width, height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this.width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+    this.height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Rectangle.prototype <span class="token operator">=</span> new Shape<span class="token punctuation">(</span><span class="token string">"shape"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  //Rectangle继承了Shape
+var r<span class="token operator">=</span>new Rectangle<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><pre class=" language-bash"><code class="language-bash">var shape <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+shape.prototype.draw <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"i am generic shape"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+//circle
+var circle <span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+circle.prototype <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>shape.prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+circle.prototype.draw<span class="token operator">=</span> function<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>return <span class="token string">"i am a circle"</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+//triangle
+var triangle <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+triangle.prototype <span class="token operator">=</span> Object.create<span class="token punctuation">(</span>shape.prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+triangle.prototype.draw<span class="token operator">=</span> function<span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"this is triangle"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var shapes <span class="token operator">=</span> <span class="token punctuation">[</span>new shape<span class="token punctuation">(</span><span class="token punctuation">)</span>, new circle<span class="token punctuation">(</span><span class="token punctuation">)</span>, new triangle<span class="token punctuation">(</span>23<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+shapes.forEach <span class="token punctuation">(</span>function <span class="token punctuation">(</span>shapeList<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    console.log<span class="token punctuation">(</span>shapeList.draw<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h3 id="use-strict"><a href="#use-strict" class="headerlink" title="use strict"></a>use strict</h3><p>use strict是严格模式，在此模式下不能使用未声明的变量</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token operator">&lt;</span>script<span class="token operator">></span>
+<span class="token string">"use strict"</span><span class="token punctuation">;</span>
+if<span class="token punctuation">(</span>foo<span class="token punctuation">)</span>  //error,未声明
+    alert<span class="token punctuation">(</span><span class="token string">"happy"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span>
+    y <span class="token operator">=</span> 3.14<span class="token punctuation">;</span>//error，未声明
+    alert<span class="token punctuation">(</span><span class="token string">"sad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">&lt;</span>/script<span class="token operator">></span></code></pre>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>let的作用域范围是一个代码块{}，{}外不能访问</p>
+<pre class=" language-bash"><code class="language-bash">var x <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+// Here x is 10
+<span class="token punctuation">{</span>  
+var x <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+// Here x is 2
+<span class="token punctuation">}</span>/
+/ Here x is 2  </code></pre>
+<pre class=" language-bash"><code class="language-bash">var x <span class="token operator">=</span> 10<span class="token punctuation">;</span>
+// Here x is 10
+<span class="token punctuation">{</span>
+<span class="token keyword">let</span> x <span class="token operator">=</span> 2<span class="token punctuation">;</span>
+// Here x is 2
+<span class="token punctuation">}</span>/
+/ Here x is 10</code></pre>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>const 用于声明一个或多个常量，声明时必须进行初始化，且初始化后值不可再修改,const定义的变量并非常量，并非不可变，它定义了一个常量引用一个值。使用const 定义的对象或者数组，其实是可变的。下面的代码并不会报错：</p>
+<pre class=" language-bash"><code class="language-bash">// You can create a constant array:
+const cars <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Saab"</span>, <span class="token string">"Volvo"</span>, <span class="token string">"BMW"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+// You can change an element:
+cars<span class="token punctuation">[</span>0<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Toyota"</span><span class="token punctuation">;</span>
+// You can add an element:
+cars.push<span class="token punctuation">(</span><span class="token string">"Audi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>但是不能对常量对象重新赋值</p>
+<pre class=" language-bash"><code class="language-bash">const car <span class="token operator">=</span> <span class="token punctuation">{</span>type:<span class="token string">"Fiat"</span>, model:<span class="token string">"500"</span>, color:<span class="token string">"white"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+car <span class="token operator">=</span> <span class="token punctuation">{</span>type:<span class="token string">"Volvo"</span>, model:<span class="token string">"EX60"</span>, color:<span class="token string">"red"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>    // 错误</code></pre>
+<h2 id="头等函数-first-class-function"><a href="#头等函数-first-class-function" class="headerlink" title="头等函数(first-class function)"></a>头等函数(first-class function)</h2><ul>
+<li>将函数赋值给变量或将它们存储在变量中，数据结构——函数表达式</li>
+<li>将函数作为参数传递给其他函数</li>
+<li>将函数作为其他函数的值返回<pre class=" language-bash"><code class="language-bash">var aFuncVar <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> x+1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> myFunc<span class="token punctuation">(</span>routine<span class="token punctuation">)</span> <span class="token punctuation">{</span> // passed as a param
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, routine.toString<span class="token punctuation">(</span><span class="token punctuation">))</span><span class="token punctuation">;</span>
+var retVal <span class="token operator">=</span> routine<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//var retVal<span class="token operator">=</span>routine<span class="token punctuation">;</span>
+console.log<span class="token punctuation">(</span><span class="token string">'retVal'</span>, retVal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> retVal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+myFunc<span class="token punctuation">(</span>aFuncVar<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-bash"><code class="language-bash">//运行结果
+Called with <span class="token keyword">function</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+console.log<span class="token punctuation">(</span><span class="token string">'Called with'</span>, x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> x+1<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+Called with 10
+retVal 11
+11</code></pre>
+</li>
+</ul>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>创建函数的一种更简单的方法<br><font color="#fb8c00">let 函数名= (参数)=&gt;表达式</font></p>
+<pre class=" language-bash"><code class="language-bash">//箭头函数
+<span class="token keyword">let</span> <span class="token function">sum</span> <span class="token operator">=</span> <span class="token punctuation">(</span>a,b<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>a+b<span class="token punctuation">;</span>
+//函数表达式
+<span class="token keyword">let</span> <span class="token function">sum</span> <span class="token operator">=</span> function<span class="token punctuation">(</span>a,b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a+b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+alert<span class="token punctuation">(</span>sum<span class="token punctuation">(</span>1,2<span class="token punctuation">))</span><span class="token punctuation">;</span>  //3</code></pre>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><h3 id="正则表达式简介"><a href="#正则表达式简介" class="headerlink" title="正则表达式简介"></a>正则表达式简介</h3><ul>
+<li>正则表达式是组成搜索模式的字符序列。javascript的正则表达式以斜线(/…/)界定。</li>
+<li>对于正则表达式用test方法，会返回true\false，说明一个正则表达式是否与一个字符串匹配</li>
+<li>对于字符串应用search方法，将会返回字符串中每一个匹配的位置(如果不匹配则返回-1)<pre class=" language-bash"><code class="language-bash">/^Once/   //匹配以Once开头的字符串
+/ss$/   //匹配以ss结尾的字符串
+/go*gle/  //表示o可以为0个或多个,包括ggle、gogle、google等  </code></pre>
+</li>
+</ul>
+<h3 id="捕获"><a href="#捕获" class="headerlink" title="捕获"></a>捕获</h3><p>字符串match方法和正则表达式exec方法，捕获字符串中与正则表达式匹配的部分</p>
+<h3 id="数量词"><a href="#数量词" class="headerlink" title="数量词"></a>数量词</h3><ul>
+<li>a?匹配零个或一个a</li>
+<li>a*匹配零个或多个a</li>
+<li>a+匹配一个或多个a<br>这些数量词会匹配尽可能多的字符，如果要匹配较少的字符，应当使用??、* ?、+?<pre class=" language-bash"><code class="language-bash"><span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a+/<span class="token punctuation">)</span> //aaaa
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a+?/<span class="token punctuation">)</span> //a
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a*/<span class="token punctuation">)</span>  //aaaa
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a*?/<span class="token punctuation">)</span>  //<span class="token string">""</span>
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a?/<span class="token punctuation">)</span>   //a
+<span class="token string">"aaaah"</span>.match<span class="token punctuation">(</span>/a??/<span class="token punctuation">)</span>  //<span class="token string">""</span></code></pre>
+</li>
+</ul>
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><ul>
+<li>\d 寻找一个数据</li>
+<li>\s 寻找一个空白字符</li>
+<li>\b 在开始或结尾找到一个匹配项<pre class=" language-bash"><code class="language-bash"><span class="token string">'XXX abbbbbbc'</span>.search<span class="token punctuation">(</span>/ab+c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 4 <span class="token punctuation">(</span>position of <span class="token string">'a'</span><span class="token punctuation">)</span>
+<span class="token string">'XXX ac'</span>.search<span class="token punctuation">(</span>/ab+c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns -1, no match
+<span class="token string">'XXX ac'</span>.search<span class="token punctuation">(</span>/ab*c/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 4
+<span class="token string">'12e34'</span>.search<span class="token punctuation">(</span>/<span class="token punctuation">[</span>^\d<span class="token punctuation">]</span>/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 2
+<span class="token string">'foo: bar;'</span>.search<span class="token punctuation">(</span>/<span class="token punctuation">..</span>.\s*:\s*<span class="token punctuation">..</span>.\s*<span class="token punctuation">;</span>/<span class="token punctuation">)</span><span class="token punctuation">;</span> // Returns 0</code></pre>
+</li>
+</ul>
+<h3 id="正则表达式修饰符"><a href="#正则表达式修饰符" class="headerlink" title="正则表达式修饰符"></a>正则表达式修饰符</h3><ul>
+<li>i 忽略大小写</li>
+<li>g 全局</li>
+<li>m 多行<pre class=" language-bash"><code class="language-bash">/HALT/.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // 如果str里有HALT的子字符串，则返回true
+/halt/i.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // 同上但忽略大小写
+/<span class="token punctuation">[</span>Hh<span class="token punctuation">]</span>alt <span class="token punctuation">[</span>A-Z<span class="token punctuation">]</span>/.test<span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> // <span class="token punctuation">[</span>Hh<span class="token punctuation">]</span>表示开头为H、h <span class="token punctuation">[</span>A-Z<span class="token punctuation">]</span>表示26个大写字母中的一个 eg.halt A \ Halt B</code></pre>
+</li>
+</ul>
+<h2 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h2><p>将函数作为参数传递</p>
+<pre class=" language-bash"><code class="language-bash">var anArr <span class="token operator">=</span> <span class="token punctuation">[</span>45, 4, 9, 16, 25<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> filterFunc<span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value <span class="token operator">&lt;</span>45<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> mapFunc<span class="token punctuation">(</span>value,ind<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value*ind<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> reduceFunc<span class="token punctuation">(</span>total,value<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> total+value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+anArr.filter<span class="token punctuation">(</span>filterFunc<span class="token punctuation">)</span>.map<span class="token punctuation">(</span>mapFunc<span class="token punctuation">)</span>.reduce<span class="token punctuation">(</span>reduceFunc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+//执行filter后：<span class="token punctuation">[</span>4,9,16,25<span class="token punctuation">]</span>
+//执行map后：<span class="token punctuation">[</span>0,9,32,75<span class="token punctuation">]</span>
+//执行reduce后：116</code></pre>
+<blockquote>
+<p>注：filter()\map()\reduce()方法使用方法请参考此博客的javascript1</p>
+</blockquote>
+<p>上述编程可以写为</p>
+<pre class=" language-bash"><code class="language-bash">anArr.filter<span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token operator">></span>value<span class="token operator">&lt;</span>45<span class="token punctuation">)</span>.map<span class="token punctuation">((</span>value,ind<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>value*ind<span class="token punctuation">)</span>.reduce<span class="token punctuation">((</span>total,value<span class="token punctuation">)</span><span class="token operator">=</span><span class="token operator">></span>total+value<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><pre class=" language-bash"><code class="language-bash">var globalVar <span class="token operator">=</span> 1<span class="token punctuation">;</span>
+<span class="token keyword">function</span> localFunc<span class="token punctuation">(</span>argVar<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    var localVar <span class="token operator">=</span> 0<span class="token punctuation">;</span>
+    <span class="token keyword">function</span> embedFunc<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> ++localVar + argVar + globalVar<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> embedFunc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+var myFunc <span class="token operator">=</span> localFunc<span class="token punctuation">(</span>10<span class="token punctuation">)</span><span class="token punctuation">;</span>  //返回embedFunc函数
+myFunc<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>// 直接调用embedFunc函数，即localVar <span class="token operator">=</span>0 不再执行，只执行embedFunc函数</code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《javascript(2)》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/10/11/javascript2/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-10-11T08-35-43',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/10/14/javascript3/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4762.jpg" class="responsive-img" alt="javascript3">
+                        
+                        <span class="card-title">javascript3</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            javascript文档对象模型
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/09/datastructure1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4756.jpg" class="responsive-img" alt="数据结构与算法">
+                        
+                        <span class="card-title">数据结构与算法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            数据结构实现思路归纳
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category" target="_blank">
+                                    编程语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" target="_blank">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

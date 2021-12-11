@@ -1,0 +1,1079 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="scrapy(1), FightingTree">
+    <meta name="description" content="Scrapy框架架构框架介绍写一个爬虫，我们需要发送网络请求、数据分析、数据存储、反反爬虫机制(更换ip代理，设置请求头等)，异步请求等。scrapy把这些基础的东西都已经写好了，可以提高爬虫的爬取效率与开发效率。
+Scrapy架构图
+
+1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>scrapy(1) | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4758.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        scrapy(1)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Python/" target="_blank">
+                                <span class="chip bg-color">Python</span>
+                            </a>
+                        
+                            <a href="/tags/Scrapy/" target="_blank">
+                                <span class="chip bg-color">Scrapy</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                框架使用
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-15
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        1.9k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        7 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Scrapy框架架构"><a href="#Scrapy框架架构" class="headerlink" title="Scrapy框架架构"></a>Scrapy框架架构</h2><h3 id="框架介绍"><a href="#框架介绍" class="headerlink" title="框架介绍"></a>框架介绍</h3><p>写一个爬虫，我们需要发送网络请求、数据分析、数据存储、反反爬虫机制(更换ip代理，设置请求头等)，异步请求等。scrapy把这些基础的东西都已经写好了，可以提高爬虫的爬取效率与开发效率。</p>
+<h3 id="Scrapy架构图"><a href="#Scrapy架构图" class="headerlink" title="Scrapy架构图"></a>Scrapy架构图</h3><p><img src="https://pic.downk.cc/item/5ebbb9b4c2a9a83be534ce2b.png" alt=""><br><img src="https://pic.downk.cc/item/5ebbbaa5c2a9a83be535a496.png" alt=""></p>
+<ul>
+<li>1.spider(爬虫)给scheduler(调度器)发送请求</li>
+<li>2.scheduler接收请求，将其存储在自己的队列中</li>
+<li>3.引擎(engine)不断地向scheduler提取请求</li>
+<li>4.engine将请求给downloader(下载器)，下载器到互联网上下载资源</li>
+<li>5.engine接收到downloader返回的响应</li>
+<li>6.engine将响应返回给spider</li>
+<li>7.spider进行数据的分析与提取，将提取后的数据送给engine</li>
+<li>8.engine将提取后的数据送给pipeline,指定数据存储方式</li>
+</ul>
+<h4 id="模块功能"><a href="#模块功能" class="headerlink" title="模块功能"></a>模块功能</h4><ol>
+<li>Spider Engine(引擎)：Scrapy的核心部分，负责在其他模块中间通信</li>
+<li>Spider(爬虫)：发生需要爬取的链接给引擎，最后引擎把其他模块响应的数据返回给爬虫，由爬虫对数据进行分析提取，由开发者自行决定</li>
+<li>Scheduler(调度器)：负责接收引擎发送过来的请求，并按照一定方式排列整理，负责调度请求的顺序</li>
+<li>Downloader(下载器)：负责接收引擎传过来的下载请求，然后去下载对应的数据再交还给引擎</li>
+<li>Item Pipeline(管道)：负责存储爬虫传递的数据，由开发者决定数据存储位置</li>
+<li>Downloader Middlewares(下载中间件):可以扩展下载器和引擎之间通信功能的中间件</li>
+<li>Spider Middlewares(Spider中间件)：可以扩展爬虫和引擎之间通信功能的中间件</li>
+</ol>
+<h3 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h3><ol>
+<li>在windows下安装scrapy，首先要保证已经安装python环境</li>
+<li>安装anaconda</li>
+<li>在开始的地方找到Anaconda Prompt运行，输入以下指令：<pre class=" language-bash"><code class="language-bash">conda <span class="token function">install</span> scrapy   <span class="token comment" spellcheck="true">#安装</span>
+scrapy   <span class="token comment" spellcheck="true">#检测是否安装成功</span></code></pre>
+</li>
+</ol>
+<h3 id="创建scrapy项目"><a href="#创建scrapy项目" class="headerlink" title="创建scrapy项目"></a>创建scrapy项目</h3><p>先自己新建一个文件夹用来放scrapy项目，打开anaconda环境，即上面提及的Anaconda Prompt，使用命令行进入该文件夹。<br><img src="https://beta.gtimg.com/rdmimg/aiwx/img/ef242d8b-def6-4407-a37f-015b6cd0507a.png" alt=""></p>
+<h4 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h4><p>使用Pycharm打开项目文件夹<br><img src="https://pic.downk.cc/item/5ebcb9d2c2a9a83be5077097.png" alt=""></p>
+<h4 id="创建爬虫"><a href="#创建爬虫" class="headerlink" title="创建爬虫"></a>创建爬虫</h4><p>在Anaconda Prompt下进入刚刚创建的目录下，新建爬虫</p>
+<pre class=" language-bash"><code class="language-bash">scrapy genspider 爬虫名 <span class="token string">"爬取的域名"</span>
+scrapy genspider xixi <span class="token string">"cr137.com"</span></code></pre>
+<p>上述命令创建成功后会在<em>init</em>.py下多一个xixi.py,该文件是爬虫的main文件 </p>
+<h3 id="设置settings文件"><a href="#设置settings文件" class="headerlink" title="设置settings文件"></a>设置settings文件</h3><p><img src="https://pic.downk.cc/item/5ebcbca4c2a9a83be509d264.png" alt=""><br>设置请求头，伪装身份，必要时设置DOWNLOAD_DELAY。如果要存储数据要将此文件中pipelines的注释去掉</p>
+<h3 id="init-py文件"><a href="#init-py文件" class="headerlink" title="init.py文件"></a><strong>init</strong>.py文件</h3><p>打开新建的xixi.py文件,parse()函数是用于接收scrapy爬虫架构第6步返回的响应</p>
+<h3 id="运行爬虫"><a href="#运行爬虫" class="headerlink" title="运行爬虫"></a>运行爬虫</h3><p>在Anaconda Prompt中执行以下命令即可执行爬虫</p>
+<pre class=" language-bash"><code class="language-bash">scrapy crawl 爬虫名</code></pre>
+<h4 id="查看响应类型可采用的方法"><a href="#查看响应类型可采用的方法" class="headerlink" title="查看响应类型可采用的方法"></a>查看响应类型可采用的方法</h4><p>查看响应的类型,xixi.py：</p>
+<pre class=" language-bash"><code class="language-bash">def parse<span class="token punctuation">(</span>self,response<span class="token punctuation">)</span>:
+    print<span class="token punctuation">(</span><span class="token string">'='</span>*40<span class="token punctuation">)</span>
+    print<span class="token punctuation">(</span>type<span class="token punctuation">(</span>response<span class="token punctuation">))</span>
+    print<span class="token punctuation">(</span><span class="token string">'='</span>*40<span class="token punctuation">)</span></code></pre>
+<p><img src="https://pic.downk.cc/item/5ebcd159c2a9a83be51a9e5d.png" alt=""></p>
+<p>在xixi.py里加入以下语句：</p>
+<pre class=" language-bash"><code class="language-bash">from scrapy.http.response.html <span class="token function">import</span> HtmlResponse</code></pre>
+<p>查看方法的方式是鼠标选中要查看的类，按下ctrl+b(或长按ctrl用鼠标点击类名)，在上述例子中我们想查看HtmlResponse的方法，鼠标选中HtmlResponse，按下ctrl+b，得到下图<br><img src="https://pic.downk.cc/item/5ebcd330c2a9a83be51c5234.png" alt=""><br>由上图可知HtmlResponse继承自TextResponse类，继续查看TextResponse类的方法</p>
+<h5 id="快捷执行方式"><a href="#快捷执行方式" class="headerlink" title="快捷执行方式"></a>快捷执行方式</h5><p>在爬虫项目下新建一个python文件start.py，写入以下代码：</p>
+<pre class=" language-bash"><code class="language-bash">from scrapy <span class="token function">import</span> cmdline
+cmdline.execute<span class="token punctuation">(</span><span class="token string">"scrapy crawl xixi"</span>.split<span class="token punctuation">(</span><span class="token punctuation">))</span></code></pre>
+<p>执行此文件即可开始爬虫，就不需要再打开Anaconda Prompt</p>
+<h2 id="CrawlSpider"><a href="#CrawlSpider" class="headerlink" title="CrawlSpider"></a>CrawlSpider</h2><p>CrawlSpider继承自Spider，只不过比Spider多了可以定义爬取的url的规则，以后scrapy碰到满足条件的url都进行爬取，而不用手动的yield Request.</p>
+<h3 id="创建CrawlSpider爬虫"><a href="#创建CrawlSpider爬虫" class="headerlink" title="创建CrawlSpider爬虫"></a>创建CrawlSpider爬虫</h3><p>通过以下命令在Anaconda Prompt里创建CrawlSpider:</p>
+<pre class=" language-bash"><code class="language-bash">scrapy genspider -t crawl <span class="token punctuation">[</span>爬虫名<span class="token punctuation">]</span> <span class="token punctuation">[</span>域名<span class="token punctuation">]</span></code></pre>
+<h3 id="LinkExtractors链接提取器"><a href="#LinkExtractors链接提取器" class="headerlink" title="LinkExtractors链接提取器"></a>LinkExtractors链接提取器</h3><p>可以在所有爬的页面中找到满足规则的url，实现自动的爬取。</p>
+<pre class=" language-bash"><code class="language-bash">class scrapy.linkextractors.LinkExtractor<span class="token punctuation">{</span>
+    allow <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>,
+    deny <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>,
+    allow_domains <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>,
+    deny_domains <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>,
+    restrict_xpaths <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span>,
+    tags <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'a'</span>,<span class="token string">'area'</span><span class="token punctuation">)</span>,
+    attrs <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'href'</span><span class="token punctuation">)</span>,
+    canonicalize <span class="token operator">=</span> True,
+    unique <span class="token operator">=</span> True,
+    process_value <span class="token operator">=</span> None
+<span class="token punctuation">}</span></code></pre>
+<p>主要参数：</p>
+<ul>
+<li>allow:允许的url,所有满足这个正则表达式的url都会被提取。</li>
+<li>deny:禁止的url，所有满足这个正则表达式的url都不会被提取</li>
+<li>allow_domain:允许的域名，只有在这个里面指定的域名的url才会被提取</li>
+<li>deny_domain:禁止的域名，所有在这个里面指定的域名的url都不会被提取</li>
+<li>restrict_xpaths:严格的xpaths，和allow共同的过滤链接</li>
+</ul>
+<h3 id="Rule规则类"><a href="#Rule规则类" class="headerlink" title="Rule规则类"></a>Rule规则类</h3><p>定义爬虫的规则类：</p>
+<pre class=" language-bash"><code class="language-bash">class scrapy.spider.Rule<span class="token punctuation">{</span>
+    link_extractors,
+    callback <span class="token operator">=</span> None,
+    cb_kwargs <span class="token operator">=</span> None,
+    follow <span class="token operator">=</span> None,
+    process_links <span class="token operator">=</span> None,
+    process_request <span class="token operator">=</span> None
+<span class="token punctuation">}</span></code></pre>
+<p>主要参数：</p>
+<ul>
+<li>link_extractor:一个LinkExtractor对象，用于定义爬取规则。</li>
+<li>callback:满足这个规则的Url,应该执行哪个回调函数。因为CrawlSpider使用了parse作为回调函数，因此不要覆盖parse作为回调函数自己的回调函数</li>
+<li>follow:指定根据该规则从response提取的链接是否需要跟进</li>
+<li>process_links:从link_extractor中获取到链接后会传递给这个函数，用来过滤不需要爬取的链接。</li>
+</ul>
+<h3 id="CrawlSpider实战"><a href="#CrawlSpider实战" class="headerlink" title="CrawlSpider实战"></a>CrawlSpider实战</h3><p>创建CrawlSpider项目，在项目下创建爬虫文件wxapp.py，打开微信小程序社区的教程部分，找规律</p>
+<ol>
+<li><p>点击不同的页数的页面，观察url变化<br><img src="https://pic.downk.cc/item/5ebcf9b5c2a9a83be53fca44.png" alt=""><br><img src="https://pic.downk.cc/item/5ebcf9d7c2a9a83be53fe72d.png" alt=""><br>发现只有page参数变化</p>
+</li>
+<li><p>点击不同的文章进行查看<br><img src="https://pic.downk.cc/item/5ebcfabac2a9a83be540c043.png" alt=""><br><img src="https://pic.downk.cc/item/5ebcfb00c2a9a83be5410c2f.png" alt=""></p>
+</li>
+</ol>
+<h4 id="配置准备"><a href="#配置准备" class="headerlink" title="配置准备"></a>配置准备</h4><p>设置setting文件，新建文件start.py执行爬虫，运行即可</p>
+<h4 id="页面爬取"><a href="#页面爬取" class="headerlink" title="页面爬取"></a>页面爬取</h4><p>在wxapp.py文件里修改rules，对爬取信息进行筛选，如上面的url爬取。</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># -*- coding: utf-8 -*-</span>
+<span class="token function">import</span> scrapy
+from scrapy.linkextractors <span class="token function">import</span> LinkExtractor
+from scrapy.spiders <span class="token function">import</span> CrawlSpider, Rule
+class WxSpider<span class="token punctuation">(</span>CrawlSpider<span class="token punctuation">)</span>:
+    name <span class="token operator">=</span> <span class="token string">'wx'</span>
+    allowed_domains <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'wxapp-union.com'</span><span class="token punctuation">]</span>
+    start_urls <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'http://www.wxapp-union.com/portal.php?mod=list&amp;catid=2&amp;page=1'</span><span class="token punctuation">]</span>
+    <span class="token comment" spellcheck="true">#翻页</span>
+    rules <span class="token operator">=</span> <span class="token punctuation">(</span>
+        Rule<span class="token punctuation">(</span>LinkExtractor<span class="token punctuation">(</span>allow<span class="token operator">=</span>r<span class="token string">'.+mod=list&amp;catid=2&amp;page=\d'</span><span class="token punctuation">)</span>,
+              follow<span class="token operator">=</span>True<span class="token punctuation">)</span>,    <span class="token comment" spellcheck="true">#此处不需要指定回调，自动爬取即可</span>
+        <span class="token comment" spellcheck="true">#进一步解析相同域名，即进一步爬取每篇文章的详细内容</span>
+    <span class="token punctuation">)</span>
+    <span class="token comment" spellcheck="true">#点击查看具体页面</span>
+        Rule<span class="token punctuation">(</span>LinkExtractor<span class="token punctuation">(</span>allow<span class="token operator">=</span>r<span class="token string">'.+article-.+\.html'</span><span class="token punctuation">)</span>,
+            callback<span class="token operator">=</span><span class="token string">"parse_item"</span>,follow<span class="token operator">=</span>False<span class="token punctuation">)</span> <span class="token comment" spellcheck="true">#不需要跟进，不用再继续解析</span>
+
+    def parse_item<span class="token punctuation">(</span>self, response<span class="token punctuation">)</span>:
+        title <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//h1[@class='ph']/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        print<span class="token punctuation">(</span>title<span class="token punctuation">)</span></code></pre>
+<h4 id="提取作者时间"><a href="#提取作者时间" class="headerlink" title="提取作者时间"></a>提取作者时间</h4><p><img src="https://pic.downk.cc/item/5ebdf96fc2a9a83be53c8c0e.png" alt=""></p>
+<p>wx.py:</p>
+<pre class=" language-bash"><code class="language-bash"> def parse_item<span class="token punctuation">(</span>self, response<span class="token punctuation">)</span>:
+        author_p <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">".//p[@class='authors']"</span><span class="token punctuation">)</span>    <span class="token comment" spellcheck="true">#返回响应这个对象，类型为object</span>
+        author <span class="token operator">=</span> author_p.xpath<span class="token punctuation">(</span><span class="token string">".//a/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#get()返回响应内容，类型为字符串  .//表示在当前环境</span>
+        <span class="token function">time</span> <span class="token operator">=</span> author_p.xpath<span class="token punctuation">(</span><span class="token string">".//span/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        print<span class="token punctuation">(</span><span class="token string">"author:%s / time:%s"</span> % <span class="token punctuation">(</span>author,time<span class="token punctuation">))</span>
+        print<span class="token punctuation">(</span><span class="token string">"="</span>*40<span class="token punctuation">)</span></code></pre>
+<h4 id="提取前言部分"><a href="#提取前言部分" class="headerlink" title="提取前言部分"></a>提取前言部分</h4><p><img src="https://pic.downk.cc/item/5ebdff87c2a9a83be541eebd.png" alt=""><br>wx.py</p>
+<pre class=" language-bash"><code class="language-bash"> def parse_item<span class="token punctuation">(</span>self, response<span class="token punctuation">)</span>:
+        text_p <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='blockquote']"</span><span class="token punctuation">)</span>
+        text <span class="token operator">=</span> text_p.xpath<span class="token punctuation">(</span><span class="token string">".//p/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        print<span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+        print<span class="token punctuation">(</span><span class="token string">"="</span>*40<span class="token punctuation">)</span></code></pre>
+<h4 id="存储以上提取的所有信息"><a href="#存储以上提取的所有信息" class="headerlink" title="存储以上提取的所有信息"></a>存储以上提取的所有信息</h4><p>items.py</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#用来描述自定义数据包含哪些字段信息</span>
+class WxappItem<span class="token punctuation">(</span>scrapy.Item<span class="token punctuation">)</span>:
+    title <span class="token operator">=</span> scrapy.Field<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    author <span class="token operator">=</span> scrapy.Field<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token function">time</span> <span class="token operator">=</span> scrapy.Field<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    text <span class="token operator">=</span> scrapy.Field<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>pipeline.py</p>
+<pre class=" language-bash"><code class="language-bash">from scrapy.exporters <span class="token function">import</span> JsonLinesItemExporter  <span class="token comment" spellcheck="true">#JsonLinesExporter将数据直接存到硬盘中，而不需要存在内存中</span>
+class WxappPipeline<span class="token punctuation">(</span>object<span class="token punctuation">)</span>:
+    def __init__<span class="token punctuation">(</span>self<span class="token punctuation">)</span>:
+        self.fp <span class="token operator">=</span> open<span class="token punctuation">(</span><span class="token string">"wx.json"</span>,<span class="token string">'wb'</span><span class="token punctuation">)</span>
+        self.exporter <span class="token operator">=</span> JsonLinesItemExporter<span class="token punctuation">(</span>self.fp,ensure_ascii<span class="token operator">=</span>False,encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
+    def process_item<span class="token punctuation">(</span>self, item, spider<span class="token punctuation">)</span>:
+        self.exporter.export_item<span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> item
+    <span class="token comment" spellcheck="true">#关闭爬虫</span>
+    def close_spider<span class="token punctuation">(</span>self,spider<span class="token punctuation">)</span>:
+        self.fp.close<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<p>wx.py</p>
+<pre class=" language-bash"><code class="language-bash"> def parse_item<span class="token punctuation">(</span>self, response<span class="token punctuation">)</span>:
+        title <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//h1[@class='ph']/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        author_p <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">".//p[@class='authors']"</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># 返回响应这个对象，类型为object</span>
+        author <span class="token operator">=</span> author_p.xpath<span class="token punctuation">(</span><span class="token string">".//a/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true"># get()返回响应内容，类型为字符串</span>
+        <span class="token function">time</span> <span class="token operator">=</span> author_p.xpath<span class="token punctuation">(</span><span class="token string">".//span/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        text_p <span class="token operator">=</span> response.xpath<span class="token punctuation">(</span><span class="token string">"//div[@class='blockquote']"</span><span class="token punctuation">)</span>
+        text <span class="token operator">=</span> text_p.xpath<span class="token punctuation">(</span><span class="token string">".//p/text()"</span><span class="token punctuation">)</span>.get<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        item <span class="token operator">=</span> WxappItem<span class="token punctuation">(</span>title<span class="token operator">=</span>title,author<span class="token operator">=</span>author,time<span class="token operator">=</span>time,text<span class="token operator">=</span>text<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> item</code></pre>
+<h4 id="在同等文件夹下创建新文件"><a href="#在同等文件夹下创建新文件" class="headerlink" title="在同等文件夹下创建新文件"></a>在同等文件夹下创建新文件</h4><p>os_path.py</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> os
+path <span class="token operator">=</span> os.path.join<span class="token punctuation">(</span>os.path.dirname<span class="token punctuation">(</span>os.path.dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">))</span>,<span class="token string">'文件夹名'</span><span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#在该文件的相同文件夹下新建一个文件 os.path.dirname表示上一级目录</span>
+<span class="token keyword">if</span> not os.path.exists<span class="token punctuation">(</span>path<span class="token punctuation">)</span>:
+    os.mkdir<span class="token punctuation">(</span>path<span class="token punctuation">)</span>
+else:
+    print<span class="token punctuation">(</span><span class="token string">"文件夹存在"</span><span class="token punctuation">)</span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《scrapy(1)》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/05/15/scrapy1/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2020-05-15T13-47-55',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/05/15/scrapy2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5266.jpg" class="responsive-img" alt="分布式爬虫">
+                        
+                        <span class="card-title">分布式爬虫</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Scrapy-Redis分布
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-05-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/" class="post-category" target="_blank">
+                                    框架使用
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/Scrapy/" target="_blank">
+                        <span class="chip bg-color">Scrapy</span>
+                    </a>
+                    
+                    <a href="/tags/Redis/" target="_blank">
+                        <span class="chip bg-color">Redis</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/04/20/spider1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa5b8b58bc7bf71e4f69.jpg" class="responsive-img" alt="网络爬虫(1)s">
+                        
+                        <span class="card-title">网络爬虫(1)s</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            正则表达式/urllib函数
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/" target="_blank">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%88%AC%E8%99%AB/" target="_blank">
+                        <span class="chip bg-color">爬虫</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" target="_blank">
+                        <span class="chip bg-color">正则表达式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

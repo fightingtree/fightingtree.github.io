@@ -1,0 +1,1125 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="PKI, FightingTree">
+    <meta name="description" content="PKI概述PKI(Public Key Infrastructure，公钥基础设施)
+
+作用：通过加密技术和数字签名保证信息的安全
+组成：公钥加密技术、数字证书、CA、RA
+
+PKI应用
+SSL/HTTPS
+IPsecVPN
+部分远程访问V">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>PKI | FightingTree</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+<meta name="generator" content="Hexo 4.2.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">FightingTree</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于我</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">FightingTree</div>
+        <div class="logo-desc">
+            
+            No pains, No gains.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于我
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/fightingtree/fightingtree.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #c2185b;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/fightingtree/fightingtree.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://pic.superbed.cn/item/5db3fa668b58bc7bf71e525b.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        PKI
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #c2185b;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #c2185b;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #c2185b;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" target="_blank">
+                                <span class="chip bg-color">计算机网络</span>
+                            </a>
+                        
+                            <a href="/tags/PKI/" target="_blank">
+                                <span class="chip bg-color">PKI</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2019-12-01
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        4.6k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        15 分
+                    </div>
+                    
+                
+				
+				
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="PKI概述"><a href="#PKI概述" class="headerlink" title="PKI概述"></a>PKI概述</h2><p>PKI(Public Key Infrastructure，公钥基础设施)</p>
+<ul>
+<li>作用：通过加密技术和数字签名保证信息的安全</li>
+<li>组成：公钥加密技术、数字证书、CA、RA</li>
+</ul>
+<h3 id="PKI应用"><a href="#PKI应用" class="headerlink" title="PKI应用"></a>PKI应用</h3><ul>
+<li>SSL/HTTPS</li>
+<li>IPsecVPN</li>
+<li>部分远程访问VPN</li>
+</ul>
+<h2 id="信息安全三要素"><a href="#信息安全三要素" class="headerlink" title="信息安全三要素"></a>信息安全三要素</h2><p>机密性、完整性、身份验证/操作的不可否认性</p>
+<h2 id="公钥加密技术"><a href="#公钥加密技术" class="headerlink" title="公钥加密技术"></a>公钥加密技术</h2><ul>
+<li>作用：实现对信息加密、数字签名等安全保障</li>
+<li>加密算法：(1)对称加密算法(加解密的密钥一致)  (2)非对称加密算法：通信双方各生产一对公私钥，双方各自交换公钥，公钥和私钥互为加解密关系，且公钥私钥不能相互逆推。</li>
+</ul>
+<h3 id="HASH算法"><a href="#HASH算法" class="headerlink" title="HASH算法"></a>HASH算法</h3><p>HASH算法(MD5/SHA):不可逆加密算法，不需要密钥，无法进行解密。</p>
+<h2 id="网络安全问题概述"><a href="#网络安全问题概述" class="headerlink" title="网络安全问题概述"></a>网络安全问题概述</h2><p>计算机网络上的通信面临以下四种威胁：</p>
+<ul>
+<li>截获：从网络上窃听他人的通信内容</li>
+<li>中断：有意中断他人在网络上的通信</li>
+<li>篡改：故意篡改网络上传送的报文</li>
+<li>伪造：伪造信息在网络上传送</li>
+</ul>
+<h3 id="对攻击的分类"><a href="#对攻击的分类" class="headerlink" title="对攻击的分类"></a>对攻击的分类</h3><p>截获信息的攻击称为被动攻击，而更改信息和拒绝用户使用资源属于主动攻击</p>
+<ul>
+<li>在被动攻击中，攻击者只是观察和分析某一个协议数据单元PDU而不干扰信息流</li>
+<li>主动攻击是指攻击者对某个连接中通过的PDU进行各种处理(更改报文流、拒绝报文服务、伪造连接初始化)</li>
+</ul>
+<h3 id="恶意程序"><a href="#恶意程序" class="headerlink" title="恶意程序"></a>恶意程序</h3><ul>
+<li>计算机病毒：会传染其他程序的程序，传染是通过修改其他程序来把自身或其变种复制进去完成的</li>
+<li>计算机蠕虫：通过网络的通信功能将自身从一个结点发送到另一个结点并启动运行的程序</li>
+<li>特洛伊木马：一种程序，它执行的功能超出所声称的功能</li>
+<li>逻辑炸弹：一种当运行环境满足某种特定条件时执行其他特殊功能的程序</li>
+</ul>
+<h3 id="计算机网络安全的内容"><a href="#计算机网络安全的内容" class="headerlink" title="计算机网络安全的内容"></a>计算机网络安全的内容</h3><ul>
+<li>保密性</li>
+<li>安全协议的设计</li>
+<li>访问控制<br>一般数据加密模型如下图所示：<br><img src="https://pic1.superbed.cn/item/5de4acfb119afd7d7ec50c41.jpg" alt=""></li>
+</ul>
+<h2 id="两类密码体制"><a href="#两类密码体制" class="headerlink" title="两类密码体制"></a>两类密码体制</h2><h3 id="对称密钥密码体制"><a href="#对称密钥密码体制" class="headerlink" title="对称密钥密码体制"></a>对称密钥密码体制</h3><p>对称密钥系统：加密密钥和解密密钥是相同的密码体制</p>
+<h4 id="数据加密标准DES"><a href="#数据加密标准DES" class="headerlink" title="数据加密标准DES"></a>数据加密标准DES</h4><p>数据加密标准DES属于常规密钥密码体制，是一种分组密码</p>
+<ul>
+<li>在加密前，对整个明文进行分组，每一个组长为64位</li>
+<li>对64位的明文进行IP置换，然后分成左右等长的、各32位的两个分组。</li>
+<li>在48位子密钥的作用下，进行16轮乘积变换运算(最后一轮左右交换位置)</li>
+<li>最后将各组密文串接起来，得出整个密文</li>
+<li>使用的密钥为64位(实际密钥长度为56位，有8位用奇偶校验)<br>DES的保密性取决于对密钥的保密，而算法是公开的。</li>
+</ul>
+<h4 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h4><p>AES的密钥长度为：128/192/256，加密时会执行10次轮函数(前9次都是一样的，只有第10次不同)。明文分组用字节为单位的正方向矩阵描述(状态矩阵)，<br>加密过程如下：</p>
+<ul>
+<li>轮密钥加</li>
+<li>字节代换：S盒，逆S盒，状态矩阵中的每个元素(含1个字节)将字节的高4位作为行，低4位作为列，取S盒的值作为输出</li>
+<li>行位移，第一行不动，第二行移动1位，第三行移动2位，以此类推</li>
+<li>列混合：通过矩阵相乘实现</li>
+<li>轮密钥加：128位密钥同状态矩阵中的数据进行逐位异或操作</li>
+</ul>
+<h3 id="非对称密钥密码体制"><a href="#非对称密钥密码体制" class="headerlink" title="非对称密钥密码体制"></a>非对称密钥密码体制</h3><h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>原理：基于一个大因数很难被分解成两个质数相乘<br>X的欧拉函数：小于X且和X互质的数的个数。<br>模反元素：如果a与n互质，则一定可以找到一个整数b，使得ab-1被n整除<br>RSA加/解密过程</p>
+<ul>
+<li>选取两个大的质数P/Q，PQ=N</li>
+<li>N的欧拉函数=(P-1)(Q-1)</li>
+<li>E:比1大比N的欧拉函数小，且与N的欧拉函数互质</li>
+<li>D：ED-1可被N的欧拉函数整除</li>
+<li>密文=明文^E mod N ，公钥(E,N)</li>
+<li>明文=密文^D mod N ，私钥(D,N)</li>
+</ul>
+<h3 id="公钥密码体制"><a href="#公钥密码体制" class="headerlink" title="公钥密码体制"></a>公钥密码体制</h3><p>公钥密码体制使用不同的加密密钥与解密密钥。是一种“由已知加密密钥推导出解密密钥在计算上是不可行的”密码体制</p>
+<h4 id="加密密钥和解密密钥"><a href="#加密密钥和解密密钥" class="headerlink" title="加密密钥和解密密钥"></a>加密密钥和解密密钥</h4><ul>
+<li>在公钥密码体制中，加密密钥(公钥)PK是公开信息，解密密钥(私钥)SK是需要保密的</li>
+<li>加密算法E和解密算法D也都是公开的</li>
+<li>虽然密钥SK是由公钥PK决定的，但却不能根据PK计算出SK</li>
+</ul>
+<h4 id="公钥算法的特点"><a href="#公钥算法的特点" class="headerlink" title="公钥算法的特点"></a>公钥算法的特点</h4><ul>
+<li>发送者在发送信息之前先要获取对方的公钥对明文进行加密</li>
+<li>发送者A用B的公钥对明文加密后，接受者B用自己的私钥解密，即可恢复明文</li>
+<li>解密密钥是接收者的专用密钥，对其他所有人都保密</li>
+<li>加密密钥是公开的，但它不能用来解密</li>
+<li>不可能从公钥推导出私钥</li>
+<li>加解密算法都是公开的</li>
+</ul>
+<h2 id="鉴别"><a href="#鉴别" class="headerlink" title="鉴别"></a>鉴别</h2><ul>
+<li>对方被动攻击的重要措施是加密，而对付主动攻击中的篡改和伪造则需要鉴别(authentication)</li>
+<li>报文鉴别使得通信的接收方能够验证所收到的报文</li>
+</ul>
+<h3 id="报文鉴别"><a href="#报文鉴别" class="headerlink" title="报文鉴别"></a>报文鉴别</h3><p>许多报文并不需要加密但却需要数字签名，以便于让报文的接收者能够鉴别报文的真伪。然而对很长的报文进行数字签名会使得计算机增加很大的负担(需要进行长时间的运算)，当我们传送不需要加密的报文时，可以使用MD来鉴别报文的真伪</p>
+<h4 id="报文摘要MD-Message-Digest"><a href="#报文摘要MD-Message-Digest" class="headerlink" title="报文摘要MD(Message Digest)"></a>报文摘要MD(Message Digest)</h4><p>报文摘要是指单向哈希函数算法将任意长度的输入报文经计算得出固定位的输出称为报文摘要</p>
+<h3 id="实体鉴别"><a href="#实体鉴别" class="headerlink" title="实体鉴别"></a>实体鉴别</h3><p>报文鉴别是对每个收到的报文都要鉴别报文的发送者，而实体鉴别是在系统接入的全部持续时间内对和自己通信的对方实体只需验证一次。</p>
+<h3 id="摘要升级"><a href="#摘要升级" class="headerlink" title="摘要升级"></a>摘要升级</h3><p>将报文摘要H利用A的私钥加密发送给B，B接收到密文摘要后用A的公钥进行解密得到摘要明文。</p>
+<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>数字签名是由发送者的私钥加密摘要形成的，数字签名必须保证以下三点：</p>
+<ul>
+<li>报文鉴别：接收者能够核实发送者对报文的签名</li>
+<li>报文的完整性：发送者事后不能抵赖对报文的签名</li>
+<li>不可否认：接收者不能伪造对报文的签名</li>
+</ul>
+<h3 id="数字签名的实现"><a href="#数字签名的实现" class="headerlink" title="数字签名的实现"></a>数字签名的实现</h3><p><img src="https://pic3.superbed.cn/item/5de4ad2c119afd7d7ec51ce4.jpg" alt=""></p>
+<ul>
+<li>因为除了A外没有人能具有A的私钥，所以除A外没有别人能产生这个密文。因此B相信报文X是A签名发送的</li>
+<li>若A要抵赖曾经发送报文给B，B可将明文和对应的密文出示给第三者，第三者很容易用A的公钥去证实A确实发送X给B</li>
+<li>如B将报文X伪造成X1，则B不能在第三者前出示对应的密文，这样就证明了B伪造报文。</li>
+</ul>
+<p>具有保密性的数字签名：<br><img src="https://pic.superbed.cn/item/5de4ad4f119afd7d7ec5287c.jpg" alt=""></p>
+<h2 id="密钥分配"><a href="#密钥分配" class="headerlink" title="密钥分配"></a>密钥分配</h2><p>目前常用的密钥分配方式是设立密钥分配中心KDC(Key Distribution)，通过KDC来分配密钥。</p>
+<h3 id="对称密钥"><a href="#对称密钥" class="headerlink" title="对称密钥"></a>对称密钥</h3><p>用户A和B都是KDC的登记用户，并已经在KDC的服务器上安装了各自和KDC进行通信的主密钥(master key)KA和KB。</p>
+<h3 id="公钥的分配"><a href="#公钥的分配" class="headerlink" title="公钥的分配"></a>公钥的分配</h3><p>认证中心(Certification Authority,CA)将公钥与其对应的实体(人或实体)进行绑定。</p>
+<ul>
+<li>数字证书的生成：CA收到数字证书申请并认证申请者的真实身份后，把申请者的公钥、身份信息、数字证书的有效期等信息作为消息原文，进行hash生成摘要，并用CA的私钥加密进行签名；数字签名与证书拥有者的公钥、身份信息、证书有效期等其他信息共同组成数字证书。</li>
+<li>数字证书的验证：接收方收到消息证书后，使用CA公钥对数字签名解密生成消息摘要，对证书内容进行hash生成摘要，两份摘要进行比对可证明证书内容的完整性与真实性。</li>
+</ul>
+<h2 id="因特网使用的安全协议"><a href="#因特网使用的安全协议" class="headerlink" title="因特网使用的安全协议"></a>因特网使用的安全协议</h2><h3 id="网络层安全协议"><a href="#网络层安全协议" class="headerlink" title="网络层安全协议"></a>网络层安全协议</h3><h4 id="IPsec与安全关联SA"><a href="#IPsec与安全关联SA" class="headerlink" title="IPsec与安全关联SA"></a>IPsec与安全关联SA</h4><p>网络层保密是指所有在IP数据报中的数据都是加密的。IPsec中最重要的两个部分：</p>
+<ul>
+<li>鉴别首部AH(Authentication Header)：AH鉴别源点和检查数据完整性，但不能保密</li>
+<li>封装安全有效载荷ESP(Encapsulation Security Payload):ESP比AH复杂得多，它鉴别源点、检查数据完整性和提供保密。</li>
+</ul>
+<h5 id="安全关联SA-Security-Association"><a href="#安全关联SA-Security-Association" class="headerlink" title="安全关联SA(Security Association)"></a>安全关联SA(Security Association)</h5><ul>
+<li>在使用AH或ESP之前，先要从源主机到目的主机建立一条网络层的逻辑连接。此逻辑连接叫做安全关联SA。</li>
+<li>IPsec就把传统的因特网无连接的网络层转换为具有逻辑连接的层</li>
+</ul>
+<p>安全关联的特点<br>安全关联是一个单向连接，它有一个三元组唯一的确定，包括：</p>
+<ul>
+<li>安全协议(AH或ESP)的标识符</li>
+<li>此单向连接的源IP地址</li>
+<li>一个32位的连接标识符，称为安全参数索引SPI(Security Parameter Index)<br>对于每个给定的安全关联SA，每个IPsec数据报都有一个存放SPI的字段，通过此SA的所有数据报都使用相同的SPI值。</li>
+</ul>
+<h4 id="鉴别首部协议AH"><a href="#鉴别首部协议AH" class="headerlink" title="鉴别首部协议AH"></a>鉴别首部协议AH</h4><ul>
+<li>在使用鉴别首部协议AH时，把AH首部插在原数据报数据部分的前面，同时把IP首部中的协议字段置为51</li>
+<li>在传输过程中，中间的路由器都不查看AH首部，当数据报到达终点时，目的主机才处理AH字段，以鉴别源点和检查数据报的完整性。<br><img src="https://pic3.superbed.cn/item/5de4adac119afd7d7ec544be.jpg" alt=""></li>
+</ul>
+<h4 id="封装安全有效载荷ESP"><a href="#封装安全有效载荷ESP" class="headerlink" title="封装安全有效载荷ESP"></a>封装安全有效载荷ESP</h4><ul>
+<li>使用ESP时，IP数据报首部的协议字段位置为50，当IP首部检查到协议字段是50时，就知道在IP首部后面紧接着的是ESP首部，同时在原IP数据报后面增加了两个字段，即ESP尾部和ESP数据。</li>
+<li>ESP鉴别和AH中的鉴别数据是一样的，因此，用ESP封装的数据报既有鉴别源站和检查数据报完整性的功能，又能提供保密。</li>
+</ul>
+<p>在IP数据报中的ESP的各字段如下所示：<br><img src="https://pic3.superbed.cn/item/5de4adda119afd7d7ec551fe.jpg" alt=""></p>
+<h3 id="运输层安全协议"><a href="#运输层安全协议" class="headerlink" title="运输层安全协议"></a>运输层安全协议</h3><h4 id="安全套接层SSL"><a href="#安全套接层SSL" class="headerlink" title="安全套接层SSL"></a>安全套接层SSL</h4><ul>
+<li>SSL是安全套接层(Secure Socket Layer)，可对万维网客户与服务器之间传送的数据进行加密和鉴别。</li>
+<li>SSL在双方的联络阶段协商将使用的加密算法和密钥，以及客户与服务器之间的鉴别。</li>
+<li>在联络阶段完成之后，所有传送的数据都使用在联络阶段商定的会话密钥</li>
+<li>SSL不仅被所有常用的浏览器和万维网服务器所支持，而且也是运输层安全协议TLS(Transport Layer Secutiry)的基础。</li>
+</ul>
+<h4 id="HTTP与HTTPS"><a href="#HTTP与HTTPS" class="headerlink" title="HTTP与HTTPS"></a>HTTP与HTTPS</h4><p>HTTPS就是加了SSL的HTTP</p>
+<ul>
+<li>端口不同：Http与Http使用不同的连接方式，用的端口也不一样，前者是80，后者是443；</li>
+<li>资源消耗：和HTTP通信相比，Https通信会由于加减密处理消耗更多的CPU和内存资源；</li>
+<li>开销：Https通信需要证书，而证书一般需要向认证机构购买；<br><img src="https://pic.downk.cc/item/5e8eccc1504f4bcb0421a19c.jpg" alt=""></li>
+</ul>
+<h4 id="https传输过程"><a href="#https传输过程" class="headerlink" title="https传输过程"></a>https传输过程</h4><ol>
+<li>浏览器将自己支持的一套加密规则发送给网站。 </li>
+<li>网站从中选出一组加密算法与HASH算法，并将自己的身份信息以证书的形式发回给浏览器。证书里面包含了网站地址，加密公钥，以及证书的颁发机构等信息。 </li>
+<li>浏览器获得网站证书之后浏览器要做以下工作： </li>
+</ol>
+<ul>
+<li>验证证书的合法性（颁发证书的机构是否合法，证书中包含的网站地址是否与正在访问的地址一致等），如果证书受信任，则浏览器栏里面会显示一个小锁头，否则会给出证书不受信的提示。 </li>
+<li>如果证书受信任，或者是用户接受了不受信的证书，浏览器会生成一串随机数的密码，并用证书中提供的公钥加密。 </li>
+<li>用约定好的HASH算法计算握手消息，并使用生成的随机数对消息进行加密，最后将之前生成的所有信息发送给网站。 </li>
+</ul>
+<ol start="4">
+<li>网站接收浏览器发来的数据之后要做以下的操作： </li>
+</ol>
+<ul>
+<li>使用自己的私钥将信息解密取出密码，使用密码解密浏览器发来的握手消息，并验证HASH是否与浏览器发来的一致。 </li>
+<li>使用浏览器生成的随机数密码加密一段握手消息，发送给浏览器，浏览器使用随机数密码进行解密</li>
+</ul>
+<blockquote>
+<p>注：上述过程中设计两次请求，包括对称加密、非对称加密 
+　 </p>
+</blockquote>
+<h5 id="SSL的位置"><a href="#SSL的位置" class="headerlink" title="SSL的位置"></a>SSL的位置</h5><p><img src="https://pic3.superbed.cn/item/5de4adf7119afd7d7ec55a48.jpg" alt=""></p>
+<ul>
+<li>在发送方，SSL接收应用层的数据(HTTP报文或IMAP报文)，对数据进行加密，然后把加密的数据送往TCP套接字</li>
+<li>在接收方，SSL从TCP套接字读取数据，解密后把数据交给应用层。</li>
+</ul>
+<h5 id="SSL提供以下三个功能"><a href="#SSL提供以下三个功能" class="headerlink" title="SSL提供以下三个功能"></a>SSL提供以下三个功能</h5><ul>
+<li>SSL服务器鉴别：允许用户证实服务器的身份。具有SSL功能的浏览器维持一个表，上面有一些可信赖的CA和它们的公钥</li>
+<li>加密SSL会话：客户和服务器交互的所有数据都在发送方加密，在接收方解密</li>
+<li>SSL客户鉴别:允许服务器证实客户身份</li>
+</ul>
+<h4 id="安全电子交易SET"><a href="#安全电子交易SET" class="headerlink" title="安全电子交易SET"></a>安全电子交易SET</h4><p>安全电子交易SET(Secure Electronic Transaction)是专为在因特网上进行安全支付卡交易的协议<br>SET的主要特点是：</p>
+<ul>
+<li>SET是专门为与支付有关的报文进行加密的</li>
+<li>SET协议涉及到三方，即顾客、商家和商业银行。所有在这三方之间交互的敏感信息都被加密</li>
+<li>SET要求这三方都有证书。在SET交易中，商家看不见顾客传送给商业银行的信用卡号码</li>
+</ul>
+<h3 id="应用层的安全协议"><a href="#应用层的安全协议" class="headerlink" title="应用层的安全协议"></a>应用层的安全协议</h3><h4 id="PGP-Pretty-Good-Privacy"><a href="#PGP-Pretty-Good-Privacy" class="headerlink" title="PGP(Pretty Good Privacy)"></a>PGP(Pretty Good Privacy)</h4><ul>
+<li>PGP是一个完整的电子邮件安全软件包，包括加密、鉴别、电子签名和压缩等技术</li>
+<li>PGP并没有使用新的概念，它只是将一些算法如MD5,RSA等综合在一起</li>
+</ul>
+<h4 id="PEM-Privacy-Enhanced-Mail"><a href="#PEM-Privacy-Enhanced-Mail" class="headerlink" title="PEM(Privacy Enhanced Mail)"></a>PEM(Privacy Enhanced Mail)</h4><p>PEM是因特网的邮件加密建议标准，由4个RFC文档来描述。PEM的主要特点有：</p>
+<ul>
+<li>PEM与PGP一样都是对基于RFC 822的电子邮件进行加密和鉴别</li>
+<li>PEM 有比PGP更完善的密钥管理机制</li>
+</ul>
+<h2 id="链路加密和端到端解密"><a href="#链路加密和端到端解密" class="headerlink" title="链路加密和端到端解密"></a>链路加密和端到端解密</h2><h3 id="链路加密"><a href="#链路加密" class="headerlink" title="链路加密"></a>链路加密</h3><p>在采用链路加密的网络中，每条通信链路上的加密都是独立实现的，通常对每条链路使用不同的加密密钥。<br><img src="https://pic2.superbed.cn/item/5de4ae12119afd7d7ec56326.jpg" alt=""><br>相邻结点之间具有相同的密钥，因而密钥管理意义实现，链路加密对于用户来说是透明的(用户看不见)，因为加密功能由通信子网提供</p>
+<h3 id="端到端加密"><a href="#端到端加密" class="headerlink" title="端到端加密"></a>端到端加密</h3><p>端到端加密是在源结点和目的结点对传送的PDU进行加密和解密，报文的安全性不会因中间结点的不可靠而受到影响。<br><img src="https://pic3.superbed.cn/item/5de4ae37119afd7d7ec56d48.jpg" alt=""><br>在端到端加密的情况下，PDU的控制信息部分(如源结点地址、目的结点地址、路由信息等)不能被加密，否则中间结点就不能正确选择路由。</p>
+<h2 id="防火墙-firewall"><a href="#防火墙-firewall" class="headerlink" title="防火墙(firewall)"></a>防火墙(firewall)</h2><ul>
+<li>防火墙是由软件、硬件构成的系统。是一种特殊编程的路由器，用来在两个网络之间实施接入控制策略。</li>
+<li>防火墙内的网络称为“可信赖的网络”，而外部的因特网称为“不可信赖的网络”</li>
+</ul>
+<h3 id="防火墙在互连网络中的位置"><a href="#防火墙在互连网络中的位置" class="headerlink" title="防火墙在互连网络中的位置"></a>防火墙在互连网络中的位置</h3><p><img src="https://pic2.superbed.cn/item/5df58f24a4fbc8614a789c7d.jpg" alt=""></p>
+<h3 id="防火墙的功能"><a href="#防火墙的功能" class="headerlink" title="防火墙的功能"></a>防火墙的功能</h3><p>防火墙的功能有两个：阻止和允许</p>
+<ul>
+<li>阻止就是阻止某种类型的通信量通过防火墙(外部网络和内部网络双向阻止)</li>
+<li>允许的功能与阻止恰好相反</li>
+</ul>
+<h3 id="防火墙分类"><a href="#防火墙分类" class="headerlink" title="防火墙分类"></a>防火墙分类</h3><ul>
+<li>网络级防火墙：用来防止整个网络出现外来非法的入侵。具有分组过滤和授权服务器。分组过滤检查<br>所有流入本网络的信息，然后拒绝不符合实现制定好的一套准则的数据，而后者则是检查用户的登录是否合法</li>
+<li>应用级防火墙：从应用程序来进行接入控制。通常使用应用网关或代理服务器来区分各种应用。例如，可以只允许通过访问万维网的应用，而阻止FTP应用的通过。</li>
+</ul>
+<h2 id="DDos攻击"><a href="#DDos攻击" class="headerlink" title="DDos攻击"></a>DDos攻击</h2><p>客户端不断进行请求链接：服务器端会为每个请求创建一个链接，并向其发送确认报文，然后等待客户端进行确认</p>
+<h3 id="DDos攻击原理"><a href="#DDos攻击原理" class="headerlink" title="DDos攻击原理"></a>DDos攻击原理</h3><ul>
+<li>客户端向服务端发送请求链接数据包</li>
+<li>服务端向客户端发送确认数据包</li>
+<li>客户端不向服务端发送确认数据包，服务器一直等待来自客户端的确认</li>
+</ul>
+<h3 id="DDos预防"><a href="#DDos预防" class="headerlink" title="DDos预防"></a>DDos预防</h3><ul>
+<li>限制同时打开SYN半链接的数目</li>
+<li>缩短SYN半链接的Time out 时间</li>
+<li>关闭不必要的服务</li>
+</ul>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《PKI》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/12/01/pki1/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                fightingtree
+            </a> 采用
+            <a rel="license noopener" href="https://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: 'debc6373e622b493f954',
+        clientSecret: '5001da2e70b343177a3d07015d4478fd170b7037',
+        repo: 'fightingtree.github.io',
+        owner: 'fightingtree',
+        admin: "fightingtree",
+        id: '2019-12-01T19-01-34',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2019/12/01/dos/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa668b58bc7bf71e5268.jpg" class="responsive-img" alt="DOS">
+                        
+                        <span class="card-title">DOS</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            DOS原理与基本命令
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-12-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-category" target="_blank">
+                                    知识点总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" target="_blank">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/11/26/ftp/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://pic.superbed.cn/item/5db3fa428b58bc7bf71e4760.jpg" class="responsive-img" alt="FTP溢出漏洞分析">
+                        
+                        <span class="card-title">FTP溢出漏洞分析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            溢出漏洞、漏洞渗透模块编写
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-11-26
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AE%89%E5%85%A8/" class="post-category" target="_blank">
+                                    安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8/" target="_blank">
+                        <span class="chip bg-color">安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" target="_blank">
+                        <span class="chip bg-color">漏洞分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: FightingTree<br />'
+            + '作者: fightingtree<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<footer class="page-footer bg-color">
+    <div class="container row left-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="https://fightingtree.github.io/" target="_blank">fightingtree</a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+            </div>
+
+         <div class="col s12 m8 l8 copy-right">
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
+            站点总字数:&nbsp;
+                <span class="white-color">234.8k</span>
+            
+            </div>
+        <div class="col s12 m8 l8 copy-right">
+            
+			
+                <br>
+                
+                <span id="busuanzi_container_site_pv">
+                    <i class="fa fa-heart-o"></i>
+            本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+                </span>
+                
+                
+                <span id="busuanzi_container_site_uv">
+                    <i class="fa fa-users"></i>
+                    次,&nbsp;
+            访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+                </span>
+                
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="https://weibo.com/u/6112857421?from=myfollow_all" class="tooltipped" target="_blank" data-tooltip="访问我的微博" data-position="top" data-delay="50">
+        <i class="fa fa-weibo"></i>
+    </a>
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="/libs/materialize/materialize.min.js"></script>
+<script src="/libs/masonry/masonry.pkgd.min.js"></script>
+<script src="/libs/aos/aos.js"></script>
+<script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+<script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', '');
+</script>
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+
+
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
