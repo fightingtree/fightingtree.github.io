@@ -412,7 +412,7 @@ npm config set ">
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        2.3k
+                        2.4k
                     </div>
                     
 
@@ -587,19 +587,19 @@ Vue<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token keyword">export</span> <span class="token keyword">default</span> router
 </code></pre>
 <h5 id="5-在根组件中放路由占位符"><a href="#5-在根组件中放路由占位符" class="headerlink" title="5. 在根组件中放路由占位符"></a>5. 在根组件中放路由占位符</h5><p>在App.vue文件中添加占位符</p>
-<pre class=" language-vue"><code class="language-vue"><template>
-    <router-view></router-view> <!--通过路由匹配到的组件都会被渲染到此处-->
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-view</span><span class="token punctuation">></span></span> <span class="token comment" spellcheck="true">&lt;!--通过路由匹配到的组件都会被渲染到此处--></span>
 
-</template>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">></span></span>
 
-<script>
-    export default {
-        name:'app'
-    }
-</script>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+    <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+        name<span class="token punctuation">:</span><span class="token string">'app'</span>
+    <span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 
-<style>
-</style>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style language-css">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
 </code></pre>
 <p><img src="https://pic.downk.cc/item/5ff2c3903ffa7d37b301dcfd.png" alt=""></p>
 <h3 id="表单数据绑定"><a href="#表单数据绑定" class="headerlink" title="表单数据绑定"></a>表单数据绑定</h3><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
@@ -725,6 +725,12 @@ axios<span class="token punctuation">.</span>interceptors<span class="token punc
 <pre class=" language-python"><code class="language-python">body <span class="token operator">=</span> str<span class="token punctuation">(</span>request<span class="token punctuation">.</span>body<span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span>
 bodyJson <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>body<span class="token punctuation">)</span>  <span class="token operator">//</span>要对body进行非空处理，否则会出错
 username <span class="token operator">=</span> bodyJson<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">)</span></code></pre>
+<h2 id="Vue使用补充"><a href="#Vue使用补充" class="headerlink" title="Vue使用补充"></a>Vue使用补充</h2><h3 id="Vue中全局引入element-ui"><a href="#Vue中全局引入element-ui" class="headerlink" title="Vue中全局引入element-ui"></a>Vue中全局引入element-ui</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> element-ui -S</code></pre>
+<p>main.js</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">import</span> ElementUI <span class="token keyword">from</span> <span class="token string">'element-ui'</span>
+<span class="token keyword">import</span> <span class="token string">'element-ui/lib/theme-chalk/index.css'</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>ElementUI<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -1076,7 +1082,7 @@ username <span class="token operator">=</span> bodyJson<span class="token punctu
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;
             站点总字数:&nbsp;
-                <span class="white-color">235.5k</span>
+                <span class="white-color">236.3k</span>
             
             </div>
         <div class="col s12 m8 l8 copy-right">
